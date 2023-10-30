@@ -1,0 +1,885 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3600133B2AEF608A00D4B840 /* PopularTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360013392AEF608A00D4B840 /* PopularTableViewCell.swift */; };
+		3600133C2AEF608A00D4B840 /* PopularTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3600133A2AEF608A00D4B840 /* PopularTableViewCell.xib */; };
+		3600133F2AEF60A700D4B840 /* TopRatedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3600133D2AEF60A700D4B840 /* TopRatedTableViewCell.swift */; };
+		360013402AEF60A700D4B840 /* TopRatedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3600133E2AEF60A700D4B840 /* TopRatedTableViewCell.xib */; };
+		362A661E2AEF80A2009637DC /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362A661D2AEF80A2009637DC /* MainTabBarViewController.swift */; };
+		362A66222AEF81E3009637DC /* TvSeriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362A66202AEF81E3009637DC /* TvSeriesViewController.swift */; };
+		362A66232AEF81E3009637DC /* TvSeriesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 362A66212AEF81E3009637DC /* TvSeriesViewController.xib */; };
+		362A662A2AEF8820009637DC /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362A66282AEF8820009637DC /* DetailViewController.swift */; };
+		362A662B2AEF8820009637DC /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 362A66292AEF8820009637DC /* DetailViewController.xib */; };
+		36802C4A2AEF3DFE00E79868 /* MainViewControllerEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36802C492AEF3DFE00E79868 /* MainViewControllerEntity.swift */; };
+		36802C4D2AEF3E2400E79868 /* NPTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36802C4B2AEF3E2400E79868 /* NPTableViewCell.swift */; };
+		36802C4E2AEF3E2400E79868 /* NPTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36802C4C2AEF3E2400E79868 /* NPTableViewCell.xib */; };
+		36802C502AEF3F3B00E79868 /* ExtTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36802C4F2AEF3F3B00E79868 /* ExtTableView.swift */; };
+		36802C552AEF40A100E79868 /* NowPlayingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36802C532AEF40A100E79868 /* NowPlayingCollectionViewCell.swift */; };
+		36802C562AEF40A100E79868 /* NowPlayingCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36802C542AEF40A100E79868 /* NowPlayingCollectionViewCell.xib */; };
+		36802C5C2AEF446400E79868 /* TopRatedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36802C5A2AEF446400E79868 /* TopRatedCollectionViewCell.swift */; };
+		36802C5D2AEF446400E79868 /* TopRatedCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36802C5B2AEF446400E79868 /* TopRatedCollectionViewCell.xib */; };
+		36802C602AEF457400E79868 /* PopularCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36802C5E2AEF457400E79868 /* PopularCollectionViewCell.swift */; };
+		36802C612AEF457400E79868 /* PopularCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36802C5F2AEF457400E79868 /* PopularCollectionViewCell.xib */; };
+		36802C652AEF45F500E79868 /* NowPlayingEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36802C642AEF45F500E79868 /* NowPlayingEntity.swift */; };
+		36802C672AEF461C00E79868 /* PopularEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36802C662AEF461C00E79868 /* PopularEntity.swift */; };
+		36802C692AEF465D00E79868 /* TopRatedEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36802C682AEF465D00E79868 /* TopRatedEntity.swift */; };
+		36802C6B2AEF4F0D00E79868 /* ExtCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36802C6A2AEF4F0D00E79868 /* ExtCollectionView.swift */; };
+		36BB18D62AEF39EB00BC6EF4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BB18D52AEF39EB00BC6EF4 /* AppDelegate.swift */; };
+		36BB18D82AEF39EB00BC6EF4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BB18D72AEF39EB00BC6EF4 /* SceneDelegate.swift */; };
+		36BB18DF2AEF39ED00BC6EF4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 36BB18DE2AEF39ED00BC6EF4 /* Assets.xcassets */; };
+		36BB18E22AEF39ED00BC6EF4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36BB18E02AEF39ED00BC6EF4 /* LaunchScreen.storyboard */; };
+		36BB18ED2AEF39ED00BC6EF4 /* TugasTableViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BB18EC2AEF39ED00BC6EF4 /* TugasTableViewTests.swift */; };
+		36BB18F72AEF39ED00BC6EF4 /* TugasTableViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BB18F62AEF39ED00BC6EF4 /* TugasTableViewUITests.swift */; };
+		36BB18F92AEF39ED00BC6EF4 /* TugasTableViewUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BB18F82AEF39ED00BC6EF4 /* TugasTableViewUITestsLaunchTests.swift */; };
+		36E334C92AEF92C300490F8C /* MovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E334C72AEF92C300490F8C /* MovieViewController.swift */; };
+		36E334CA2AEF92C300490F8C /* MovieViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36E334C82AEF92C300490F8C /* MovieViewController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		36BB18E92AEF39ED00BC6EF4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36BB18CA2AEF39EB00BC6EF4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 36BB18D12AEF39EB00BC6EF4;
+			remoteInfo = TugasTableView;
+		};
+		36BB18F32AEF39ED00BC6EF4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36BB18CA2AEF39EB00BC6EF4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 36BB18D12AEF39EB00BC6EF4;
+			remoteInfo = TugasTableView;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		360013392AEF608A00D4B840 /* PopularTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularTableViewCell.swift; sourceTree = "<group>"; };
+		3600133A2AEF608A00D4B840 /* PopularTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopularTableViewCell.xib; sourceTree = "<group>"; };
+		3600133D2AEF60A700D4B840 /* TopRatedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopRatedTableViewCell.swift; sourceTree = "<group>"; };
+		3600133E2AEF60A700D4B840 /* TopRatedTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TopRatedTableViewCell.xib; sourceTree = "<group>"; };
+		362A661D2AEF80A2009637DC /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
+		362A66202AEF81E3009637DC /* TvSeriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TvSeriesViewController.swift; sourceTree = "<group>"; };
+		362A66212AEF81E3009637DC /* TvSeriesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TvSeriesViewController.xib; sourceTree = "<group>"; };
+		362A66282AEF8820009637DC /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		362A66292AEF8820009637DC /* DetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
+		36802C492AEF3DFE00E79868 /* MainViewControllerEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewControllerEntity.swift; sourceTree = "<group>"; };
+		36802C4B2AEF3E2400E79868 /* NPTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NPTableViewCell.swift; sourceTree = "<group>"; };
+		36802C4C2AEF3E2400E79868 /* NPTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NPTableViewCell.xib; sourceTree = "<group>"; };
+		36802C4F2AEF3F3B00E79868 /* ExtTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtTableView.swift; sourceTree = "<group>"; };
+		36802C532AEF40A100E79868 /* NowPlayingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingCollectionViewCell.swift; sourceTree = "<group>"; };
+		36802C542AEF40A100E79868 /* NowPlayingCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NowPlayingCollectionViewCell.xib; sourceTree = "<group>"; };
+		36802C5A2AEF446400E79868 /* TopRatedCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopRatedCollectionViewCell.swift; sourceTree = "<group>"; };
+		36802C5B2AEF446400E79868 /* TopRatedCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TopRatedCollectionViewCell.xib; sourceTree = "<group>"; };
+		36802C5E2AEF457400E79868 /* PopularCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularCollectionViewCell.swift; sourceTree = "<group>"; };
+		36802C5F2AEF457400E79868 /* PopularCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopularCollectionViewCell.xib; sourceTree = "<group>"; };
+		36802C642AEF45F500E79868 /* NowPlayingEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingEntity.swift; sourceTree = "<group>"; };
+		36802C662AEF461C00E79868 /* PopularEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularEntity.swift; sourceTree = "<group>"; };
+		36802C682AEF465D00E79868 /* TopRatedEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopRatedEntity.swift; sourceTree = "<group>"; };
+		36802C6A2AEF4F0D00E79868 /* ExtCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtCollectionView.swift; sourceTree = "<group>"; };
+		36BB18D22AEF39EB00BC6EF4 /* TugasTableView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TugasTableView.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		36BB18D52AEF39EB00BC6EF4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		36BB18D72AEF39EB00BC6EF4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		36BB18DE2AEF39ED00BC6EF4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		36BB18E12AEF39ED00BC6EF4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		36BB18E32AEF39ED00BC6EF4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		36BB18E82AEF39ED00BC6EF4 /* TugasTableViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TugasTableViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		36BB18EC2AEF39ED00BC6EF4 /* TugasTableViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TugasTableViewTests.swift; sourceTree = "<group>"; };
+		36BB18F22AEF39ED00BC6EF4 /* TugasTableViewUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TugasTableViewUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		36BB18F62AEF39ED00BC6EF4 /* TugasTableViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TugasTableViewUITests.swift; sourceTree = "<group>"; };
+		36BB18F82AEF39ED00BC6EF4 /* TugasTableViewUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TugasTableViewUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		36E334C72AEF92C300490F8C /* MovieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieViewController.swift; sourceTree = "<group>"; };
+		36E334C82AEF92C300490F8C /* MovieViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieViewController.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		36BB18CF2AEF39EB00BC6EF4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		36BB18E52AEF39ED00BC6EF4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		36BB18EF2AEF39ED00BC6EF4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		360013412AEF62F700D4B840 /* NowPlayingTable */ = {
+			isa = PBXGroup;
+			children = (
+				36802C4B2AEF3E2400E79868 /* NPTableViewCell.swift */,
+				36802C4C2AEF3E2400E79868 /* NPTableViewCell.xib */,
+			);
+			path = NowPlayingTable;
+			sourceTree = "<group>";
+		};
+		360013422AEF630700D4B840 /* PopularTable */ = {
+			isa = PBXGroup;
+			children = (
+				360013392AEF608A00D4B840 /* PopularTableViewCell.swift */,
+				3600133A2AEF608A00D4B840 /* PopularTableViewCell.xib */,
+			);
+			path = PopularTable;
+			sourceTree = "<group>";
+		};
+		360013432AEF631700D4B840 /* TopRatedTable */ = {
+			isa = PBXGroup;
+			children = (
+				3600133D2AEF60A700D4B840 /* TopRatedTableViewCell.swift */,
+				3600133E2AEF60A700D4B840 /* TopRatedTableViewCell.xib */,
+			);
+			path = TopRatedTable;
+			sourceTree = "<group>";
+		};
+		360013442AEF679100D4B840 /* DetailViewController */ = {
+			isa = PBXGroup;
+			children = (
+				360013452AEF679D00D4B840 /* Model */,
+			);
+			path = DetailViewController;
+			sourceTree = "<group>";
+		};
+		360013452AEF679D00D4B840 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				362A66282AEF8820009637DC /* DetailViewController.swift */,
+				362A66292AEF8820009637DC /* DetailViewController.xib */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		362A661C2AEF8067009637DC /* MainTabBarViewController */ = {
+			isa = PBXGroup;
+			children = (
+				362A661D2AEF80A2009637DC /* MainTabBarViewController.swift */,
+			);
+			path = MainTabBarViewController;
+			sourceTree = "<group>";
+		};
+		362A661F2AEF81B5009637DC /* TVSeriesViewController */ = {
+			isa = PBXGroup;
+			children = (
+				362A66202AEF81E3009637DC /* TvSeriesViewController.swift */,
+				362A66212AEF81E3009637DC /* TvSeriesViewController.xib */,
+			);
+			path = TVSeriesViewController;
+			sourceTree = "<group>";
+		};
+		36802C3E2AEF3D3600E79868 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				36BB18D52AEF39EB00BC6EF4 /* AppDelegate.swift */,
+				36BB18D72AEF39EB00BC6EF4 /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		36802C402AEF3D5000E79868 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				36802C452AEF3DB500E79868 /* Extensions */,
+				36802C442AEF3DA800E79868 /* Network */,
+				36802C432AEF3DA000E79868 /* Component */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		36802C412AEF3D5900E79868 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				36BB18DE2AEF39ED00BC6EF4 /* Assets.xcassets */,
+				36BB18E02AEF39ED00BC6EF4 /* LaunchScreen.storyboard */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		36802C422AEF3D5F00E79868 /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				362A661F2AEF81B5009637DC /* TVSeriesViewController */,
+				362A661C2AEF8067009637DC /* MainTabBarViewController */,
+				360013442AEF679100D4B840 /* DetailViewController */,
+				36802C462AEF3DC200E79868 /* MainViewController */,
+			);
+			path = Module;
+			sourceTree = "<group>";
+		};
+		36802C432AEF3DA000E79868 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
+		36802C442AEF3DA800E79868 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		36802C452AEF3DB500E79868 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				36802C4F2AEF3F3B00E79868 /* ExtTableView.swift */,
+				36802C6A2AEF4F0D00E79868 /* ExtCollectionView.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		36802C462AEF3DC200E79868 /* MainViewController */ = {
+			isa = PBXGroup;
+			children = (
+				36E334C62AEF92AF00490F8C /* View */,
+				36802C482AEF3DE200E79868 /* Model */,
+				36802C472AEF3DDC00E79868 /* Cells */,
+			);
+			path = MainViewController;
+			sourceTree = "<group>";
+		};
+		36802C472AEF3DDC00E79868 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				36802C522AEF406700E79868 /* TableViewCell */,
+				36802C512AEF405D00E79868 /* CollectionViewCell */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		36802C482AEF3DE200E79868 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				36802C632AEF45E200E79868 /* CollectionEntity */,
+				36802C622AEF45C900E79868 /* TableEntity */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		36802C512AEF405D00E79868 /* CollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				36802C592AEF444500E79868 /* TopRatedCell */,
+				36802C582AEF443300E79868 /* PopularCell */,
+				36802C572AEF442100E79868 /* NowPlayingCell */,
+			);
+			path = CollectionViewCell;
+			sourceTree = "<group>";
+		};
+		36802C522AEF406700E79868 /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				360013432AEF631700D4B840 /* TopRatedTable */,
+				360013422AEF630700D4B840 /* PopularTable */,
+				360013412AEF62F700D4B840 /* NowPlayingTable */,
+			);
+			path = TableViewCell;
+			sourceTree = "<group>";
+		};
+		36802C572AEF442100E79868 /* NowPlayingCell */ = {
+			isa = PBXGroup;
+			children = (
+				36802C532AEF40A100E79868 /* NowPlayingCollectionViewCell.swift */,
+				36802C542AEF40A100E79868 /* NowPlayingCollectionViewCell.xib */,
+			);
+			path = NowPlayingCell;
+			sourceTree = "<group>";
+		};
+		36802C582AEF443300E79868 /* PopularCell */ = {
+			isa = PBXGroup;
+			children = (
+				36802C5E2AEF457400E79868 /* PopularCollectionViewCell.swift */,
+				36802C5F2AEF457400E79868 /* PopularCollectionViewCell.xib */,
+			);
+			path = PopularCell;
+			sourceTree = "<group>";
+		};
+		36802C592AEF444500E79868 /* TopRatedCell */ = {
+			isa = PBXGroup;
+			children = (
+				36802C5A2AEF446400E79868 /* TopRatedCollectionViewCell.swift */,
+				36802C5B2AEF446400E79868 /* TopRatedCollectionViewCell.xib */,
+			);
+			path = TopRatedCell;
+			sourceTree = "<group>";
+		};
+		36802C622AEF45C900E79868 /* TableEntity */ = {
+			isa = PBXGroup;
+			children = (
+				36802C492AEF3DFE00E79868 /* MainViewControllerEntity.swift */,
+			);
+			path = TableEntity;
+			sourceTree = "<group>";
+		};
+		36802C632AEF45E200E79868 /* CollectionEntity */ = {
+			isa = PBXGroup;
+			children = (
+				36802C642AEF45F500E79868 /* NowPlayingEntity.swift */,
+				36802C662AEF461C00E79868 /* PopularEntity.swift */,
+				36802C682AEF465D00E79868 /* TopRatedEntity.swift */,
+			);
+			path = CollectionEntity;
+			sourceTree = "<group>";
+		};
+		36BB18C92AEF39EB00BC6EF4 = {
+			isa = PBXGroup;
+			children = (
+				36BB18D42AEF39EB00BC6EF4 /* TugasTableView */,
+				36BB18EB2AEF39ED00BC6EF4 /* TugasTableViewTests */,
+				36BB18F52AEF39ED00BC6EF4 /* TugasTableViewUITests */,
+				36BB18D32AEF39EB00BC6EF4 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		36BB18D32AEF39EB00BC6EF4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				36BB18D22AEF39EB00BC6EF4 /* TugasTableView.app */,
+				36BB18E82AEF39ED00BC6EF4 /* TugasTableViewTests.xctest */,
+				36BB18F22AEF39ED00BC6EF4 /* TugasTableViewUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		36BB18D42AEF39EB00BC6EF4 /* TugasTableView */ = {
+			isa = PBXGroup;
+			children = (
+				36802C3E2AEF3D3600E79868 /* App */,
+				36802C402AEF3D5000E79868 /* Common */,
+				36802C412AEF3D5900E79868 /* Resource */,
+				36802C422AEF3D5F00E79868 /* Module */,
+				36BB18E32AEF39ED00BC6EF4 /* Info.plist */,
+			);
+			path = TugasTableView;
+			sourceTree = "<group>";
+		};
+		36BB18EB2AEF39ED00BC6EF4 /* TugasTableViewTests */ = {
+			isa = PBXGroup;
+			children = (
+				36BB18EC2AEF39ED00BC6EF4 /* TugasTableViewTests.swift */,
+			);
+			path = TugasTableViewTests;
+			sourceTree = "<group>";
+		};
+		36BB18F52AEF39ED00BC6EF4 /* TugasTableViewUITests */ = {
+			isa = PBXGroup;
+			children = (
+				36BB18F62AEF39ED00BC6EF4 /* TugasTableViewUITests.swift */,
+				36BB18F82AEF39ED00BC6EF4 /* TugasTableViewUITestsLaunchTests.swift */,
+			);
+			path = TugasTableViewUITests;
+			sourceTree = "<group>";
+		};
+		36E334C62AEF92AF00490F8C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				36E334C72AEF92C300490F8C /* MovieViewController.swift */,
+				36E334C82AEF92C300490F8C /* MovieViewController.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		36BB18D12AEF39EB00BC6EF4 /* TugasTableView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 36BB18FC2AEF39ED00BC6EF4 /* Build configuration list for PBXNativeTarget "TugasTableView" */;
+			buildPhases = (
+				36BB18CE2AEF39EB00BC6EF4 /* Sources */,
+				36BB18CF2AEF39EB00BC6EF4 /* Frameworks */,
+				36BB18D02AEF39EB00BC6EF4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TugasTableView;
+			productName = TugasTableView;
+			productReference = 36BB18D22AEF39EB00BC6EF4 /* TugasTableView.app */;
+			productType = "com.apple.product-type.application";
+		};
+		36BB18E72AEF39ED00BC6EF4 /* TugasTableViewTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 36BB18FF2AEF39ED00BC6EF4 /* Build configuration list for PBXNativeTarget "TugasTableViewTests" */;
+			buildPhases = (
+				36BB18E42AEF39ED00BC6EF4 /* Sources */,
+				36BB18E52AEF39ED00BC6EF4 /* Frameworks */,
+				36BB18E62AEF39ED00BC6EF4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				36BB18EA2AEF39ED00BC6EF4 /* PBXTargetDependency */,
+			);
+			name = TugasTableViewTests;
+			productName = TugasTableViewTests;
+			productReference = 36BB18E82AEF39ED00BC6EF4 /* TugasTableViewTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		36BB18F12AEF39ED00BC6EF4 /* TugasTableViewUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 36BB19022AEF39ED00BC6EF4 /* Build configuration list for PBXNativeTarget "TugasTableViewUITests" */;
+			buildPhases = (
+				36BB18EE2AEF39ED00BC6EF4 /* Sources */,
+				36BB18EF2AEF39ED00BC6EF4 /* Frameworks */,
+				36BB18F02AEF39ED00BC6EF4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				36BB18F42AEF39ED00BC6EF4 /* PBXTargetDependency */,
+			);
+			name = TugasTableViewUITests;
+			productName = TugasTableViewUITests;
+			productReference = 36BB18F22AEF39ED00BC6EF4 /* TugasTableViewUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		36BB18CA2AEF39EB00BC6EF4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1420;
+				LastUpgradeCheck = 1420;
+				TargetAttributes = {
+					36BB18D12AEF39EB00BC6EF4 = {
+						CreatedOnToolsVersion = 14.2;
+					};
+					36BB18E72AEF39ED00BC6EF4 = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = 36BB18D12AEF39EB00BC6EF4;
+					};
+					36BB18F12AEF39ED00BC6EF4 = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = 36BB18D12AEF39EB00BC6EF4;
+					};
+				};
+			};
+			buildConfigurationList = 36BB18CD2AEF39EB00BC6EF4 /* Build configuration list for PBXProject "TugasTableView" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 36BB18C92AEF39EB00BC6EF4;
+			productRefGroup = 36BB18D32AEF39EB00BC6EF4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				36BB18D12AEF39EB00BC6EF4 /* TugasTableView */,
+				36BB18E72AEF39ED00BC6EF4 /* TugasTableViewTests */,
+				36BB18F12AEF39ED00BC6EF4 /* TugasTableViewUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		36BB18D02AEF39EB00BC6EF4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				36BB18E22AEF39ED00BC6EF4 /* LaunchScreen.storyboard in Resources */,
+				36802C612AEF457400E79868 /* PopularCollectionViewCell.xib in Resources */,
+				36802C5D2AEF446400E79868 /* TopRatedCollectionViewCell.xib in Resources */,
+				362A66232AEF81E3009637DC /* TvSeriesViewController.xib in Resources */,
+				362A662B2AEF8820009637DC /* DetailViewController.xib in Resources */,
+				36802C562AEF40A100E79868 /* NowPlayingCollectionViewCell.xib in Resources */,
+				360013402AEF60A700D4B840 /* TopRatedTableViewCell.xib in Resources */,
+				36BB18DF2AEF39ED00BC6EF4 /* Assets.xcassets in Resources */,
+				36802C4E2AEF3E2400E79868 /* NPTableViewCell.xib in Resources */,
+				36E334CA2AEF92C300490F8C /* MovieViewController.xib in Resources */,
+				3600133C2AEF608A00D4B840 /* PopularTableViewCell.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		36BB18E62AEF39ED00BC6EF4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		36BB18F02AEF39ED00BC6EF4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		36BB18CE2AEF39EB00BC6EF4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				36802C552AEF40A100E79868 /* NowPlayingCollectionViewCell.swift in Sources */,
+				36E334C92AEF92C300490F8C /* MovieViewController.swift in Sources */,
+				36802C6B2AEF4F0D00E79868 /* ExtCollectionView.swift in Sources */,
+				362A661E2AEF80A2009637DC /* MainTabBarViewController.swift in Sources */,
+				36802C672AEF461C00E79868 /* PopularEntity.swift in Sources */,
+				362A66222AEF81E3009637DC /* TvSeriesViewController.swift in Sources */,
+				36802C5C2AEF446400E79868 /* TopRatedCollectionViewCell.swift in Sources */,
+				36802C502AEF3F3B00E79868 /* ExtTableView.swift in Sources */,
+				36802C652AEF45F500E79868 /* NowPlayingEntity.swift in Sources */,
+				362A662A2AEF8820009637DC /* DetailViewController.swift in Sources */,
+				36BB18D62AEF39EB00BC6EF4 /* AppDelegate.swift in Sources */,
+				36802C692AEF465D00E79868 /* TopRatedEntity.swift in Sources */,
+				36802C4A2AEF3DFE00E79868 /* MainViewControllerEntity.swift in Sources */,
+				3600133F2AEF60A700D4B840 /* TopRatedTableViewCell.swift in Sources */,
+				36802C602AEF457400E79868 /* PopularCollectionViewCell.swift in Sources */,
+				3600133B2AEF608A00D4B840 /* PopularTableViewCell.swift in Sources */,
+				36BB18D82AEF39EB00BC6EF4 /* SceneDelegate.swift in Sources */,
+				36802C4D2AEF3E2400E79868 /* NPTableViewCell.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		36BB18E42AEF39ED00BC6EF4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				36BB18ED2AEF39ED00BC6EF4 /* TugasTableViewTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		36BB18EE2AEF39ED00BC6EF4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				36BB18F72AEF39ED00BC6EF4 /* TugasTableViewUITests.swift in Sources */,
+				36BB18F92AEF39ED00BC6EF4 /* TugasTableViewUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		36BB18EA2AEF39ED00BC6EF4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 36BB18D12AEF39EB00BC6EF4 /* TugasTableView */;
+			targetProxy = 36BB18E92AEF39ED00BC6EF4 /* PBXContainerItemProxy */;
+		};
+		36BB18F42AEF39ED00BC6EF4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 36BB18D12AEF39EB00BC6EF4 /* TugasTableView */;
+			targetProxy = 36BB18F32AEF39ED00BC6EF4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		36BB18E02AEF39ED00BC6EF4 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				36BB18E12AEF39ED00BC6EF4 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		36BB18FA2AEF39ED00BC6EF4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		36BB18FB2AEF39ED00BC6EF4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		36BB18FD2AEF39ED00BC6EF4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TugasTableView/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.phincon.TugasTableView;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		36BB18FE2AEF39ED00BC6EF4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TugasTableView/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.phincon.TugasTableView;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		36BB19002AEF39ED00BC6EF4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.phincon.TugasTableViewTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TugasTableView.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TugasTableView";
+			};
+			name = Debug;
+		};
+		36BB19012AEF39ED00BC6EF4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.phincon.TugasTableViewTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TugasTableView.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TugasTableView";
+			};
+			name = Release;
+		};
+		36BB19032AEF39ED00BC6EF4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.phincon.TugasTableViewUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = TugasTableView;
+			};
+			name = Debug;
+		};
+		36BB19042AEF39ED00BC6EF4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.phincon.TugasTableViewUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = TugasTableView;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		36BB18CD2AEF39EB00BC6EF4 /* Build configuration list for PBXProject "TugasTableView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				36BB18FA2AEF39ED00BC6EF4 /* Debug */,
+				36BB18FB2AEF39ED00BC6EF4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		36BB18FC2AEF39ED00BC6EF4 /* Build configuration list for PBXNativeTarget "TugasTableView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				36BB18FD2AEF39ED00BC6EF4 /* Debug */,
+				36BB18FE2AEF39ED00BC6EF4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		36BB18FF2AEF39ED00BC6EF4 /* Build configuration list for PBXNativeTarget "TugasTableViewTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				36BB19002AEF39ED00BC6EF4 /* Debug */,
+				36BB19012AEF39ED00BC6EF4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		36BB19022AEF39ED00BC6EF4 /* Build configuration list for PBXNativeTarget "TugasTableViewUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				36BB19032AEF39ED00BC6EF4 /* Debug */,
+				36BB19042AEF39ED00BC6EF4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 36BB18CA2AEF39EB00BC6EF4 /* Project object */;
+}
