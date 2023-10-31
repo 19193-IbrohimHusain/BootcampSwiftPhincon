@@ -37,6 +37,10 @@
 		36BB18ED2AEF39ED00BC6EF4 /* TugasTableViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BB18EC2AEF39ED00BC6EF4 /* TugasTableViewTests.swift */; };
 		36BB18F72AEF39ED00BC6EF4 /* TugasTableViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BB18F62AEF39ED00BC6EF4 /* TugasTableViewUITests.swift */; };
 		36BB18F92AEF39ED00BC6EF4 /* TugasTableViewUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BB18F82AEF39ED00BC6EF4 /* TugasTableViewUITestsLaunchTests.swift */; };
+		36D833372AF0A05300A110CF /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D833352AF0A05300A110CF /* ProfileViewController.swift */; };
+		36D833382AF0A05300A110CF /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36D833362AF0A05300A110CF /* ProfileViewController.xib */; };
+		36D8338F2AF1034E00A110CF /* DetailComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D8338E2AF1034E00A110CF /* DetailComponent.swift */; };
+		36D833912AF1036A00A110CF /* DetailComponent.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36D833902AF1036A00A110CF /* DetailComponent.xib */; };
 		36E334C92AEF92C300490F8C /* MovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E334C72AEF92C300490F8C /* MovieViewController.swift */; };
 		36E334CA2AEF92C300490F8C /* MovieViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36E334C82AEF92C300490F8C /* MovieViewController.xib */; };
 /* End PBXBuildFile section */
@@ -93,6 +97,10 @@
 		36BB18F22AEF39ED00BC6EF4 /* TugasTableViewUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TugasTableViewUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		36BB18F62AEF39ED00BC6EF4 /* TugasTableViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TugasTableViewUITests.swift; sourceTree = "<group>"; };
 		36BB18F82AEF39ED00BC6EF4 /* TugasTableViewUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TugasTableViewUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		36D833352AF0A05300A110CF /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		36D833362AF0A05300A110CF /* ProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
+		36D8338E2AF1034E00A110CF /* DetailComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailComponent.swift; sourceTree = "<group>"; };
+		36D833902AF1036A00A110CF /* DetailComponent.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailComponent.xib; sourceTree = "<group>"; };
 		36E334C72AEF92C300490F8C /* MovieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieViewController.swift; sourceTree = "<group>"; };
 		36E334C82AEF92C300490F8C /* MovieViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -214,6 +222,7 @@
 		36802C422AEF3D5F00E79868 /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				36D833342AF0A03600A110CF /* ProfileViewController */,
 				362A661F2AEF81B5009637DC /* TVSeriesViewController */,
 				362A661C2AEF8067009637DC /* MainTabBarViewController */,
 				360013442AEF679100D4B840 /* DetailViewController */,
@@ -225,6 +234,8 @@
 		36802C432AEF3DA000E79868 /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				36D8338E2AF1034E00A110CF /* DetailComponent.swift */,
+				36D833902AF1036A00A110CF /* DetailComponent.xib */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -387,6 +398,15 @@
 			path = TugasTableViewUITests;
 			sourceTree = "<group>";
 		};
+		36D833342AF0A03600A110CF /* ProfileViewController */ = {
+			isa = PBXGroup;
+			children = (
+				36D833352AF0A05300A110CF /* ProfileViewController.swift */,
+				36D833362AF0A05300A110CF /* ProfileViewController.xib */,
+			);
+			path = ProfileViewController;
+			sourceTree = "<group>";
+		};
 		36E334C62AEF92AF00490F8C /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -501,11 +521,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				36BB18E22AEF39ED00BC6EF4 /* LaunchScreen.storyboard in Resources */,
+				36D833912AF1036A00A110CF /* DetailComponent.xib in Resources */,
 				36802C612AEF457400E79868 /* PopularCollectionViewCell.xib in Resources */,
 				36802C5D2AEF446400E79868 /* TopRatedCollectionViewCell.xib in Resources */,
 				362A66232AEF81E3009637DC /* TvSeriesViewController.xib in Resources */,
 				362A662B2AEF8820009637DC /* DetailViewController.xib in Resources */,
 				36802C562AEF40A100E79868 /* NowPlayingCollectionViewCell.xib in Resources */,
+				36D833382AF0A05300A110CF /* ProfileViewController.xib in Resources */,
 				360013402AEF60A700D4B840 /* TopRatedTableViewCell.xib in Resources */,
 				36BB18DF2AEF39ED00BC6EF4 /* Assets.xcassets in Resources */,
 				36802C4E2AEF3E2400E79868 /* NPTableViewCell.xib in Resources */,
@@ -537,6 +559,7 @@
 			files = (
 				36802C552AEF40A100E79868 /* NowPlayingCollectionViewCell.swift in Sources */,
 				36E334C92AEF92C300490F8C /* MovieViewController.swift in Sources */,
+				36D8338F2AF1034E00A110CF /* DetailComponent.swift in Sources */,
 				36802C6B2AEF4F0D00E79868 /* ExtCollectionView.swift in Sources */,
 				362A661E2AEF80A2009637DC /* MainTabBarViewController.swift in Sources */,
 				36802C672AEF461C00E79868 /* PopularEntity.swift in Sources */,
@@ -544,6 +567,7 @@
 				36802C5C2AEF446400E79868 /* TopRatedCollectionViewCell.swift in Sources */,
 				36802C502AEF3F3B00E79868 /* ExtTableView.swift in Sources */,
 				36802C652AEF45F500E79868 /* NowPlayingEntity.swift in Sources */,
+				36D833372AF0A05300A110CF /* ProfileViewController.swift in Sources */,
 				362A662A2AEF8820009637DC /* DetailViewController.swift in Sources */,
 				36BB18D62AEF39EB00BC6EF4 /* AppDelegate.swift in Sources */,
 				36802C692AEF465D00E79868 /* TopRatedEntity.swift in Sources */,
