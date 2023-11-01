@@ -30,6 +30,9 @@
 		36802C672AEF461C00E79868 /* PopularEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36802C662AEF461C00E79868 /* PopularEntity.swift */; };
 		36802C692AEF465D00E79868 /* TopRatedEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36802C682AEF465D00E79868 /* TopRatedEntity.swift */; };
 		36802C6B2AEF4F0D00E79868 /* ExtCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36802C6A2AEF4F0D00E79868 /* ExtCollectionView.swift */; };
+		36956D012AF1EA600005D721 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36956CFF2AF1EA600005D721 /* LoginViewController.swift */; };
+		36956D022AF1EA600005D721 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36956D002AF1EA600005D721 /* LoginViewController.xib */; };
+		36956D072AF1EAB00005D721 /* CustomInputField.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36956D062AF1EAB00005D721 /* CustomInputField.xib */; };
 		36BB18D62AEF39EB00BC6EF4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BB18D52AEF39EB00BC6EF4 /* AppDelegate.swift */; };
 		36BB18D82AEF39EB00BC6EF4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BB18D72AEF39EB00BC6EF4 /* SceneDelegate.swift */; };
 		36BB18DF2AEF39ED00BC6EF4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 36BB18DE2AEF39ED00BC6EF4 /* Assets.xcassets */; };
@@ -39,8 +42,10 @@
 		36BB18F92AEF39ED00BC6EF4 /* TugasTableViewUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BB18F82AEF39ED00BC6EF4 /* TugasTableViewUITestsLaunchTests.swift */; };
 		36D833372AF0A05300A110CF /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D833352AF0A05300A110CF /* ProfileViewController.swift */; };
 		36D833382AF0A05300A110CF /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36D833362AF0A05300A110CF /* ProfileViewController.xib */; };
-		36D8338F2AF1034E00A110CF /* DetailComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D8338E2AF1034E00A110CF /* DetailComponent.swift */; };
-		36D833912AF1036A00A110CF /* DetailComponent.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36D833902AF1036A00A110CF /* DetailComponent.xib */; };
+		36D8E79E2AF1EC72001BC386 /* CustomInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D8E79D2AF1EC72001BC386 /* CustomInputField.swift */; };
+		36D8E7A02AF1ED27001BC386 /* ExtView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D8E79F2AF1ED27001BC386 /* ExtView.swift */; };
+		36D8E7A32AF1F004001BC386 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D8E7A22AF1F004001BC386 /* CustomButton.swift */; };
+		36D8E7A52AF1F013001BC386 /* CustomButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36D8E7A42AF1F013001BC386 /* CustomButton.xib */; };
 		36E334C92AEF92C300490F8C /* MovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E334C72AEF92C300490F8C /* MovieViewController.swift */; };
 		36E334CA2AEF92C300490F8C /* MovieViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36E334C82AEF92C300490F8C /* MovieViewController.xib */; };
 /* End PBXBuildFile section */
@@ -86,6 +91,9 @@
 		36802C662AEF461C00E79868 /* PopularEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularEntity.swift; sourceTree = "<group>"; };
 		36802C682AEF465D00E79868 /* TopRatedEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopRatedEntity.swift; sourceTree = "<group>"; };
 		36802C6A2AEF4F0D00E79868 /* ExtCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtCollectionView.swift; sourceTree = "<group>"; };
+		36956CFF2AF1EA600005D721 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		36956D002AF1EA600005D721 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		36956D062AF1EAB00005D721 /* CustomInputField.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomInputField.xib; sourceTree = "<group>"; };
 		36BB18D22AEF39EB00BC6EF4 /* TugasTableView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TugasTableView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		36BB18D52AEF39EB00BC6EF4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		36BB18D72AEF39EB00BC6EF4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -99,8 +107,10 @@
 		36BB18F82AEF39ED00BC6EF4 /* TugasTableViewUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TugasTableViewUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		36D833352AF0A05300A110CF /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		36D833362AF0A05300A110CF /* ProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
-		36D8338E2AF1034E00A110CF /* DetailComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailComponent.swift; sourceTree = "<group>"; };
-		36D833902AF1036A00A110CF /* DetailComponent.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailComponent.xib; sourceTree = "<group>"; };
+		36D8E79D2AF1EC72001BC386 /* CustomInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInputField.swift; sourceTree = "<group>"; };
+		36D8E79F2AF1ED27001BC386 /* ExtView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtView.swift; sourceTree = "<group>"; };
+		36D8E7A22AF1F004001BC386 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		36D8E7A42AF1F013001BC386 /* CustomButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomButton.xib; sourceTree = "<group>"; };
 		36E334C72AEF92C300490F8C /* MovieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieViewController.swift; sourceTree = "<group>"; };
 		36E334C82AEF92C300490F8C /* MovieViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -222,6 +232,7 @@
 		36802C422AEF3D5F00E79868 /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				36956CFE2AF1EA3F0005D721 /* LoginViewController */,
 				36D833342AF0A03600A110CF /* ProfileViewController */,
 				362A661F2AEF81B5009637DC /* TVSeriesViewController */,
 				362A661C2AEF8067009637DC /* MainTabBarViewController */,
@@ -234,8 +245,8 @@
 		36802C432AEF3DA000E79868 /* Component */ = {
 			isa = PBXGroup;
 			children = (
-				36D8338E2AF1034E00A110CF /* DetailComponent.swift */,
-				36D833902AF1036A00A110CF /* DetailComponent.xib */,
+				36D8E7A12AF1EFF0001BC386 /* CustomButton */,
+				36956D032AF1EA7D0005D721 /* CustomInputField */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -252,6 +263,7 @@
 			children = (
 				36802C4F2AEF3F3B00E79868 /* ExtTableView.swift */,
 				36802C6A2AEF4F0D00E79868 /* ExtCollectionView.swift */,
+				36D8E79F2AF1ED27001BC386 /* ExtView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -349,6 +361,24 @@
 			path = CollectionEntity;
 			sourceTree = "<group>";
 		};
+		36956CFE2AF1EA3F0005D721 /* LoginViewController */ = {
+			isa = PBXGroup;
+			children = (
+				36956CFF2AF1EA600005D721 /* LoginViewController.swift */,
+				36956D002AF1EA600005D721 /* LoginViewController.xib */,
+			);
+			path = LoginViewController;
+			sourceTree = "<group>";
+		};
+		36956D032AF1EA7D0005D721 /* CustomInputField */ = {
+			isa = PBXGroup;
+			children = (
+				36D8E79D2AF1EC72001BC386 /* CustomInputField.swift */,
+				36956D062AF1EAB00005D721 /* CustomInputField.xib */,
+			);
+			path = CustomInputField;
+			sourceTree = "<group>";
+		};
 		36BB18C92AEF39EB00BC6EF4 = {
 			isa = PBXGroup;
 			children = (
@@ -405,6 +435,15 @@
 				36D833362AF0A05300A110CF /* ProfileViewController.xib */,
 			);
 			path = ProfileViewController;
+			sourceTree = "<group>";
+		};
+		36D8E7A12AF1EFF0001BC386 /* CustomButton */ = {
+			isa = PBXGroup;
+			children = (
+				36D8E7A22AF1F004001BC386 /* CustomButton.swift */,
+				36D8E7A42AF1F013001BC386 /* CustomButton.xib */,
+			);
+			path = CustomButton;
 			sourceTree = "<group>";
 		};
 		36E334C62AEF92AF00490F8C /* View */ = {
@@ -521,17 +560,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				36BB18E22AEF39ED00BC6EF4 /* LaunchScreen.storyboard in Resources */,
-				36D833912AF1036A00A110CF /* DetailComponent.xib in Resources */,
 				36802C612AEF457400E79868 /* PopularCollectionViewCell.xib in Resources */,
 				36802C5D2AEF446400E79868 /* TopRatedCollectionViewCell.xib in Resources */,
 				362A66232AEF81E3009637DC /* TvSeriesViewController.xib in Resources */,
 				362A662B2AEF8820009637DC /* DetailViewController.xib in Resources */,
 				36802C562AEF40A100E79868 /* NowPlayingCollectionViewCell.xib in Resources */,
+				36956D072AF1EAB00005D721 /* CustomInputField.xib in Resources */,
 				36D833382AF0A05300A110CF /* ProfileViewController.xib in Resources */,
 				360013402AEF60A700D4B840 /* TopRatedTableViewCell.xib in Resources */,
 				36BB18DF2AEF39ED00BC6EF4 /* Assets.xcassets in Resources */,
+				36956D022AF1EA600005D721 /* LoginViewController.xib in Resources */,
 				36802C4E2AEF3E2400E79868 /* NPTableViewCell.xib in Resources */,
 				36E334CA2AEF92C300490F8C /* MovieViewController.xib in Resources */,
+				36D8E7A52AF1F013001BC386 /* CustomButton.xib in Resources */,
 				3600133C2AEF608A00D4B840 /* PopularTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -559,13 +600,14 @@
 			files = (
 				36802C552AEF40A100E79868 /* NowPlayingCollectionViewCell.swift in Sources */,
 				36E334C92AEF92C300490F8C /* MovieViewController.swift in Sources */,
-				36D8338F2AF1034E00A110CF /* DetailComponent.swift in Sources */,
 				36802C6B2AEF4F0D00E79868 /* ExtCollectionView.swift in Sources */,
 				362A661E2AEF80A2009637DC /* MainTabBarViewController.swift in Sources */,
+				36D8E79E2AF1EC72001BC386 /* CustomInputField.swift in Sources */,
 				36802C672AEF461C00E79868 /* PopularEntity.swift in Sources */,
 				362A66222AEF81E3009637DC /* TvSeriesViewController.swift in Sources */,
 				36802C5C2AEF446400E79868 /* TopRatedCollectionViewCell.swift in Sources */,
 				36802C502AEF3F3B00E79868 /* ExtTableView.swift in Sources */,
+				36956D012AF1EA600005D721 /* LoginViewController.swift in Sources */,
 				36802C652AEF45F500E79868 /* NowPlayingEntity.swift in Sources */,
 				36D833372AF0A05300A110CF /* ProfileViewController.swift in Sources */,
 				362A662A2AEF8820009637DC /* DetailViewController.swift in Sources */,
@@ -573,7 +615,9 @@
 				36802C692AEF465D00E79868 /* TopRatedEntity.swift in Sources */,
 				36802C4A2AEF3DFE00E79868 /* MainViewControllerEntity.swift in Sources */,
 				3600133F2AEF60A700D4B840 /* TopRatedTableViewCell.swift in Sources */,
+				36D8E7A32AF1F004001BC386 /* CustomButton.swift in Sources */,
 				36802C602AEF457400E79868 /* PopularCollectionViewCell.swift in Sources */,
+				36D8E7A02AF1ED27001BC386 /* ExtView.swift in Sources */,
 				3600133B2AEF608A00D4B840 /* PopularTableViewCell.swift in Sources */,
 				36BB18D82AEF39EB00BC6EF4 /* SceneDelegate.swift in Sources */,
 				36802C4D2AEF3E2400E79868 /* NPTableViewCell.swift in Sources */,

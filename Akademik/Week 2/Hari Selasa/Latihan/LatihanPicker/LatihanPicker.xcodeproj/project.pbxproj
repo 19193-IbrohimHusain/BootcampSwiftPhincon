@@ -1,0 +1,709 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		36D833462AF0A39B00A110CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D833452AF0A39B00A110CF /* AppDelegate.swift */; };
+		36D833482AF0A39B00A110CF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D833472AF0A39B00A110CF /* SceneDelegate.swift */; };
+		36D8334A2AF0A39B00A110CF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D833492AF0A39B00A110CF /* ViewController.swift */; };
+		36D8334D2AF0A39B00A110CF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36D8334B2AF0A39B00A110CF /* Main.storyboard */; };
+		36D8334F2AF0A39C00A110CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 36D8334E2AF0A39C00A110CF /* Assets.xcassets */; };
+		36D833522AF0A39C00A110CF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36D833502AF0A39C00A110CF /* LaunchScreen.storyboard */; };
+		36D8335D2AF0A39C00A110CF /* LatihanPickerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D8335C2AF0A39C00A110CF /* LatihanPickerTests.swift */; };
+		36D833672AF0A39C00A110CF /* LatihanPickerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D833662AF0A39C00A110CF /* LatihanPickerUITests.swift */; };
+		36D833692AF0A39C00A110CF /* LatihanPickerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D833682AF0A39C00A110CF /* LatihanPickerUITestsLaunchTests.swift */; };
+		36D8337C2AF0A46B00A110CF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D8337A2AF0A46B00A110CF /* LoginViewController.swift */; };
+		36D8337D2AF0A46B00A110CF /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36D8337B2AF0A46B00A110CF /* LoginViewController.xib */; };
+		36D833812AF0AD8100A110CF /* LatihanPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D8337F2AF0AD8100A110CF /* LatihanPickerViewController.swift */; };
+		36D833822AF0AD8100A110CF /* LatihanPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36D833802AF0AD8100A110CF /* LatihanPickerViewController.xib */; };
+		36D833852AF0CC2300A110CF /* StepSlider in Frameworks */ = {isa = PBXBuildFile; productRef = 36D833842AF0CC2300A110CF /* StepSlider */; };
+		36D833882AF0D00500A110CF /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 36D833872AF0D00500A110CF /* Lottie */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		36D833592AF0A39C00A110CF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36D8333A2AF0A39B00A110CF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 36D833412AF0A39B00A110CF;
+			remoteInfo = LatihanPicker;
+		};
+		36D833632AF0A39C00A110CF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36D8333A2AF0A39B00A110CF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 36D833412AF0A39B00A110CF;
+			remoteInfo = LatihanPicker;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		36D833422AF0A39B00A110CF /* LatihanPicker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LatihanPicker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		36D833452AF0A39B00A110CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		36D833472AF0A39B00A110CF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		36D833492AF0A39B00A110CF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		36D8334C2AF0A39B00A110CF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		36D8334E2AF0A39C00A110CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		36D833512AF0A39C00A110CF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		36D833532AF0A39C00A110CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		36D833582AF0A39C00A110CF /* LatihanPickerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LatihanPickerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		36D8335C2AF0A39C00A110CF /* LatihanPickerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatihanPickerTests.swift; sourceTree = "<group>"; };
+		36D833622AF0A39C00A110CF /* LatihanPickerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LatihanPickerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		36D833662AF0A39C00A110CF /* LatihanPickerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatihanPickerUITests.swift; sourceTree = "<group>"; };
+		36D833682AF0A39C00A110CF /* LatihanPickerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatihanPickerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		36D8337A2AF0A46B00A110CF /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		36D8337B2AF0A46B00A110CF /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		36D8337F2AF0AD8100A110CF /* LatihanPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatihanPickerViewController.swift; sourceTree = "<group>"; };
+		36D833802AF0AD8100A110CF /* LatihanPickerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LatihanPickerViewController.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		36D8333F2AF0A39B00A110CF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				36D833852AF0CC2300A110CF /* StepSlider in Frameworks */,
+				36D833882AF0D00500A110CF /* Lottie in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		36D833552AF0A39C00A110CF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		36D8335F2AF0A39C00A110CF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		36D833392AF0A39B00A110CF = {
+			isa = PBXGroup;
+			children = (
+				36D833442AF0A39B00A110CF /* LatihanPicker */,
+				36D8335B2AF0A39C00A110CF /* LatihanPickerTests */,
+				36D833652AF0A39C00A110CF /* LatihanPickerUITests */,
+				36D833432AF0A39B00A110CF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		36D833432AF0A39B00A110CF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				36D833422AF0A39B00A110CF /* LatihanPicker.app */,
+				36D833582AF0A39C00A110CF /* LatihanPickerTests.xctest */,
+				36D833622AF0A39C00A110CF /* LatihanPickerUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		36D833442AF0A39B00A110CF /* LatihanPicker */ = {
+			isa = PBXGroup;
+			children = (
+				36D833752AF0A3AA00A110CF /* App */,
+				36D833762AF0A3B400A110CF /* Common */,
+				36D833772AF0A3BA00A110CF /* Resources */,
+				36D833782AF0A3C100A110CF /* Modules */,
+				36D833492AF0A39B00A110CF /* ViewController.swift */,
+				36D8334B2AF0A39B00A110CF /* Main.storyboard */,
+				36D8334E2AF0A39C00A110CF /* Assets.xcassets */,
+				36D833502AF0A39C00A110CF /* LaunchScreen.storyboard */,
+				36D833532AF0A39C00A110CF /* Info.plist */,
+			);
+			path = LatihanPicker;
+			sourceTree = "<group>";
+		};
+		36D8335B2AF0A39C00A110CF /* LatihanPickerTests */ = {
+			isa = PBXGroup;
+			children = (
+				36D8335C2AF0A39C00A110CF /* LatihanPickerTests.swift */,
+			);
+			path = LatihanPickerTests;
+			sourceTree = "<group>";
+		};
+		36D833652AF0A39C00A110CF /* LatihanPickerUITests */ = {
+			isa = PBXGroup;
+			children = (
+				36D833662AF0A39C00A110CF /* LatihanPickerUITests.swift */,
+				36D833682AF0A39C00A110CF /* LatihanPickerUITestsLaunchTests.swift */,
+			);
+			path = LatihanPickerUITests;
+			sourceTree = "<group>";
+		};
+		36D833752AF0A3AA00A110CF /* App */ = {
+			isa = PBXGroup;
+			children = (
+				36D833452AF0A39B00A110CF /* AppDelegate.swift */,
+				36D833472AF0A39B00A110CF /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		36D833762AF0A3B400A110CF /* Common */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		36D833772AF0A3BA00A110CF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		36D833782AF0A3C100A110CF /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				36D8337E2AF0AD6500A110CF /* LatihanPickerViewController */,
+				36D833792AF0A41D00A110CF /* LoginViewController */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		36D833792AF0A41D00A110CF /* LoginViewController */ = {
+			isa = PBXGroup;
+			children = (
+				36D8337A2AF0A46B00A110CF /* LoginViewController.swift */,
+				36D8337B2AF0A46B00A110CF /* LoginViewController.xib */,
+			);
+			path = LoginViewController;
+			sourceTree = "<group>";
+		};
+		36D8337E2AF0AD6500A110CF /* LatihanPickerViewController */ = {
+			isa = PBXGroup;
+			children = (
+				36D8337F2AF0AD8100A110CF /* LatihanPickerViewController.swift */,
+				36D833802AF0AD8100A110CF /* LatihanPickerViewController.xib */,
+			);
+			path = LatihanPickerViewController;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		36D833412AF0A39B00A110CF /* LatihanPicker */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 36D8336C2AF0A39C00A110CF /* Build configuration list for PBXNativeTarget "LatihanPicker" */;
+			buildPhases = (
+				36D8333E2AF0A39B00A110CF /* Sources */,
+				36D8333F2AF0A39B00A110CF /* Frameworks */,
+				36D833402AF0A39B00A110CF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LatihanPicker;
+			packageProductDependencies = (
+				36D833842AF0CC2300A110CF /* StepSlider */,
+				36D833872AF0D00500A110CF /* Lottie */,
+			);
+			productName = LatihanPicker;
+			productReference = 36D833422AF0A39B00A110CF /* LatihanPicker.app */;
+			productType = "com.apple.product-type.application";
+		};
+		36D833572AF0A39C00A110CF /* LatihanPickerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 36D8336F2AF0A39C00A110CF /* Build configuration list for PBXNativeTarget "LatihanPickerTests" */;
+			buildPhases = (
+				36D833542AF0A39C00A110CF /* Sources */,
+				36D833552AF0A39C00A110CF /* Frameworks */,
+				36D833562AF0A39C00A110CF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				36D8335A2AF0A39C00A110CF /* PBXTargetDependency */,
+			);
+			name = LatihanPickerTests;
+			productName = LatihanPickerTests;
+			productReference = 36D833582AF0A39C00A110CF /* LatihanPickerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		36D833612AF0A39C00A110CF /* LatihanPickerUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 36D833722AF0A39C00A110CF /* Build configuration list for PBXNativeTarget "LatihanPickerUITests" */;
+			buildPhases = (
+				36D8335E2AF0A39C00A110CF /* Sources */,
+				36D8335F2AF0A39C00A110CF /* Frameworks */,
+				36D833602AF0A39C00A110CF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				36D833642AF0A39C00A110CF /* PBXTargetDependency */,
+			);
+			name = LatihanPickerUITests;
+			productName = LatihanPickerUITests;
+			productReference = 36D833622AF0A39C00A110CF /* LatihanPickerUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		36D8333A2AF0A39B00A110CF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1420;
+				LastUpgradeCheck = 1420;
+				TargetAttributes = {
+					36D833412AF0A39B00A110CF = {
+						CreatedOnToolsVersion = 14.2;
+					};
+					36D833572AF0A39C00A110CF = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = 36D833412AF0A39B00A110CF;
+					};
+					36D833612AF0A39C00A110CF = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = 36D833412AF0A39B00A110CF;
+					};
+				};
+			};
+			buildConfigurationList = 36D8333D2AF0A39B00A110CF /* Build configuration list for PBXProject "LatihanPicker" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 36D833392AF0A39B00A110CF;
+			packageReferences = (
+				36D833832AF0CC2300A110CF /* XCRemoteSwiftPackageReference "StepSlider" */,
+				36D833862AF0D00500A110CF /* XCRemoteSwiftPackageReference "lottie-ios" */,
+			);
+			productRefGroup = 36D833432AF0A39B00A110CF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				36D833412AF0A39B00A110CF /* LatihanPicker */,
+				36D833572AF0A39C00A110CF /* LatihanPickerTests */,
+				36D833612AF0A39C00A110CF /* LatihanPickerUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		36D833402AF0A39B00A110CF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				36D8337D2AF0A46B00A110CF /* LoginViewController.xib in Resources */,
+				36D833822AF0AD8100A110CF /* LatihanPickerViewController.xib in Resources */,
+				36D833522AF0A39C00A110CF /* LaunchScreen.storyboard in Resources */,
+				36D8334F2AF0A39C00A110CF /* Assets.xcassets in Resources */,
+				36D8334D2AF0A39B00A110CF /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		36D833562AF0A39C00A110CF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		36D833602AF0A39C00A110CF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		36D8333E2AF0A39B00A110CF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				36D8337C2AF0A46B00A110CF /* LoginViewController.swift in Sources */,
+				36D8334A2AF0A39B00A110CF /* ViewController.swift in Sources */,
+				36D833812AF0AD8100A110CF /* LatihanPickerViewController.swift in Sources */,
+				36D833462AF0A39B00A110CF /* AppDelegate.swift in Sources */,
+				36D833482AF0A39B00A110CF /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		36D833542AF0A39C00A110CF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				36D8335D2AF0A39C00A110CF /* LatihanPickerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		36D8335E2AF0A39C00A110CF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				36D833692AF0A39C00A110CF /* LatihanPickerUITestsLaunchTests.swift in Sources */,
+				36D833672AF0A39C00A110CF /* LatihanPickerUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		36D8335A2AF0A39C00A110CF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 36D833412AF0A39B00A110CF /* LatihanPicker */;
+			targetProxy = 36D833592AF0A39C00A110CF /* PBXContainerItemProxy */;
+		};
+		36D833642AF0A39C00A110CF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 36D833412AF0A39B00A110CF /* LatihanPicker */;
+			targetProxy = 36D833632AF0A39C00A110CF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		36D8334B2AF0A39B00A110CF /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				36D8334C2AF0A39B00A110CF /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		36D833502AF0A39C00A110CF /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				36D833512AF0A39C00A110CF /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		36D8336A2AF0A39C00A110CF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		36D8336B2AF0A39C00A110CF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		36D8336D2AF0A39C00A110CF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = LatihanPicker/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.phincon.LatihanPicker;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		36D8336E2AF0A39C00A110CF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = LatihanPicker/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.phincon.LatihanPicker;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		36D833702AF0A39C00A110CF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.phincon.LatihanPickerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LatihanPicker.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/LatihanPicker";
+			};
+			name = Debug;
+		};
+		36D833712AF0A39C00A110CF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.phincon.LatihanPickerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LatihanPicker.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/LatihanPicker";
+			};
+			name = Release;
+		};
+		36D833732AF0A39C00A110CF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.phincon.LatihanPickerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = LatihanPicker;
+			};
+			name = Debug;
+		};
+		36D833742AF0A39C00A110CF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.phincon.LatihanPickerUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = LatihanPicker;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		36D8333D2AF0A39B00A110CF /* Build configuration list for PBXProject "LatihanPicker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				36D8336A2AF0A39C00A110CF /* Debug */,
+				36D8336B2AF0A39C00A110CF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		36D8336C2AF0A39C00A110CF /* Build configuration list for PBXNativeTarget "LatihanPicker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				36D8336D2AF0A39C00A110CF /* Debug */,
+				36D8336E2AF0A39C00A110CF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		36D8336F2AF0A39C00A110CF /* Build configuration list for PBXNativeTarget "LatihanPickerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				36D833702AF0A39C00A110CF /* Debug */,
+				36D833712AF0A39C00A110CF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		36D833722AF0A39C00A110CF /* Build configuration list for PBXNativeTarget "LatihanPickerUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				36D833732AF0A39C00A110CF /* Debug */,
+				36D833742AF0A39C00A110CF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		36D833832AF0CC2300A110CF /* XCRemoteSwiftPackageReference "StepSlider" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/spromicky/StepSlider";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		36D833862AF0D00500A110CF /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		36D833842AF0CC2300A110CF /* StepSlider */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 36D833832AF0CC2300A110CF /* XCRemoteSwiftPackageReference "StepSlider" */;
+			productName = StepSlider;
+		};
+		36D833872AF0D00500A110CF /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 36D833862AF0D00500A110CF /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 36D8333A2AF0A39B00A110CF /* Project object */;
+}
