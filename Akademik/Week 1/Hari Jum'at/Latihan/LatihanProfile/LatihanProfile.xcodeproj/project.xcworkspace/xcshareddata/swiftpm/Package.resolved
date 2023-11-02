@@ -1,0 +1,23 @@
+{
+  "pins" : [
+    {
+      "identity" : "floatingpanel",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/scenee/FloatingPanel",
+      "state" : {
+        "revision" : "dd238884bf85e96a4c6c2703fc2fc1ff0f5c7494",
+        "version" : "2.8.0"
+      }
+    },
+    {
+      "identity" : "lottie-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/airbnb/lottie-ios",
+      "state" : {
+        "branch" : "master",
+        "revision" : "cdf8499996eec658e62d1a116c1d87853d563101"
+      }
+    }
+  ],
+  "version" : 2
+}

@@ -1,0 +1,966 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		361A98A02AF3B5890017B59A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361A989F2AF3B5890017B59A /* AppDelegate.swift */; };
+		361A98A22AF3B5890017B59A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361A98A12AF3B5890017B59A /* SceneDelegate.swift */; };
+		361A98A92AF3B58A0017B59A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 361A98A82AF3B58A0017B59A /* Assets.xcassets */; };
+		361A98B72AF3B58A0017B59A /* SnapgramTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361A98B62AF3B58A0017B59A /* SnapgramTests.swift */; };
+		361A98C12AF3B58A0017B59A /* SnapgramUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361A98C02AF3B58A0017B59A /* SnapgramUITests.swift */; };
+		361A98C32AF3B58A0017B59A /* SnapgramUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361A98C22AF3B58A0017B59A /* SnapgramUITestsLaunchTests.swift */; };
+		361A98DD2AF3B6940017B59A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361A98DB2AF3B6940017B59A /* LoginViewController.swift */; };
+		361A98DE2AF3B6940017B59A /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 361A98DC2AF3B6940017B59A /* LoginViewController.xib */; };
+		361A98E12AF3B6A60017B59A /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361A98DF2AF3B6A60017B59A /* RegisterViewController.swift */; };
+		361A98E22AF3B6A60017B59A /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 361A98E02AF3B6A60017B59A /* RegisterViewController.xib */; };
+		361A98E52AF3B6C20017B59A /* StoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361A98E32AF3B6C20017B59A /* StoryViewController.swift */; };
+		361A98E62AF3B6C20017B59A /* StoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 361A98E42AF3B6C20017B59A /* StoryViewController.xib */; };
+		361A98ED2AF3B7370017B59A /* StoryTableEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361A98EC2AF3B7370017B59A /* StoryTableEntity.swift */; };
+		361A98EF2AF3B7470017B59A /* SnapCollectionEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361A98EE2AF3B7470017B59A /* SnapCollectionEntity.swift */; };
+		361A98F22AF3B7740017B59A /* StoryTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361A98F02AF3B7740017B59A /* StoryTableCell.swift */; };
+		361A98F32AF3B7740017B59A /* StoryTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 361A98F12AF3B7740017B59A /* StoryTableCell.xib */; };
+		361A98F62AF3B7A20017B59A /* SnapTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361A98F42AF3B7A20017B59A /* SnapTableCell.swift */; };
+		361A98F72AF3B7A20017B59A /* SnapTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 361A98F52AF3B7A20017B59A /* SnapTableCell.xib */; };
+		361A98FB2AF3B8190017B59A /* SnapCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361A98F92AF3B8190017B59A /* SnapCollectionViewCell.swift */; };
+		361A98FC2AF3B8190017B59A /* SnapCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 361A98FA2AF3B8190017B59A /* SnapCollectionViewCell.xib */; };
+		361A99012AF3BB690017B59A /* ExtView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361A99002AF3BB690017B59A /* ExtView.swift */; };
+		361A99032AF3BB770017B59A /* ExtTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361A99022AF3BB770017B59A /* ExtTableView.swift */; };
+		361A99052AF3BB870017B59A /* ExtCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361A99042AF3BB870017B59A /* ExtCollectionView.swift */; };
+		361A99072AF3BBBD0017B59A /* ExtAddStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361A99062AF3BBBD0017B59A /* ExtAddStory.swift */; };
+		361A99102AF3BC920017B59A /* ProfileBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361A990E2AF3BC920017B59A /* ProfileBottomSheetViewController.swift */; };
+		361A99112AF3BC920017B59A /* ProfileBottomSheetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 361A990F2AF3BC920017B59A /* ProfileBottomSheetViewController.xib */; };
+		361A99142AF3BCBB0017B59A /* PictureOptionBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361A99122AF3BCBB0017B59A /* PictureOptionBottomSheetViewController.swift */; };
+		361A99152AF3BCBB0017B59A /* PictureOptionBottomSheetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 361A99132AF3BCBB0017B59A /* PictureOptionBottomSheetViewController.xib */; };
+		361A99172AF3BCE80017B59A /* ProfileCollectionEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361A99162AF3BCE80017B59A /* ProfileCollectionEntity.swift */; };
+		361A991A2AF3BD200017B59A /* ProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361A99182AF3BD200017B59A /* ProfileCollectionViewCell.swift */; };
+		361A991B2AF3BD200017B59A /* ProfileCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 361A99192AF3BD200017B59A /* ProfileCollectionViewCell.xib */; };
+		361A991E2AF3BD430017B59A /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361A991C2AF3BD430017B59A /* ProfileViewController.swift */; };
+		361A991F2AF3BD430017B59A /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 361A991D2AF3BD430017B59A /* ProfileViewController.xib */; };
+		361A99212AF3BD710017B59A /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361A99202AF3BD710017B59A /* TabBarViewController.swift */; };
+		361A99252AF3BF930017B59A /* CapturedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361A99242AF3BF930017B59A /* CapturedImageView.swift */; };
+		361A99272AF3BFA90017B59A /* CustomInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361A99262AF3BFA90017B59A /* CustomInputField.swift */; };
+		361A99292AF3BFB60017B59A /* CustomInputField.xib in Resources */ = {isa = PBXBuildFile; fileRef = 361A99282AF3BFB60017B59A /* CustomInputField.xib */; };
+		361A992B2AF3BFD60017B59A /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361A992A2AF3BFD60017B59A /* CustomButton.swift */; };
+		361A992D2AF3BFE20017B59A /* CustomButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 361A992C2AF3BFE20017B59A /* CustomButton.xib */; };
+		361A99302AF3C39A0017B59A /* FloatingPanel in Frameworks */ = {isa = PBXBuildFile; productRef = 361A992F2AF3C39A0017B59A /* FloatingPanel */; };
+		361A99332AF3C3B00017B59A /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 361A99322AF3C3B00017B59A /* Lottie */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		361A98B32AF3B58A0017B59A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 361A98942AF3B5890017B59A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 361A989B2AF3B5890017B59A;
+			remoteInfo = Snapgram;
+		};
+		361A98BD2AF3B58A0017B59A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 361A98942AF3B5890017B59A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 361A989B2AF3B5890017B59A;
+			remoteInfo = Snapgram;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		361A989C2AF3B5890017B59A /* Snapgram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Snapgram.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		361A989F2AF3B5890017B59A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		361A98A12AF3B5890017B59A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		361A98A82AF3B58A0017B59A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		361A98AD2AF3B58A0017B59A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		361A98B22AF3B58A0017B59A /* SnapgramTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SnapgramTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		361A98B62AF3B58A0017B59A /* SnapgramTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapgramTests.swift; sourceTree = "<group>"; };
+		361A98BC2AF3B58A0017B59A /* SnapgramUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SnapgramUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		361A98C02AF3B58A0017B59A /* SnapgramUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapgramUITests.swift; sourceTree = "<group>"; };
+		361A98C22AF3B58A0017B59A /* SnapgramUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapgramUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		361A98DB2AF3B6940017B59A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		361A98DC2AF3B6940017B59A /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		361A98DF2AF3B6A60017B59A /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		361A98E02AF3B6A60017B59A /* RegisterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterViewController.xib; sourceTree = "<group>"; };
+		361A98E32AF3B6C20017B59A /* StoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryViewController.swift; sourceTree = "<group>"; };
+		361A98E42AF3B6C20017B59A /* StoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StoryViewController.xib; sourceTree = "<group>"; };
+		361A98EC2AF3B7370017B59A /* StoryTableEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryTableEntity.swift; sourceTree = "<group>"; };
+		361A98EE2AF3B7470017B59A /* SnapCollectionEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapCollectionEntity.swift; sourceTree = "<group>"; };
+		361A98F02AF3B7740017B59A /* StoryTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryTableCell.swift; sourceTree = "<group>"; };
+		361A98F12AF3B7740017B59A /* StoryTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StoryTableCell.xib; sourceTree = "<group>"; };
+		361A98F42AF3B7A20017B59A /* SnapTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapTableCell.swift; sourceTree = "<group>"; };
+		361A98F52AF3B7A20017B59A /* SnapTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SnapTableCell.xib; sourceTree = "<group>"; };
+		361A98F92AF3B8190017B59A /* SnapCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapCollectionViewCell.swift; sourceTree = "<group>"; };
+		361A98FA2AF3B8190017B59A /* SnapCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SnapCollectionViewCell.xib; sourceTree = "<group>"; };
+		361A99002AF3BB690017B59A /* ExtView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtView.swift; sourceTree = "<group>"; };
+		361A99022AF3BB770017B59A /* ExtTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtTableView.swift; sourceTree = "<group>"; };
+		361A99042AF3BB870017B59A /* ExtCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtCollectionView.swift; sourceTree = "<group>"; };
+		361A99062AF3BBBD0017B59A /* ExtAddStory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtAddStory.swift; sourceTree = "<group>"; };
+		361A990E2AF3BC920017B59A /* ProfileBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileBottomSheetViewController.swift; sourceTree = "<group>"; };
+		361A990F2AF3BC920017B59A /* ProfileBottomSheetViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileBottomSheetViewController.xib; sourceTree = "<group>"; };
+		361A99122AF3BCBB0017B59A /* PictureOptionBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureOptionBottomSheetViewController.swift; sourceTree = "<group>"; };
+		361A99132AF3BCBB0017B59A /* PictureOptionBottomSheetViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PictureOptionBottomSheetViewController.xib; sourceTree = "<group>"; };
+		361A99162AF3BCE80017B59A /* ProfileCollectionEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCollectionEntity.swift; sourceTree = "<group>"; };
+		361A99182AF3BD200017B59A /* ProfileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCollectionViewCell.swift; sourceTree = "<group>"; };
+		361A99192AF3BD200017B59A /* ProfileCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileCollectionViewCell.xib; sourceTree = "<group>"; };
+		361A991C2AF3BD430017B59A /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		361A991D2AF3BD430017B59A /* ProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
+		361A99202AF3BD710017B59A /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		361A99242AF3BF930017B59A /* CapturedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapturedImageView.swift; sourceTree = "<group>"; };
+		361A99262AF3BFA90017B59A /* CustomInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInputField.swift; sourceTree = "<group>"; };
+		361A99282AF3BFB60017B59A /* CustomInputField.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomInputField.xib; sourceTree = "<group>"; };
+		361A992A2AF3BFD60017B59A /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		361A992C2AF3BFE20017B59A /* CustomButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomButton.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		361A98992AF3B5890017B59A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				361A99302AF3C39A0017B59A /* FloatingPanel in Frameworks */,
+				361A99332AF3C3B00017B59A /* Lottie in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		361A98AF2AF3B58A0017B59A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		361A98B92AF3B58A0017B59A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		361A98932AF3B5890017B59A = {
+			isa = PBXGroup;
+			children = (
+				361A989E2AF3B5890017B59A /* Snapgram */,
+				361A98B52AF3B58A0017B59A /* SnapgramTests */,
+				361A98BF2AF3B58A0017B59A /* SnapgramUITests */,
+				361A989D2AF3B5890017B59A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		361A989D2AF3B5890017B59A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				361A989C2AF3B5890017B59A /* Snapgram.app */,
+				361A98B22AF3B58A0017B59A /* SnapgramTests.xctest */,
+				361A98BC2AF3B58A0017B59A /* SnapgramUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		361A989E2AF3B5890017B59A /* Snapgram */ = {
+			isa = PBXGroup;
+			children = (
+				361A98D22AF3B5DD0017B59A /* App */,
+				361A98D12AF3B5AC0017B59A /* Common */,
+				361A98D02AF3B5A00017B59A /* Resource */,
+				361A98CF2AF3B5930017B59A /* Module */,
+				361A98AD2AF3B58A0017B59A /* Info.plist */,
+			);
+			path = Snapgram;
+			sourceTree = "<group>";
+		};
+		361A98B52AF3B58A0017B59A /* SnapgramTests */ = {
+			isa = PBXGroup;
+			children = (
+				361A98B62AF3B58A0017B59A /* SnapgramTests.swift */,
+			);
+			path = SnapgramTests;
+			sourceTree = "<group>";
+		};
+		361A98BF2AF3B58A0017B59A /* SnapgramUITests */ = {
+			isa = PBXGroup;
+			children = (
+				361A98C02AF3B58A0017B59A /* SnapgramUITests.swift */,
+				361A98C22AF3B58A0017B59A /* SnapgramUITestsLaunchTests.swift */,
+			);
+			path = SnapgramUITests;
+			sourceTree = "<group>";
+		};
+		361A98CF2AF3B5930017B59A /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				361A99082AF3BBC70017B59A /* AddStory */,
+				361A98DA2AF3B6770017B59A /* Folder */,
+				361A98D92AF3B6720017B59A /* Map */,
+				361A98D82AF3B66C0017B59A /* Profile */,
+				361A98D72AF3B62C0017B59A /* TabBar */,
+				361A98D62AF3B61F0017B59A /* Story */,
+				361A98D32AF3B5ED0017B59A /* Authentication */,
+			);
+			path = Module;
+			sourceTree = "<group>";
+		};
+		361A98D02AF3B5A00017B59A /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				361A98A82AF3B58A0017B59A /* Assets.xcassets */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		361A98D12AF3B5AC0017B59A /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				361A98FF2AF3BB550017B59A /* Component */,
+				361A98FE2AF3BB4D0017B59A /* Network */,
+				361A98FD2AF3BB410017B59A /* Extension */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		361A98D22AF3B5DD0017B59A /* App */ = {
+			isa = PBXGroup;
+			children = (
+				361A989F2AF3B5890017B59A /* AppDelegate.swift */,
+				361A98A12AF3B5890017B59A /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		361A98D32AF3B5ED0017B59A /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				361A98D42AF3B5FF0017B59A /* Login */,
+				361A98D52AF3B6050017B59A /* Register */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		361A98D42AF3B5FF0017B59A /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				361A98DB2AF3B6940017B59A /* LoginViewController.swift */,
+				361A98DC2AF3B6940017B59A /* LoginViewController.xib */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		361A98D52AF3B6050017B59A /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				361A98DF2AF3B6A60017B59A /* RegisterViewController.swift */,
+				361A98E02AF3B6A60017B59A /* RegisterViewController.xib */,
+			);
+			path = Register;
+			sourceTree = "<group>";
+		};
+		361A98D62AF3B61F0017B59A /* Story */ = {
+			isa = PBXGroup;
+			children = (
+				361A98E72AF3B6D30017B59A /* Model */,
+				361A98E82AF3B6D80017B59A /* Cells */,
+				361A98E32AF3B6C20017B59A /* StoryViewController.swift */,
+				361A98E42AF3B6C20017B59A /* StoryViewController.xib */,
+			);
+			path = Story;
+			sourceTree = "<group>";
+		};
+		361A98D72AF3B62C0017B59A /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				361A99202AF3BD710017B59A /* TabBarViewController.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		361A98D82AF3B66C0017B59A /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				361A990B2AF3BC450017B59A /* Model */,
+				361A99092AF3BC220017B59A /* BottomSheet */,
+				361A990A2AF3BC2D0017B59A /* Collection Cell */,
+				361A991C2AF3BD430017B59A /* ProfileViewController.swift */,
+				361A991D2AF3BD430017B59A /* ProfileViewController.xib */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		361A98D92AF3B6720017B59A /* Map */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		361A98DA2AF3B6770017B59A /* Folder */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Folder;
+			sourceTree = "<group>";
+		};
+		361A98E72AF3B6D30017B59A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				361A98EC2AF3B7370017B59A /* StoryTableEntity.swift */,
+				361A98EE2AF3B7470017B59A /* SnapCollectionEntity.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		361A98E82AF3B6D80017B59A /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				361A98EB2AF3B7000017B59A /* StoryTableCell */,
+				361A98EA2AF3B6F80017B59A /* SnapTableCell */,
+				361A98E92AF3B6E90017B59A /* Collection Cell */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		361A98E92AF3B6E90017B59A /* Collection Cell */ = {
+			isa = PBXGroup;
+			children = (
+				361A98F92AF3B8190017B59A /* SnapCollectionViewCell.swift */,
+				361A98FA2AF3B8190017B59A /* SnapCollectionViewCell.xib */,
+			);
+			path = "Collection Cell";
+			sourceTree = "<group>";
+		};
+		361A98EA2AF3B6F80017B59A /* SnapTableCell */ = {
+			isa = PBXGroup;
+			children = (
+				361A98F42AF3B7A20017B59A /* SnapTableCell.swift */,
+				361A98F52AF3B7A20017B59A /* SnapTableCell.xib */,
+			);
+			path = SnapTableCell;
+			sourceTree = "<group>";
+		};
+		361A98EB2AF3B7000017B59A /* StoryTableCell */ = {
+			isa = PBXGroup;
+			children = (
+				361A98F02AF3B7740017B59A /* StoryTableCell.swift */,
+				361A98F12AF3B7740017B59A /* StoryTableCell.xib */,
+			);
+			path = StoryTableCell;
+			sourceTree = "<group>";
+		};
+		361A98FD2AF3BB410017B59A /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				361A99002AF3BB690017B59A /* ExtView.swift */,
+				361A99022AF3BB770017B59A /* ExtTableView.swift */,
+				361A99042AF3BB870017B59A /* ExtCollectionView.swift */,
+				361A99062AF3BBBD0017B59A /* ExtAddStory.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		361A98FE2AF3BB4D0017B59A /* Network */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		361A98FF2AF3BB550017B59A /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				361A99232AF3BF710017B59A /* CustomButton */,
+				361A99222AF3BF5C0017B59A /* CustomInputField */,
+				361A99242AF3BF930017B59A /* CapturedImageView.swift */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
+		361A99082AF3BBC70017B59A /* AddStory */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AddStory;
+			sourceTree = "<group>";
+		};
+		361A99092AF3BC220017B59A /* BottomSheet */ = {
+			isa = PBXGroup;
+			children = (
+				361A990D2AF3BC640017B59A /* ProfileBottomSheet */,
+				361A990C2AF3BC580017B59A /* PictureOptionBottomSheet */,
+			);
+			path = BottomSheet;
+			sourceTree = "<group>";
+		};
+		361A990A2AF3BC2D0017B59A /* Collection Cell */ = {
+			isa = PBXGroup;
+			children = (
+				361A99182AF3BD200017B59A /* ProfileCollectionViewCell.swift */,
+				361A99192AF3BD200017B59A /* ProfileCollectionViewCell.xib */,
+			);
+			path = "Collection Cell";
+			sourceTree = "<group>";
+		};
+		361A990B2AF3BC450017B59A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				361A99162AF3BCE80017B59A /* ProfileCollectionEntity.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		361A990C2AF3BC580017B59A /* PictureOptionBottomSheet */ = {
+			isa = PBXGroup;
+			children = (
+				361A99122AF3BCBB0017B59A /* PictureOptionBottomSheetViewController.swift */,
+				361A99132AF3BCBB0017B59A /* PictureOptionBottomSheetViewController.xib */,
+			);
+			path = PictureOptionBottomSheet;
+			sourceTree = "<group>";
+		};
+		361A990D2AF3BC640017B59A /* ProfileBottomSheet */ = {
+			isa = PBXGroup;
+			children = (
+				361A990E2AF3BC920017B59A /* ProfileBottomSheetViewController.swift */,
+				361A990F2AF3BC920017B59A /* ProfileBottomSheetViewController.xib */,
+			);
+			path = ProfileBottomSheet;
+			sourceTree = "<group>";
+		};
+		361A99222AF3BF5C0017B59A /* CustomInputField */ = {
+			isa = PBXGroup;
+			children = (
+				361A99262AF3BFA90017B59A /* CustomInputField.swift */,
+				361A99282AF3BFB60017B59A /* CustomInputField.xib */,
+			);
+			path = CustomInputField;
+			sourceTree = "<group>";
+		};
+		361A99232AF3BF710017B59A /* CustomButton */ = {
+			isa = PBXGroup;
+			children = (
+				361A992A2AF3BFD60017B59A /* CustomButton.swift */,
+				361A992C2AF3BFE20017B59A /* CustomButton.xib */,
+			);
+			path = CustomButton;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		361A989B2AF3B5890017B59A /* Snapgram */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 361A98C62AF3B58A0017B59A /* Build configuration list for PBXNativeTarget "Snapgram" */;
+			buildPhases = (
+				361A98982AF3B5890017B59A /* Sources */,
+				361A98992AF3B5890017B59A /* Frameworks */,
+				361A989A2AF3B5890017B59A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Snapgram;
+			packageProductDependencies = (
+				361A992F2AF3C39A0017B59A /* FloatingPanel */,
+				361A99322AF3C3B00017B59A /* Lottie */,
+			);
+			productName = Snapgram;
+			productReference = 361A989C2AF3B5890017B59A /* Snapgram.app */;
+			productType = "com.apple.product-type.application";
+		};
+		361A98B12AF3B58A0017B59A /* SnapgramTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 361A98C92AF3B58A0017B59A /* Build configuration list for PBXNativeTarget "SnapgramTests" */;
+			buildPhases = (
+				361A98AE2AF3B58A0017B59A /* Sources */,
+				361A98AF2AF3B58A0017B59A /* Frameworks */,
+				361A98B02AF3B58A0017B59A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				361A98B42AF3B58A0017B59A /* PBXTargetDependency */,
+			);
+			name = SnapgramTests;
+			productName = SnapgramTests;
+			productReference = 361A98B22AF3B58A0017B59A /* SnapgramTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		361A98BB2AF3B58A0017B59A /* SnapgramUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 361A98CC2AF3B58A0017B59A /* Build configuration list for PBXNativeTarget "SnapgramUITests" */;
+			buildPhases = (
+				361A98B82AF3B58A0017B59A /* Sources */,
+				361A98B92AF3B58A0017B59A /* Frameworks */,
+				361A98BA2AF3B58A0017B59A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				361A98BE2AF3B58A0017B59A /* PBXTargetDependency */,
+			);
+			name = SnapgramUITests;
+			productName = SnapgramUITests;
+			productReference = 361A98BC2AF3B58A0017B59A /* SnapgramUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		361A98942AF3B5890017B59A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1420;
+				LastUpgradeCheck = 1420;
+				TargetAttributes = {
+					361A989B2AF3B5890017B59A = {
+						CreatedOnToolsVersion = 14.2;
+					};
+					361A98B12AF3B58A0017B59A = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = 361A989B2AF3B5890017B59A;
+					};
+					361A98BB2AF3B58A0017B59A = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = 361A989B2AF3B5890017B59A;
+					};
+				};
+			};
+			buildConfigurationList = 361A98972AF3B5890017B59A /* Build configuration list for PBXProject "Snapgram" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 361A98932AF3B5890017B59A;
+			packageReferences = (
+				361A992E2AF3C39A0017B59A /* XCRemoteSwiftPackageReference "FloatingPanel" */,
+				361A99312AF3C3B00017B59A /* XCRemoteSwiftPackageReference "lottie-ios" */,
+			);
+			productRefGroup = 361A989D2AF3B5890017B59A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				361A989B2AF3B5890017B59A /* Snapgram */,
+				361A98B12AF3B58A0017B59A /* SnapgramTests */,
+				361A98BB2AF3B58A0017B59A /* SnapgramUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		361A989A2AF3B5890017B59A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				361A98FC2AF3B8190017B59A /* SnapCollectionViewCell.xib in Resources */,
+				361A98DE2AF3B6940017B59A /* LoginViewController.xib in Resources */,
+				361A991B2AF3BD200017B59A /* ProfileCollectionViewCell.xib in Resources */,
+				361A991F2AF3BD430017B59A /* ProfileViewController.xib in Resources */,
+				361A98E22AF3B6A60017B59A /* RegisterViewController.xib in Resources */,
+				361A98E62AF3B6C20017B59A /* StoryViewController.xib in Resources */,
+				361A98F32AF3B7740017B59A /* StoryTableCell.xib in Resources */,
+				361A99152AF3BCBB0017B59A /* PictureOptionBottomSheetViewController.xib in Resources */,
+				361A99292AF3BFB60017B59A /* CustomInputField.xib in Resources */,
+				361A98F72AF3B7A20017B59A /* SnapTableCell.xib in Resources */,
+				361A98A92AF3B58A0017B59A /* Assets.xcassets in Resources */,
+				361A99112AF3BC920017B59A /* ProfileBottomSheetViewController.xib in Resources */,
+				361A992D2AF3BFE20017B59A /* CustomButton.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		361A98B02AF3B58A0017B59A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		361A98BA2AF3B58A0017B59A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		361A98982AF3B5890017B59A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				361A99012AF3BB690017B59A /* ExtView.swift in Sources */,
+				361A98EF2AF3B7470017B59A /* SnapCollectionEntity.swift in Sources */,
+				361A991E2AF3BD430017B59A /* ProfileViewController.swift in Sources */,
+				361A98E52AF3B6C20017B59A /* StoryViewController.swift in Sources */,
+				361A99212AF3BD710017B59A /* TabBarViewController.swift in Sources */,
+				361A98DD2AF3B6940017B59A /* LoginViewController.swift in Sources */,
+				361A99272AF3BFA90017B59A /* CustomInputField.swift in Sources */,
+				361A98FB2AF3B8190017B59A /* SnapCollectionViewCell.swift in Sources */,
+				361A99072AF3BBBD0017B59A /* ExtAddStory.swift in Sources */,
+				361A98E12AF3B6A60017B59A /* RegisterViewController.swift in Sources */,
+				361A99142AF3BCBB0017B59A /* PictureOptionBottomSheetViewController.swift in Sources */,
+				361A98F62AF3B7A20017B59A /* SnapTableCell.swift in Sources */,
+				361A98A02AF3B5890017B59A /* AppDelegate.swift in Sources */,
+				361A98A22AF3B5890017B59A /* SceneDelegate.swift in Sources */,
+				361A98ED2AF3B7370017B59A /* StoryTableEntity.swift in Sources */,
+				361A99032AF3BB770017B59A /* ExtTableView.swift in Sources */,
+				361A99172AF3BCE80017B59A /* ProfileCollectionEntity.swift in Sources */,
+				361A992B2AF3BFD60017B59A /* CustomButton.swift in Sources */,
+				361A99052AF3BB870017B59A /* ExtCollectionView.swift in Sources */,
+				361A98F22AF3B7740017B59A /* StoryTableCell.swift in Sources */,
+				361A99252AF3BF930017B59A /* CapturedImageView.swift in Sources */,
+				361A991A2AF3BD200017B59A /* ProfileCollectionViewCell.swift in Sources */,
+				361A99102AF3BC920017B59A /* ProfileBottomSheetViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		361A98AE2AF3B58A0017B59A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				361A98B72AF3B58A0017B59A /* SnapgramTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		361A98B82AF3B58A0017B59A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				361A98C32AF3B58A0017B59A /* SnapgramUITestsLaunchTests.swift in Sources */,
+				361A98C12AF3B58A0017B59A /* SnapgramUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		361A98B42AF3B58A0017B59A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 361A989B2AF3B5890017B59A /* Snapgram */;
+			targetProxy = 361A98B32AF3B58A0017B59A /* PBXContainerItemProxy */;
+		};
+		361A98BE2AF3B58A0017B59A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 361A989B2AF3B5890017B59A /* Snapgram */;
+			targetProxy = 361A98BD2AF3B58A0017B59A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		361A98C42AF3B58A0017B59A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		361A98C52AF3B58A0017B59A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		361A98C72AF3B58A0017B59A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Snapgram/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ibrohim.Snapgram;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		361A98C82AF3B58A0017B59A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Snapgram/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ibrohim.Snapgram;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		361A98CA2AF3B58A0017B59A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ibrohim.SnapgramTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Snapgram.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Snapgram";
+			};
+			name = Debug;
+		};
+		361A98CB2AF3B58A0017B59A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ibrohim.SnapgramTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Snapgram.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Snapgram";
+			};
+			name = Release;
+		};
+		361A98CD2AF3B58A0017B59A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ibrohim.SnapgramUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Snapgram;
+			};
+			name = Debug;
+		};
+		361A98CE2AF3B58A0017B59A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ibrohim.SnapgramUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Snapgram;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		361A98972AF3B5890017B59A /* Build configuration list for PBXProject "Snapgram" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				361A98C42AF3B58A0017B59A /* Debug */,
+				361A98C52AF3B58A0017B59A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		361A98C62AF3B58A0017B59A /* Build configuration list for PBXNativeTarget "Snapgram" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				361A98C72AF3B58A0017B59A /* Debug */,
+				361A98C82AF3B58A0017B59A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		361A98C92AF3B58A0017B59A /* Build configuration list for PBXNativeTarget "SnapgramTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				361A98CA2AF3B58A0017B59A /* Debug */,
+				361A98CB2AF3B58A0017B59A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		361A98CC2AF3B58A0017B59A /* Build configuration list for PBXNativeTarget "SnapgramUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				361A98CD2AF3B58A0017B59A /* Debug */,
+				361A98CE2AF3B58A0017B59A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		361A992E2AF3C39A0017B59A /* XCRemoteSwiftPackageReference "FloatingPanel" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scenee/FloatingPanel";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		361A99312AF3C3B00017B59A /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		361A992F2AF3C39A0017B59A /* FloatingPanel */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 361A992E2AF3C39A0017B59A /* XCRemoteSwiftPackageReference "FloatingPanel" */;
+			productName = FloatingPanel;
+		};
+		361A99322AF3C3B00017B59A /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 361A99312AF3C3B00017B59A /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 361A98942AF3B5890017B59A /* Project object */;
+}

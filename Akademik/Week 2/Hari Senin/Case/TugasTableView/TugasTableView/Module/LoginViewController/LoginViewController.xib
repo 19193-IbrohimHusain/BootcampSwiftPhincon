@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController" customModule="TugasTableView" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rVS-KI-R8S" customClass="LottieAnimationView" customModule="Lottie">
+                    <rect key="frame" x="76" y="58.999999999999986" width="241" height="242.66666666666663"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="animationName" value="login_animation"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Latihan Picker" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vGO-qu-unh">
+                    <rect key="frame" x="138.33333333333334" y="306.66666666666669" width="116.33333333333334" height="19.666666666666686"/>
+                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t48-DT-nNM">
+                    <rect key="frame" x="20.000000000000004" y="350" width="46.333333333333343" height="19.666666666666686"/>
+                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ezo-IU-GeS" customClass="CustomInputField" customModule="TugasTableView" customModuleProvider="target">
+                    <rect key="frame" x="20" y="379.66666666666669" width="353" height="102.33333333333331"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="unN-Pv-0oA" customClass="CustomInputField" customModule="TugasTableView" customModuleProvider="target">
+                    <rect key="frame" x="20" y="492" width="353" height="95"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k8J-zp-hIa">
+                    <rect key="frame" x="20" y="607" width="353" height="34"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fSL-ga-Tf9">
+                    <rect key="frame" x="20" y="661" width="353" height="40"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </view>
+                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tCu-z0-ezg">
+                    <rect key="frame" x="70" y="709" width="253" height="21"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="don't have an account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uIA-gw-jQ3">
+                            <rect key="frame" x="0.0" y="0.0" width="177" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AQ9-9S-XGu">
+                            <rect key="frame" x="177" y="0.0" width="76" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="76" id="2uV-uf-ggE"/>
+                                <constraint firstAttribute="height" constant="21" id="SsS-Bz-85O"/>
+                            </constraints>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" title="Sign In"/>
+                        </button>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="fSL-ga-Tf9" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="661" id="0wg-y0-Y64"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="tCu-z0-ezg" secondAttribute="bottom" constant="88" id="1AS-Bj-DIC"/>
+                <constraint firstItem="rVS-KI-R8S" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="7gC-9y-FcF"/>
+                <constraint firstItem="k8J-zp-hIa" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="607" id="8A1-UC-Grb"/>
+                <constraint firstItem="fSL-ga-Tf9" firstAttribute="top" secondItem="k8J-zp-hIa" secondAttribute="bottom" constant="20" id="8xP-bh-Gtg"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="k8J-zp-hIa" secondAttribute="trailing" constant="20" id="Bne-qd-mWe"/>
+                <constraint firstItem="t48-DT-nNM" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="291" id="BzW-cz-ReF"/>
+                <constraint firstItem="vGO-qu-unh" firstAttribute="top" secondItem="rVS-KI-R8S" secondAttribute="bottom" constant="5" id="Dzg-Xl-mR7"/>
+                <constraint firstItem="tCu-z0-ezg" firstAttribute="top" secondItem="fSL-ga-Tf9" secondAttribute="bottom" constant="8" id="EbX-Dv-mor"/>
+                <constraint firstItem="rVS-KI-R8S" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="76" id="HpV-GP-t71"/>
+                <constraint firstItem="rVS-KI-R8S" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="MU8-XD-y9D"/>
+                <constraint firstItem="t48-DT-nNM" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="Qtg-ci-xWH"/>
+                <constraint firstItem="k8J-zp-hIa" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="Top-eF-FNh"/>
+                <constraint firstItem="k8J-zp-hIa" firstAttribute="top" secondItem="unN-Pv-0oA" secondAttribute="bottom" constant="20" id="bdW-3z-7c0"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="unN-Pv-0oA" secondAttribute="trailing" constant="20" id="d4q-F6-dKa"/>
+                <constraint firstItem="tCu-z0-ezg" firstAttribute="centerX" secondItem="fSL-ga-Tf9" secondAttribute="centerX" id="e3D-va-Yqd"/>
+                <constraint firstItem="ezo-IU-GeS" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="ji7-HY-neE"/>
+                <constraint firstItem="unN-Pv-0oA" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="kTE-oP-3nu"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="fSL-ga-Tf9" secondAttribute="trailing" constant="20" id="kya-YY-2gR"/>
+                <constraint firstItem="vGO-qu-unh" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="nqP-HX-gVb"/>
+                <constraint firstItem="ezo-IU-GeS" firstAttribute="top" secondItem="vGO-qu-unh" secondAttribute="bottom" constant="53.329999999999998" id="o4G-hf-zvu"/>
+                <constraint firstItem="unN-Pv-0oA" firstAttribute="top" secondItem="ezo-IU-GeS" secondAttribute="bottom" constant="10" id="odT-Qw-OlD"/>
+                <constraint firstItem="fSL-ga-Tf9" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="rNO-yF-brQ"/>
+                <constraint firstItem="unN-Pv-0oA" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="492" id="rrO-eo-5a1"/>
+                <constraint firstItem="ezo-IU-GeS" firstAttribute="top" secondItem="t48-DT-nNM" secondAttribute="bottom" constant="10" id="tf6-nn-dhI"/>
+                <constraint firstItem="tCu-z0-ezg" firstAttribute="top" secondItem="fSL-ga-Tf9" secondAttribute="bottom" constant="8" id="xGb-OL-yXx"/>
+                <constraint firstItem="tCu-z0-ezg" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="70" id="zVK-8Q-ybE"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ezo-IU-GeS" secondAttribute="trailing" constant="20" id="zva-HI-aBV"/>
+            </constraints>
+            <point key="canvasLocation" x="35.877862595419849" y="20.422535211267608"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

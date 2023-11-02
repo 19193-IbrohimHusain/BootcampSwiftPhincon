@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PictureOptionBottomSheetViewController" customModule="LatihanProfile" customModuleProvider="target">
+            <connections>
+                <outlet property="tapCamera" destination="AeS-9L-m5v" id="WSJ-aq-gTE"/>
+                <outlet property="tapGallery" destination="PF8-oX-uqg" id="zo1-GI-u7M"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="200"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="AeS-9L-m5v">
+                    <rect key="frame" x="80" y="82" width="60" height="72"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="zih-TV-Fuy">
+                            <rect key="frame" x="0.0" y="1.7763568394002505e-15" width="60" height="36"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="36" id="Fcw-VE-iGf"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Camera" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zKL-my-rGg">
+                            <rect key="frame" x="0.0" y="51" width="60" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="60" id="AJ0-1H-qQS"/>
+                                <constraint firstAttribute="height" constant="21" id="zCB-cx-1RN"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="16"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                </stackView>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="PF8-oX-uqg">
+                    <rect key="frame" x="262" y="82" width="51" height="72"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="folder" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="2wi-c5-DAH">
+                            <rect key="frame" x="0.0" y="1.6666666666666643" width="51" height="33"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="36" id="fwL-5l-pzW"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gallery" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i3d-4r-r2Q">
+                            <rect key="frame" x="0.0" y="51" width="51" height="21"/>
+                            <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="16"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <color key="tintColor" systemColor="labelColor"/>
+            <constraints>
+                <constraint firstItem="AeS-9L-m5v" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="23" id="QZ3-kf-hnN"/>
+                <constraint firstItem="PF8-oX-uqg" firstAttribute="leading" secondItem="AeS-9L-m5v" secondAttribute="trailing" constant="122" id="aCe-y1-C96"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="PF8-oX-uqg" secondAttribute="bottom" constant="46" id="dlb-Sd-ihi"/>
+                <constraint firstItem="PF8-oX-uqg" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="23" id="dnG-rm-E1r"/>
+                <constraint firstItem="AeS-9L-m5v" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="80" id="hp2-cC-Zi9"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="PF8-oX-uqg" secondAttribute="trailing" constant="80" id="i9K-Gl-Uc0"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="AeS-9L-m5v" secondAttribute="bottom" constant="46" id="wKi-0s-Jtk"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="68" y="65"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="camera" catalog="system" width="128" height="93"/>
+        <image name="folder" catalog="system" width="128" height="96"/>
+        <systemColor name="labelColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

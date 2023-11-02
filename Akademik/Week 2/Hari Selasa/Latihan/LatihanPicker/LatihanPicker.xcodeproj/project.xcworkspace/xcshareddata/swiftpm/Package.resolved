@@ -1,0 +1,23 @@
+{
+  "pins" : [
+    {
+      "identity" : "lottie-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/airbnb/lottie-ios",
+      "state" : {
+        "revision" : "45517c3cfec9469bbdd4f86e32393c28ae9df0bc",
+        "version" : "4.3.3"
+      }
+    },
+    {
+      "identity" : "stepslider",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/spromicky/StepSlider",
+      "state" : {
+        "revision" : "bb490b81515cb0dc87465938a36c43dcba11a274",
+        "version" : "1.8.0"
+      }
+    }
+  ],
+  "version" : 2
+}

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StoryViewController" customModule="Snapgram" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Snapgram" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oom-ns-TTV">
+                    <rect key="frame" x="16" y="59" width="118" height="28"/>
+                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="24"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="1KN-rZ-as1">
+                    <rect key="frame" x="0.0" y="97" width="393" height="755"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </tableView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="1KN-rZ-as1" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="039-u0-Awv"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Oom-ns-TTV" secondAttribute="trailing" constant="259" id="D5P-vK-jNd"/>
+                <constraint firstItem="1KN-rZ-as1" firstAttribute="top" secondItem="Oom-ns-TTV" secondAttribute="bottom" constant="10" id="F9V-Y6-FhG"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="1KN-rZ-as1" secondAttribute="trailing" id="gnb-eY-iPY"/>
+                <constraint firstItem="Oom-ns-TTV" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="kMw-eE-bCF"/>
+                <constraint firstAttribute="bottom" secondItem="1KN-rZ-as1" secondAttribute="bottom" id="sZJ-pi-s10"/>
+                <constraint firstItem="1KN-rZ-as1" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="xyw-Gy-Enb"/>
+                <constraint firstItem="Oom-ns-TTV" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="zxJ-oS-rQq"/>
+            </constraints>
+            <point key="canvasLocation" x="-24" y="20"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

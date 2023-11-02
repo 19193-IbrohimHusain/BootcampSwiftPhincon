@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="CustomInputField" customModule="TugasTableView" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="100"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rc0-Nd-CGx">
+                    <rect key="frame" x="20" y="70" width="353" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XK2-1Q-8Ar">
+                    <rect key="frame" x="20" y="10" width="353" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="HXQ-Gr-Hjo"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <action selector="inputTapTextArea:" destination="iN0-l3-epB" eventType="editingDidEnd" id="0PD-vo-R3R"/>
+                    </connections>
+                </textField>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="Rc0-Nd-CGx" firstAttribute="top" secondItem="XK2-1Q-8Ar" secondAttribute="bottom" constant="10" id="Yro-rR-NtH"/>
+                <constraint firstItem="XK2-1Q-8Ar" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="eQc-ST-4pl"/>
+                <constraint firstAttribute="trailing" secondItem="XK2-1Q-8Ar" secondAttribute="trailing" constant="20" id="kcj-N8-Gon"/>
+                <constraint firstItem="Rc0-Nd-CGx" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="lme-Q1-yMs"/>
+                <constraint firstItem="XK2-1Q-8Ar" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="rhi-JS-rYj"/>
+                <constraint firstAttribute="trailing" secondItem="Rc0-Nd-CGx" secondAttribute="trailing" constant="20" id="ycH-p6-6oH"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="errorLabel" destination="Rc0-Nd-CGx" id="Z7g-dh-PRd"/>
+                <outlet property="textField" destination="XK2-1Q-8Ar" id="beu-Ti-mt7"/>
+            </connections>
+            <point key="canvasLocation" x="-8.3969465648854964" y="446.83098591549299"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

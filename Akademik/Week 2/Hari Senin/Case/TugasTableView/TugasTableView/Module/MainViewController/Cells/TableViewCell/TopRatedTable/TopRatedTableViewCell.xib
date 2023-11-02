@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="254" id="AIb-K3-gfH" customClass="TopRatedTableViewCell" customModule="TugasTableView" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="250"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="AIb-K3-gfH" id="hGB-9s-OTb">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="250"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Top Rated" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tdg-Za-eqA">
+                        <rect key="frame" x="0.0" y="16" width="77.333333333333329" height="18"/>
+                        <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="16"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="ZE6-BA-N2O">
+                        <rect key="frame" x="0.0" y="50" width="320" height="200"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="200" id="f5F-is-yW3"/>
+                            <constraint firstAttribute="width" constant="320" id="t12-El-PSG"/>
+                        </constraints>
+                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="quh-am-GDZ">
+                            <size key="itemSize" width="120" height="200"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                    </collectionView>
+                </subviews>
+                <color key="backgroundColor" red="0.0" green="0.031372549020000001" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                <constraints>
+                    <constraint firstItem="ZE6-BA-N2O" firstAttribute="leading" secondItem="hGB-9s-OTb" secondAttribute="leading" id="34C-xi-KCd"/>
+                    <constraint firstItem="Tdg-Za-eqA" firstAttribute="top" secondItem="hGB-9s-OTb" secondAttribute="top" constant="16" id="LsW-7W-DPd"/>
+                    <constraint firstItem="ZE6-BA-N2O" firstAttribute="top" secondItem="Tdg-Za-eqA" secondAttribute="bottom" constant="16" id="Q8G-jO-KEg"/>
+                    <constraint firstItem="Tdg-Za-eqA" firstAttribute="leading" secondItem="hGB-9s-OTb" secondAttribute="leading" id="R3o-8z-6PZ"/>
+                    <constraint firstItem="ZE6-BA-N2O" firstAttribute="top" secondItem="Tdg-Za-eqA" secondAttribute="bottom" constant="16" id="ZeU-2h-3Mp"/>
+                    <constraint firstAttribute="trailing" secondItem="ZE6-BA-N2O" secondAttribute="trailing" id="br2-WD-Zw4"/>
+                    <constraint firstAttribute="trailing" secondItem="Tdg-Za-eqA" secondAttribute="trailing" constant="242.66999999999999" id="l8n-Vt-si7"/>
+                    <constraint firstAttribute="bottom" secondItem="ZE6-BA-N2O" secondAttribute="bottom" id="zKy-DN-gnt"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="Ecv-UD-8NG"/>
+            <connections>
+                <outlet property="topRatedCollection" destination="ZE6-BA-N2O" id="rrE-i8-j72"/>
+                <outlet property="topRatedTitle" destination="Tdg-Za-eqA" id="C2L-TI-nv3"/>
+            </connections>
+            <point key="canvasLocation" x="26" y="313"/>
+        </tableViewCell>
+    </objects>
+</document>
