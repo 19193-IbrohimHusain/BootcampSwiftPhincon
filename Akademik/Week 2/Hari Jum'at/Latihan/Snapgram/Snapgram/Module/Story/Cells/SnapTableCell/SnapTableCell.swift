@@ -2,8 +2,7 @@ import UIKit
 
 class SnapTableCell: UITableViewCell {
 
-    
-    @IBOutlet weak var snapCollection: UICollectionView!
+    @IBOutlet weak var snapColletionView: UICollectionView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -11,9 +10,9 @@ class SnapTableCell: UITableViewCell {
     }
     
     func setupCollection() {
-        snapCollection.delegate = self
-        snapCollection.dataSource = self
-        snapCollection.registerCellWithNib(SnapCollectionViewCell.self)
+        snapColletionView.delegate = self
+        snapColletionView.dataSource = self
+        snapColletionView.registerCellWithNib(SnapCollectionCell.self)
     }
 }
 
@@ -23,7 +22,7 @@ extension SnapTableCell: UICollectionViewDelegate, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as SnapCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as SnapCollectionCell
         let snapEntity = snapItem[indexPath.row]
         cell.configureCollection(with: snapEntity)
         

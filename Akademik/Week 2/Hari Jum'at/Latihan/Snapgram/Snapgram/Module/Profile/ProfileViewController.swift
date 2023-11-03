@@ -3,16 +3,14 @@ import FloatingPanel
 
 class ProfileViewController: UIViewController {
     
-    private var fpc = FloatingPanelController()
-    private var fpcOption = FloatingPanelController()
-
-    
-    @IBOutlet weak var bgImage: UIView!
+    @IBOutlet weak var bgImage: UIImageView!
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var imageCollection: UICollectionView!
     
+    private var fpc = FloatingPanelController()
+    private var fpcOption = FloatingPanelController()
+    
     override func viewDidLoad() {
-        bgImage.layer.cornerRadius = 75
         profileImage.layer.cornerRadius = 75
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(editProfile))
         profileImage.isUserInteractionEnabled = true
@@ -93,7 +91,7 @@ extension ProfileViewController: ProfileBottomSheetViewControllerDelegate {
     }
     
     func removeProfilePic() {
-        self.profileImage.image = UIImage(systemName: "person.circle")
+        self.profileImage.image = UIImage(named: "Blank")
         fpc.dismiss(animated: true)
     }
 }
@@ -105,7 +103,7 @@ extension ProfileViewController: PictureOptionBottomSheetViewControllerDelegate 
         self.profileImage.image = image
         fpcOption.dismiss(animated: true)
     }
-
+    
 }
 
 

@@ -3,6 +3,7 @@ import UIKit
 protocol PictureOptionBottomSheetViewControllerDelegate {
     func addNewProfile(image: [UIImagePickerController.InfoKey : Any])
 }
+
 class PictureOptionBottomSheetViewController: UIViewController {
     
     @IBOutlet weak var tapCamera: UIStackView!

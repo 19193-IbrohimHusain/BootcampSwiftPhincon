@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  Snapgram
 //
-//  Created by Phincon on 02/11/23.
+//  Created by Phincon on 03/11/23.
 //
 
 import UIKit
@@ -14,12 +14,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        // Set the default navigation bar background color to white
-            UINavigationBar.appearance().barTintColor = .white
-
-            // Observe changes in the shared data source
-            NotificationCenter.default.addObserver(self, selector: #selector(updateNavBarBackgroundColor), name: NSNotification.Name("TableViewDidScroll"), object: nil)
-
         return true
     }
 
@@ -36,15 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
-    
-    @objc func updateNavBarBackgroundColor() {
-          // Check the table view offset from the shared data source
-          if SharedDataSource.shared.tableViewOffset > 100 { // Adjust the threshold as needed
-              UINavigationBar.appearance().barTintColor = .white
-          } else {
-              UINavigationBar.appearance().barTintColor = .clear
-          }
-      }
+
 
 }
 

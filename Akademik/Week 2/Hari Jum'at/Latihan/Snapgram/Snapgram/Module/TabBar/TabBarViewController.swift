@@ -3,7 +3,9 @@ import UIKit
 class TabBarViewController:  UITabBarController, UITabBarControllerDelegate {
     
     var home: StoryViewController!
+    var map: MapViewController!
     var addStory: AddStoryViewController!
+    var folder: FolderViewController!
     var profile: ProfileViewController!
 
     override func viewDidLoad(){
@@ -15,15 +17,19 @@ class TabBarViewController:  UITabBarController, UITabBarControllerDelegate {
     
     func configureTabBar() {
         home = StoryViewController()
+        map = MapViewController()
         addStory = AddStoryViewController()
+        folder = FolderViewController()
         profile = ProfileViewController()
-        viewControllers = [home, addStory, profile]
+        viewControllers = [home, map, addStory, folder, profile]
     }
     
     func configureTabBarItem() {
-        home.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house.fill"), tag: 0)
-        addStory.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "plus.app.fill"), tag: 1)
-        profile.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.fill"), tag: 2)
+        home.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house"), tag: 0)
+        map.tabBarItem = UITabBarItem(title: "Map", image: UIImage(systemName: "map"), tag: 1)
+        addStory.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "plus.app"), tag: 2)
+        folder.tabBarItem = UITabBarItem(title: "Folder", image: UIImage(systemName: "folder"), tag: 3)
+        profile.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person"), tag: 4)
         
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
         self.tabBar.unselectedItemTintColor = UIColor.gray

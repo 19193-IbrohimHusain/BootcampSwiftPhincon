@@ -4,17 +4,16 @@ enum SectionTable: Int, CaseIterable {
     case snap, story
 }
 
-
 class StoryViewController: UIViewController {
     
+    
     @IBOutlet weak var storyTable: UITableView!
-        
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.hidesBackButton = true
         setupTable()
     }
-
+    
     func setupTable(){
         storyTable.delegate = self
         storyTable.dataSource = self
@@ -56,8 +55,8 @@ extension StoryViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-           SharedDataSource.shared.tableViewOffset = scrollView.contentOffset.y
-       }
+        SharedDataSource.shared.tableViewOffset = scrollView.contentOffset.y
+    }
 }
 
 extension StoryViewController: StoryTableCellDelegate {
@@ -77,4 +76,3 @@ class SharedDataSource {
     static let shared = SharedDataSource()
     var tableViewOffset: CGFloat = 0
 }
-

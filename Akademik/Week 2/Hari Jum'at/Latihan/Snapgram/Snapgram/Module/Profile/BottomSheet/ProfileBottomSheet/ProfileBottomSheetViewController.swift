@@ -1,3 +1,10 @@
+//
+//  ProfileBottomSheetViewController.swift
+//  Snapgram
+//
+//  Created by Phincon on 03/11/23.
+//
+
 import UIKit
 
 protocol ProfileBottomSheetViewControllerDelegate {
@@ -6,8 +13,7 @@ protocol ProfileBottomSheetViewControllerDelegate {
 }
 
 class ProfileBottomSheetViewController: UIViewController {
-    
-    
+
     @IBOutlet weak var newProfilePic: UIStackView!
     @IBOutlet weak var removeProfilePic: UIStackView!
     
