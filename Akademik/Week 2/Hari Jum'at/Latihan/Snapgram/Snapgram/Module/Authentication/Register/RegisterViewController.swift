@@ -14,7 +14,7 @@ class RegisterViewController: BaseViewController {
     let showCPasswordImage = UIImageView(image: UIImage(systemName: "eye.fill"))
     let rightPasswordView = UIView()
     let rightCPasswordView = UIView()
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         setupRegister()

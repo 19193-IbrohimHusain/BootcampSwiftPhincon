@@ -28,8 +28,6 @@
 		3619052F2AF4EF2400DA3DF0 /* CustomInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361905222AF4EF2400DA3DF0 /* CustomInputField.swift */; };
 		361905302AF4EF2400DA3DF0 /* CapturedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361905232AF4EF2400DA3DF0 /* CapturedImageView.swift */; };
 		361905312AF4EF2400DA3DF0 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361905252AF4EF2400DA3DF0 /* BaseViewController.swift */; };
-		361905552AF4EFB700DA3DF0 /* FloatingPanel in Frameworks */ = {isa = PBXBuildFile; productRef = 361905542AF4EFB700DA3DF0 /* FloatingPanel */; };
-		361905582AF4EFD600DA3DF0 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 361905572AF4EFD600DA3DF0 /* Lottie */; };
 		3619058D2AF4F10F00DA3DF0 /* FolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3619055B2AF4F10E00DA3DF0 /* FolderViewController.swift */; };
 		3619058E2AF4F10F00DA3DF0 /* FolderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3619055C2AF4F10E00DA3DF0 /* FolderViewController.xib */; };
 		3619058F2AF4F10F00DA3DF0 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3619055E2AF4F10E00DA3DF0 /* TabBarViewController.swift */; };
@@ -46,10 +44,8 @@
 		3619059A2AF4F10F00DA3DF0 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361905702AF4F10E00DA3DF0 /* ProfileViewController.swift */; };
 		3619059B2AF4F10F00DA3DF0 /* AddStoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 361905722AF4F10E00DA3DF0 /* AddStoryViewController.xib */; };
 		3619059C2AF4F10F00DA3DF0 /* AddStoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361905732AF4F10E00DA3DF0 /* AddStoryViewController.swift */; };
-		3619059D2AF4F10F00DA3DF0 /* Test1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361905752AF4F10E00DA3DF0 /* Test1ViewController.swift */; };
 		3619059E2AF4F10F00DA3DF0 /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 361905772AF4F10E00DA3DF0 /* RegisterViewController.xib */; };
 		3619059F2AF4F10F00DA3DF0 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361905782AF4F10E00DA3DF0 /* RegisterViewController.swift */; };
-		361905A02AF4F10F00DA3DF0 /* Test1ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 361905792AF4F10E00DA3DF0 /* Test1ViewController.xib */; };
 		361905A12AF4F10F00DA3DF0 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3619057B2AF4F10E00DA3DF0 /* LoginViewController.xib */; };
 		361905A22AF4F10F00DA3DF0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3619057C2AF4F10E00DA3DF0 /* LoginViewController.swift */; };
 		361905A32AF4F10F00DA3DF0 /* StoryTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 361905802AF4F10E00DA3DF0 /* StoryTableCell.xib */; };
@@ -63,6 +59,21 @@
 		361905AB2AF4F10F00DA3DF0 /* StoryTableEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3619058B2AF4F10E00DA3DF0 /* StoryTableEntity.swift */; };
 		361905AC2AF4F10F00DA3DF0 /* StoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3619058C2AF4F10E00DA3DF0 /* StoryViewController.xib */; };
 		361905AE2AF4FA9A00DA3DF0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361905AD2AF4FA9A00DA3DF0 /* Constants.swift */; };
+		36CCE84A2AF8898500E4AF69 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 36CCE8492AF8898500E4AF69 /* Podfile */; };
+		36CCE8552AF89FE500E4AF69 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CCE8542AF89FE500E4AF69 /* APIManager.swift */; };
+		36CCE8572AF89FFC00E4AF69 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CCE8562AF89FFC00E4AF69 /* Endpoint.swift */; };
+		36CCE85A2AF8B75000E4AF69 /* StoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CCE8592AF8B75000E4AF69 /* StoryModel.swift */; };
+		36CCE85C2AF8B7A800E4AF69 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CCE85B2AF8B7A800E4AF69 /* LoginModel.swift */; };
+		36CCE85E2AF8B83900E4AF69 /* RegisterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CCE85D2AF8B83900E4AF69 /* RegisterModel.swift */; };
+		36CCE8602AF8B86C00E4AF69 /* DetailStoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CCE85F2AF8B86C00E4AF69 /* DetailStoryModel.swift */; };
+		36CCE8622AF8B95700E4AF69 /* AddStoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CCE8612AF8B95700E4AF69 /* AddStoryModel.swift */; };
+		36CCE8662AF8BA0E00E4AF69 /* SplashScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CCE8642AF8BA0E00E4AF69 /* SplashScreenViewController.swift */; };
+		36CCE8672AF8BA0E00E4AF69 /* SplashScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36CCE8652AF8BA0E00E4AF69 /* SplashScreenViewController.xib */; };
+		36CCE8692AF8E39500E4AF69 /* RegisterEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CCE8682AF8E39500E4AF69 /* RegisterEntity.swift */; };
+		36CCE86B2AF8E9CF00E4AF69 /* LoginEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CCE86A2AF8E9CF00E4AF69 /* LoginEntity.swift */; };
+		6B09B30BBEACA38B022C5761 /* Pods_Snapgram.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B47E2ED361FBEF3557D6805 /* Pods_Snapgram.framework */; };
+		993018B7833DEBD87CAE2606 /* Pods_Snapgram_SnapgramUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09F102B2F06C5964BF41415E /* Pods_Snapgram_SnapgramUITests.framework */; };
+		D6C27E9D607BE489C649CE74 /* Pods_SnapgramTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 746B60A17C6380F3C8300FFD /* Pods_SnapgramTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +94,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		09F102B2F06C5964BF41415E /* Pods_Snapgram_SnapgramUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Snapgram_SnapgramUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		256F7EB1DF6B8F85D4EAB6A6 /* Pods-SnapgramTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SnapgramTests.debug.xcconfig"; path = "Target Support Files/Pods-SnapgramTests/Pods-SnapgramTests.debug.xcconfig"; sourceTree = "<group>"; };
 		3619044D2AF4EC8100DA3DF0 /* Snapgram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Snapgram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		361904502AF4EC8100DA3DF0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		361904522AF4EC8100DA3DF0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -124,10 +137,8 @@
 		361905702AF4F10E00DA3DF0 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		361905722AF4F10E00DA3DF0 /* AddStoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddStoryViewController.xib; sourceTree = "<group>"; };
 		361905732AF4F10E00DA3DF0 /* AddStoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddStoryViewController.swift; sourceTree = "<group>"; };
-		361905752AF4F10E00DA3DF0 /* Test1ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Test1ViewController.swift; sourceTree = "<group>"; };
 		361905772AF4F10E00DA3DF0 /* RegisterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterViewController.xib; sourceTree = "<group>"; };
 		361905782AF4F10E00DA3DF0 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
-		361905792AF4F10E00DA3DF0 /* Test1ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Test1ViewController.xib; sourceTree = "<group>"; };
 		3619057B2AF4F10E00DA3DF0 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		3619057C2AF4F10E00DA3DF0 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		361905802AF4F10E00DA3DF0 /* StoryTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StoryTableCell.xib; sourceTree = "<group>"; };
@@ -141,6 +152,25 @@
 		3619058B2AF4F10E00DA3DF0 /* StoryTableEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryTableEntity.swift; sourceTree = "<group>"; };
 		3619058C2AF4F10E00DA3DF0 /* StoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StoryViewController.xib; sourceTree = "<group>"; };
 		361905AD2AF4FA9A00DA3DF0 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		36CCE8492AF8898500E4AF69 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		36CCE8542AF89FE500E4AF69 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		36CCE8562AF89FFC00E4AF69 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		36CCE8592AF8B75000E4AF69 /* StoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryModel.swift; sourceTree = "<group>"; };
+		36CCE85B2AF8B7A800E4AF69 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
+		36CCE85D2AF8B83900E4AF69 /* RegisterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterModel.swift; sourceTree = "<group>"; };
+		36CCE85F2AF8B86C00E4AF69 /* DetailStoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailStoryModel.swift; sourceTree = "<group>"; };
+		36CCE8612AF8B95700E4AF69 /* AddStoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStoryModel.swift; sourceTree = "<group>"; };
+		36CCE8642AF8BA0E00E4AF69 /* SplashScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenViewController.swift; sourceTree = "<group>"; };
+		36CCE8652AF8BA0E00E4AF69 /* SplashScreenViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplashScreenViewController.xib; sourceTree = "<group>"; };
+		36CCE8682AF8E39500E4AF69 /* RegisterEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterEntity.swift; sourceTree = "<group>"; };
+		36CCE86A2AF8E9CF00E4AF69 /* LoginEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginEntity.swift; sourceTree = "<group>"; };
+		5C5E2D031D89D5047EEDE645 /* Pods-Snapgram-SnapgramUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Snapgram-SnapgramUITests.debug.xcconfig"; path = "Target Support Files/Pods-Snapgram-SnapgramUITests/Pods-Snapgram-SnapgramUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		6B47E2ED361FBEF3557D6805 /* Pods_Snapgram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Snapgram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		746B60A17C6380F3C8300FFD /* Pods_SnapgramTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SnapgramTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7A7765F0615A98B5F5562BE6 /* Pods-SnapgramTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SnapgramTests.release.xcconfig"; path = "Target Support Files/Pods-SnapgramTests/Pods-SnapgramTests.release.xcconfig"; sourceTree = "<group>"; };
+		81FE0FDAFD1FD0D7EB1E057F /* Pods-Snapgram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Snapgram.release.xcconfig"; path = "Target Support Files/Pods-Snapgram/Pods-Snapgram.release.xcconfig"; sourceTree = "<group>"; };
+		B7D14FD9ABEF64C89E29BADF /* Pods-Snapgram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Snapgram.debug.xcconfig"; path = "Target Support Files/Pods-Snapgram/Pods-Snapgram.debug.xcconfig"; sourceTree = "<group>"; };
+		D2F4E27521E84FC5A9100CB8 /* Pods-Snapgram-SnapgramUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Snapgram-SnapgramUITests.release.xcconfig"; path = "Target Support Files/Pods-Snapgram-SnapgramUITests/Pods-Snapgram-SnapgramUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,8 +178,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				361905552AF4EFB700DA3DF0 /* FloatingPanel in Frameworks */,
-				361905582AF4EFD600DA3DF0 /* Lottie in Frameworks */,
+				6B09B30BBEACA38B022C5761 /* Pods_Snapgram.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -157,6 +186,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6C27E9D607BE489C649CE74 /* Pods_SnapgramTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -164,6 +194,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				993018B7833DEBD87CAE2606 /* Pods_Snapgram_SnapgramUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -173,10 +204,13 @@
 		361904442AF4EC8100DA3DF0 = {
 			isa = PBXGroup;
 			children = (
+				36CCE8492AF8898500E4AF69 /* Podfile */,
 				3619044F2AF4EC8100DA3DF0 /* Snapgram */,
 				361904662AF4EC8400DA3DF0 /* SnapgramTests */,
 				361904702AF4EC8400DA3DF0 /* SnapgramUITests */,
 				3619044E2AF4EC8100DA3DF0 /* Products */,
+				CE5B63CAF181177514BE5BC0 /* Pods */,
+				764E5E1B77D158F4A34426F8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -249,6 +283,9 @@
 		3619051B2AF4EF2400DA3DF0 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				36CCE8582AF8B73500E4AF69 /* model */,
+				36CCE8542AF89FE500E4AF69 /* APIManager.swift */,
+				36CCE8562AF89FFC00E4AF69 /* Endpoint.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -310,6 +347,7 @@
 		361905592AF4F10E00DA3DF0 /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				36CCE8632AF8B9F000E4AF69 /* SplashScreen */,
 				3619055A2AF4F10E00DA3DF0 /* Folder */,
 				3619055D2AF4F10E00DA3DF0 /* TabBar */,
 				3619055F2AF4F10E00DA3DF0 /* Map */,
@@ -415,9 +453,7 @@
 		361905742AF4F10E00DA3DF0 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
-				361905752AF4F10E00DA3DF0 /* Test1ViewController.swift */,
 				361905762AF4F10E00DA3DF0 /* Register */,
-				361905792AF4F10E00DA3DF0 /* Test1ViewController.xib */,
 				3619057A2AF4F10E00DA3DF0 /* Login */,
 			);
 			path = Authentication;
@@ -428,6 +464,7 @@
 			children = (
 				361905772AF4F10E00DA3DF0 /* RegisterViewController.xib */,
 				361905782AF4F10E00DA3DF0 /* RegisterViewController.swift */,
+				36CCE8682AF8E39500E4AF69 /* RegisterEntity.swift */,
 			);
 			path = Register;
 			sourceTree = "<group>";
@@ -437,6 +474,7 @@
 			children = (
 				3619057B2AF4F10E00DA3DF0 /* LoginViewController.xib */,
 				3619057C2AF4F10E00DA3DF0 /* LoginViewController.swift */,
+				36CCE86A2AF8E9CF00E4AF69 /* LoginEntity.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -498,6 +536,50 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		36CCE8582AF8B73500E4AF69 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				36CCE8592AF8B75000E4AF69 /* StoryModel.swift */,
+				36CCE85B2AF8B7A800E4AF69 /* LoginModel.swift */,
+				36CCE85D2AF8B83900E4AF69 /* RegisterModel.swift */,
+				36CCE85F2AF8B86C00E4AF69 /* DetailStoryModel.swift */,
+				36CCE8612AF8B95700E4AF69 /* AddStoryModel.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		36CCE8632AF8B9F000E4AF69 /* SplashScreen */ = {
+			isa = PBXGroup;
+			children = (
+				36CCE8642AF8BA0E00E4AF69 /* SplashScreenViewController.swift */,
+				36CCE8652AF8BA0E00E4AF69 /* SplashScreenViewController.xib */,
+			);
+			path = SplashScreen;
+			sourceTree = "<group>";
+		};
+		764E5E1B77D158F4A34426F8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6B47E2ED361FBEF3557D6805 /* Pods_Snapgram.framework */,
+				09F102B2F06C5964BF41415E /* Pods_Snapgram_SnapgramUITests.framework */,
+				746B60A17C6380F3C8300FFD /* Pods_SnapgramTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CE5B63CAF181177514BE5BC0 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B7D14FD9ABEF64C89E29BADF /* Pods-Snapgram.debug.xcconfig */,
+				81FE0FDAFD1FD0D7EB1E057F /* Pods-Snapgram.release.xcconfig */,
+				5C5E2D031D89D5047EEDE645 /* Pods-Snapgram-SnapgramUITests.debug.xcconfig */,
+				D2F4E27521E84FC5A9100CB8 /* Pods-Snapgram-SnapgramUITests.release.xcconfig */,
+				256F7EB1DF6B8F85D4EAB6A6 /* Pods-SnapgramTests.debug.xcconfig */,
+				7A7765F0615A98B5F5562BE6 /* Pods-SnapgramTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -505,9 +587,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 361904772AF4EC8400DA3DF0 /* Build configuration list for PBXNativeTarget "Snapgram" */;
 			buildPhases = (
+				C82356282452AB74DFDDE972 /* [CP] Check Pods Manifest.lock */,
 				361904492AF4EC8100DA3DF0 /* Sources */,
 				3619044A2AF4EC8100DA3DF0 /* Frameworks */,
 				3619044B2AF4EC8100DA3DF0 /* Resources */,
+				94ADA6C052515EEFC2B9AED9 /* [CP] Embed Pods Frameworks */,
+				4CE0164FD90B9A0070183256 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -515,8 +600,6 @@
 			);
 			name = Snapgram;
 			packageProductDependencies = (
-				361905542AF4EFB700DA3DF0 /* FloatingPanel */,
-				361905572AF4EFD600DA3DF0 /* Lottie */,
 			);
 			productName = Snapgram;
 			productReference = 3619044D2AF4EC8100DA3DF0 /* Snapgram.app */;
@@ -526,6 +609,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3619047A2AF4EC8400DA3DF0 /* Build configuration list for PBXNativeTarget "SnapgramTests" */;
 			buildPhases = (
+				C6415D51AE946DA36EC463FF /* [CP] Check Pods Manifest.lock */,
 				3619045F2AF4EC8300DA3DF0 /* Sources */,
 				361904602AF4EC8300DA3DF0 /* Frameworks */,
 				361904612AF4EC8300DA3DF0 /* Resources */,
@@ -544,9 +628,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3619047D2AF4EC8400DA3DF0 /* Build configuration list for PBXNativeTarget "SnapgramUITests" */;
 			buildPhases = (
+				E6921BD7B522615A78AC6CCB /* [CP] Check Pods Manifest.lock */,
 				361904692AF4EC8400DA3DF0 /* Sources */,
 				3619046A2AF4EC8400DA3DF0 /* Frameworks */,
 				3619046B2AF4EC8400DA3DF0 /* Resources */,
+				BB526533009D01304E7999B2 /* [CP] Embed Pods Frameworks */,
+				21E3BE4F01CBCF7A09834A06 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -591,8 +678,6 @@
 			);
 			mainGroup = 361904442AF4EC8100DA3DF0;
 			packageReferences = (
-				361905532AF4EFB700DA3DF0 /* XCRemoteSwiftPackageReference "FloatingPanel" */,
-				361905562AF4EFD600DA3DF0 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = 3619044E2AF4EC8100DA3DF0 /* Products */;
 			projectDirPath = "";
@@ -616,15 +701,16 @@
 				3619045D2AF4EC8300DA3DF0 /* LaunchScreen.storyboard in Resources */,
 				3619052D2AF4EF2400DA3DF0 /* CustomButton.xib in Resources */,
 				361905A12AF4F10F00DA3DF0 /* LoginViewController.xib in Resources */,
+				36CCE8672AF8BA0E00E4AF69 /* SplashScreenViewController.xib in Resources */,
 				361905AC2AF4F10F00DA3DF0 /* StoryViewController.xib in Resources */,
 				3619059B2AF4F10F00DA3DF0 /* AddStoryViewController.xib in Resources */,
 				3619052E2AF4EF2400DA3DF0 /* CustomInputField.xib in Resources */,
 				361905A72AF4F10F00DA3DF0 /* SnapTableCell.xib in Resources */,
+				36CCE84A2AF8898500E4AF69 /* Podfile in Resources */,
 				361905A62AF4F10F00DA3DF0 /* SnapCollectionCell.xib in Resources */,
 				361905982AF4F10F00DA3DF0 /* PictureOptionBottomSheetViewController.xib in Resources */,
 				361905912AF4F10F00DA3DF0 /* MapViewController.xib in Resources */,
 				3619045A2AF4EC8300DA3DF0 /* Assets.xcassets in Resources */,
-				361905A02AF4F10F00DA3DF0 /* Test1ViewController.xib in Resources */,
 				361905A32AF4F10F00DA3DF0 /* StoryTableCell.xib in Resources */,
 				361905922AF4F10F00DA3DF0 /* ProfileCollectionViewCell.xib in Resources */,
 				361904582AF4EC8100DA3DF0 /* Main.storyboard in Resources */,
@@ -648,6 +734,143 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		21E3BE4F01CBCF7A09834A06 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Snapgram-SnapgramUITests/Pods-Snapgram-SnapgramUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Snapgram-SnapgramUITests/Pods-Snapgram-SnapgramUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Snapgram-SnapgramUITests/Pods-Snapgram-SnapgramUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4CE0164FD90B9A0070183256 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Snapgram/Pods-Snapgram-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Snapgram/Pods-Snapgram-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Snapgram/Pods-Snapgram-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		94ADA6C052515EEFC2B9AED9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Snapgram/Pods-Snapgram-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Snapgram/Pods-Snapgram-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Snapgram/Pods-Snapgram-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BB526533009D01304E7999B2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Snapgram-SnapgramUITests/Pods-Snapgram-SnapgramUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Snapgram-SnapgramUITests/Pods-Snapgram-SnapgramUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Snapgram-SnapgramUITests/Pods-Snapgram-SnapgramUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C6415D51AE946DA36EC463FF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SnapgramTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C82356282452AB74DFDDE972 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Snapgram-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E6921BD7B522615A78AC6CCB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Snapgram-SnapgramUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		361904492AF4EC8100DA3DF0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -666,9 +889,15 @@
 				3619059C2AF4F10F00DA3DF0 /* AddStoryViewController.swift in Sources */,
 				361904512AF4EC8100DA3DF0 /* AppDelegate.swift in Sources */,
 				3619052A2AF4EF2400DA3DF0 /* ExtLogin.swift in Sources */,
+				36CCE85C2AF8B7A800E4AF69 /* LoginModel.swift in Sources */,
+				36CCE8602AF8B86C00E4AF69 /* DetailStoryModel.swift in Sources */,
 				361905302AF4EF2400DA3DF0 /* CapturedImageView.swift in Sources */,
 				361905A92AF4F10F00DA3DF0 /* StoryViewController.swift in Sources */,
+				36CCE8692AF8E39500E4AF69 /* RegisterEntity.swift in Sources */,
+				36CCE8552AF89FE500E4AF69 /* APIManager.swift in Sources */,
+				36CCE8662AF8BA0E00E4AF69 /* SplashScreenViewController.swift in Sources */,
 				3619058D2AF4F10F00DA3DF0 /* FolderViewController.swift in Sources */,
+				36CCE8622AF8B95700E4AF69 /* AddStoryModel.swift in Sources */,
 				361905272AF4EF2400DA3DF0 /* ExtTableView.swift in Sources */,
 				361905A22AF4F10F00DA3DF0 /* LoginViewController.swift in Sources */,
 				361905282AF4EF2400DA3DF0 /* ExtView.swift in Sources */,
@@ -678,13 +907,16 @@
 				361905AB2AF4F10F00DA3DF0 /* StoryTableEntity.swift in Sources */,
 				361905952AF4F10F00DA3DF0 /* ProfileCollectionEntity.swift in Sources */,
 				3619058F2AF4F10F00DA3DF0 /* TabBarViewController.swift in Sources */,
-				3619059D2AF4F10F00DA3DF0 /* Test1ViewController.swift in Sources */,
 				361905262AF4EF2400DA3DF0 /* ExtAddStory.swift in Sources */,
 				361905992AF4F10F00DA3DF0 /* PictureOptionBottomSheetViewController.swift in Sources */,
 				3619059A2AF4F10F00DA3DF0 /* ProfileViewController.swift in Sources */,
 				361905972AF4F10F00DA3DF0 /* ProfileBottomSheetViewController.swift in Sources */,
+				36CCE86B2AF8E9CF00E4AF69 /* LoginEntity.swift in Sources */,
 				361905902AF4F10F00DA3DF0 /* MapViewController.swift in Sources */,
+				36CCE85E2AF8B83900E4AF69 /* RegisterModel.swift in Sources */,
+				36CCE8572AF89FFC00E4AF69 /* Endpoint.swift in Sources */,
 				361905A52AF4F10F00DA3DF0 /* SnapCollectionCell.swift in Sources */,
+				36CCE85A2AF8B75000E4AF69 /* StoryModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -856,6 +1088,7 @@
 		};
 		361904782AF4EC8400DA3DF0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B7D14FD9ABEF64C89E29BADF /* Pods-Snapgram.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -873,6 +1106,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ibrohim.Snapgram;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -883,6 +1117,7 @@
 		};
 		361904792AF4EC8400DA3DF0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 81FE0FDAFD1FD0D7EB1E057F /* Pods-Snapgram.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -910,6 +1145,7 @@
 		};
 		3619047B2AF4EC8400DA3DF0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 256F7EB1DF6B8F85D4EAB6A6 /* Pods-SnapgramTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -929,6 +1165,7 @@
 		};
 		3619047C2AF4EC8400DA3DF0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7A7765F0615A98B5F5562BE6 /* Pods-SnapgramTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -948,6 +1185,7 @@
 		};
 		3619047E2AF4EC8400DA3DF0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5C5E2D031D89D5047EEDE645 /* Pods-Snapgram-SnapgramUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -965,6 +1203,7 @@
 		};
 		3619047F2AF4EC8400DA3DF0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D2F4E27521E84FC5A9100CB8 /* Pods-Snapgram-SnapgramUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1020,38 +1259,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		361905532AF4EFB700DA3DF0 /* XCRemoteSwiftPackageReference "FloatingPanel" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/scenee/FloatingPanel";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
-		361905562AF4EFD600DA3DF0 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/airbnb/lottie-ios";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		361905542AF4EFB700DA3DF0 /* FloatingPanel */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 361905532AF4EFB700DA3DF0 /* XCRemoteSwiftPackageReference "FloatingPanel" */;
-			productName = FloatingPanel;
-		};
-		361905572AF4EFD600DA3DF0 /* Lottie */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 361905562AF4EFD600DA3DF0 /* XCRemoteSwiftPackageReference "lottie-ios" */;
-			productName = Lottie;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 361904452AF4EC8100DA3DF0 /* Project object */;
 }

@@ -9,10 +9,20 @@ class StoryViewController: UIViewController {
     
     @IBOutlet weak var storyTable: UITableView!
     
+    var storyResponse: StoryResponse? {
+        didSet {
+            storyTable.reloadData()
+        }
+            
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTable()
+        fetchStory()
     }
+    
+
     
     func setupTable(){
         storyTable.delegate = self
@@ -44,18 +54,34 @@ extension StoryViewController: UITableViewDelegate, UITableViewDataSource {
         case .snap:
             let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as SnapTableCell
             return cell
-        case .story: let cell1 = tableView.dequeueReusableCell(forIndexPath: indexPath) as StoryTableCell
-            let storyEntity = storyItem[indexPath.row]
-            cell1.configure(with: storyEntity)
-            cell1.indexSelected = indexPath.row
-            cell1.delegate = self
-            return cell1
+        case .story:
+            if let validData = storyResponse, let storyItem = validData.listStory {
+                let cell1 = tableView.dequeueReusableCell(forIndexPath: indexPath) as StoryTableCell
+                let storyEntity = storyItem[indexPath.row]
+                cell1.configure(with: storyEntity)
+                cell1.indexSelected = indexPath.row
+                cell1.delegate = self
+                return cell1
+            }
+            return UITableViewCell()
         default: return UITableViewCell()
         }
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         SharedDataSource.shared.tableViewOffset = scrollView.contentOffset.y
+    }
+    
+    func fetchStory() {
+        APIManager.shared.fetchRequest(endpoint: .fetchStory, expecting: StoryResponse.self) { [weak self] result in
+            switch result {
+            case .success(let model):
+                print(model)
+                self?.storyResponse = model
+            case .failure(let error):
+                print(String(describing: error))
+            }
+        }
     }
 }
 

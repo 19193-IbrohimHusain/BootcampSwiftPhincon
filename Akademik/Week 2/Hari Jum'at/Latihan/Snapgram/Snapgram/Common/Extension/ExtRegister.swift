@@ -81,6 +81,7 @@ extension RegisterViewController {
         activityIndicator.startAnimating()
         activityIndicator.center = CGPoint(x: signUpBtn.customButton.bounds.width / 2 , y: signUpBtn.customButton.bounds.height / 2)
         signUpBtn.customButton.addSubview(activityIndicator)
+        signUpBtn.customButton.layer.backgroundColor = UIColor.systemGray5.cgColor
         signUpBtn.customButton.setTitle("", for: .disabled)
         
         Task {
@@ -101,8 +102,24 @@ extension RegisterViewController {
                 signUpBtn.customButton.isUserInteractionEnabled = true
                 return
             }
+            guard validateEmail(candidate: emailInputField.textField.text!) == true else {
+                displayAlert(title: "Sign Up Failed", message: "Please Enter Valid Email") {
+                    self.afterDissmissed()
+                }
+                activityIndicator.stopAnimating()
+                signUpBtn.customButton.isUserInteractionEnabled = true
+                return
+            }
             guard let enteredPassword = passwordInputField.textField.text, !enteredPassword.isEmpty else {
                 displayAlert(title: "Sign Up Failed", message: "Please Enter Your Password") {
+                    self.afterDissmissed()
+                }
+                activityIndicator.stopAnimating()
+                signUpBtn.customButton.isUserInteractionEnabled = true
+                return
+            }
+            guard validatePassword(candidate: passwordInputField.textField.text!) == true else {
+                displayAlert(title: "Sign Up Failed", message: "Password must contain at least 8 characters, 1 Alphabet and 1 Number") {
                     self.afterDissmissed()
                 }
                 activityIndicator.stopAnimating()
@@ -117,10 +134,47 @@ extension RegisterViewController {
                 signUpBtn.customButton.isUserInteractionEnabled = true
                 return
             }
-            navigateToLoginView()
-            signUpBtn.customButton.isEnabled = true
-            signUpBtn.customButton.isUserInteractionEnabled = true
-            signUpBtn.customButton.setTitle("Sign In", for: .normal)
+            guard enteredCPassword == enteredPassword else {
+                displayAlert(title: "Sign Up Failed", message: "Confirmed Password is not the same as Password you enter") {
+                    self.afterDissmissed()
+                }
+                activityIndicator.stopAnimating()
+                signUpBtn.customButton.isUserInteractionEnabled = true
+                return
+            }
+            signUp()
+            afterDissmissed()
+        }
+    }
+    
+    func validateEmail(candidate: String) -> Bool {
+     let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+     return NSPredicate(format: "SELF MATCHES %@", emailRegex).evaluate(with: candidate)
+    }
+    
+    func validatePassword(candidate: String) -> Bool {
+     let passwordRegex = "^(?=.*[A-Za-z])(?=.*\\d).{8,}$"
+     return NSPredicate(format: "SELF MATCHES %@", passwordRegex).evaluate(with: candidate)
+    }
+    
+    func signUp(){
+        let enteredName = nameInputField.textField.text!
+        let enteredEmail = emailInputField.textField.text!
+        let enteredPassword = passwordInputField.textField.text!
+        
+        APIManager.shared.fetchRequest(endpoint: .register(param: RegisterParam(name: enteredName, email: enteredEmail, password: enteredPassword)), expecting: RegisterResponse.self) { result in
+            switch result {
+            case .success(let response):
+                print(response.message)
+                self.displayAlert(title: response.message, message: "Please Sign In to continue") {
+                    self.navigateToLoginView()
+                }
+            case .failure(let error):
+                print(String(describing: error))
+                self.displayAlert(title: "Sign Up Failed", message: "Please try again") {
+                    return
+                }
+            }
         }
     }
     
@@ -131,6 +185,7 @@ extension RegisterViewController {
     func afterDissmissed() {
         signUpBtn.customButton.isEnabled = true
         signUpBtn.customButton.isUserInteractionEnabled = true
-        signUpBtn.customButton.setTitle("Sign In", for: .normal)
+        signUpBtn.customButton.layer.backgroundColor = UIColor.systemBlue.cgColor
+        signUpBtn.customButton.setTitle("Sign Up", for: .normal)
     }
 }

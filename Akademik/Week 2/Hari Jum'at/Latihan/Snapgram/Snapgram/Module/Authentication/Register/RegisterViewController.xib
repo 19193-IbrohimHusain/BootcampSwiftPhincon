@@ -139,6 +139,9 @@
             <point key="canvasLocation" x="-24" y="20"/>
         </view>
     </objects>
+    <designables>
+        <designable name="rrt-rv-o25"/>
+    </designables>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

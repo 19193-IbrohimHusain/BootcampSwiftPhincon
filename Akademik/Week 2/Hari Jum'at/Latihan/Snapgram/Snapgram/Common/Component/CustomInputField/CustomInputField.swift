@@ -25,16 +25,22 @@ class CustomInputField: UIView {
     
     @IBAction func inputTapTextArea() {
         textField.becomeFirstResponder()
+        textField.layer.cornerRadius = 8.0
+        textField.layer.borderWidth = 1.0
+        textField.layer.borderColor = UIColor.systemBlue.cgColor
     }
     
     @IBAction func didEndEditing() {
         textField.resignFirstResponder()
-//        let view = self.loadNib()
-//        view.endEditing(true)
+        textField.layer.borderWidth = 0
     }
     
     func setup(placeholder: String, errorText: String) {
         textField.placeholder = placeholder
+        textField.layer.shadowColor = UIColor.systemGray2.cgColor
+        textField.layer.shadowOffset = CGSize(width: 2, height: 2)
+        textField.layer.shadowRadius = 3.0
+        textField.layer.shadowOpacity = 0.5
         errorLabel.text = errorText
         errorLabel.isHidden = true
     }

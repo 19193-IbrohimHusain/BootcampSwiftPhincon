@@ -1,11 +1,5 @@
-//
-//  AppDelegate.swift
-//  Snapgram
-//
-//  Created by Phincon on 03/11/23.
-//
-
 import UIKit
+import GoogleMaps
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -13,7 +7,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        GMSServices.provideAPIKey("AIzaSyCQsaovBDK-PZNpHFT5pOGW_pTD_OCO430")
         return true
     }
 

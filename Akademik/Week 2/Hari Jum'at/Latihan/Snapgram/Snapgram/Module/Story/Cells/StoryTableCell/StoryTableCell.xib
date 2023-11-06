@@ -3,7 +3,6 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
-        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -38,7 +37,7 @@
                         </constraints>
                     </imageView>
                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="nwj-bH-Zhc">
-                        <rect key="frame" x="10" y="278" width="124" height="36"/>
+                        <rect key="frame" x="16" y="273" width="124" height="36"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="buf-OL-jh8">
                                 <rect key="frame" x="0.0" y="0.0" width="36" height="36"/>
@@ -48,8 +47,7 @@
                                 </constraints>
                                 <color key="tintColor" systemColor="labelColor"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain">
-                                    <imageReference key="image" image="heart" catalog="system" symbolScale="large"/>
+                                <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system">
                                     <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="large"/>
                                 </buttonConfiguration>
                                 <connections>
@@ -64,8 +62,7 @@
                                 </constraints>
                                 <color key="tintColor" systemColor="labelColor"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain">
-                                    <imageReference key="image" image="bubble.right" catalog="system" symbolScale="large"/>
+                                <buttonConfiguration key="configuration" style="plain" image="bubble.right" catalog="system">
                                     <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="large"/>
                                 </buttonConfiguration>
                             </button>
@@ -77,8 +74,7 @@
                                 </constraints>
                                 <color key="tintColor" systemColor="labelColor"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain">
-                                    <imageReference key="image" image="paperplane" catalog="system" symbolScale="large"/>
+                                <buttonConfiguration key="configuration" style="plain" image="paperplane" catalog="system">
                                     <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="large"/>
                                 </buttonConfiguration>
                             </button>
@@ -91,14 +87,14 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fyc-Al-ukX">
-                        <rect key="frame" x="16" y="348" width="288" height="65"/>
+                        <rect key="frame" x="16" y="333" width="288" height="80"/>
                         <string key="text">ibrohimsn_ Officially a fresh graduate with a Bachelor's Degree in Computer Science!. I am eager to improve my programming skills to become a competent software developer.</string>
                         <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="198,760 Likes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UQi-QC-WTn">
-                        <rect key="frame" x="16" y="324" width="75" height="14"/>
+                        <rect key="frame" x="16" y="314" width="75" height="14"/>
                         <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -107,8 +103,8 @@
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="Fyc-Al-ukX" secondAttribute="trailing" constant="16" id="60y-bU-0lI"/>
                     <constraint firstItem="zd1-eF-veN" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="I2o-MC-ORW"/>
-                    <constraint firstItem="nwj-bH-Zhc" firstAttribute="top" secondItem="zd1-eF-veN" secondAttribute="bottom" constant="10" id="JTV-cu-lPe"/>
-                    <constraint firstItem="UQi-QC-WTn" firstAttribute="top" secondItem="nwj-bH-Zhc" secondAttribute="bottom" constant="10" id="KS5-bX-QsV"/>
+                    <constraint firstItem="nwj-bH-Zhc" firstAttribute="top" secondItem="zd1-eF-veN" secondAttribute="bottom" constant="5" id="JTV-cu-lPe"/>
+                    <constraint firstItem="UQi-QC-WTn" firstAttribute="top" secondItem="nwj-bH-Zhc" secondAttribute="bottom" constant="5" id="KS5-bX-QsV"/>
                     <constraint firstAttribute="bottom" secondItem="jvC-M2-frl" secondAttribute="bottom" constant="20" symbolic="YES" id="N1q-gN-ocE"/>
                     <constraint firstItem="jvC-M2-frl" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="NXt-Qd-5yd"/>
                     <constraint firstItem="jvC-M2-frl" firstAttribute="top" secondItem="Fyc-Al-ukX" secondAttribute="bottom" constant="10" id="XFf-Gs-QwF"/>
@@ -117,19 +113,19 @@
                     <constraint firstItem="daH-ap-LKP" firstAttribute="centerY" secondItem="vsU-D6-czo" secondAttribute="centerY" id="cQC-Bp-6AD"/>
                     <constraint firstItem="daH-ap-LKP" firstAttribute="leading" secondItem="vsU-D6-czo" secondAttribute="trailing" constant="10" id="fdf-dj-tx5"/>
                     <constraint firstAttribute="trailing" secondItem="zd1-eF-veN" secondAttribute="trailing" id="gda-8O-oO5"/>
-                    <constraint firstItem="Fyc-Al-ukX" firstAttribute="top" secondItem="UQi-QC-WTn" secondAttribute="bottom" constant="10" id="hoF-DV-EPq"/>
+                    <constraint firstItem="Fyc-Al-ukX" firstAttribute="top" secondItem="UQi-QC-WTn" secondAttribute="bottom" constant="5" id="hoF-DV-EPq"/>
                     <constraint firstItem="daH-ap-LKP" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="18" id="kB1-JE-aeV"/>
                     <constraint firstItem="zd1-eF-veN" firstAttribute="top" secondItem="vsU-D6-czo" secondAttribute="bottom" constant="10" id="mEE-fE-Js7"/>
                     <constraint firstItem="vsU-D6-czo" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="oMB-FU-zmi"/>
                     <constraint firstItem="Fyc-Al-ukX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="qh4-J8-CN1"/>
-                    <constraint firstItem="nwj-bH-Zhc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="uX0-Kl-QVy"/>
+                    <constraint firstItem="nwj-bH-Zhc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="uX0-Kl-QVy"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="caption" destination="Fyc-Al-ukX" id="dV5-Rh-eie"/>
                 <outlet property="commentCount" destination="jvC-M2-frl" id="ZR3-St-8x8"/>
-                <outlet property="likeBtn" destination="buf-OL-jh8" id="ZZq-4j-LLh"/>
+                <outlet property="likeButton" destination="buf-OL-jh8" id="G65-C8-4mI"/>
                 <outlet property="likeCount" destination="UQi-QC-WTn" id="vaU-DG-s3t"/>
                 <outlet property="profileImage" destination="vsU-D6-czo" id="utv-4o-JO2"/>
                 <outlet property="uploadedImage" destination="zd1-eF-veN" id="C44-Pw-IL9"/>

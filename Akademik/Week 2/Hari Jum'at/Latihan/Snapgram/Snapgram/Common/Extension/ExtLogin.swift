@@ -6,7 +6,7 @@ extension LoginViewController {
         configureShowImage()
         configureTextField()
         configureButton()
-        navigateToHome()
+        navigate()
     }
     
     func configureLoginAnimation() {
@@ -49,17 +49,23 @@ extension LoginViewController {
         }
     }
     
-    func navigateToHome() {
+    func navigate() {
         signInBtn.customButton.addTarget(self, action: #selector(onSignInBtnTap(_:)), for: .touchUpInside)
+        signInWithAppleBtn.customButton.addTarget(self, action: #selector(onSignInWithAppleBtnTap(_:)), for: .touchUpInside)
     }
     
     @objc func onSignInBtnTap(_ sender: Any) {
         validate()
     }
     
+    @objc func onSignInWithAppleBtnTap(_ sender: Any) {
+        
+    }
+    
     func validate() {
         signInBtn.customButton.isEnabled = false
         signInBtn.customButton.isUserInteractionEnabled = false
+        signInBtn.customButton.layer.backgroundColor = UIColor.systemGray5.cgColor
         let activityIndicator = UIActivityIndicatorView(style: .medium)
         activityIndicator.startAnimating()
         activityIndicator.center = CGPoint(x: signInBtn.bounds.width / 2 , y: signInBtn.bounds.height / 2)
@@ -74,6 +80,15 @@ extension LoginViewController {
                 }
                 activityIndicator.stopAnimating()
                 signInBtn.customButton.isUserInteractionEnabled = true
+                signInBtn.customButton.layer.backgroundColor = UIColor.systemBlue.cgColor
+                return
+            }
+            guard validateEmail(candidate: emailInputField.textField.text!) == true else {
+                displayAlert(title: "Sign Up Failed", message: "Please Enter Valid Email") {
+                    self.afterDismiss()
+                }
+                activityIndicator.stopAnimating()
+                signInBtn.customButton.isUserInteractionEnabled = true
                 return
             }
             guard let enteredPassword = passwordInputField.textField.text, !enteredPassword.isEmpty else {
@@ -82,14 +97,55 @@ extension LoginViewController {
                 }
                 activityIndicator.stopAnimating()
                 signInBtn.customButton.isUserInteractionEnabled = true
-                
+                signInBtn.customButton.layer.backgroundColor = UIColor.systemBlue.cgColor
                 return
             }
-            
-            let tbvc = TabBarViewController()
-            self.navigationController?.setViewControllers([tbvc], animated: true)
+//            guard validatePassword(candidate: passwordInputField.textField.text!) == true else {
+//                displayAlert(title: "Sign Up Failed", message: "Password must contain at least 8 characters, 1 Alphabet and 1 Number") {
+//                    self.afterDismiss()
+//                }
+//                activityIndicator.stopAnimating()
+//                signInBtn.customButton.isUserInteractionEnabled = true
+//                return
+//            }
+         
+            signInBtn.customButton.layer.backgroundColor = UIColor.systemBlue.cgColor
             afterDismiss()
+            signIn()
         }
+    }
+    
+    func validateEmail(candidate: String) -> Bool {
+     let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+     return NSPredicate(format: "SELF MATCHES %@", emailRegex).evaluate(with: candidate)
+    }
+    
+    func validatePassword(candidate: String) -> Bool {
+     let passwordRegex = "^(?=.*[A-Za-z])(?=.*\\d).{8,}$"
+     return NSPredicate(format: "SELF MATCHES %@", passwordRegex).evaluate(with: candidate)
+    }
+    
+    func signIn() {
+        let enteredEmail = emailInputField.textField.text!
+        let enteredPassword = passwordInputField.textField.text!
+        
+        APIManager.shared.fetchRequest(endpoint: .login(param: LoginParam(email: enteredEmail, password: enteredPassword)), expecting: LoginResponse.self) { result in
+            switch result {
+            case .success(let response):
+                print(response.message)
+                print("Result login: \(response.loginResult)")
+            case .failure(let error):
+                print(String(describing: error))
+                self.displayAlert(title: "Sign In Failed", message: "Please try again") {
+                    return
+                }
+            }
+        }
+    }
+    
+    func navigateToTabBarView() {
+        let tbvc = TabBarViewController()
+        self.navigationController?.setViewControllers([tbvc], animated: true)
     }
     
     func navigateToRegisterView() {
