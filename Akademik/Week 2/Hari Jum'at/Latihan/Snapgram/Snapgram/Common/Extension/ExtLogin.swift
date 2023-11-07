@@ -1,4 +1,5 @@
 import UIKit
+import Security
 
 extension LoginViewController {
     func setupLogin() {
@@ -73,7 +74,7 @@ extension LoginViewController {
         signInBtn.customButton.setTitle("", for: .disabled)
         
         Task {
-            try await Task.sleep(nanoseconds: 2 * 1_000_000_000)
+            try await Task.sleep(nanoseconds: 7 * 1_000_000_000)
             guard let enteredEmail = emailInputField.textField.text, !enteredEmail.isEmpty else {
                 displayAlert(title: "Sign In Failed", message: "Please Enter Your Email") {
                     self.afterDismiss()
@@ -100,15 +101,15 @@ extension LoginViewController {
                 signInBtn.customButton.layer.backgroundColor = UIColor.systemBlue.cgColor
                 return
             }
-//            guard validatePassword(candidate: passwordInputField.textField.text!) == true else {
-//                displayAlert(title: "Sign Up Failed", message: "Password must contain at least 8 characters, 1 Alphabet and 1 Number") {
-//                    self.afterDismiss()
-//                }
-//                activityIndicator.stopAnimating()
-//                signInBtn.customButton.isUserInteractionEnabled = true
-//                return
-//            }
-         
+            //            guard validatePassword(candidate: passwordInputField.textField.text!) == true else {
+            //                displayAlert(title: "Sign Up Failed", message: "Password must contain at least 8 characters, 1 Alphabet and 1 Number") {
+            //                    self.afterDismiss()
+            //                }
+            //                activityIndicator.stopAnimating()
+            //                signInBtn.customButton.isUserInteractionEnabled = true
+            //                return
+            //            }
+            activityIndicator.stopAnimating()
             signInBtn.customButton.layer.backgroundColor = UIColor.systemBlue.cgColor
             afterDismiss()
             signIn()
@@ -116,13 +117,13 @@ extension LoginViewController {
     }
     
     func validateEmail(candidate: String) -> Bool {
-     let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-     return NSPredicate(format: "SELF MATCHES %@", emailRegex).evaluate(with: candidate)
+        let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        return NSPredicate(format: "SELF MATCHES %@", emailRegex).evaluate(with: candidate)
     }
     
     func validatePassword(candidate: String) -> Bool {
-     let passwordRegex = "^(?=.*[A-Za-z])(?=.*\\d).{8,}$"
-     return NSPredicate(format: "SELF MATCHES %@", passwordRegex).evaluate(with: candidate)
+        let passwordRegex = "^(?=.*[A-Za-z])(?=.*\\d).{8,}$"
+        return NSPredicate(format: "SELF MATCHES %@", passwordRegex).evaluate(with: candidate)
     }
     
     func signIn() {
@@ -132,14 +133,35 @@ extension LoginViewController {
         APIManager.shared.fetchRequest(endpoint: .login(param: LoginParam(email: enteredEmail, password: enteredPassword)), expecting: LoginResponse.self) { result in
             switch result {
             case .success(let response):
-                print(response.message)
-                print("Result login: \(response.loginResult)")
-            case .failure(let error):
-                print(String(describing: error))
-                self.displayAlert(title: "Sign In Failed", message: "Please try again") {
-                    return
+                self.storeToken(with: response.loginResult!.token)
+                DispatchQueue.main.async {
+                    self.navigationController?.setViewControllers([StoryViewController()], animated: true)
+                    print("Result login: \(String(describing: response.loginResult))")
                 }
+            case .failure(let error):
+                self.displayAlert(title: "Sign In Failed", message: "\(String(describing: error)), Please try again")
             }
+        }
+    }
+    
+    func storeToken(with token: String) {
+        // Prepare the data to be stored (your authentication token)
+        let tokenData = token.data(using: .utf8)
+        
+        // Create a dictionary to specify the keychain item attributes
+        let query: [CFString: Any] = [
+            kSecClass: kSecClassGenericPassword,
+            kSecAttrAccount: "AuthToken",
+            kSecValueData: tokenData!,
+        ]
+        
+        // Add the item to the keychain
+        let status = SecItemAdd(query as CFDictionary, nil)
+        
+        if status == errSecSuccess {
+            print("Token saved to Keychain")
+        } else {
+            print("Failed to save token to Keychain")
         }
     }
     

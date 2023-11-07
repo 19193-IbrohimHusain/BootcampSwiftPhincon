@@ -1,26 +1,23 @@
 import Foundation
 
-// MARK: - StoryResponse
-struct StoryResponse: Codable {
+// MARK: - DetailStoryResponse
+struct DetailStoryResponse: Codable {
     let error: Bool
     let message: String
-    var listStory: [ListStory]?
+    let story: Story
     
     enum CodingKeys: String, CodingKey {
-        case error
-        case message
-        case listStory
+        case error, message
+        case story = "story"
     }
 }
 
-// MARK: - ListStory
-struct ListStory: Codable {
+// MARK: - Story
+struct Story: Codable {
     let id, name, description: String
     let photoURL: String
     let createdAt: String
-    let lat, lon: Double?
-    var likesCount: Int = 45310
-    var commentsCount: Int = 27280
+    let lat, lon: Double
 
     enum CodingKeys: String, CodingKey {
         case id, name, description

@@ -12,9 +12,12 @@ pod 'GoogleMaps'
 pod 'Kingfisher'
 pod 'SkeletonView'
 pod 'RxSwift'
+pod 'RxCocoa'
+pod 'RxRelay'
 pod 'FloatingPanel'
 pod 'ViewAnimator'
 pod 'lottie-ios'
+pod 'netfox'
 
   target 'SnapgramTests' do
     inherit! :search_paths

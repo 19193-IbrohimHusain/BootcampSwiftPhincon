@@ -11,11 +11,12 @@ class StoryViewController: UIViewController {
     
     var storyResponse: StoryResponse? {
         didSet {
-            storyTable.reloadData()
+            DispatchQueue.main.async {
+                self.storyTable.reloadData()
+            }
         }
-            
     }
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTable()
@@ -43,7 +44,7 @@ extension StoryViewController: UITableViewDelegate, UITableViewDataSource {
         case 0:
             return 1
         case 1 :
-            return storyItem.count
+            return storyResponse?.listStory?.count ?? 0
         default: return 0
         }
     }
@@ -52,8 +53,12 @@ extension StoryViewController: UITableViewDelegate, UITableViewDataSource {
         let table = SectionTable(rawValue: indexPath.section)
         switch table {
         case .snap:
-            let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as SnapTableCell
-            return cell
+            if let validData = storyResponse, let storyItem = validData.listStory {
+                let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as SnapTableCell
+                cell.data = storyItem
+                return cell
+            }
+            return UITableViewCell()
         case .story:
             if let validData = storyResponse, let storyItem = validData.listStory {
                 let cell1 = tableView.dequeueReusableCell(forIndexPath: indexPath) as StoryTableCell
@@ -88,10 +93,10 @@ extension StoryViewController: UITableViewDelegate, UITableViewDataSource {
 extension StoryViewController: StoryTableCellDelegate {
     func addLike(index: Int, isLike: Bool) {
         if isLike {
-            storyItem[index].likesCount += 1
+            storyResponse?.listStory![index].likesCount += 1
             print("menambahkan like index ke \(index)")
         } else {
-            storyItem[index].likesCount -= 1
+            storyResponse?.listStory![index].likesCount -= 1
             print("mengurangi like index ke \(index)")
         }
         storyTable.reloadData()

@@ -1,4 +1,5 @@
 import UIKit
+import Kingfisher
 
 class SnapCollectionCell: UICollectionViewCell {
 
@@ -10,8 +11,9 @@ class SnapCollectionCell: UICollectionViewCell {
         snapImage.layer.cornerRadius = 25
     }
     
-    func configureCollection(with snapEntity: SnapCollectionEntity) {
-        snapImage.image = UIImage(named: snapEntity.uploadedImage)
-        username.text = snapEntity.username
+    func configureCollection(with snapEntity: ListStory) {
+        let url = URL(string: snapEntity.photoURL)
+        snapImage.kf.setImage(with: url)
+        username.text = snapEntity.name
     }
 }

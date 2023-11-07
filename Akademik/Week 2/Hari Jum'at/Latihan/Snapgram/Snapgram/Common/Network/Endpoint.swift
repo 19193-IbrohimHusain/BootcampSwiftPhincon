@@ -36,8 +36,7 @@ enum Endpoint {
         case .addNewStory:
             return nil
         case .fetchStory, .getDetailStory(_):
-            let params: [String: Any]? = [:]
-            return params
+            return nil
         case .register(let param):
             let params: [String: Any] = [
                 "name" : param.name,
@@ -62,8 +61,27 @@ enum Endpoint {
             let params: [String: Any]? = ["Content-Type": "multipart/form-data", "Authorization": "Bearer <token>" ]
             return params
         case .fetchStory, .getDetailStory(_):
-            let params: [String: Any]? = ["Authorization": "Bearer <token>"]
+            let params: [String: Any]? = ["Authorization": "Bearer \(self.retrieveToken())"]
             return params
+        }
+    }
+    
+    func retrieveToken() -> String {
+        let query: [CFString: Any] = [
+            kSecClass: kSecClassGenericPassword,
+            kSecAttrAccount: "AuthToken",
+            kSecReturnData: kCFBooleanTrue!,
+        ]
+        
+        var tokenData: AnyObject?
+        let status = SecItemCopyMatching(query as CFDictionary, &tokenData)
+        
+        if status == errSecSuccess, let data = tokenData as? Data, let token = String(data: data, encoding: .utf8) {
+            print("Stored token: \(token)")
+            return token
+        } else {
+            print("Token not found in Keychain")
+            return ""
         }
     }
     

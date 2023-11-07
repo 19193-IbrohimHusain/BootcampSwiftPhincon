@@ -8,6 +8,12 @@ PODS:
     - GoogleMaps/Base
   - Kingfisher (7.10.0)
   - lottie-ios (4.3.3)
+  - netfox (1.21.0)
+  - RxCocoa (6.6.0):
+    - RxRelay (= 6.6.0)
+    - RxSwift (= 6.6.0)
+  - RxRelay (6.6.0):
+    - RxSwift (= 6.6.0)
   - RxSwift (6.6.0)
   - SkeletonView (1.30.4)
   - ViewAnimator (3.1.0)
@@ -18,6 +24,9 @@ DEPENDENCIES:
   - GoogleMaps
   - Kingfisher
   - lottie-ios
+  - netfox
+  - RxCocoa
+  - RxRelay
   - RxSwift
   - SkeletonView
   - ViewAnimator
@@ -29,6 +38,9 @@ SPEC REPOS:
     - GoogleMaps
     - Kingfisher
     - lottie-ios
+    - netfox
+    - RxCocoa
+    - RxRelay
     - RxSwift
     - SkeletonView
     - ViewAnimator
@@ -39,10 +51,13 @@ SPEC CHECKSUMS:
   GoogleMaps: 081f2547b60a1c0870a8f49166a653900e5055d5
   Kingfisher: a18f05d3b6d37d8650ee4a3e61d57a28fc6207f6
   lottie-ios: 25e7b2675dad5c3ddad369ac9baab03560c5bfdd
+  netfox: 9d5cc727fe7576c4c7688a2504618a156b7d44b7
+  RxCocoa: 44a80de90e25b739b5aeaae3c8c371a32e3343cc
+  RxRelay: 45eaa5db8ee4fb50e5ebd57deec0159e97fa51e6
   RxSwift: a4b44f7d24599f674deebd1818eab82e58410632
   SkeletonView: 5a050f6411e697abd4cda0a8d767013399dccd69
   ViewAnimator: a9ceed80266e00fd435ec4fb99b2df64d580d0e4
 
-PODFILE CHECKSUM: f5d158ff446f35f3ecd3375297c17b59da516fa1
+PODFILE CHECKSUM: 2c37ea3453e409d5f202e7be4c37ef03ed4e431b
 
 COCOAPODS: 1.14.2

@@ -1,4 +1,5 @@
 import Foundation
+import netfox
 
 final class APIManager {
     
@@ -22,6 +23,8 @@ final class APIManager {
                 completion(.failure(APIError.failedToGetData))
                 return
             }
+            
+            
             do {
                 let result = try JSONDecoder().decode(type.self, from: data)
                 completion(.success(result))
@@ -37,11 +40,24 @@ final class APIManager {
         }
         var request = URLRequest(url: url)
         request.httpMethod = endpoint.method()
-    
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        if let jsonData =  try? JSONSerialization.data(withJSONObject: endpoint.parameters) {
-            request.httpBody = jsonData
+        request.timeoutInterval = 60
+        
+        
+        if let headers = endpoint.headers {
+            headers.forEach { (key, value) in
+                print("Key: \(key), Value: \(value)")
+                request.setValue(value as? String, forHTTPHeaderField: key)
+            }
         }
+ 
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        if endpoint.method() == "POST" {
+            if let jsonData =  try? JSONSerialization.data(withJSONObject: endpoint.parameters as Any) {
+                request.httpBody = jsonData
+            }
+        }
+
         return request
     }
 }
