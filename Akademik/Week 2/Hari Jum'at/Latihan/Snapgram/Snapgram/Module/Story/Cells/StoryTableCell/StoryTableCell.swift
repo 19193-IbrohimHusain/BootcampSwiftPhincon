@@ -1,5 +1,6 @@
 import UIKit
 import Kingfisher
+import GoogleMaps
 
 protocol StoryTableCellDelegate {
     func addLike(index: Int, isLike: Bool)
@@ -21,6 +22,7 @@ class StoryTableCell: UITableViewCell {
     var indexSelected: Int = Int()
     let dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
     let dateFormatter = DateFormatter()
+    let geocoder = GMSGeocoder()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -53,6 +55,29 @@ class StoryTableCell: UITableViewCell {
         }
     }
     
+    func getLocationNameFromCoordinates(with storyEntity: ListStory, latitude: Double, longitude: Double) {
+//        if storyEntity.lat && storyEntity.lon != null {
+//            let coordinate = CLLocationCoordinate2D(latitude: storyEntity.lat, longitude: storyEntity.lon)
+//        }
+        let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        geocoder.reverseGeocodeCoordinate(coordinate) { response, error in
+            if let error = error {
+                print("Geocoding error: \(error.localizedDescription)")
+                return
+            }
+
+            if let result = response?.firstResult() {
+                // You can access various address components to get the location name
+                let lines = result.lines
+                let name = lines?.joined(separator: " ")
+
+                print("Location Name: \(name ?? "N/A")")
+            } else {
+                print("Location not found")
+            }
+        }
+    }
+    
     @IBAction func onLikeBtnTap(_ sender: Any) {
         likeButton.isSelected.toggle()
         if likeButton.isSelected {
@@ -63,25 +88,6 @@ class StoryTableCell: UITableViewCell {
             self.delegate?.addLike(index: indexSelected, isLike: false)
             likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
             likeButton.tintColor = UIColor.label
-        }
-    }
-}
-
-extension Date {
-    func timeAgoString() -> String {
-        let now = Date()
-        let calendar = Calendar.current
-        
-        let components = calendar.dateComponents([.hour, .minute, .second], from: self, to: now)
-        
-        let formatter = DateComponentsFormatter()
-        formatter.unitsStyle = .abbreviated
-        formatter.maximumUnitCount = 1
-        
-        if let timeAgoString = formatter.string(from: components) {
-            return timeAgoString + " ago"
-        } else {
-            return "Just now"
         }
     }
 }

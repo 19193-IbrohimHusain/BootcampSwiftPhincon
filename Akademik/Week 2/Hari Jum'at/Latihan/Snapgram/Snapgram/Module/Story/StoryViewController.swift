@@ -1,4 +1,8 @@
 import UIKit
+import RxSwift
+import RxCocoa
+import RxRelay
+import SkeletonView
 
 enum SectionTable: Int, CaseIterable {
     case snap, story
@@ -9,27 +13,79 @@ class StoryViewController: UIViewController {
     
     @IBOutlet weak var storyTable: UITableView!
     
-    var storyResponse: StoryResponse? {
+    let bag = DisposeBag()
+    var vm = StoryViewModel()
+    var page = 0
+    var storyResponse: StoryResponse?
+    let refreshControl = UIRefreshControl()
+    
+    var listStory: [ListStory] = [] {
         didSet {
             DispatchQueue.main.async {
                 self.storyTable.reloadData()
             }
         }
     }
-        
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTable()
-        fetchStory()
+        bindData()
     }
     
-
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        vm.fetchStory(param: StoryTableParam(page: 0, size: 5, location: 0))
+        refreshControl.addTarget(self, action: #selector(loadMoreData), for: .valueChanged)
+        storyTable.refreshControl = refreshControl
+    }
+    
+    func bindData() {
+        vm.storyData.asObservable().subscribe(onNext: { [weak self] data in
+            guard let self = self else {return}
+            if let validData = data, let validStory = validData.listStory {
+                self.listStory.append(contentsOf: validStory)
+            }
+        }).disposed(by: bag)
+        
+        vm.loadingState.asObservable().subscribe(onNext: {[weak self] state in
+            guard let self = self else {return}
+            
+            switch state {
+            case .notLoad, .loading:
+                self.storyTable.showAnimatedGradientSkeleton()
+            case .failed, .finished:
+                DispatchQueue.main.async {
+                    self.storyTable.hideSkeleton()
+                    self.storyTable.reloadData()
+                }
+            }
+        }).disposed(by: bag)
+    }
+    
     
     func setupTable(){
         storyTable.delegate = self
         storyTable.dataSource = self
+        DispatchQueue.main.async {
+            self.storyTable.isSkeletonable = true
+        }
         storyTable.registerCellWithNib(StoryTableCell.self)
         storyTable.registerCellWithNib(SnapTableCell.self)
+    }
+    
+    @objc func loadMoreData() {
+        page += 1
+        vm.fetchStory(param: StoryTableParam(page: page, size: 5, location: 0))
+        self.refreshControl.endRefreshing()
+        self.storyTable.hideLoadingFooter()
+    }
+    
+    @objc func refreshData() {
+        self.listStory.removeAll()
+        vm.fetchStory(param: StoryTableParam(page: 0, size: 5, location: 0))
+        self.refreshControl.endRefreshing()
+        self.storyTable.hideLoadingFooter()
     }
 }
 
@@ -44,7 +100,7 @@ extension StoryViewController: UITableViewDelegate, UITableViewDataSource {
         case 0:
             return 1
         case 1 :
-            return storyResponse?.listStory?.count ?? 0
+            return listStory.count
         default: return 0
         }
     }
@@ -53,41 +109,63 @@ extension StoryViewController: UITableViewDelegate, UITableViewDataSource {
         let table = SectionTable(rawValue: indexPath.section)
         switch table {
         case .snap:
-            if let validData = storyResponse, let storyItem = validData.listStory {
-                let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as SnapTableCell
-                cell.data = storyItem
-                return cell
-            }
-            return UITableViewCell()
+            let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as SnapTableCell
+            cell.data = listStory
+            cell.delegate = self
+            return cell
+            
         case .story:
-            if let validData = storyResponse, let storyItem = validData.listStory {
-                let cell1 = tableView.dequeueReusableCell(forIndexPath: indexPath) as StoryTableCell
-                let storyEntity = storyItem[indexPath.row]
-                cell1.configure(with: storyEntity)
-                cell1.indexSelected = indexPath.row
-                cell1.delegate = self
-                return cell1
-            }
-            return UITableViewCell()
+            let cell1 = tableView.dequeueReusableCell(forIndexPath: indexPath) as StoryTableCell
+            let storyEntity = listStory[indexPath.row]
+            cell1.configure(with: storyEntity)
+            cell1.indexSelected = indexPath.row
+            cell1.delegate = self
+            return cell1
+            
         default: return UITableViewCell()
         }
     }
     
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let total = listStory.count
+        if indexPath.row == total - 1 {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                self.loadMoreData()
+            }
+            storyTable.showLoadingFooter()
+        }
+    }
+
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         SharedDataSource.shared.tableViewOffset = scrollView.contentOffset.y
     }
+}
+
+extension StoryViewController: SkeletonTableViewDataSource {
+    func numSections(in collectionSkeletonView: UITableView) -> Int {
+        return 2
+    }
     
-    func fetchStory() {
-        APIManager.shared.fetchRequest(endpoint: .fetchStory, expecting: StoryResponse.self) { [weak self] result in
-            switch result {
-            case .success(let model):
-                print(model)
-                self?.storyResponse = model
-            case .failure(let error):
-                print(String(describing: error))
-            }
+    func collectionSkeletonView(_ skeletonView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch section {
+        case 0:
+            return 1
+        case 1:
+            return 2
+        default: return 0
         }
     }
+    func collectionSkeletonView(_ tableView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
+        let table = SectionTable(rawValue: indexPath.section)
+        switch table {
+        case .snap:
+            return String(describing: SnapTableCell.self)
+        case .story:
+            return String(describing: StoryTableCell.self)
+        default: return ""
+        }
+    }
+    
 }
 
 extension StoryViewController: StoryTableCellDelegate {
@@ -100,6 +178,14 @@ extension StoryViewController: StoryTableCellDelegate {
             print("mengurangi like index ke \(index)")
         }
         storyTable.reloadData()
+    }
+}
+
+extension StoryViewController: SnapTableCellDelegate {
+    func navigateToDetail(id: String) {
+        let vc = DetailStoryViewController()
+        vc.storyID = id
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 

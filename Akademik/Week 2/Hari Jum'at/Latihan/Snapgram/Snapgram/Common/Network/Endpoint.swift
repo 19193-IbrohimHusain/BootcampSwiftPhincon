@@ -3,9 +3,9 @@ import Foundation
 enum Endpoint {
     case login(param: LoginParam)
     case register(param: RegisterParam)
-    case fetchStory
-    case getDetailStory(Int)
-    case addNewStory
+    case fetchStory(param: StoryTableParam)
+    case getDetailStory(String)
+    case addNewStory(param: AddStoryParam)
     
     func path() -> String {
         switch self {
@@ -16,7 +16,7 @@ enum Endpoint {
         case .fetchStory:
             return "/stories"
         case .getDetailStory(let id):
-            return "/stories/:\(id)"
+            return "/stories/\(id)"
         case .addNewStory:
             return "/stories"
         }
@@ -31,12 +31,18 @@ enum Endpoint {
         }
     }
     
-    var parameters: [String: Any]? {
+    var bodyParam: [String: Any]? {
         switch self {
-        case .addNewStory:
+        case .fetchStory, .getDetailStory:
             return nil
-        case .fetchStory, .getDetailStory(_):
-            return nil
+        case .addNewStory(let param):
+            let params: [String: Any] = [
+                "description" : param.description,
+                "photo" : param.photo,
+                "lat" : param.lat,
+                "long": param.long
+            ]
+            return params
         case .register(let param):
             let params: [String: Any] = [
                 "name" : param.name,
@@ -48,6 +54,20 @@ enum Endpoint {
             let params: [String: Any] = [
                 "email": param.email,
                 "password": param.password
+            ]
+            return params
+        }
+    }
+    
+    var queryParam: [String: Any]? {
+        switch self {
+        case .addNewStory, .getDetailStory, .register, .login:
+            return nil
+        case .fetchStory(let param):
+            let params: [String: Any] = [
+                "page" : param.page,
+                "size" : param.size,
+                "location" : param.location
             ]
             return params
         }

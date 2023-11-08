@@ -38,7 +38,18 @@ final class APIManager {
         var url: URL {
             return URL(string: endpoint.urlString()) ?? URL(string: "")!
         }
-        var request = URLRequest(url: url)
+        
+        var finalURL: URL?
+        if endpoint.method() == "GET" {
+            var queryItems: [URLQueryItem] = []
+            endpoint.queryParam?.forEach{key, value in
+                
+                let query = URLQueryItem(name: key, value: String("\(value)"))
+                queryItems.append(query)
+            }
+            finalURL = url.appendingQueryItems(queryItems)
+        }
+        var request = URLRequest(url: finalURL ?? url)
         request.httpMethod = endpoint.method()
         request.timeoutInterval = 60
         
@@ -53,11 +64,20 @@ final class APIManager {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         if endpoint.method() == "POST" {
-            if let jsonData =  try? JSONSerialization.data(withJSONObject: endpoint.parameters as Any) {
+            if let jsonData =  try? JSONSerialization.data(withJSONObject: endpoint.bodyParam as Any) {
                 request.httpBody = jsonData
             }
         }
 
+
         return request
+    }
+}
+
+extension URL {
+    func appendingQueryItems(_ queryItems: [URLQueryItem]) -> URL {
+        var components = URLComponents(url: self, resolvingAgainstBaseURL: true)
+        components?.queryItems = queryItems
+        return components?.url ?? self
     }
 }

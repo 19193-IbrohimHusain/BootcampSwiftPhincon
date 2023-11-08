@@ -22,12 +22,18 @@
                             <constraint firstAttribute="height" constant="50" id="MPW-YE-nxK"/>
                             <constraint firstAttribute="width" constant="50" id="TGf-EW-5rO"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                        </userDefinedRuntimeAttributes>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ibrohimhsn_" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qQQ-Jt-7c9">
                         <rect key="frame" x="2" y="56" width="66" height="14"/>
                         <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                        </userDefinedRuntimeAttributes>
                     </label>
                 </subviews>
             </view>
@@ -39,6 +45,9 @@
                 <constraint firstItem="V6R-Jy-b43" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="ZHC-WM-zMs"/>
                 <constraint firstItem="qQQ-Jt-7c9" firstAttribute="centerX" secondItem="V6R-Jy-b43" secondAttribute="centerX" id="s8c-8n-c2H"/>
             </constraints>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+            </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="snapImage" destination="V6R-Jy-b43" id="F6k-UF-oUP"/>
                 <outlet property="username" destination="qQQ-Jt-7c9" id="BXL-yk-s1F"/>

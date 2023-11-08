@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailStoryViewController" customModule="Snapgram" customModuleProvider="target">
+            <connections>
+                <outlet property="caption" destination="ys6-KJ-mHa" id="eva-rq-ijB"/>
+                <outlet property="commentsCount" destination="CEF-Lf-BQP" id="bC6-Gg-mKp"/>
+                <outlet property="createdAt" destination="sZm-mT-thT" id="T0g-7T-h8X"/>
+                <outlet property="likeBtn" destination="Ts9-A9-SwK" id="sZJ-Wg-CbB"/>
+                <outlet property="likesCount" destination="SQN-9h-AfJ" id="SNU-4t-UiC"/>
+                <outlet property="location" destination="5MA-6b-f6d" id="1mm-vn-wBH"/>
+                <outlet property="profileImage" destination="uX5-7q-uHN" id="seB-X9-F2f"/>
+                <outlet property="uploadedImage" destination="gVc-AB-gz9" id="ThI-5C-nE7"/>
+                <outlet property="username" destination="Wgs-h5-esp" id="eua-Lr-BJk"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Blank" translatesAutoresizingMaskIntoConstraints="NO" id="uX5-7q-uHN">
+                    <rect key="frame" x="16" y="69" width="36" height="36"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="36" id="HPV-ZY-ILU"/>
+                        <constraint firstAttribute="width" constant="36" id="Mf3-Co-eXR"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ibrohimhsn_" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wgs-h5-esp">
+                    <rect key="frame" x="61.999999999999993" y="71" width="76.333333333333314" height="16.333333333333329"/>
+                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Karawang, Indonesia" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5MA-6b-f6d">
+                    <rect key="frame" x="62" y="89.333333333333329" width="94" height="11.666666666666671"/>
+                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="10"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="Kyoto" translatesAutoresizingMaskIntoConstraints="NO" id="gVc-AB-gz9">
+                    <rect key="frame" x="0.0" y="115" width="393" height="320"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="320" id="EBg-F3-e3z"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                </imageView>
+                <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="dGW-HR-MHV">
+                    <rect key="frame" x="16" y="440" width="124" height="36"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ts9-A9-SwK">
+                            <rect key="frame" x="0.0" y="0.0" width="36" height="36"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="36" id="Oxf-5Y-e5Y"/>
+                                <constraint firstAttribute="height" constant="36" id="qCR-OJ-Yps"/>
+                            </constraints>
+                            <color key="tintColor" systemColor="labelColor"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system">
+                                <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="large"/>
+                            </buttonConfiguration>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MiS-mH-Nbr">
+                            <rect key="frame" x="44" y="0.0" width="36" height="36"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="36" id="0uk-0d-fZM"/>
+                                <constraint firstAttribute="width" constant="36" id="MZr-Uc-3aj"/>
+                            </constraints>
+                            <color key="tintColor" systemColor="labelColor"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" image="bubble.right" catalog="system">
+                                <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="large"/>
+                            </buttonConfiguration>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a21-fH-Pl2">
+                            <rect key="frame" x="88" y="0.0" width="36" height="36"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="36" id="gjg-3D-M1h"/>
+                                <constraint firstAttribute="width" constant="36" id="tB5-Fc-0Dv"/>
+                            </constraints>
+                            <color key="tintColor" systemColor="labelColor"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="plain" image="paperplane" catalog="system">
+                                <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="large"/>
+                            </buttonConfiguration>
+                        </button>
+                    </subviews>
+                </stackView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ys6-KJ-mHa">
+                    <rect key="frame" x="16" y="499.99999999999994" width="361" height="70.333333333333314"/>
+                    <string key="text">ibrohimsn_ Officially a fresh graduate with a Bachelor's Degree in Computer Science!. I am eager to improve my programming skills to become a competent software developer.</string>
+                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="198,760 Likes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SQN-9h-AfJ">
+                    <rect key="frame" x="16" y="481" width="75" height="14"/>
+                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="109,290 comments" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CEF-Lf-BQP">
+                    <rect key="frame" x="15.999999999999993" y="575.33333333333337" width="102.33333333333331" height="14"/>
+                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
+                    <color key="textColor" systemColor="systemGrayColor"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="10 Agustus 2023" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sZm-mT-thT">
+                    <rect key="frame" x="16" y="594.33333333333337" width="74.666666666666671" height="11.666666666666629"/>
+                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="10"/>
+                    <color key="textColor" systemColor="systemGrayColor"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="SQN-9h-AfJ" firstAttribute="top" secondItem="dGW-HR-MHV" secondAttribute="bottom" constant="5" id="3YJ-Ry-tBD"/>
+                <constraint firstItem="5MA-6b-f6d" firstAttribute="leading" secondItem="uX5-7q-uHN" secondAttribute="trailing" constant="10" id="54X-U9-KYO"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ys6-KJ-mHa" secondAttribute="trailing" constant="16" id="7gm-ka-vck"/>
+                <constraint firstItem="uX5-7q-uHN" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="10" id="A0c-Rx-ZEw"/>
+                <constraint firstItem="dGW-HR-MHV" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="Asu-8Y-hnG"/>
+                <constraint firstItem="Wgs-h5-esp" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="12" id="HnZ-u4-noM"/>
+                <constraint firstItem="sZm-mT-thT" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="KEP-Kz-TDz"/>
+                <constraint firstItem="gVc-AB-gz9" firstAttribute="top" secondItem="uX5-7q-uHN" secondAttribute="bottom" constant="10" id="KGS-Tf-1yn"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="sZm-mT-thT" secondAttribute="bottom" constant="212" id="Krn-8F-RaO"/>
+                <constraint firstItem="gVc-AB-gz9" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="OoM-ix-TOg"/>
+                <constraint firstItem="ys6-KJ-mHa" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="Rbg-jX-GD0"/>
+                <constraint firstItem="5MA-6b-f6d" firstAttribute="top" secondItem="Wgs-h5-esp" secondAttribute="bottom" constant="2" id="Vd4-d0-Up6"/>
+                <constraint firstItem="sZm-mT-thT" firstAttribute="top" secondItem="CEF-Lf-BQP" secondAttribute="bottom" constant="5" id="Vh0-NX-gWo"/>
+                <constraint firstItem="ys6-KJ-mHa" firstAttribute="top" secondItem="SQN-9h-AfJ" secondAttribute="bottom" constant="5" id="Z36-RW-WUo"/>
+                <constraint firstItem="dGW-HR-MHV" firstAttribute="top" secondItem="gVc-AB-gz9" secondAttribute="bottom" constant="5" id="c7H-V1-3AU"/>
+                <constraint firstItem="CEF-Lf-BQP" firstAttribute="top" secondItem="ys6-KJ-mHa" secondAttribute="bottom" constant="5" id="dAB-Gj-iF8"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="gVc-AB-gz9" secondAttribute="trailing" id="gjD-11-KOA"/>
+                <constraint firstItem="Wgs-h5-esp" firstAttribute="leading" secondItem="uX5-7q-uHN" secondAttribute="trailing" constant="10" id="h5K-OQ-qXL"/>
+                <constraint firstItem="SQN-9h-AfJ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="jhB-AB-pYb"/>
+                <constraint firstItem="CEF-Lf-BQP" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="uCb-8W-v5z"/>
+                <constraint firstItem="uX5-7q-uHN" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="wYY-8R-Mhm"/>
+            </constraints>
+            <point key="canvasLocation" x="53" y="21"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Blank" width="600" height="600"/>
+        <image name="Kyoto" width="1000" height="667"/>
+        <image name="bubble.right" catalog="system" width="128" height="110"/>
+        <image name="heart" catalog="system" width="128" height="107"/>
+        <image name="paperplane" catalog="system" width="128" height="119"/>
+        <systemColor name="labelColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGrayColor">
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

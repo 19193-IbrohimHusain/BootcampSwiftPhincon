@@ -3,37 +3,18 @@ import CoreLocation
 import GoogleMaps
 
 extension MapViewController: CLLocationManagerDelegate {
-  // 2
-  func locationManager(
+
+    func locationManager(
     _ manager: CLLocationManager,
     didChangeAuthorization status: CLAuthorizationStatus
   ) {
-    // 3
-    guard status == .authorizedWhenInUse else {
-      return
-    }
-    // 4
-    locationManager.requestLocation()
-
-    //5
-    mapView.isMyLocationEnabled = true
-    mapView.settings.myLocationButton = true
+      GoogleMapsHelper.handle(manager, didChangeAuthorization: status, mapView: mapView)
   }
 
-  // 6
   func locationManager(
     _ manager: CLLocationManager,
     didUpdateLocations locations: [CLLocation]) {
-    guard let location = locations.first else {
-      return
-    }
-
-    // 7
-    mapView.camera = GMSCameraPosition(
-      target: location.coordinate,
-      zoom: 15,
-      bearing: 0,
-      viewingAngle: 0)
+        GoogleMapsHelper.didUpdateLocations(locations, locationManager: manager, mapView: mapView)
   }
 
   // 8
@@ -41,6 +22,7 @@ extension MapViewController: CLLocationManagerDelegate {
     _ manager: CLLocationManager,
     didFailWithError error: Error
   ) {
-    print(error)
+      locationManager.stopUpdatingLocation()
+      print("Error \(error)")
   }
 }

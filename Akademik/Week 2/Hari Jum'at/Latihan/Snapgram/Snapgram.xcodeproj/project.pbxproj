@@ -63,6 +63,14 @@
 		3684BDEB2AFA0DFA006BB9A0 /* ExtString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3684BDEA2AFA0DFA006BB9A0 /* ExtString.swift */; };
 		3684BDF22AFA2C33006BB9A0 /* CustomInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3684BDF12AFA2C33006BB9A0 /* CustomInfoView.swift */; };
 		3684BDF42AFA2C3F006BB9A0 /* CustomInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3684BDF32AFA2C3F006BB9A0 /* CustomInfoView.xib */; };
+		3694B52E2AFB2AC8003C11D8 /* DetailStoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3694B52C2AFB2AC8003C11D8 /* DetailStoryViewController.swift */; };
+		3694B52F2AFB2AC8003C11D8 /* DetailStoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3694B52D2AFB2AC8003C11D8 /* DetailStoryViewController.xib */; };
+		3694B5322AFB2AFA003C11D8 /* StoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3694B5312AFB2AFA003C11D8 /* StoryViewModel.swift */; };
+		3694B5342AFB3C16003C11D8 /* AddStoryEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3694B5332AFB3C16003C11D8 /* AddStoryEntity.swift */; };
+		3694B5362AFB4B92003C11D8 /* DetailStoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3694B5352AFB4B92003C11D8 /* DetailStoryViewModel.swift */; };
+		3694B5382AFB5CE6003C11D8 /* ExtDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3694B5372AFB5CE6003C11D8 /* ExtDate.swift */; };
+		3694B53A2AFB85D9003C11D8 /* GoogleMapsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3694B5392AFB85D9003C11D8 /* GoogleMapsHelper.swift */; };
+		3694B53C2AFB944C003C11D8 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3694B53B2AFB944C003C11D8 /* MapViewModel.swift */; };
 		36CCE84A2AF8898500E4AF69 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 36CCE8492AF8898500E4AF69 /* Podfile */; };
 		36CCE8552AF89FE500E4AF69 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CCE8542AF89FE500E4AF69 /* APIManager.swift */; };
 		36CCE8572AF89FFC00E4AF69 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CCE8562AF89FFC00E4AF69 /* Endpoint.swift */; };
@@ -160,6 +168,14 @@
 		3684BDEA2AFA0DFA006BB9A0 /* ExtString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtString.swift; sourceTree = "<group>"; };
 		3684BDF12AFA2C33006BB9A0 /* CustomInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInfoView.swift; sourceTree = "<group>"; };
 		3684BDF32AFA2C3F006BB9A0 /* CustomInfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomInfoView.xib; sourceTree = "<group>"; };
+		3694B52C2AFB2AC8003C11D8 /* DetailStoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailStoryViewController.swift; sourceTree = "<group>"; };
+		3694B52D2AFB2AC8003C11D8 /* DetailStoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailStoryViewController.xib; sourceTree = "<group>"; };
+		3694B5312AFB2AFA003C11D8 /* StoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryViewModel.swift; sourceTree = "<group>"; };
+		3694B5332AFB3C16003C11D8 /* AddStoryEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStoryEntity.swift; sourceTree = "<group>"; };
+		3694B5352AFB4B92003C11D8 /* DetailStoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailStoryViewModel.swift; sourceTree = "<group>"; };
+		3694B5372AFB5CE6003C11D8 /* ExtDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtDate.swift; sourceTree = "<group>"; };
+		3694B5392AFB85D9003C11D8 /* GoogleMapsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapsHelper.swift; sourceTree = "<group>"; };
+		3694B53B2AFB944C003C11D8 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		36CCE8492AF8898500E4AF69 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		36CCE8542AF89FE500E4AF69 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		36CCE8562AF89FFC00E4AF69 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
@@ -286,6 +302,7 @@
 				3619051A2AF4EF2400DA3DF0 /* ExtCollectionView.swift */,
 				3684BDE82AF9F187006BB9A0 /* ExtMap.swift */,
 				3684BDEA2AFA0DFA006BB9A0 /* ExtString.swift */,
+				3694B5372AFB5CE6003C11D8 /* ExtDate.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -334,6 +351,7 @@
 			children = (
 				361905252AF4EF2400DA3DF0 /* BaseViewController.swift */,
 				361905AD2AF4FA9A00DA3DF0 /* Constants.swift */,
+				3694B5392AFB85D9003C11D8 /* GoogleMapsHelper.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -358,6 +376,7 @@
 		361905592AF4F10E00DA3DF0 /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				3694B52B2AFB2AA4003C11D8 /* DetailStory */,
 				36CCE8632AF8B9F000E4AF69 /* SplashScreen */,
 				3619055A2AF4F10E00DA3DF0 /* Folder */,
 				3619055D2AF4F10E00DA3DF0 /* TabBar */,
@@ -392,6 +411,7 @@
 			children = (
 				361905602AF4F10E00DA3DF0 /* MapViewController.swift */,
 				361905612AF4F10E00DA3DF0 /* MapViewController.xib */,
+				3694B53B2AFB944C003C11D8 /* MapViewModel.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -457,6 +477,7 @@
 			children = (
 				361905722AF4F10E00DA3DF0 /* AddStoryViewController.xib */,
 				361905732AF4F10E00DA3DF0 /* AddStoryViewController.swift */,
+				3694B5332AFB3C16003C11D8 /* AddStoryEntity.swift */,
 			);
 			path = AddStory;
 			sourceTree = "<group>";
@@ -493,6 +514,7 @@
 		3619057D2AF4F10E00DA3DF0 /* Story */ = {
 			isa = PBXGroup;
 			children = (
+				3694B5302AFB2AE5003C11D8 /* ViewModel */,
 				361905892AF4F10E00DA3DF0 /* Model */,
 				3619057E2AF4F10E00DA3DF0 /* Cells */,
 				361905882AF4F10E00DA3DF0 /* StoryViewController.swift */,
@@ -570,6 +592,24 @@
 				3684BDF32AFA2C3F006BB9A0 /* CustomInfoView.xib */,
 			);
 			path = CustomInfoView;
+			sourceTree = "<group>";
+		};
+		3694B52B2AFB2AA4003C11D8 /* DetailStory */ = {
+			isa = PBXGroup;
+			children = (
+				3694B52C2AFB2AC8003C11D8 /* DetailStoryViewController.swift */,
+				3694B52D2AFB2AC8003C11D8 /* DetailStoryViewController.xib */,
+				3694B5352AFB4B92003C11D8 /* DetailStoryViewModel.swift */,
+			);
+			path = DetailStory;
+			sourceTree = "<group>";
+		};
+		3694B5302AFB2AE5003C11D8 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				3694B5312AFB2AFA003C11D8 /* StoryViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		36CCE8582AF8B73500E4AF69 /* Model */ = {
@@ -736,6 +776,7 @@
 				3619058E2AF4F10F00DA3DF0 /* FolderViewController.xib in Resources */,
 				3619045D2AF4EC8300DA3DF0 /* LaunchScreen.storyboard in Resources */,
 				3619052D2AF4EF2400DA3DF0 /* CustomButton.xib in Resources */,
+				3694B52F2AFB2AC8003C11D8 /* DetailStoryViewController.xib in Resources */,
 				361905A12AF4F10F00DA3DF0 /* LoginViewController.xib in Resources */,
 				36CCE8672AF8BA0E00E4AF69 /* SplashScreenViewController.xib in Resources */,
 				361905AC2AF4F10F00DA3DF0 /* StoryViewController.xib in Resources */,
@@ -931,6 +972,7 @@
 				36CCE8602AF8B86C00E4AF69 /* DetailStoryModel.swift in Sources */,
 				361905302AF4EF2400DA3DF0 /* CapturedImageView.swift in Sources */,
 				361905A92AF4F10F00DA3DF0 /* StoryViewController.swift in Sources */,
+				3694B52E2AFB2AC8003C11D8 /* DetailStoryViewController.swift in Sources */,
 				36CCE8692AF8E39500E4AF69 /* RegisterEntity.swift in Sources */,
 				36CCE8552AF89FE500E4AF69 /* APIManager.swift in Sources */,
 				36CCE8662AF8BA0E00E4AF69 /* SplashScreenViewController.swift in Sources */,
@@ -941,6 +983,8 @@
 				361905282AF4EF2400DA3DF0 /* ExtView.swift in Sources */,
 				361905A82AF4F10F00DA3DF0 /* SnapTableCell.swift in Sources */,
 				3684BDEB2AFA0DFA006BB9A0 /* ExtString.swift in Sources */,
+				3694B53A2AFB85D9003C11D8 /* GoogleMapsHelper.swift in Sources */,
+				3694B5342AFB3C16003C11D8 /* AddStoryEntity.swift in Sources */,
 				361904532AF4EC8100DA3DF0 /* SceneDelegate.swift in Sources */,
 				3619052F2AF4EF2400DA3DF0 /* CustomInputField.swift in Sources */,
 				361905AB2AF4F10F00DA3DF0 /* StoryTableEntity.swift in Sources */,
@@ -948,14 +992,18 @@
 				3619058F2AF4F10F00DA3DF0 /* TabBarViewController.swift in Sources */,
 				361905262AF4EF2400DA3DF0 /* ExtAddStory.swift in Sources */,
 				361905992AF4F10F00DA3DF0 /* PictureOptionBottomSheetViewController.swift in Sources */,
+				3694B5362AFB4B92003C11D8 /* DetailStoryViewModel.swift in Sources */,
 				3619059A2AF4F10F00DA3DF0 /* ProfileViewController.swift in Sources */,
+				3694B5382AFB5CE6003C11D8 /* ExtDate.swift in Sources */,
 				361905972AF4F10F00DA3DF0 /* ProfileBottomSheetViewController.swift in Sources */,
 				36CCE86B2AF8E9CF00E4AF69 /* LoginEntity.swift in Sources */,
 				361905902AF4F10F00DA3DF0 /* MapViewController.swift in Sources */,
 				36CCE85E2AF8B83900E4AF69 /* RegisterModel.swift in Sources */,
 				3684BDE92AF9F187006BB9A0 /* ExtMap.swift in Sources */,
 				36CCE8572AF89FFC00E4AF69 /* Endpoint.swift in Sources */,
+				3694B53C2AFB944C003C11D8 /* MapViewModel.swift in Sources */,
 				361905A52AF4F10F00DA3DF0 /* SnapCollectionCell.swift in Sources */,
+				3694B5322AFB2AFA003C11D8 /* StoryViewModel.swift in Sources */,
 				36CCE85A2AF8B75000E4AF69 /* StoryModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

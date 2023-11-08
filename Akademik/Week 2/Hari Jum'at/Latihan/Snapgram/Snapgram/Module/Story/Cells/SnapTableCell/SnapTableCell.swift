@@ -1,10 +1,23 @@
 import UIKit
+import SkeletonView
+
+protocol SnapTableCellDelegate {
+    func navigateToDetail(id: String)
+}
 
 class SnapTableCell: UITableViewCell {
 
     @IBOutlet weak var snapColletionView: UICollectionView!
     
-    var data: [ListStory]?
+    var delegate: SnapTableCellDelegate?
+    
+    var data: [ListStory]? {
+        didSet {
+            DispatchQueue.main.async {
+                self.snapColletionView.reloadData()
+            }
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -32,6 +45,18 @@ extension SnapTableCell: UICollectionViewDelegate, UICollectionViewDataSource {
             return cell
         }
         return UICollectionViewCell()
-        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let index = indexPath.row
+        if let storyID = data?[index].id {
+            self.delegate?.navigateToDetail(id: storyID)
+        }
+    }
+}
+
+extension SnapTableCell: SkeletonCollectionViewDataSource {
+    func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> ReusableCellIdentifier {
+        return String(describing: SnapCollectionCell.self)
     }
 }
