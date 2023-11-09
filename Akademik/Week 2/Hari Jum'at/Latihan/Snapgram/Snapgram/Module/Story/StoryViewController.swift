@@ -35,8 +35,8 @@ class StoryViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        vm.fetchStory(param: StoryTableParam(page: 0, size: 5, location: 0))
-        refreshControl.addTarget(self, action: #selector(loadMoreData), for: .valueChanged)
+        vm.fetchStory(param: StoryTableParam())
+        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
         storyTable.refreshControl = refreshControl
     }
     
@@ -45,6 +45,9 @@ class StoryViewController: UIViewController {
             guard let self = self else {return}
             if let validData = data, let validStory = validData.listStory {
                 self.listStory.append(contentsOf: validStory)
+                DispatchQueue.main.async {
+                    self.storyTable.reloadData()
+                }
             }
         }).disposed(by: bag)
         
@@ -57,7 +60,6 @@ class StoryViewController: UIViewController {
             case .failed, .finished:
                 DispatchQueue.main.async {
                     self.storyTable.hideSkeleton()
-                    self.storyTable.reloadData()
                 }
             }
         }).disposed(by: bag)
@@ -76,14 +78,16 @@ class StoryViewController: UIViewController {
     
     @objc func loadMoreData() {
         page += 1
-        vm.fetchStory(param: StoryTableParam(page: page, size: 5, location: 0))
+        self.storyTable.hideSkeleton()
+        vm.fetchStory(param: StoryTableParam(page: page, location: 0))
+        self.storyTable.hideSkeleton()
         self.refreshControl.endRefreshing()
         self.storyTable.hideLoadingFooter()
     }
     
     @objc func refreshData() {
         self.listStory.removeAll()
-        vm.fetchStory(param: StoryTableParam(page: 0, size: 5, location: 0))
+        vm.fetchStory(param: StoryTableParam())
         self.refreshControl.endRefreshing()
         self.storyTable.hideLoadingFooter()
     }

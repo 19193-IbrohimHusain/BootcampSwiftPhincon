@@ -4,11 +4,11 @@ import Foundation
 struct DetailStoryResponse: Codable {
     let error: Bool
     let message: String
-    let story: Story
+    let story: Story?
     
     enum CodingKeys: String, CodingKey {
         case error, message
-        case story = "story"
+        case story
     }
 }
 
@@ -17,7 +17,7 @@ struct Story: Codable {
     let id, name, description: String
     let photoURL: String
     let createdAt: String
-    let lat, lon: Double
+    let lat, lon: Double?
 
     enum CodingKeys: String, CodingKey {
         case id, name, description

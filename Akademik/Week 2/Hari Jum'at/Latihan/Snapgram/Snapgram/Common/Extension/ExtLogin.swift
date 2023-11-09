@@ -135,7 +135,7 @@ extension LoginViewController {
             case .success(let response):
                 self.storeToken(with: response.loginResult!.token)
                 DispatchQueue.main.async {
-                    self.navigationController?.setViewControllers([StoryViewController()], animated: true)
+                    self.navigationController?.setViewControllers([TabBarViewController()], animated: true)
                     print("Result login: \(String(describing: response.loginResult))")
                 }
             case .failure(let error):

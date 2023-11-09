@@ -6,16 +6,22 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var bgImage: UIImageView!
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var imageCollection: UICollectionView!
+    @IBOutlet weak var logoutBtn: UIButton!
     
     private var fpc = FloatingPanelController()
     private var fpcOption = FloatingPanelController()
     
     override func viewDidLoad() {
+        super.viewDidLoad()
+        setup()
+    }
+    
+    func setup() {
         profileImage.layer.cornerRadius = 75
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(editProfile))
         profileImage.isUserInteractionEnabled = true
         profileImage.addGestureRecognizer(tapGesture)
-        super.viewDidLoad()
+        logoutBtn.tintColor = UIColor.systemRed
         setupCollection()
     }
     
@@ -36,6 +42,26 @@ class ProfileViewController: UIViewController {
         self.present(fpc, animated: true)
     }
     
+    @IBAction func onLogoutBtnTap() {
+        deleteToken()
+        let vc = LoginViewController()
+        self.navigationController?.setViewControllers([vc], animated: true)
+    }
+    
+    func deleteToken() {
+        let query: [CFString: Any] = [
+            kSecClass: kSecClassGenericPassword,
+            kSecAttrAccount: "AuthToken",
+        ]
+        
+        let status = SecItemDelete(query as CFDictionary)
+        
+        if status == errSecSuccess {
+            print("Token deleted from Keychain")
+        } else {
+            print("Failed to delete token from Keychain")
+        }
+    }
 }
 
 extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -69,7 +95,6 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
 }
 
 extension ProfileViewController: FloatingPanelControllerDelegate {
-    
     func floatingPanelWillEndDragging(_ vc: FloatingPanelController, withVelocity velocity: CGPoint, targetState: UnsafeMutablePointer<FloatingPanelState>) {
         if targetState.pointee != .full {
             vc.dismiss(animated: true)

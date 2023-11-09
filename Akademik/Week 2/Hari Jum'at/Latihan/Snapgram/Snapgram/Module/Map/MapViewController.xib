@@ -10,29 +10,17 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MapViewController" customModule="Snapgram" customModuleProvider="target">
             <connections>
-                <outlet property="mapView" destination="Oxo-q5-M92" id="Ngu-7y-dxg"/>
-                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="mapView" destination="Sze-3L-iyx" id="WoA-2h-fWJ"/>
+                <outlet property="view" destination="Sze-3L-iyx" id="rsv-WG-g8I"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+        <view contentMode="scaleToFill" id="Sze-3L-iyx" customClass="GMSMapView">
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oxo-q5-M92" customClass="GMSMapView">
-                    <rect key="frame" x="0.0" y="59" width="393" height="759"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                </view>
-            </subviews>
-            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <viewLayoutGuide key="safeArea" id="JM2-pz-tkJ"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-            <constraints>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Oxo-q5-M92" secondAttribute="bottom" id="cDu-mw-Anh"/>
-                <constraint firstItem="Oxo-q5-M92" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="p0O-7R-dLn"/>
-                <constraint firstItem="Oxo-q5-M92" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="zBs-wv-0Y4"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Oxo-q5-M92" secondAttribute="trailing" id="zmz-yY-Gsp"/>
-            </constraints>
-            <point key="canvasLocation" x="-24" y="20"/>
+            <point key="canvasLocation" x="123" y="70"/>
         </view>
     </objects>
     <resources>

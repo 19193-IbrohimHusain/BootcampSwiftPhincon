@@ -12,6 +12,7 @@
             <connections>
                 <outlet property="bgImage" destination="EAe-3U-rlU" id="6FN-B7-fWF"/>
                 <outlet property="imageCollection" destination="ph7-ro-aen" id="mJl-LO-Cwh"/>
+                <outlet property="logoutBtn" destination="rbG-mn-ch5" id="t2I-Vg-QMc"/>
                 <outlet property="profileImage" destination="e6o-CW-cfY" id="6kp-r2-u4q"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -100,12 +101,22 @@
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
                 </collectionView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rbG-mn-ch5">
+                    <rect key="frame" x="50" y="397.66666666666669" width="293" height="34.333333333333314"/>
+                    <color key="tintColor" systemColor="systemRedColor"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="filled" title="Logout"/>
+                    <connections>
+                        <action selector="onLogoutBtnTap" destination="-1" eventType="touchUpInside" id="27w-8g-yug"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="e6o-CW-cfY" firstAttribute="leading" secondItem="yyR-ik-Jbj" secondAttribute="leading" id="5Nv-cW-CPt"/>
                 <constraint firstItem="ph7-ro-aen" firstAttribute="top" secondItem="ha3-7h-t7y" secondAttribute="bottom" constant="71.329999999999998" id="B8h-ap-uKC"/>
+                <constraint firstItem="rbG-mn-ch5" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="50" id="Bf0-VH-6es"/>
                 <constraint firstItem="ph7-ro-aen" firstAttribute="trailing" secondItem="EAe-3U-rlU" secondAttribute="trailing" id="Ei0-2d-rbV"/>
                 <constraint firstItem="e6o-CW-cfY" firstAttribute="leading" secondItem="ydt-Za-29x" secondAttribute="leading" id="IB7-uh-Vjt"/>
                 <constraint firstItem="ha3-7h-t7y" firstAttribute="top" secondItem="6xf-XL-ASJ" secondAttribute="bottom" constant="10" id="JUV-JA-e9g"/>
@@ -115,8 +126,10 @@
                 <constraint firstItem="ydt-Za-29x" firstAttribute="top" secondItem="yyR-ik-Jbj" secondAttribute="bottom" constant="10" id="SbW-0R-fsw"/>
                 <constraint firstItem="ph7-ro-aen" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Um4-rj-3oE"/>
                 <constraint firstItem="e6o-CW-cfY" firstAttribute="leading" secondItem="6xf-XL-ASJ" secondAttribute="leading" id="WFF-GG-dDk"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="rbG-mn-ch5" secondAttribute="trailing" constant="50" id="dL9-aF-41v"/>
                 <constraint firstItem="ph7-ro-aen" firstAttribute="leading" secondItem="EAe-3U-rlU" secondAttribute="leading" id="eqw-fn-NNb"/>
                 <constraint firstItem="yyR-ik-Jbj" firstAttribute="top" secondItem="e6o-CW-cfY" secondAttribute="bottom" constant="10" id="f35-xN-Bev"/>
+                <constraint firstItem="rbG-mn-ch5" firstAttribute="top" secondItem="ha3-7h-t7y" secondAttribute="bottom" constant="25" id="stI-D6-OSv"/>
                 <constraint firstAttribute="bottom" secondItem="ph7-ro-aen" secondAttribute="bottom" id="uBg-PS-0Pn"/>
                 <constraint firstAttribute="trailing" secondItem="ph7-ro-aen" secondAttribute="trailing" id="v1m-6P-LSm"/>
                 <constraint firstItem="e6o-CW-cfY" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="wh2-rn-WNr"/>
@@ -132,6 +145,9 @@
         </systemColor>
         <systemColor name="systemGray2Color">
             <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
