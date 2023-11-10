@@ -4,41 +4,37 @@ import RxSwift
 import RxCocoa
 
 class MapViewController: UIViewController {
-
-
+    
+    
     @IBOutlet weak var mapView: GMSMapView!
-
+    
     var zoom: Float = 15
     let marker = GMSMarker()
     let locationManager = CLLocationManager()
     let vm = MapViewModel()
     let bag = DisposeBag()
     var listMarker: [ListStory] = []
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        locationManager.delegate = self
-                if CLLocationManager.locationServicesEnabled() {
-                    locationManager.requestLocation()
-                    mapView.isMyLocationEnabled = true
-                    mapView.settings.myLocationButton = true
-                } else {
-                    locationManager.requestWhenInUseAuthorization()
-                }
-        
+    let infoView = CustomViewMarker(frame: CGRect(x: 0, y: 0, width: 200, height: 340))
+    var activeMarker: GMSMarker?
+    var listInfoView: [UIView] = []
 
     
-
-        // Do any additional setup after loading the view.
-        let camera = GMSCameraPosition.camera(withLatitude: 37.36, longitude: -122.0, zoom: 6.0)
-        mapView.camera = camera
-        mapView.settings.myLocationButton = true
-        mapView.animate(toZoom: zoom)
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        mapView.delegate = self
+        locationManager.delegate = self
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.requestLocation()
+            mapView.isMyLocationEnabled = true
+            mapView.settings.myLocationButton = true
+        } else {
+            locationManager.requestWhenInUseAuthorization()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        vm.fetchLocationStory(param: StoryTableParam(size: 100, location: 1))
+        vm.fetchLocationStory(param: StoryTableParam(size: 5, location: 1))
         vm.mapData.asObservable().subscribe(onNext: { [weak self] data in
             guard let self = self else {return}
             self.listMarker.append(contentsOf: data?.listStory ?? [])
@@ -48,10 +44,15 @@ class MapViewController: UIViewController {
                     marker.position = CLLocationCoordinate2D(latitude: item.lat ?? 0.0, longitude: item.lon ?? 0.0)
                     marker.title = item.name
                     marker.snippet = item.description
+                    marker.userData = self.listMarker
                     marker.map = self.mapView
-                    
+                    marker.tracksInfoWindowChanges = true
+                    self.infoView.configure(name: item.name, location: "Karawang, Indonesia", image: item.photoURL, caption: item.description, createdAt: item.createdAt)
+                    self.listInfoView.append(self.infoView)
+//                    if let infoData = marker.userData as? ListStory {
+//                        self.infoView.configure(name: infoData.name, location: "Karawang, Indonesia", image: infoData.photoURL, caption: infoData.description, createdAt: infoData.createdAt)
+//                    }
                 }
-
                 if let lastMarker = self.listMarker.last {
                     let camera = GMSCameraPosition.camera(withLatitude: lastMarker.lat ?? 0.0, longitude: lastMarker.lon ?? 0.0, zoom: 15.0)
                     self.mapView.camera = camera
@@ -59,6 +60,7 @@ class MapViewController: UIViewController {
             }
         }).disposed(by: bag)
     }
+    
 }
 
 extension MapViewController: GMSMapViewDelegate{
@@ -66,52 +68,57 @@ extension MapViewController: GMSMapViewDelegate{
     func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
         print("didTapInfoWindowOf")
     }
-
-    /* handles Info Window long press */
-    func mapView(_ mapView: GMSMapView, didLongPressInfoWindowOf marker: GMSMarker) {
-        print("didLongPressInfoWindowOf")
-    }
-
     
-    // MARK: - Navigation
-    /* set a custom Info Window */
     func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
-        
-        let infoWindow = CustomInfoView()
-        listMarker.forEach { item in
-            infoWindow.setup(name: item.name, location: item.id, captions: item.description, created: item.createdAt)
+        activeMarker = marker
+        for customInfo in listInfoView {
+            return customInfo
         }
+        return nil
+    }
+    
+    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+        var point = mapView.projection.point(for: marker.position)
+        point.y = point.y - 110
         
-        let view = UIView(frame: CGRect.init(x: 0, y: 0, width: 200, height: 70))
-        view.backgroundColor = UIColor.white
-        view.layer.cornerRadius = 6
+        let camera = mapView.projection.coordinate(for: point)
+        let position = GMSCameraUpdate.setTarget(camera)
+        mapView.animate(with: position)
         
-        let lbl1 = UILabel(frame: CGRect.init(x: 8, y: 8, width: view.frame.size.width - 16, height: 15))
-        lbl1.text = "Hi there!"
-        view.addSubview(lbl1)
-        
-        let lbl2 = UILabel(frame: CGRect.init(x: lbl1.frame.origin.x, y: lbl1.frame.origin.y + lbl1.frame.size.height + 3, width: view.frame.size.width - 16, height: 15))
-        lbl2.text = "I am a custom info window."
-        lbl2.font = UIFont.systemFont(ofSize: 14, weight: .light)
-        view.addSubview(lbl2)
-        
-
-        //MARK - GMSMarker Dragging
-        func mapView(_ mapView: GMSMapView, didBeginDragging marker: GMSMarker) {
-            print("didBeginDragging")
-        }
-        func mapView(_ mapView: GMSMapView, didDrag marker: GMSMarker) {
-            print("didDrag")
-        }
-        func mapView(_ mapView: GMSMapView, didEndDragging marker: GMSMarker) {
-            print("didEndDragging")
-        }
-        func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D){
-            marker.position = coordinate
-        }
-        
-        func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
-            zoom = mapView.camera.zoom
-        }
+        infoView.layer.backgroundColor = UIColor.white.cgColor
+        infoView.layer.cornerRadius = 20.0
+        infoView.clipsToBounds = true
+        infoView.center = mapView.projection.point(for: marker.position)
+        infoView.center.y = infoView.center.y - 110
+//        if let infoData = marker.userData as? ListStory {
+//            infoView.configure(name: infoData.name, location: "Karawang, Indonesia", image: infoData.photoURL, caption: infoData.description, createdAt: infoData.createdAt)
+//        }
+        marker.tracksInfoWindowChanges = true
+        self.view.addSubview(infoView)
+        infoView.bringSubviewToFront(self.view)
+        return true
+    }
+    
+    
+    //MARK - GMSMarker Dragging
+    func mapView(_ mapView: GMSMapView, didBeginDragging marker: GMSMarker) {
+        print("didBeginDragging")
+    }
+    func mapView(_ mapView: GMSMapView, didDrag marker: GMSMarker) {
+        print("didDrag")
+    }
+    func mapView(_ mapView: GMSMapView, didEndDragging marker: GMSMarker) {
+        print("didEndDragging")
+    }
+    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D){
+        activeMarker?.infoWindowAnchor = CGPoint(x: 0.5, y: 0.5)
+        activeMarker = nil
+        mapView.selectedMarker = nil
+        infoView.removeFromSuperview()
+        marker.position = coordinate
+    }
+    
+    func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
+        zoom = mapView.camera.zoom
     }
 }
