@@ -4,7 +4,7 @@ import Foundation
 struct StoryResponse: Codable {
     let error: Bool
     let message: String
-    var listStory: [ListStory]?
+    var listStory: [ListStory]
     
     enum CodingKeys: String, CodingKey {
         case error

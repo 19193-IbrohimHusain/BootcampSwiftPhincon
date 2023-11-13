@@ -1,7 +1,7 @@
-import Foundation
+import UIKit
 
 struct AddStoryParam {
     let description: String
-    let photo: Data?
+    let photo: UIImage
     let lat, long: Float
 }

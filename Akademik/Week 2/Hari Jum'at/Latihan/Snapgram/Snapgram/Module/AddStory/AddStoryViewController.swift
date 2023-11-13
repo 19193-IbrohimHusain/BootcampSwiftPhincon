@@ -1,220 +1,68 @@
 import UIKit
-import AVFoundation
+import RxSwift
+import RxRelay
 
 class AddStoryViewController: UIViewController {
-    //MARK:- Vars
-    var captureSession : AVCaptureSession!
+
+    @IBOutlet weak var uploadedImage: UIImageView!
+    @IBOutlet weak var openCamera: UIButton!
+    @IBOutlet weak var openGallery: UIButton!
+    @IBOutlet weak var captionTextField: UITextField!
+    @IBOutlet weak var clearBtn: UIButton!
+    @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var postStoryBtn: UIButton!
     
-    var backCamera : AVCaptureDevice!
-    var frontCamera : AVCaptureDevice!
-    var backInput : AVCaptureInput!
-    var frontInput : AVCaptureInput!
+    let pickerImage = UIImagePickerController()
+    let vm = AddStoryViewModel()
+    let bag = DisposeBag()
+    var uploadResponse: AddStoryResponse?
     
-    var previewLayer : AVCaptureVideoPreviewLayer!
-    
-    var videoOutput : AVCaptureVideoDataOutput!
-    
-    var takePicture = false
-    var backCameraOn = true
-    
-    //MARK:- View Components
-    let switchCameraButton : UIButton = {
-        let button = UIButton()
-        let image = UIImage(named: "switchcamera")?.withRenderingMode(.alwaysTemplate)
-        button.setImage(image, for: .normal)
-        button.tintColor = .white
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-    
-    let cancelButton : UIButton = {
-        let button = UIButton()
-        let image = UIImage(systemName: "xmark")?.withRenderingMode(.alwaysTemplate)
-        button.setImage(image, for: .normal)
-        button.tintColor = .white
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-    
-    let captureImageButton : UIButton = {
-        let button = UIButton()
-        button.backgroundColor = .white
-        button.tintColor = .white
-        button.layer.cornerRadius = 25
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-    
-    let capturedImageView = CapturedImageView()
-    
-    //MARK:- Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupView()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        checkPermissions()
-        setupAndStartCaptureSession()
-    }
-    
-    //MARK:- Camera Setup
-    func setupAndStartCaptureSession(){
-        DispatchQueue.global(qos: .userInitiated).async{
-            //init session
-            self.captureSession = AVCaptureSession()
-            //start configuration
-            self.captureSession.beginConfiguration()
-            
-            //session specific configuration
-            if self.captureSession.canSetSessionPreset(.photo) {
-                self.captureSession.sessionPreset = .photo
+    func bindData() {
+        vm.addStory.asObservable().subscribe(onNext: { [weak self] data in
+            guard let self = self else {return}
+            if let validData = data {
+                self.uploadResponse = validData
             }
-            self.captureSession.automaticallyConfiguresCaptureDeviceForWideColor = true
-            
-            //setup inputs
-            self.setupInputs()
-            
-            DispatchQueue.main.async {
-                //setup preview layer
-                self.setupPreviewLayer()
-            }
-            
-            //setup output
-            self.setupOutput()
-            
-            //commit configuration
-            self.captureSession.commitConfiguration()
-            //start running it
-            self.captureSession.startRunning()
-        }
+        }).disposed(by: bag)
     }
     
-    func setupInputs(){
-        //get back camera
-        if let device = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back) {
-            backCamera = device
-        } else {
-            //handle this appropriately for production purposes
-//            fatalError("no back camera")
+    @IBAction func openCamera(_ sender: UIButton) {
+        self.pickerImage.allowsEditing = true
+        self.pickerImage.delegate = self
+        self.pickerImage.sourceType = .camera
+        self.present(self.pickerImage, animated: true, completion: nil)
+    }
+    
+    @IBAction func openGallery(_ sender: UIButton) {
+        self.pickerImage.allowsEditing = true
+        self.pickerImage.delegate = self
+        self.pickerImage.sourceType = .photoLibrary
+        self.present(self.pickerImage, animated: true, completion: nil)
+    }
+    
+    @IBAction func uploadStory() {
+        guard let enteredCaption = captionTextField.text, !enteredCaption.isEmpty else {
             return
         }
-        
-        //get front camera
-        if let device = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .front) {
-            frontCamera = device
-        } else {
-            fatalError("no front camera")
+        guard let uploadedImage = uploadedImage.image else {
+            return
         }
-        
-        //now we need to create an input objects from our devices
-        guard let bInput = try? AVCaptureDeviceInput(device: backCamera) else {
-            fatalError("could not create input device from back camera")
-        }
-        backInput = bInput
-        if !captureSession.canAddInput(backInput) {
-            fatalError("could not add back camera input to capture session")
-        }
-        
-        guard let fInput = try? AVCaptureDeviceInput(device: frontCamera) else {
-            fatalError("could not create input device from front camera")
-        }
-        frontInput = fInput
-        if !captureSession.canAddInput(frontInput) {
-            fatalError("could not add front camera input to capture session")
-        }
-        
-        //connect back camera input to session
-        captureSession.addInput(backInput)
+        vm.postStory(param: AddStoryParam(description: enteredCaption, photo: uploadedImage, lat: 0.0, long: 0.0))
     }
-    
-    func setupOutput(){
-        videoOutput = AVCaptureVideoDataOutput()
-        let videoQueue = DispatchQueue(label: "videoQueue", qos: .userInteractive)
-        videoOutput.setSampleBufferDelegate(self, queue: videoQueue)
-        
-        if captureSession.canAddOutput(videoOutput) {
-            captureSession.addOutput(videoOutput)
-        } else {
-            fatalError("could not add video output")
-        }
-        
-        videoOutput.connections.first?.videoOrientation = .portrait
-    }
-    
-    func setupPreviewLayer(){
-        previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-        view.layer.insertSublayer(previewLayer, below: switchCameraButton.layer)
-        view.layer.insertSublayer(previewLayer, above: cancelButton.layer)
-        previewLayer.frame = self.view.layer.frame
-    }
-    
-    func switchCameraInput(){
-        //don't let user spam the button, fun for the user, not fun for performance
-        switchCameraButton.isUserInteractionEnabled = false
-        
-        //reconfigure the input
-        captureSession.beginConfiguration()
-        if backCameraOn {
-            captureSession.removeInput(backInput)
-            captureSession.addInput(frontInput)
-            backCameraOn = false
-        } else {
-            captureSession.removeInput(frontInput)
-            captureSession.addInput(backInput)
-            backCameraOn = true
-        }
-        
-        //deal with the connection again for portrait mode
-        videoOutput.connections.first?.videoOrientation = .portrait
-        
-        //mirror the video stream for front camera
-        videoOutput.connections.first?.isVideoMirrored = !backCameraOn
-        
-        //commit config
-        captureSession.commitConfiguration()
-        
-        //acitvate the camera button again
-        switchCameraButton.isUserInteractionEnabled = true
-    }
-    
-    //MARK:- Actions
-    @objc func captureImage(_ sender: UIButton?){
-        takePicture = true
-    }
-    
-    @objc func switchCamera(_ sender: UIButton?){
-        switchCameraInput()
-    }
-    
-    @objc func cancelCamera(_ sender: UIButton?){
-        self.dismiss(animated: true)
-    }
-
 }
 
-extension AddStoryViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
-    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-        if !takePicture {
-            return //we have nothing to do with the image buffer
-        }
-        
-        //try and get a CVImageBuffer out of the sample buffer
-        guard let cvBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
-            return
-        }
-        
-        //get a CIImage out of the CVImageBuffer
-        let ciImage = CIImage(cvImageBuffer: cvBuffer)
-        
-        //get UIImage out of CIImage
-        let uiImage = UIImage(ciImage: ciImage)
-        
-        DispatchQueue.main.async {
-            self.capturedImageView.image = uiImage
-            self.takePicture = false
-        }
+extension AddStoryViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let image = info[.editedImage] as? UIImage else { return }
+        uploadedImage.image = image
+        picker.dismiss(animated: true)
     }
-        
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true)
+    }
 }

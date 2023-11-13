@@ -24,7 +24,6 @@ final class APIManager {
                 return
             }
             
-            
             do {
                 let result = try JSONDecoder().decode(type.self, from: data)
                 completion(.success(result))
@@ -36,14 +35,13 @@ final class APIManager {
     
     public func request(endpoint: Endpoint) -> URLRequest? {
         var url: URL {
-            return URL(string: endpoint.urlString()) ?? URL(string: "")!
+            return URL(string: endpoint.urlString())!
         }
         
         var finalURL: URL?
         if endpoint.method() == "GET" {
             var queryItems: [URLQueryItem] = []
             endpoint.queryParam?.forEach{key, value in
-                
                 let query = URLQueryItem(name: key, value: String("\(value)"))
                 queryItems.append(query)
             }
@@ -60,7 +58,7 @@ final class APIManager {
                 request.setValue(value as? String, forHTTPHeaderField: key)
             }
         }
- 
+        
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         if endpoint.method() == "POST" {
@@ -68,8 +66,6 @@ final class APIManager {
                 request.httpBody = jsonData
             }
         }
-
-
         return request
     }
 }

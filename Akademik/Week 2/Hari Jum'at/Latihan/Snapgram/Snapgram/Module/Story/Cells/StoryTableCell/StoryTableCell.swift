@@ -47,7 +47,7 @@ class StoryTableCell: UITableViewCell {
         dateFormatter.dateFormat = dateFormat
         dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
         if let date = dateFormatter.date(from: storyEntity.createdAt) {
-            let timeAgo = date.timeAgoString()
+            let timeAgo = date.convertDateToTimeAgo()
             createdAt.text = timeAgo
             print(timeAgo)
         } else {
@@ -56,21 +56,21 @@ class StoryTableCell: UITableViewCell {
     }
     
     func getLocationNameFromCoordinates(with storyEntity: ListStory, latitude: Double, longitude: Double) {
-//        if storyEntity.lat && storyEntity.lon != null {
-//            let coordinate = CLLocationCoordinate2D(latitude: storyEntity.lat, longitude: storyEntity.lon)
-//        }
+        //        if storyEntity.lat && storyEntity.lon != null {
+        //            let coordinate = CLLocationCoordinate2D(latitude: storyEntity.lat, longitude: storyEntity.lon)
+        //        }
         let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         geocoder.reverseGeocodeCoordinate(coordinate) { response, error in
             if let error = error {
                 print("Geocoding error: \(error.localizedDescription)")
                 return
             }
-
+            
             if let result = response?.firstResult() {
                 // You can access various address components to get the location name
                 let lines = result.lines
                 let name = lines?.joined(separator: " ")
-
+                
                 print("Location Name: \(name ?? "N/A")")
             } else {
                 print("Location not found")

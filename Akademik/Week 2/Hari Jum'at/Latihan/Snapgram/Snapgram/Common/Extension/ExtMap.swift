@@ -3,21 +3,28 @@ import CoreLocation
 import GoogleMaps
 
 extension MapViewController: CLLocationManagerDelegate {
-  // 2
+    func checkLocationAuthorization() {
+        switch locationManager.authorizationStatus {
+        case .authorizedWhenInUse, .authorizedAlways:
+            mapView.isMyLocationEnabled = true
+            mapView.settings.myLocationButton = true
+            locationManager.delegate = self
+            locationManager.requestLocation()
+        case .denied, .restricted:
+            // Handle denied/restricted authorization
+            break
+        case .notDetermined:
+            locationManager.requestWhenInUseAuthorization()
+        default:
+            break
+        }
+    }
+    
   func locationManager(
     _ manager: CLLocationManager,
     didChangeAuthorization status: CLAuthorizationStatus
   ) {
-    // 3
-    guard status == .authorizedWhenInUse else {
-      return
-    }
-    // 4
-    locationManager.requestLocation()
-
-    //5
-    mapView.isMyLocationEnabled = true
-    mapView.settings.myLocationButton = true
+    checkLocationAuthorization()
   }
 
   // 6

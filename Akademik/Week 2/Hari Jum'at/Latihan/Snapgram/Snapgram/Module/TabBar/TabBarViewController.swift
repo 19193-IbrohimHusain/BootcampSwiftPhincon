@@ -21,6 +21,7 @@ class TabBarViewController:  UITabBarController, UITabBarControllerDelegate {
         addStory = AddStoryViewController()
         folder = FolderViewController()
         profile = ProfileViewController()
+        navigationItem.backButtonTitle = ""
         viewControllers = [home, map, addStory, folder, profile]
     }
     

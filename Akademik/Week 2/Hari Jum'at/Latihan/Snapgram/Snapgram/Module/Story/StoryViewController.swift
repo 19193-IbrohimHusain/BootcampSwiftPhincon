@@ -43,8 +43,8 @@ class StoryViewController: UIViewController {
     func bindData() {
         vm.storyData.asObservable().subscribe(onNext: { [weak self] data in
             guard let self = self else {return}
-            if let validData = data, let validStory = validData.listStory {
-                self.listStory.append(contentsOf: validStory)
+            if let validData = data {
+                self.listStory.append(contentsOf: validData.listStory)
                 DispatchQueue.main.async {
                     self.storyTable.reloadData()
                 }
@@ -76,7 +76,7 @@ class StoryViewController: UIViewController {
         storyTable.registerCellWithNib(SnapTableCell.self)
     }
     
-    @objc func loadMoreData() {
+     func loadMoreData() {
         page += 1
         self.storyTable.hideSkeleton()
         vm.fetchStory(param: StoryTableParam(page: page, location: 0))
@@ -175,10 +175,10 @@ extension StoryViewController: SkeletonTableViewDataSource {
 extension StoryViewController: StoryTableCellDelegate {
     func addLike(index: Int, isLike: Bool) {
         if isLike {
-            storyResponse?.listStory![index].likesCount += 1
+            storyResponse?.listStory[index].likesCount += 1
             print("menambahkan like index ke \(index)")
         } else {
-            storyResponse?.listStory![index].likesCount -= 1
+            storyResponse?.listStory[index].likesCount -= 1
             print("mengurangi like index ke \(index)")
         }
         storyTable.reloadData()

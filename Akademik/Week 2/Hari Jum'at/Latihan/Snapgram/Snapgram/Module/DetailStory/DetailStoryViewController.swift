@@ -54,7 +54,7 @@ class DetailStoryViewController: UIViewController {
             dateFormatter.dateFormat = dateFormat
             dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
             if let date = dateFormatter.date(from: validDetail.createdAt) {
-                let timeAgo = date.timeAgoString()
+                let timeAgo = date.convertDateToTimeAgo()
                 createdAt.text = timeAgo
                 print(timeAgo)
             } else {

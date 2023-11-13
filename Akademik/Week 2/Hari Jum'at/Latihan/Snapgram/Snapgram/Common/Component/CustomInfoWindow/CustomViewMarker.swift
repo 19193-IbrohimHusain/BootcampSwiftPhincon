@@ -34,8 +34,9 @@ class CustomViewMarker: UIView {
     let uploadedImage: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "Kyoto") // Replace with the actual image name
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.clipsToBounds = true
         return imageView
     }()
     
@@ -87,39 +88,47 @@ class CustomViewMarker: UIView {
             
             username.topAnchor.constraint(equalTo: topAnchor, constant: 12),
             username.leadingAnchor.constraint(equalTo: imgView.trailingAnchor, constant: 8),
+            username.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            username.heightAnchor.constraint(equalToConstant: 14),
             
             locationLabel.topAnchor.constraint(equalTo: username.bottomAnchor, constant: 6),
             locationLabel.leadingAnchor.constraint(equalTo: imgView.trailingAnchor, constant: 8),
             locationLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            locationLabel.heightAnchor.constraint(equalToConstant: 28),
             
             uploadedImage.topAnchor.constraint(equalTo: locationLabel.bottomAnchor, constant: 4),
             uploadedImage.leadingAnchor.constraint(equalTo: leadingAnchor),
             uploadedImage.trailingAnchor.constraint(equalTo: trailingAnchor),
+            uploadedImage.widthAnchor.constraint(equalTo: widthAnchor),
             uploadedImage.heightAnchor.constraint(equalToConstant: 150),
             
             captionLabel.topAnchor.constraint(equalTo: uploadedImage.bottomAnchor, constant: 8),
             captionLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             captionLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            captionLabel.heightAnchor.constraint(equalToConstant: 40),
             
             timeCreated.topAnchor.constraint(equalTo: captionLabel.bottomAnchor, constant: 8),
-            timeCreated.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16)
+            timeCreated.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            timeCreated.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 8)
         ])
     }
     
     func configure(name: String?, location: String?, image: String?, caption: String?, createdAt: String?) {
-        username.text = name ?? ""
-        locationLabel.text = location ?? ""
-        let url = URL(string: image ?? "")
-        uploadedImage.kf.setImage(with: url)
-        captionLabel.text = caption ?? ""
-        dateFormatter.dateFormat = dateFormat
-        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
-        if let date = dateFormatter.date(from: createdAt ?? "") {
-            let timeAgo = date.timeAgoString()
-            timeCreated.text = timeAgo
-            print(timeAgo)
-        } else {
-            print("Failed to parse date.")
+        if let name = name, let location = location, let image = image, let caption = caption, let createdAt = createdAt {
+            username.text = "Story By \(name)"
+            locationLabel.text = location
+            let url = URL(string: image)
+            uploadedImage.kf.setImage(with: url)
+            captionLabel.text = caption
+            dateFormatter.dateFormat = dateFormat
+            dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+            if let date = dateFormatter.date(from: createdAt) {
+                let timeAgo = date.convertDateToTimeAgo()
+                timeCreated.text = timeAgo
+                print(timeAgo)
+            } else {
+                print("Failed to parse date.")
+            }
         }
     }
 }

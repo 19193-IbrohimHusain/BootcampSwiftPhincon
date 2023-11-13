@@ -38,7 +38,7 @@ enum Endpoint {
         case .addNewStory(let param):
             let params: [String: Any] = [
                 "description" : param.description,
-                "photo" : param.photo,
+                "photo" : param.photo ?? Data.self,
                 "lat" : param.lat,
                 "long": param.long
             ]
@@ -78,7 +78,7 @@ enum Endpoint {
         case .login, .register:
             return nil
         case .addNewStory:
-            let params: [String: Any]? = ["Content-Type": "multipart/form-data", "Authorization": "Bearer <token>" ]
+            let params: [String: Any]? = ["Content-Type": "multipart/form-data", "Authorization": "Bearer \(self.retrieveToken())" ]
             return params
         case .fetchStory, .getDetailStory(_):
             let params: [String: Any]? = ["Authorization": "Bearer \(self.retrieveToken())"]

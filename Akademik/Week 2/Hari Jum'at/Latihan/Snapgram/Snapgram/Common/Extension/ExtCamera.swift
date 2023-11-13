@@ -1,7 +1,7 @@
 import UIKit
 import AVFoundation
 
-extension AddStoryViewController {
+extension CameraAddStoryViewController {
     //MARK:- View Setup
     func setupView(){
         view.backgroundColor = .black
