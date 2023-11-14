@@ -10,16 +10,14 @@ enum SectionTable: Int, CaseIterable {
 
 class StoryViewController: UIViewController {
     
-    
     @IBOutlet weak var storyTable: UITableView!
     
-    let bag = DisposeBag()
-    var vm = StoryViewModel()
-    var page = 0
-    var storyResponse: StoryResponse?
-    let refreshControl = UIRefreshControl()
-    
-    var listStory: [ListStory] = [] {
+    private let bag = DisposeBag()
+    private var vm = StoryViewModel()
+    private var page = 0
+    private var storyResponse: StoryResponse?
+    private let refreshControl = UIRefreshControl()
+    private var listStory: [ListStory] = [] {
         didSet {
             DispatchQueue.main.async {
                 self.storyTable.reloadData()
@@ -40,7 +38,7 @@ class StoryViewController: UIViewController {
         storyTable.refreshControl = refreshControl
     }
     
-    func bindData() {
+    private func bindData() {
         vm.storyData.asObservable().subscribe(onNext: { [weak self] data in
             guard let self = self else {return}
             if let validData = data {
@@ -66,7 +64,7 @@ class StoryViewController: UIViewController {
     }
     
     
-    func setupTable(){
+    private func setupTable(){
         storyTable.delegate = self
         storyTable.dataSource = self
         DispatchQueue.main.async {
@@ -76,7 +74,7 @@ class StoryViewController: UIViewController {
         storyTable.registerCellWithNib(SnapTableCell.self)
     }
     
-     func loadMoreData() {
+    private func loadMoreData() {
         page += 1
         self.storyTable.hideSkeleton()
         vm.fetchStory(param: StoryTableParam(page: page, location: 0))
@@ -85,7 +83,7 @@ class StoryViewController: UIViewController {
         self.storyTable.hideLoadingFooter()
     }
     
-    @objc func refreshData() {
+    @objc private func refreshData() {
         self.listStory.removeAll()
         vm.fetchStory(param: StoryTableParam())
         self.refreshControl.endRefreshing()

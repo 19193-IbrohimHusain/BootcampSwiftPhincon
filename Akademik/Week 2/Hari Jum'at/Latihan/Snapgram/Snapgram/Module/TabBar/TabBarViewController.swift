@@ -43,7 +43,7 @@ class TabBarViewController:  UITabBarController, UITabBarControllerDelegate {
       if viewController.isKind(of: AddStoryViewController.self) {
          let vc =  AddStoryViewController()
          vc.modalPresentationStyle = .overFullScreen
-         self.present(vc, animated: true, completion: nil)
+          self.present(vc, animated: true, completion: nil)
          return false
       }
       return true

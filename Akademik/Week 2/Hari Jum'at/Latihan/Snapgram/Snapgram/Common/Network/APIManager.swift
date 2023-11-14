@@ -11,14 +11,13 @@ final class APIManager {
         case failedToGetData
     }
     
-    public func fetchRequest<T: Codable>(endpoint: Endpoint,
-                                         expecting type: T.Type, completion: @escaping(Result<T, Error>)-> Void) {
+    public func fetchRequest<T: Codable>(endpoint: Endpoint, expecting type: T.Type, completion: @escaping (Result<T, Error>) -> Void) {
         guard let urlRequest = self.request(endpoint: endpoint) else {
             completion(.failure(APIError.failedToCreateRequest))
             return
         }
         
-        URLSession.shared.dataTask(with: urlRequest, completionHandler: { data, _, error in
+        URLSession.shared.dataTask(with: urlRequest) { data, _, error in
             guard let data = data, error == nil else {
                 completion(.failure(APIError.failedToGetData))
                 return
@@ -30,43 +29,99 @@ final class APIManager {
             } catch {
                 completion(.failure(error))
             }
-        }).resume()
+        }.resume()
     }
     
     public func request(endpoint: Endpoint) -> URLRequest? {
-        var url: URL {
-            return URL(string: endpoint.urlString())!
-        }
+        guard let url = URL(string: endpoint.urlString) else { return nil }
         
-        var finalURL: URL?
-        if endpoint.method() == "GET" {
-            var queryItems: [URLQueryItem] = []
-            endpoint.queryParam?.forEach{key, value in
-                let query = URLQueryItem(name: key, value: String("\(value)"))
-                queryItems.append(query)
-            }
-            finalURL = url.appendingQueryItems(queryItems)
-        }
-        var request = URLRequest(url: finalURL ?? url)
-        request.httpMethod = endpoint.method()
+        var request = URLRequest(url: endpoint.method == "GET" ? finalURL(with: endpoint, base: url) : url)
+        request.httpMethod = endpoint.method
         request.timeoutInterval = 60
         
+        setHeaders(for: &request, with: endpoint)
         
-        if let headers = endpoint.headers {
-            headers.forEach { (key, value) in
-                print("Key: \(key), Value: \(value)")
-                request.setValue(value as? String, forHTTPHeaderField: key)
-            }
+        if endpoint.method == "POST" {
+            setBody(for: &request, with: endpoint)
+        }
+        
+        return request
+    }
+    
+    private func finalURL(with endpoint: Endpoint, base: URL) -> URL {
+        guard let queryItems = endpoint.queryParam?.map({ URLQueryItem(name: $0, value: "\($1)") }) else {
+            return base
+        }
+        
+        return base.appendingQueryItems(queryItems)
+    }
+    
+    private func setHeaders(for request: inout URLRequest, with endpoint: Endpoint) {
+        endpoint.headers?.forEach { key, value in
+            request.setValue(value as? String, forHTTPHeaderField: key)
         }
         
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+    }
+    
+    private func setBody(for request: inout URLRequest, with endpoint: Endpoint) {
+        switch endpoint {
+        case .addNewStory(let param):
+            setMultipartFormData(for: &request, with: param)
+        case .login, .register:
+            setJSONBody(for: &request, with: endpoint.bodyParam)
+        default:
+            break
+        }
+    }
+    
+    private func setMultipartFormData(for request: inout URLRequest, with param: AddStoryParam) {
+        let boundary = UUID().uuidString
+        var body = Data()
+        let mirror = Mirror(reflecting: param)
+
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
         
-        if endpoint.method() == "POST" {
-            if let jsonData =  try? JSONSerialization.data(withJSONObject: endpoint.bodyParam as Any) {
-                request.httpBody = jsonData
+        for case let (label?, value) in mirror.children {
+            switch label {
+            case "photo":
+                if let image = value as? UIImage, let imageData = image.jpegData(compressionQuality: 0.5) {
+                    body.append(multipartFormData(withName: "photo", fileName: "image.png", mimeType: "image/png", using: boundary))
+                    body.append(imageData)
+                }
+            case "lat", "long", "description":
+                if let stringValue = value as? String {
+                    body.append(convertFormField(named: label, value: stringValue, using: boundary))
+                }
+            default:
+                break
             }
         }
-        return request
+        
+        body.append("\r\n--\(boundary)--\r\n".data(using: .utf8)!)
+        
+        request.httpBody = body
+    }
+    
+    private func setJSONBody(for request: inout URLRequest, with bodyParam: [String: Any]?) {
+        guard let jsonData = try? JSONSerialization.data(withJSONObject: bodyParam as Any) else { return }
+        request.httpBody = jsonData
+    }
+    
+    private func multipartFormData(withName name: String, fileName: String, mimeType: String, using boundary: String) -> Data {
+        let body = NSMutableData()
+        
+        if let imageDataPart = "\r\n--\(boundary)\r\nContent-Disposition: form-data; name=\"\(name)\"; filename=\"\(fileName)\"\r\nContent-Type: \(mimeType)\r\n\r\n".data(using: .utf8) {
+            body.append(imageDataPart)
+        }
+        return body as Data
+    }
+    
+    private func convertFormField(named name: String, value: String, using boundary: String) -> Data {
+        var fieldString = "--\(boundary)\r\n"
+        fieldString += "Content-Disposition: form-data; name=\"\(name)\"\r\n\r\n"
+        fieldString += "\(value)\r\n"
+        return fieldString.data(using: .utf8)!
     }
 }
 
