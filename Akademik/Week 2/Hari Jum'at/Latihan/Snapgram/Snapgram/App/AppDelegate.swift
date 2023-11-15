@@ -1,5 +1,6 @@
 import UIKit
 import GoogleMaps
+import Kingfisher
 import netfox
 
 @main
@@ -11,6 +12,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GMSServices.provideAPIKey("AIzaSyCQsaovBDK-PZNpHFT5pOGW_pTD_OCO430")
         NFX.sharedInstance().start()
         
+        let cache = ImageCache.default
+        cache.memoryStorage.config.totalCostLimit = 1024 * 1024 * 10
+        cache.diskStorage.config.sizeLimit = 1024 * 1024 * 100
         return true
     }
 

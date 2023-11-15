@@ -74,6 +74,7 @@
 		3694B5382AFB5CE6003C11D8 /* ExtDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3694B5372AFB5CE6003C11D8 /* ExtDate.swift */; };
 		3694B53A2AFB85D9003C11D8 /* GoogleMapsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3694B5392AFB85D9003C11D8 /* GoogleMapsHelper.swift */; };
 		3694B53C2AFB944C003C11D8 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3694B53B2AFB944C003C11D8 /* MapViewModel.swift */; };
+		36A856A22B04E1CA00CE3A60 /* ExtStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A856A12B04E1CA00CE3A60 /* ExtStory.swift */; };
 		36CCE84A2AF8898500E4AF69 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 36CCE8492AF8898500E4AF69 /* Podfile */; };
 		36CCE8552AF89FE500E4AF69 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CCE8542AF89FE500E4AF69 /* APIManager.swift */; };
 		36CCE8572AF89FFC00E4AF69 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CCE8562AF89FFC00E4AF69 /* Endpoint.swift */; };
@@ -183,6 +184,7 @@
 		3694B5372AFB5CE6003C11D8 /* ExtDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtDate.swift; sourceTree = "<group>"; };
 		3694B5392AFB85D9003C11D8 /* GoogleMapsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapsHelper.swift; sourceTree = "<group>"; };
 		3694B53B2AFB944C003C11D8 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
+		36A856A12B04E1CA00CE3A60 /* ExtStory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtStory.swift; sourceTree = "<group>"; };
 		36CCE8492AF8898500E4AF69 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		36CCE8542AF89FE500E4AF69 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		36CCE8562AF89FFC00E4AF69 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
@@ -311,6 +313,7 @@
 				3684BDE82AF9F187006BB9A0 /* ExtMap.swift */,
 				3684BDEA2AFA0DFA006BB9A0 /* ExtString.swift */,
 				3694B5372AFB5CE6003C11D8 /* ExtDate.swift */,
+				36A856A12B04E1CA00CE3A60 /* ExtStory.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1026,6 +1029,7 @@
 				3694B5342AFB3C16003C11D8 /* AddStoryEntity.swift in Sources */,
 				361904532AF4EC8100DA3DF0 /* SceneDelegate.swift in Sources */,
 				36399C2F2B02191900D8A193 /* AddStoryViewController.swift in Sources */,
+				36A856A22B04E1CA00CE3A60 /* ExtStory.swift in Sources */,
 				3619052F2AF4EF2400DA3DF0 /* CustomInputField.swift in Sources */,
 				361905AB2AF4F10F00DA3DF0 /* StoryTableEntity.swift in Sources */,
 				361905952AF4F10F00DA3DF0 /* ProfileCollectionEntity.swift in Sources */,

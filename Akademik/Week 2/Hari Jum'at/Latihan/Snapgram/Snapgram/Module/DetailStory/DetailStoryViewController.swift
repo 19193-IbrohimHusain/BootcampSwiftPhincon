@@ -3,7 +3,7 @@ import Kingfisher
 import RxSwift
 
 
-class DetailStoryViewController: UIViewController {
+class DetailStoryViewController: BaseViewController {
     
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var username: UILabel!
@@ -40,9 +40,13 @@ class DetailStoryViewController: UIViewController {
     func configure() {
         if let validDetail = detailStory?.story {
             username.text = validDetail.name
-            location.text = "Karawang, Indonesia"
+            location.isHidden = true
             let url = URL(string: validDetail.photoURL)
-            uploadedImage.kf.setImage(with: url)
+            uploadedImage.kf.setImage(with: url, options: [
+                .loadDiskFileSynchronously,
+                .cacheOriginalImage,
+                .transition(.fade(0.25)),
+            ])
             likesCount.text = "12930 Likes"
             likeBtn.isSelected = false
             let attributedString = NSAttributedString(string: "\(validDetail.name)  \(validDetail.description)")
@@ -56,14 +60,20 @@ class DetailStoryViewController: UIViewController {
             if let date = dateFormatter.date(from: validDetail.createdAt) {
                 let timeAgo = date.convertDateToTimeAgo()
                 createdAt.text = timeAgo
-                print(timeAgo)
-            } else {
-                print("Failed to parse date.")
+            }
+            guard validDetail.lat == nil && validDetail.lon == nil else {
+                if let lat = validDetail.lat, let lon = validDetail.lon {
+                    getLocationNameFromCoordinates(lat: lat, lon: lon) { name in
+                        if let locationName = name {
+                            self.location.isHidden = false
+                            self.location.text = locationName
+                        }
+                    }
+                }
+                return location.isHidden = true
             }
         }
-       
     }
-    
     func bindData() {
         vm.detailStoryData.asObservable().subscribe(onNext: {[weak self] data in
             guard let self = self else { return }
@@ -74,5 +84,4 @@ class DetailStoryViewController: UIViewController {
             }
         }).disposed(by: bag)
     }
-
 }

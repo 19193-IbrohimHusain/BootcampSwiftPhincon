@@ -26,7 +26,7 @@ enum Endpoint {
     
     var bodyParam: [String: Any]? {
         switch self {
-        case .fetchStory, .getDetailStory, .register, .login: return nil
+        case .fetchStory, .getDetailStory: return nil
         case .addNewStory(let param):
             return [
                 "description": param.description,
@@ -34,6 +34,19 @@ enum Endpoint {
                 "lat": param.lat,
                 "long": param.long
             ]
+        case .register(let param):
+            let params: [String: Any] = [
+                "name" : param.name,
+                "email" : param.email,
+                "password" : param.password
+            ]
+            return params
+        case .login(let param):
+            let params: [String: Any] = [
+                "email": param.email,
+                "password": param.password
+            ]
+            return params
         }
     }
     

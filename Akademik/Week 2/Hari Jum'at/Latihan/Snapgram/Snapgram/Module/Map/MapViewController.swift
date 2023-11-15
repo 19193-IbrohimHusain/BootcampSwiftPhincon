@@ -3,14 +3,13 @@ import GoogleMaps
 import RxSwift
 import RxCocoa
 
-class MapViewController: UIViewController {
+class MapViewController: BaseViewController {
     
     
     @IBOutlet weak var mapView: GMSMapView!
     
     var bounds = GMSCoordinateBounds()
     let marker = GMSMarker()
-    
     let locationManager = CLLocationManager()
     let vm = MapViewModel()
     let bag = DisposeBag()
@@ -20,9 +19,7 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        mapView.delegate = self
-        locationManager.delegate = self
-        checkLocationAuthorization()
+        setup()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -31,8 +28,15 @@ class MapViewController: UIViewController {
         fetchData()
     }
     
+    func setup() {
+        mapView.delegate = self
+        locationManager.delegate = self
+        infoView.delegate = self
+        checkLocationAuthorization()
+    }
+    
     func fetchData() {
-        vm.fetchLocationStory(param: StoryTableParam(location: 1))
+        vm.fetchLocationStory(param: StoryTableParam(size: 30, location: 1))
         vm.mapData.asObservable().subscribe(onNext: { [weak self] data in
             guard let self = self, let data = data?.listStory else { return }
             self.dataMarker.append(contentsOf: data)
@@ -60,10 +64,6 @@ class MapViewController: UIViewController {
 }
 
 extension MapViewController: GMSMapViewDelegate {
-    func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
-        infoView.removeFromSuperview()
-    }
-    
     func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
         return infoView
     }
@@ -91,7 +91,7 @@ extension MapViewController: GMSMapViewDelegate {
     
     func showInfoView(marker: GMSMarker, at point: CGPoint) {
         let width = 200.0
-        let height = 300.0
+        let height = 320.0
         let offset: CGFloat = 40
         
         let offsetX = point.x - (width * 0.5)
@@ -102,20 +102,25 @@ extension MapViewController: GMSMapViewDelegate {
         infoView.layer.cornerRadius = 20.0
         infoView.clipsToBounds = true
         
-        if let infoData = marker.userData as? ListStory {
-            infoView.configure(name: infoData.name, location: "Karawang, Indonesia", image: infoData.photoURL, caption: infoData.description, createdAt: infoData.createdAt)
+        if let infoData = marker.userData as? ListStory,
+           let lat = infoData.lat,
+           let lon = infoData.lon {
+            getLocationNameFromCoordinates(lat: lat, lon: lon) { name in
+                self.infoView.configure(name: infoData.name, location: name, image: infoData.photoURL, caption: infoData.description, createdAt: infoData.createdAt)
+                self.infoView.storyID = infoData.id
+                self.infoView.locationLabel.isHidden = false
+            }
         }
-        
+
         mapView.addSubview(infoView)
-        infoView.addGestureRecognizer(UIGestureRecognizer(target: self, action: #selector(navigateToDetailStory(_:))))
     }
-    
-    @objc func navigateToDetailStory(_ gesture: UIGestureRecognizer) {
-        if let markerID = marker.userData as? ListStory {
+}
+
+extension MapViewController: CustomViewMarkerDelegate {
+    func navigateTo(id: String) {
             let vc = DetailStoryViewController()
-            vc.storyID = markerID.id
+            vc.storyID = id
             self.navigationController?.pushViewController(vc, animated: true)
             infoView.removeFromSuperview()
-        }
     }
 }

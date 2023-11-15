@@ -1,9 +1,18 @@
 import UIKit
 import Kingfisher
+import RxSwift
+import RxCocoa
+
+protocol CustomViewMarkerDelegate {
+    func navigateTo(id: String)
+}
 
 class CustomViewMarker: UIView {
     let dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
     let dateFormatter = DateFormatter()
+    var delegate: CustomViewMarkerDelegate?
+    private let bag = DisposeBag()
+    var storyID = String()
     
     // UI Elements
     let imgView: UIImageView = {
@@ -34,7 +43,7 @@ class CustomViewMarker: UIView {
     let uploadedImage: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "Kyoto") // Replace with the actual image name
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleToFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.clipsToBounds = true
         return imageView
@@ -58,15 +67,33 @@ class CustomViewMarker: UIView {
         return label
     }()
     
+    let navigationButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.backgroundColor = .clear
+        button.setTitle("", for: .normal)
+        return button
+    }()
+    
     // MARK: - Initialization
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
+        navigateToDetail()
     }
+    
+    
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setupView()
+    }
+    
+    func navigateToDetail() {
+        navigationButton.rx.tap.subscribe(onNext: { [weak self] _ in
+            guard let self = self else { return }
+            self.delegate?.navigateTo(id: self.storyID)
+        }).disposed(by:bag)
     }
     
     // Setup view and constraints
@@ -77,6 +104,7 @@ class CustomViewMarker: UIView {
         addSubview(uploadedImage)
         addSubview(captionLabel)
         addSubview(timeCreated)
+        addSubview(navigationButton)
         addShadow()
         addBorderLine()
         
@@ -94,22 +122,28 @@ class CustomViewMarker: UIView {
             locationLabel.topAnchor.constraint(equalTo: username.bottomAnchor, constant: 6),
             locationLabel.leadingAnchor.constraint(equalTo: imgView.trailingAnchor, constant: 8),
             locationLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            locationLabel.heightAnchor.constraint(equalToConstant: 28),
+            locationLabel.heightAnchor.constraint(equalToConstant: 12),
             
             uploadedImage.topAnchor.constraint(equalTo: locationLabel.bottomAnchor, constant: 4),
             uploadedImage.leadingAnchor.constraint(equalTo: leadingAnchor),
             uploadedImage.trailingAnchor.constraint(equalTo: trailingAnchor),
             uploadedImage.widthAnchor.constraint(equalTo: widthAnchor),
-            uploadedImage.heightAnchor.constraint(equalToConstant: 150),
+            uploadedImage.heightAnchor.constraint(equalToConstant: 120),
             
             captionLabel.topAnchor.constraint(equalTo: uploadedImage.bottomAnchor, constant: 8),
             captionLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             captionLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            captionLabel.heightAnchor.constraint(equalToConstant: 40),
+            captionLabel.heightAnchor.constraint(equalToConstant: 50),
+            
+            navigationButton.topAnchor.constraint(equalTo: topAnchor, constant: 0),
+            navigationButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
+            navigationButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
+            navigationButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
             
             timeCreated.topAnchor.constraint(equalTo: captionLabel.bottomAnchor, constant: 8),
             timeCreated.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            timeCreated.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 8)
+            timeCreated.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 8),
+            timeCreated.heightAnchor.constraint(equalToConstant: 20),
         ])
     }
     
@@ -118,7 +152,13 @@ class CustomViewMarker: UIView {
             username.text = "Story By \(name)"
             locationLabel.text = location
             let url = URL(string: image)
-            uploadedImage.kf.setImage(with: url)
+            let processor = DownsamplingImageProcessor(size: CGSize(width: 200, height: 120))
+            uploadedImage.kf.setImage(with: url, options: [
+                .processor(processor),
+                .loadDiskFileSynchronously,
+                .cacheOriginalImage,
+                .transition(.fade(0.25)),
+            ])
             captionLabel.text = caption
             dateFormatter.dateFormat = dateFormat
             dateFormatter.timeZone = TimeZone(abbreviation: "UTC")

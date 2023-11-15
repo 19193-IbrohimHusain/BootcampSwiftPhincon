@@ -33,10 +33,16 @@ class StoryTableCell: UITableViewCell {
     
     func configure(with storyEntity: ListStory) {
         profileImage.image = UIImage(named: "Blank")
-        location.text = "Karawang, Indonesia"
+        location.isHidden = true
         username.text = storyEntity.name
         let url = URL(string: storyEntity.photoURL)
-        uploadedImage.kf.setImage(with: url)
+        let processor = DownsamplingImageProcessor(size: CGSize(width: 320, height: 320))
+        uploadedImage.kf.setImage(with: url, options: [
+            .processor(processor),
+            .loadDiskFileSynchronously,
+            .cacheOriginalImage,
+            .transition(.fade(0.25)),
+        ])
         likeCount.text = "\(storyEntity.likesCount) Likes"
         let attributedString = NSAttributedString(string: "\(storyEntity.name)  \(storyEntity.description)")
         let attributes = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14)]
@@ -49,32 +55,15 @@ class StoryTableCell: UITableViewCell {
         if let date = dateFormatter.date(from: storyEntity.createdAt) {
             let timeAgo = date.convertDateToTimeAgo()
             createdAt.text = timeAgo
-            print(timeAgo)
-        } else {
-            print("Failed to parse date.")
         }
-    }
-    
-    func getLocationNameFromCoordinates(with storyEntity: ListStory, latitude: Double, longitude: Double) {
-        //        if storyEntity.lat && storyEntity.lon != null {
-        //            let coordinate = CLLocationCoordinate2D(latitude: storyEntity.lat, longitude: storyEntity.lon)
-        //        }
-        let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-        geocoder.reverseGeocodeCoordinate(coordinate) { response, error in
-            if let error = error {
-                print("Geocoding error: \(error.localizedDescription)")
-                return
+        guard storyEntity.lat == nil && storyEntity.lon == nil else {
+            getLocationNameFromCoordinates(latitude: storyEntity.lat, longitude: storyEntity.lon) { name in
+                if let locationName = name {
+                    self.location.isHidden = false
+                    self.location.text = locationName
+                }
             }
-            
-            if let result = response?.firstResult() {
-                // You can access various address components to get the location name
-                let lines = result.lines
-                let name = lines?.joined(separator: " ")
-                
-                print("Location Name: \(name ?? "N/A")")
-            } else {
-                print("Location not found")
-            }
+            return location.isHidden = true
         }
     }
     
@@ -88,6 +77,27 @@ class StoryTableCell: UITableViewCell {
             self.delegate?.addLike(index: indexSelected, isLike: false)
             likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
             likeButton.tintColor = UIColor.label
+        }
+    }
+    
+    func getLocationNameFromCoordinates(latitude: Double?, longitude: Double?, completion: @escaping (String?) -> Void) {
+        guard let lat = latitude, let lon = longitude else {
+            completion(nil)
+            return
+        }
+        
+        let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
+        geocoder.reverseGeocodeCoordinate(coordinate) { response, error in
+            guard error == nil, let result = response?.results() else {
+                print("Geocoding error: \(error?.localizedDescription ?? "Unknown error")")
+                completion(nil)
+                return
+            }
+            result.forEach { data in
+                guard let city = data.locality, let country = data.country else { return }
+                let name = "\(city), \(country)"
+                completion(name)
+            }
         }
     }
 }
