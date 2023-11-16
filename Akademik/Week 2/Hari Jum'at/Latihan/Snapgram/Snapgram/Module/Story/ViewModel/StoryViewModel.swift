@@ -15,7 +15,7 @@ class StoryViewModel {
     var storyData = BehaviorRelay<StoryResponse?>(value: nil)
     
     func fetchStory(param: StoryTableParam) {
-        loadingState.accept(.notLoad)
+        loadingState.accept(.loading)
         APIManager.shared.fetchRequest(endpoint: .fetchStory(param: param), expecting: StoryResponse.self) { [weak self] result in
             guard let self = self else {return}
             switch result {

@@ -101,17 +101,17 @@ extension MapViewController: GMSMapViewDelegate {
         infoView.layer.backgroundColor = UIColor.white.cgColor
         infoView.layer.cornerRadius = 20.0
         infoView.clipsToBounds = true
-        
         if let infoData = marker.userData as? ListStory,
            let lat = infoData.lat,
            let lon = infoData.lon {
             getLocationNameFromCoordinates(lat: lat, lon: lon) { name in
+//                self.infoView.showAnimatedGradientSkeleton()
                 self.infoView.configure(name: infoData.name, location: name, image: infoData.photoURL, caption: infoData.description, createdAt: infoData.createdAt)
                 self.infoView.storyID = infoData.id
                 self.infoView.locationLabel.isHidden = false
+//                self.infoView.hideSkeleton()
             }
         }
-
         mapView.addSubview(infoView)
     }
 }

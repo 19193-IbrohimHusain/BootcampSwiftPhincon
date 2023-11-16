@@ -23,7 +23,7 @@ class StoryViewController: UIViewController {
             }
         }
     }
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTable()
@@ -75,13 +75,21 @@ extension StoryViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let total = listStory.count
-        if indexPath.row == total - 1 {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                self.loadMoreData()
+        
+        switch SectionTable(rawValue: indexPath.section) {
+        case .story:
+            let total = listStory.count
+            if indexPath.row == total - 1 {
+                DispatchQueue.main.asyncAfter(wallDeadline: .now() + 3 ) {
+                    self.loadMoreData()
+                }
+                self.storyTable.showLoadingFooter()
             }
-            self.storyTable.showLoadingFooter()
+        default:
+            break
+            
         }
+      
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

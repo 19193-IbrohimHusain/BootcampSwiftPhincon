@@ -13,7 +13,13 @@ class SnapCollectionCell: UICollectionViewCell {
     
     func configureCollection(with snapEntity: ListStory) {
         let url = URL(string: snapEntity.photoURL)
-        snapImage.kf.setImage(with: url)
+        let processor = DownsamplingImageProcessor(size: CGSize(width: 320, height: 320))
+        snapImage.kf.setImage(with: url, options: [
+            .processor(processor),
+            .loadDiskFileSynchronously,
+            .cacheOriginalImage,
+            .transition(.fade(0.25)),
+        ])
         username.text = snapEntity.name
     }
 }

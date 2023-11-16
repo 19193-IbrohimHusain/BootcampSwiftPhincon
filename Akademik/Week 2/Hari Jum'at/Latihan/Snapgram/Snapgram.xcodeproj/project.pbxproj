@@ -55,12 +55,9 @@
 		361905A72AF4F10F00DA3DF0 /* SnapTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 361905862AF4F10E00DA3DF0 /* SnapTableCell.xib */; };
 		361905A82AF4F10F00DA3DF0 /* SnapTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361905872AF4F10E00DA3DF0 /* SnapTableCell.swift */; };
 		361905A92AF4F10F00DA3DF0 /* StoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361905882AF4F10E00DA3DF0 /* StoryViewController.swift */; };
-		361905AA2AF4F10F00DA3DF0 /* SnapCollectionEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3619058A2AF4F10E00DA3DF0 /* SnapCollectionEntity.swift */; };
 		361905AB2AF4F10F00DA3DF0 /* StoryTableEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3619058B2AF4F10E00DA3DF0 /* StoryTableEntity.swift */; };
 		361905AC2AF4F10F00DA3DF0 /* StoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3619058C2AF4F10E00DA3DF0 /* StoryViewController.xib */; };
 		361905AE2AF4FA9A00DA3DF0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361905AD2AF4FA9A00DA3DF0 /* Constants.swift */; };
-		362ED3932AFDF7560028C247 /* CustomInfoWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362ED3922AFDF7560028C247 /* CustomInfoWindow.swift */; };
-		362ED3952AFDFAAB0028C247 /* CustomInfoWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 362ED3942AFDFAAB0028C247 /* CustomInfoWindow.xib */; };
 		36399C292B0215EF00D8A193 /* AddStoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36399C282B0215EF00D8A193 /* AddStoryViewModel.swift */; };
 		36399C2F2B02191900D8A193 /* AddStoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36399C2D2B02191900D8A193 /* AddStoryViewController.swift */; };
 		36399C302B02191900D8A193 /* AddStoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36399C2E2B02191900D8A193 /* AddStoryViewController.xib */; };
@@ -165,19 +162,16 @@
 		361905862AF4F10E00DA3DF0 /* SnapTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SnapTableCell.xib; sourceTree = "<group>"; };
 		361905872AF4F10E00DA3DF0 /* SnapTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapTableCell.swift; sourceTree = "<group>"; };
 		361905882AF4F10E00DA3DF0 /* StoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryViewController.swift; sourceTree = "<group>"; };
-		3619058A2AF4F10E00DA3DF0 /* SnapCollectionEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapCollectionEntity.swift; sourceTree = "<group>"; };
 		3619058B2AF4F10E00DA3DF0 /* StoryTableEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryTableEntity.swift; sourceTree = "<group>"; };
 		3619058C2AF4F10E00DA3DF0 /* StoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StoryViewController.xib; sourceTree = "<group>"; };
 		361905AD2AF4FA9A00DA3DF0 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		362ED3922AFDF7560028C247 /* CustomInfoWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInfoWindow.swift; sourceTree = "<group>"; };
-		362ED3942AFDFAAB0028C247 /* CustomInfoWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomInfoWindow.xib; sourceTree = "<group>"; };
 		36399C282B0215EF00D8A193 /* AddStoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStoryViewModel.swift; sourceTree = "<group>"; };
 		36399C2D2B02191900D8A193 /* AddStoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStoryViewController.swift; sourceTree = "<group>"; };
 		36399C2E2B02191900D8A193 /* AddStoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddStoryViewController.xib; sourceTree = "<group>"; };
 		3684BDE82AF9F187006BB9A0 /* ExtMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtMap.swift; sourceTree = "<group>"; };
 		3684BDEA2AFA0DFA006BB9A0 /* ExtString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtString.swift; sourceTree = "<group>"; };
 		3694B52C2AFB2AC8003C11D8 /* DetailStoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailStoryViewController.swift; sourceTree = "<group>"; };
-		3694B52D2AFB2AC8003C11D8 /* DetailStoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailStoryViewController.xib; sourceTree = "<group>"; };
+		3694B52D2AFB2AC8003C11D8 /* DetailStoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = DetailStoryViewController.xib; path = ../DetailStoryViewController.xib; sourceTree = "<group>"; };
 		3694B5312AFB2AFA003C11D8 /* StoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryViewModel.swift; sourceTree = "<group>"; };
 		3694B5332AFB3C16003C11D8 /* AddStoryEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStoryEntity.swift; sourceTree = "<group>"; };
 		3694B5352AFB4B92003C11D8 /* DetailStoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailStoryViewModel.swift; sourceTree = "<group>"; };
@@ -420,8 +414,8 @@
 		3619055F2AF4F10E00DA3DF0 /* Map */ = {
 			isa = PBXGroup;
 			children = (
+				363164612B05E84B00028F1B /* ViewModel */,
 				361905602AF4F10E00DA3DF0 /* MapViewController.swift */,
-				3694B53B2AFB944C003C11D8 /* MapViewModel.swift */,
 				360034452AFCE9C600A48FE8 /* MapViewController.xib */,
 			);
 			path = Map;
@@ -576,7 +570,6 @@
 		361905892AF4F10E00DA3DF0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				3619058A2AF4F10E00DA3DF0 /* SnapCollectionEntity.swift */,
 				3619058B2AF4F10E00DA3DF0 /* StoryTableEntity.swift */,
 			);
 			path = Model;
@@ -585,11 +578,34 @@
 		362ED3912AFDF71E0028C247 /* CustomInfoWindow */ = {
 			isa = PBXGroup;
 			children = (
-				362ED3922AFDF7560028C247 /* CustomInfoWindow.swift */,
-				362ED3942AFDFAAB0028C247 /* CustomInfoWindow.xib */,
 				36F4E7CE2AFE08F40055D291 /* CustomViewMarker.swift */,
 			);
 			path = CustomInfoWindow;
+			sourceTree = "<group>";
+		};
+		363164612B05E84B00028F1B /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				3694B53B2AFB944C003C11D8 /* MapViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		363164622B05EC7C00028F1B /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				3694B5352AFB4B92003C11D8 /* DetailStoryViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		363164632B05EC8400028F1B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3694B52C2AFB2AC8003C11D8 /* DetailStoryViewController.swift */,
+				3694B52D2AFB2AC8003C11D8 /* DetailStoryViewController.xib */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		36399C272B0215D500D8A193 /* AddStoryViewModel */ = {
@@ -636,9 +652,8 @@
 		3694B52B2AFB2AA4003C11D8 /* DetailStory */ = {
 			isa = PBXGroup;
 			children = (
-				3694B52C2AFB2AC8003C11D8 /* DetailStoryViewController.swift */,
-				3694B52D2AFB2AC8003C11D8 /* DetailStoryViewController.xib */,
-				3694B5352AFB4B92003C11D8 /* DetailStoryViewModel.swift */,
+				363164632B05EC8400028F1B /* View */,
+				363164622B05EC7C00028F1B /* ViewModel */,
 			);
 			path = DetailStory;
 			sourceTree = "<group>";
@@ -817,7 +832,6 @@
 				3619052D2AF4EF2400DA3DF0 /* CustomButton.xib in Resources */,
 				3694B52F2AFB2AC8003C11D8 /* DetailStoryViewController.xib in Resources */,
 				361905A12AF4F10F00DA3DF0 /* LoginViewController.xib in Resources */,
-				362ED3952AFDFAAB0028C247 /* CustomInfoWindow.xib in Resources */,
 				36CCE8672AF8BA0E00E4AF69 /* SplashScreenViewController.xib in Resources */,
 				361905AC2AF4F10F00DA3DF0 /* StoryViewController.xib in Resources */,
 				360034462AFCE9C600A48FE8 /* MapViewController.xib in Resources */,
@@ -994,7 +1008,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				361905AA2AF4F10F00DA3DF0 /* SnapCollectionEntity.swift in Sources */,
 				361904552AF4EC8100DA3DF0 /* ViewController.swift in Sources */,
 				361905312AF4EF2400DA3DF0 /* BaseViewController.swift in Sources */,
 				361905932AF4F10F00DA3DF0 /* ProfileCollectionViewCell.swift in Sources */,
@@ -1007,7 +1020,6 @@
 				361905292AF4EF2400DA3DF0 /* ExtRegister.swift in Sources */,
 				3619059C2AF4F10F00DA3DF0 /* CameraAddStoryViewController.swift in Sources */,
 				361904512AF4EC8100DA3DF0 /* AppDelegate.swift in Sources */,
-				362ED3932AFDF7560028C247 /* CustomInfoWindow.swift in Sources */,
 				36F4E7CF2AFE08F40055D291 /* CustomViewMarker.swift in Sources */,
 				3619052A2AF4EF2400DA3DF0 /* ExtLogin.swift in Sources */,
 				36CCE85C2AF8B7A800E4AF69 /* LoginModel.swift in Sources */,

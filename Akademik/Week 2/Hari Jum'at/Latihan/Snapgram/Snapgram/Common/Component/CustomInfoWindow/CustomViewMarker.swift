@@ -17,7 +17,6 @@ class CustomViewMarker: UIView {
     // UI Elements
     let imgView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "Blank") // Replace with the actual image name
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -26,7 +25,7 @@ class CustomViewMarker: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
-        label.font = UIFont(name: "Helvetica", size: 14) // Use the actual font and size
+        label.font = UIFont(name: "Helvetica", size: 14)
         return label
     }()
     
@@ -35,14 +34,13 @@ class CustomViewMarker: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
         label.textAlignment = .left
-        label.font = UIFont(name: "Helvetica", size: 12) // Use the actual font and size
-        label.textColor = UIColor.systemGray // Use the appropriate color
+        label.font = UIFont(name: "Helvetica", size: 12)
+        label.textColor = UIColor.systemGray
         return label
     }()
     
     let uploadedImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "Kyoto") // Replace with the actual image name
         imageView.contentMode = .scaleToFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.clipsToBounds = true
@@ -54,7 +52,7 @@ class CustomViewMarker: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 4
         label.textAlignment = .left
-        label.font = UIFont(name: "Helvetica", size: 12) // Use the actual font and size
+        label.font = UIFont(name: "Helvetica", size: 12)
         return label
     }()
     
@@ -62,8 +60,8 @@ class CustomViewMarker: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .right
-        label.font = UIFont(name: "Helvetica", size: 10) // Use the actual font and size
-        label.textColor = UIColor.systemGray // Use the appropriate color
+        label.font = UIFont(name: "Helvetica", size: 10)
+        label.textColor = UIColor.systemGray
         return label
     }()
     
@@ -128,12 +126,12 @@ class CustomViewMarker: UIView {
             uploadedImage.leadingAnchor.constraint(equalTo: leadingAnchor),
             uploadedImage.trailingAnchor.constraint(equalTo: trailingAnchor),
             uploadedImage.widthAnchor.constraint(equalTo: widthAnchor),
-            uploadedImage.heightAnchor.constraint(equalToConstant: 120),
+            uploadedImage.heightAnchor.constraint(equalToConstant: 150),
             
             captionLabel.topAnchor.constraint(equalTo: uploadedImage.bottomAnchor, constant: 8),
             captionLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             captionLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            captionLabel.heightAnchor.constraint(equalToConstant: 50),
+            captionLabel.heightAnchor.constraint(equalToConstant: 30),
             
             navigationButton.topAnchor.constraint(equalTo: topAnchor, constant: 0),
             navigationButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
@@ -142,13 +140,14 @@ class CustomViewMarker: UIView {
             
             timeCreated.topAnchor.constraint(equalTo: captionLabel.bottomAnchor, constant: 8),
             timeCreated.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            timeCreated.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 8),
-            timeCreated.heightAnchor.constraint(equalToConstant: 20),
+            timeCreated.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
+            timeCreated.heightAnchor.constraint(equalToConstant: 14),
         ])
     }
     
     func configure(name: String?, location: String?, image: String?, caption: String?, createdAt: String?) {
         if let name = name, let location = location, let image = image, let caption = caption, let createdAt = createdAt {
+            imgView.image = UIImage(named: "Blank")
             username.text = "Story By \(name)"
             locationLabel.text = location
             let url = URL(string: image)
@@ -165,9 +164,6 @@ class CustomViewMarker: UIView {
             if let date = dateFormatter.date(from: createdAt) {
                 let timeAgo = date.convertDateToTimeAgo()
                 timeCreated.text = timeAgo
-                print(timeAgo)
-            } else {
-                print("Failed to parse date.")
             }
         }
     }

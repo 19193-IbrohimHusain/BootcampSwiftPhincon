@@ -4,22 +4,19 @@ extension StoryViewController {
     func bindData() {
         vm.storyData.asObservable().subscribe(onNext: { [weak self] data in
             guard let self = self else {return}
-            if let validData = data {
-                self.listStory.append(contentsOf: validData.listStory)
-                DispatchQueue.main.async {
-                    self.storyTable.reloadData()
-                }
+            if let validData = data?.listStory {
+                self.listStory.append(contentsOf: validData)
             }
         }).disposed(by: bag)
         
         vm.loadingState.asObservable().subscribe(onNext: {[weak self] state in
             guard let self = self else {return}
-            
             switch state {
             case .notLoad, .loading:
                 self.storyTable.showAnimatedGradientSkeleton()
             case .failed, .finished:
                 DispatchQueue.main.async {
+                    self.refreshControl.endRefreshing()
                     self.storyTable.hideSkeleton()
                 }
             }
@@ -30,21 +27,15 @@ extension StoryViewController {
     func setupTable(){
         storyTable.delegate = self
         storyTable.dataSource = self
-        DispatchQueue.main.async {
-            self.storyTable.isSkeletonable = true
-        }
-        vm.fetchStory(param: StoryTableParam(page: 0))
+        vm.fetchStory(param: StoryTableParam())
         storyTable.registerCellWithNib(StoryTableCell.self)
         storyTable.registerCellWithNib(SnapTableCell.self)
     }
     
     func loadMoreData() {
         page += 1
-        storyTable.hideSkeleton()
         vm.fetchStory(param: StoryTableParam(page: page, location: 0))
-        storyTable.hideSkeleton()
-        refreshControl.endRefreshing()
-        storyTable.hideLoadingFooter()
+        self.storyTable.hideSkeleton()
     }
     
     @objc func refreshData() {
