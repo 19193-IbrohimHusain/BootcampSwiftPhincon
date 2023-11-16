@@ -28,7 +28,7 @@
                         </userDefinedRuntimeAttributes>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ibrohimhsn_" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="daH-ap-LKP">
-                        <rect key="frame" x="61.999999999999993" y="12.999999999999998" width="76.333333333333314" height="16.333333333333329"/>
+                        <rect key="frame" x="61.999999999999993" y="14.999999999999998" width="76.333333333333314" height="16.333333333333329"/>
                         <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -132,7 +132,7 @@
                         </userDefinedRuntimeAttributes>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Karawang, Indonesia" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j28-YO-esF">
-                        <rect key="frame" x="62" y="31.333333333333332" width="94" height="11.666666666666675"/>
+                        <rect key="frame" x="62" y="33.333333333333343" width="94" height="11.666666666666657"/>
                         <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="10"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -145,7 +145,7 @@
                 <constraints>
                     <constraint firstItem="j28-YO-esF" firstAttribute="leading" secondItem="vsU-D6-czo" secondAttribute="trailing" constant="10" id="49d-3Y-TdW"/>
                     <constraint firstAttribute="trailing" secondItem="Fyc-Al-ukX" secondAttribute="trailing" constant="16" id="60y-bU-0lI"/>
-                    <constraint firstItem="daH-ap-LKP" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="13" id="Blh-5t-dwI"/>
+                    <constraint firstItem="daH-ap-LKP" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="Blh-5t-dwI"/>
                     <constraint firstItem="mRc-w6-NuU" firstAttribute="top" secondItem="jvC-M2-frl" secondAttribute="bottom" constant="5" id="HQO-yh-5Bz"/>
                     <constraint firstItem="zd1-eF-veN" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="I2o-MC-ORW"/>
                     <constraint firstItem="nwj-bH-Zhc" firstAttribute="top" secondItem="zd1-eF-veN" secondAttribute="bottom" constant="5" id="JTV-cu-lPe"/>

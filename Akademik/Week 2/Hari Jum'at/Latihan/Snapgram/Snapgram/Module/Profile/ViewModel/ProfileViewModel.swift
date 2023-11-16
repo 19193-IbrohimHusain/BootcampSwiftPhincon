@@ -2,7 +2,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class StoryViewModel : BaseViewModel {
+class ProfileViewModel : BaseViewModel {
     var storyData = BehaviorRelay<StoryResponse?>(value: nil)
     
     func fetchStory(param: StoryTableParam) {

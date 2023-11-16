@@ -3,6 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -13,6 +14,7 @@
                 <outlet property="caption" destination="ys6-KJ-mHa" id="eva-rq-ijB"/>
                 <outlet property="commentsCount" destination="CEF-Lf-BQP" id="bC6-Gg-mKp"/>
                 <outlet property="createdAt" destination="sZm-mT-thT" id="T0g-7T-h8X"/>
+                <outlet property="downloadBtn" destination="68P-yj-rQa" id="CRz-P6-99q"/>
                 <outlet property="likeBtn" destination="Ts9-A9-SwK" id="sZJ-Wg-CbB"/>
                 <outlet property="likesCount" destination="SQN-9h-AfJ" id="SNU-4t-UiC"/>
                 <outlet property="location" destination="5MA-6b-f6d" id="1mm-vn-wBH"/>
@@ -38,7 +40,7 @@
                     </userDefinedRuntimeAttributes>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ibrohimhsn_" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wgs-h5-esp">
-                    <rect key="frame" x="61.999999999999993" y="71" width="76.333333333333314" height="16.333333333333329"/>
+                    <rect key="frame" x="61.999999999999993" y="74" width="76.333333333333314" height="16.333333333333329"/>
                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -47,7 +49,7 @@
                     </userDefinedRuntimeAttributes>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Karawang, Indonesia" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5MA-6b-f6d">
-                    <rect key="frame" x="62" y="89.333333333333329" width="94" height="11.666666666666671"/>
+                    <rect key="frame" x="62" y="92.333333333333329" width="94" height="11.666666666666671"/>
                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="10"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -142,6 +144,19 @@
                         <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                     </userDefinedRuntimeAttributes>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="68P-yj-rQa">
+                    <rect key="frame" x="307" y="351" width="70" height="70"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="filled">
+                        <imageReference key="image" image="arrow.down.square.fill" catalog="system" symbolScale="large" variableValue="0.0"/>
+                        <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="35"/>
+                    </buttonConfiguration>
+                    <connections>
+                        <action selector="downloadImage" destination="-1" eventType="touchUpInside" id="1jG-Cg-jjk"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -151,7 +166,7 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ys6-KJ-mHa" secondAttribute="trailing" constant="16" id="7gm-ka-vck"/>
                 <constraint firstItem="uX5-7q-uHN" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="10" id="A0c-Rx-ZEw"/>
                 <constraint firstItem="dGW-HR-MHV" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="Asu-8Y-hnG"/>
-                <constraint firstItem="Wgs-h5-esp" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="12" id="HnZ-u4-noM"/>
+                <constraint firstItem="Wgs-h5-esp" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="15" id="HnZ-u4-noM"/>
                 <constraint firstItem="sZm-mT-thT" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="KEP-Kz-TDz"/>
                 <constraint firstItem="gVc-AB-gz9" firstAttribute="top" secondItem="uX5-7q-uHN" secondAttribute="bottom" constant="10" id="KGS-Tf-1yn"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="sZm-mT-thT" secondAttribute="bottom" constant="212" id="Krn-8F-RaO"/>
@@ -168,12 +183,16 @@
                 <constraint firstItem="CEF-Lf-BQP" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="uCb-8W-v5z"/>
                 <constraint firstItem="uX5-7q-uHN" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="wYY-8R-Mhm"/>
             </constraints>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+            </userDefinedRuntimeAttributes>
             <point key="canvasLocation" x="53" y="21"/>
         </view>
     </objects>
     <resources>
         <image name="Blank" width="600" height="600"/>
         <image name="Kyoto" width="1000" height="667"/>
+        <image name="arrow.down.square.fill" catalog="system" width="128" height="114"/>
         <image name="bubble.right" catalog="system" width="128" height="110"/>
         <image name="heart" catalog="system" width="128" height="107"/>
         <image name="paperplane" catalog="system" width="128" height="119"/>

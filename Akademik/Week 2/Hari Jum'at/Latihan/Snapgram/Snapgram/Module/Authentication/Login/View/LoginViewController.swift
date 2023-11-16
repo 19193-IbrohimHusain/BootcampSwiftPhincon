@@ -9,6 +9,8 @@ class LoginViewController: BaseViewController {
     @IBOutlet weak var signInBtn: CustomButton!
     @IBOutlet weak var signInWithAppleBtn: CustomButton!
     
+    var loginResponse: LoginResponse?
+    let vm = LoginViewModel()
     let rightView = UIView()
     let imageView = UIImageView(image: UIImage(systemName: "eye.fill"))
 
@@ -18,6 +20,7 @@ class LoginViewController: BaseViewController {
     }
     
     @IBAction func onSignUpBtnTap() {
-        navigateToRegisterView()
+        let rvc = RegisterViewController()
+        self.navigationController?.pushViewController(rvc, animated: true)
     }
 }

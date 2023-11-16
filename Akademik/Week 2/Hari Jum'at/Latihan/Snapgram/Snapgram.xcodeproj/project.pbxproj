@@ -64,14 +64,17 @@
 		3684BDE92AF9F187006BB9A0 /* ExtMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3684BDE82AF9F187006BB9A0 /* ExtMap.swift */; };
 		3684BDEB2AFA0DFA006BB9A0 /* ExtString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3684BDEA2AFA0DFA006BB9A0 /* ExtString.swift */; };
 		3694B52E2AFB2AC8003C11D8 /* DetailStoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3694B52C2AFB2AC8003C11D8 /* DetailStoryViewController.swift */; };
-		3694B52F2AFB2AC8003C11D8 /* DetailStoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3694B52D2AFB2AC8003C11D8 /* DetailStoryViewController.xib */; };
 		3694B5322AFB2AFA003C11D8 /* StoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3694B5312AFB2AFA003C11D8 /* StoryViewModel.swift */; };
 		3694B5342AFB3C16003C11D8 /* AddStoryEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3694B5332AFB3C16003C11D8 /* AddStoryEntity.swift */; };
 		3694B5362AFB4B92003C11D8 /* DetailStoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3694B5352AFB4B92003C11D8 /* DetailStoryViewModel.swift */; };
 		3694B5382AFB5CE6003C11D8 /* ExtDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3694B5372AFB5CE6003C11D8 /* ExtDate.swift */; };
-		3694B53A2AFB85D9003C11D8 /* GoogleMapsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3694B5392AFB85D9003C11D8 /* GoogleMapsHelper.swift */; };
 		3694B53C2AFB944C003C11D8 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3694B53B2AFB944C003C11D8 /* MapViewModel.swift */; };
 		36A856A22B04E1CA00CE3A60 /* ExtStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A856A12B04E1CA00CE3A60 /* ExtStory.swift */; };
+		36B1DAB02B05EE7F009C04EE /* DetailStoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36B1DAAF2B05EE7F009C04EE /* DetailStoryViewController.xib */; };
+		36B1DAB42B060925009C04EE /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B1DAB32B060925009C04EE /* ProfileViewModel.swift */; };
+		36B1DAB62B06095C009C04EE /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B1DAB52B06095C009C04EE /* BaseViewModel.swift */; };
+		36B1DABA2B060B12009C04EE /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B1DAB92B060B12009C04EE /* LoginViewModel.swift */; };
+		36B1DAC02B061EB3009C04EE /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B1DABF2B061EB3009C04EE /* RegisterViewModel.swift */; };
 		36CCE84A2AF8898500E4AF69 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 36CCE8492AF8898500E4AF69 /* Podfile */; };
 		36CCE8552AF89FE500E4AF69 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CCE8542AF89FE500E4AF69 /* APIManager.swift */; };
 		36CCE8572AF89FFC00E4AF69 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CCE8562AF89FFC00E4AF69 /* Endpoint.swift */; };
@@ -171,14 +174,17 @@
 		3684BDE82AF9F187006BB9A0 /* ExtMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtMap.swift; sourceTree = "<group>"; };
 		3684BDEA2AFA0DFA006BB9A0 /* ExtString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtString.swift; sourceTree = "<group>"; };
 		3694B52C2AFB2AC8003C11D8 /* DetailStoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailStoryViewController.swift; sourceTree = "<group>"; };
-		3694B52D2AFB2AC8003C11D8 /* DetailStoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = DetailStoryViewController.xib; path = ../DetailStoryViewController.xib; sourceTree = "<group>"; };
 		3694B5312AFB2AFA003C11D8 /* StoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryViewModel.swift; sourceTree = "<group>"; };
 		3694B5332AFB3C16003C11D8 /* AddStoryEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStoryEntity.swift; sourceTree = "<group>"; };
 		3694B5352AFB4B92003C11D8 /* DetailStoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailStoryViewModel.swift; sourceTree = "<group>"; };
 		3694B5372AFB5CE6003C11D8 /* ExtDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtDate.swift; sourceTree = "<group>"; };
-		3694B5392AFB85D9003C11D8 /* GoogleMapsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapsHelper.swift; sourceTree = "<group>"; };
 		3694B53B2AFB944C003C11D8 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		36A856A12B04E1CA00CE3A60 /* ExtStory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtStory.swift; sourceTree = "<group>"; };
+		36B1DAAF2B05EE7F009C04EE /* DetailStoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailStoryViewController.xib; sourceTree = "<group>"; };
+		36B1DAB32B060925009C04EE /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		36B1DAB52B06095C009C04EE /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
+		36B1DAB92B060B12009C04EE /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		36B1DABF2B061EB3009C04EE /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		36CCE8492AF8898500E4AF69 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		36CCE8542AF89FE500E4AF69 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		36CCE8562AF89FFC00E4AF69 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
@@ -298,16 +304,11 @@
 		361905142AF4EF2400DA3DF0 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				361905152AF4EF2400DA3DF0 /* ExtCamera.swift */,
 				361905162AF4EF2400DA3DF0 /* ExtTableView.swift */,
 				361905172AF4EF2400DA3DF0 /* ExtView.swift */,
-				361905182AF4EF2400DA3DF0 /* ExtRegister.swift */,
-				361905192AF4EF2400DA3DF0 /* ExtLogin.swift */,
 				3619051A2AF4EF2400DA3DF0 /* ExtCollectionView.swift */,
-				3684BDE82AF9F187006BB9A0 /* ExtMap.swift */,
 				3684BDEA2AFA0DFA006BB9A0 /* ExtString.swift */,
 				3694B5372AFB5CE6003C11D8 /* ExtDate.swift */,
-				36A856A12B04E1CA00CE3A60 /* ExtStory.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -356,7 +357,7 @@
 			children = (
 				361905252AF4EF2400DA3DF0 /* BaseViewController.swift */,
 				361905AD2AF4FA9A00DA3DF0 /* Constants.swift */,
-				3694B5392AFB85D9003C11D8 /* GoogleMapsHelper.swift */,
+				36B1DAB52B06095C009C04EE /* BaseViewModel.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -397,8 +398,7 @@
 		3619055A2AF4F10E00DA3DF0 /* Folder */ = {
 			isa = PBXGroup;
 			children = (
-				3619055B2AF4F10E00DA3DF0 /* FolderViewController.swift */,
-				3619055C2AF4F10E00DA3DF0 /* FolderViewController.xib */,
+				36B1DAC42B06348D009C04EE /* View */,
 			);
 			path = Folder;
 			sourceTree = "<group>";
@@ -414,9 +414,9 @@
 		3619055F2AF4F10E00DA3DF0 /* Map */ = {
 			isa = PBXGroup;
 			children = (
+				36B1DAC62B0634DB009C04EE /* Extension */,
+				36B1DAC32B06347F009C04EE /* View */,
 				363164612B05E84B00028F1B /* ViewModel */,
-				361905602AF4F10E00DA3DF0 /* MapViewController.swift */,
-				360034452AFCE9C600A48FE8 /* MapViewController.xib */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -424,11 +424,11 @@
 		361905622AF4F10E00DA3DF0 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				36B1DAB22B06090E009C04EE /* ViewModel */,
+				36B1DAB12B060902009C04EE /* View */,
 				361905632AF4F10E00DA3DF0 /* CollectionCell */,
 				361905672AF4F10E00DA3DF0 /* Model */,
 				361905692AF4F10E00DA3DF0 /* BottomSheet */,
-				361905702AF4F10E00DA3DF0 /* ProfileViewController.swift */,
-				361905662AF4F10E00DA3DF0 /* ProfileViewController.xib */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -480,11 +480,11 @@
 		361905712AF4F10E00DA3DF0 /* AddStory */ = {
 			isa = PBXGroup;
 			children = (
+				36B1DAC82B063550009C04EE /* Extension */,
+				36B1DAC22B063425009C04EE /* View */,
 				36399C2B2B0218F500D8A193 /* Model */,
 				36399C2A2B0218CE00D8A193 /* StraightToCamera */,
-				36399C272B0215D500D8A193 /* AddStoryViewModel */,
-				36399C2D2B02191900D8A193 /* AddStoryViewController.swift */,
-				36399C2E2B02191900D8A193 /* AddStoryViewController.xib */,
+				36399C272B0215D500D8A193 /* ViewModel */,
 			);
 			path = AddStory;
 			sourceTree = "<group>";
@@ -501,9 +501,10 @@
 		361905762AF4F10E00DA3DF0 /* Register */ = {
 			isa = PBXGroup;
 			children = (
+				36B1DABE2B061E9A009C04EE /* Extension */,
+				36B1DABD2B061E8D009C04EE /* ViewModel */,
+				36B1DABC2B061E89009C04EE /* View */,
 				3684BDE62AF9CDC9006BB9A0 /* Model */,
-				361905772AF4F10E00DA3DF0 /* RegisterViewController.xib */,
-				361905782AF4F10E00DA3DF0 /* RegisterViewController.swift */,
 			);
 			path = Register;
 			sourceTree = "<group>";
@@ -511,9 +512,10 @@
 		3619057A2AF4F10E00DA3DF0 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				36B1DABB2B060B38009C04EE /* Extension */,
+				36B1DAB82B060AF0009C04EE /* ViewModel */,
+				36B1DAB72B060AE9009C04EE /* View */,
 				3684BDE72AF9CDD4006BB9A0 /* Model */,
-				3619057B2AF4F10E00DA3DF0 /* LoginViewController.xib */,
-				3619057C2AF4F10E00DA3DF0 /* LoginViewController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -521,11 +523,10 @@
 		3619057D2AF4F10E00DA3DF0 /* Story */ = {
 			isa = PBXGroup;
 			children = (
+				36B1DAC72B0634F0009C04EE /* Extension */,
+				36B1DAC12B063416009C04EE /* View */,
 				3694B5302AFB2AE5003C11D8 /* ViewModel */,
 				361905892AF4F10E00DA3DF0 /* Model */,
-				3619057E2AF4F10E00DA3DF0 /* Cells */,
-				361905882AF4F10E00DA3DF0 /* StoryViewController.swift */,
-				3619058C2AF4F10E00DA3DF0 /* StoryViewController.xib */,
 			);
 			path = Story;
 			sourceTree = "<group>";
@@ -603,17 +604,17 @@
 			isa = PBXGroup;
 			children = (
 				3694B52C2AFB2AC8003C11D8 /* DetailStoryViewController.swift */,
-				3694B52D2AFB2AC8003C11D8 /* DetailStoryViewController.xib */,
+				36B1DAAF2B05EE7F009C04EE /* DetailStoryViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
 		};
-		36399C272B0215D500D8A193 /* AddStoryViewModel */ = {
+		36399C272B0215D500D8A193 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
 				36399C282B0215EF00D8A193 /* AddStoryViewModel.swift */,
 			);
-			path = AddStoryViewModel;
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		36399C2A2B0218CE00D8A193 /* StraightToCamera */ = {
@@ -666,6 +667,143 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		36B1DAB12B060902009C04EE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				361905702AF4F10E00DA3DF0 /* ProfileViewController.swift */,
+				361905662AF4F10E00DA3DF0 /* ProfileViewController.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		36B1DAB22B06090E009C04EE /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				36B1DAB32B060925009C04EE /* ProfileViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		36B1DAB72B060AE9009C04EE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3619057B2AF4F10E00DA3DF0 /* LoginViewController.xib */,
+				3619057C2AF4F10E00DA3DF0 /* LoginViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		36B1DAB82B060AF0009C04EE /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				36B1DAB92B060B12009C04EE /* LoginViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		36B1DABB2B060B38009C04EE /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				361905192AF4EF2400DA3DF0 /* ExtLogin.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		36B1DABC2B061E89009C04EE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				361905772AF4F10E00DA3DF0 /* RegisterViewController.xib */,
+				361905782AF4F10E00DA3DF0 /* RegisterViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		36B1DABD2B061E8D009C04EE /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				36B1DABF2B061EB3009C04EE /* RegisterViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		36B1DABE2B061E9A009C04EE /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				361905182AF4EF2400DA3DF0 /* ExtRegister.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		36B1DAC12B063416009C04EE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3619057E2AF4F10E00DA3DF0 /* Cells */,
+				361905882AF4F10E00DA3DF0 /* StoryViewController.swift */,
+				3619058C2AF4F10E00DA3DF0 /* StoryViewController.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		36B1DAC22B063425009C04EE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				36399C2D2B02191900D8A193 /* AddStoryViewController.swift */,
+				36399C2E2B02191900D8A193 /* AddStoryViewController.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		36B1DAC32B06347F009C04EE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				361905602AF4F10E00DA3DF0 /* MapViewController.swift */,
+				360034452AFCE9C600A48FE8 /* MapViewController.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		36B1DAC42B06348D009C04EE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3619055B2AF4F10E00DA3DF0 /* FolderViewController.swift */,
+				3619055C2AF4F10E00DA3DF0 /* FolderViewController.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		36B1DAC52B063497009C04EE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				36CCE8642AF8BA0E00E4AF69 /* SplashScreenViewController.swift */,
+				36CCE8652AF8BA0E00E4AF69 /* SplashScreenViewController.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		36B1DAC62B0634DB009C04EE /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				3684BDE82AF9F187006BB9A0 /* ExtMap.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		36B1DAC72B0634F0009C04EE /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				36A856A12B04E1CA00CE3A60 /* ExtStory.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		36B1DAC82B063550009C04EE /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				361905152AF4EF2400DA3DF0 /* ExtCamera.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		36CCE8582AF8B73500E4AF69 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -681,8 +819,7 @@
 		36CCE8632AF8B9F000E4AF69 /* SplashScreen */ = {
 			isa = PBXGroup;
 			children = (
-				36CCE8642AF8BA0E00E4AF69 /* SplashScreenViewController.swift */,
-				36CCE8652AF8BA0E00E4AF69 /* SplashScreenViewController.xib */,
+				36B1DAC52B063497009C04EE /* View */,
 			);
 			path = SplashScreen;
 			sourceTree = "<group>";
@@ -826,11 +963,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				361905942AF4F10F00DA3DF0 /* ProfileViewController.xib in Resources */,
+				36B1DAB02B05EE7F009C04EE /* DetailStoryViewController.xib in Resources */,
 				3619059E2AF4F10F00DA3DF0 /* RegisterViewController.xib in Resources */,
 				3619058E2AF4F10F00DA3DF0 /* FolderViewController.xib in Resources */,
 				3619045D2AF4EC8300DA3DF0 /* LaunchScreen.storyboard in Resources */,
 				3619052D2AF4EF2400DA3DF0 /* CustomButton.xib in Resources */,
-				3694B52F2AFB2AC8003C11D8 /* DetailStoryViewController.xib in Resources */,
 				361905A12AF4F10F00DA3DF0 /* LoginViewController.xib in Resources */,
 				36CCE8672AF8BA0E00E4AF69 /* SplashScreenViewController.xib in Resources */,
 				361905AC2AF4F10F00DA3DF0 /* StoryViewController.xib in Resources */,
@@ -1009,6 +1146,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				361904552AF4EC8100DA3DF0 /* ViewController.swift in Sources */,
+				36B1DAB62B06095C009C04EE /* BaseViewModel.swift in Sources */,
 				361905312AF4EF2400DA3DF0 /* BaseViewController.swift in Sources */,
 				361905932AF4F10F00DA3DF0 /* ProfileCollectionViewCell.swift in Sources */,
 				36399C292B0215EF00D8A193 /* AddStoryViewModel.swift in Sources */,
@@ -1027,6 +1165,7 @@
 				361905302AF4EF2400DA3DF0 /* CapturedImageView.swift in Sources */,
 				361905A92AF4F10F00DA3DF0 /* StoryViewController.swift in Sources */,
 				3694B52E2AFB2AC8003C11D8 /* DetailStoryViewController.swift in Sources */,
+				36B1DABA2B060B12009C04EE /* LoginViewModel.swift in Sources */,
 				36CCE8692AF8E39500E4AF69 /* RegisterEntity.swift in Sources */,
 				36CCE8552AF89FE500E4AF69 /* APIManager.swift in Sources */,
 				36CCE8662AF8BA0E00E4AF69 /* SplashScreenViewController.swift in Sources */,
@@ -1037,7 +1176,7 @@
 				361905282AF4EF2400DA3DF0 /* ExtView.swift in Sources */,
 				361905A82AF4F10F00DA3DF0 /* SnapTableCell.swift in Sources */,
 				3684BDEB2AFA0DFA006BB9A0 /* ExtString.swift in Sources */,
-				3694B53A2AFB85D9003C11D8 /* GoogleMapsHelper.swift in Sources */,
+				36B1DAB42B060925009C04EE /* ProfileViewModel.swift in Sources */,
 				3694B5342AFB3C16003C11D8 /* AddStoryEntity.swift in Sources */,
 				361904532AF4EC8100DA3DF0 /* SceneDelegate.swift in Sources */,
 				36399C2F2B02191900D8A193 /* AddStoryViewController.swift in Sources */,
@@ -1051,6 +1190,7 @@
 				3694B5362AFB4B92003C11D8 /* DetailStoryViewModel.swift in Sources */,
 				3619059A2AF4F10F00DA3DF0 /* ProfileViewController.swift in Sources */,
 				3694B5382AFB5CE6003C11D8 /* ExtDate.swift in Sources */,
+				36B1DAC02B061EB3009C04EE /* RegisterViewModel.swift in Sources */,
 				361905972AF4F10F00DA3DF0 /* ProfileBottomSheetViewController.swift in Sources */,
 				36CCE86B2AF8E9CF00E4AF69 /* LoginEntity.swift in Sources */,
 				361905902AF4F10F00DA3DF0 /* MapViewController.swift in Sources */,

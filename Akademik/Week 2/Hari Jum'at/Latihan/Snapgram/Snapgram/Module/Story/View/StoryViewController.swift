@@ -26,7 +26,7 @@ class StoryViewController: UIViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupTable()
+        setup()
         bindData()
     }
     

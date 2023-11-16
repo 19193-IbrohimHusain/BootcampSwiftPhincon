@@ -24,7 +24,8 @@ extension StoryViewController {
     }
     
     
-    func setupTable(){
+    func setup(){
+        navigationItem.title = "Snapgram"
         storyTable.delegate = self
         storyTable.dataSource = self
         vm.fetchStory(param: StoryTableParam())

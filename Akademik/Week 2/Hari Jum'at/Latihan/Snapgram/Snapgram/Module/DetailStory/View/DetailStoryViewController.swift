@@ -14,13 +14,14 @@ class DetailStoryViewController: BaseViewController {
     @IBOutlet weak var likesCount: UILabel!
     @IBOutlet weak var commentsCount: UILabel!
     @IBOutlet weak var createdAt: UILabel!
+    @IBOutlet weak var downloadBtn: UIButton!
     
     var storyID: String?
+    var downloadTask: URLSessionDownloadTask!
     var detailStory: DetailStoryResponse?
     let dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
     let dateFormatter = DateFormatter()
     let vm = DetailStoryViewModel()
-    let bag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +40,7 @@ class DetailStoryViewController: BaseViewController {
     
     func configure() {
         if let validDetail = detailStory?.story {
+            navigationItem.title = "\(validDetail.name)'s Story"
             username.text = validDetail.name
             location.isHidden = true
             let url = URL(string: validDetail.photoURL)
@@ -74,6 +76,7 @@ class DetailStoryViewController: BaseViewController {
             }
         }
     }
+    
     func bindData() {
         vm.detailStoryData.asObservable().subscribe(onNext: {[weak self] data in
             guard let self = self else { return }
@@ -83,5 +86,65 @@ class DetailStoryViewController: BaseViewController {
                 self.view.setNeedsLayout()
             }
         }).disposed(by: bag)
+        
+        vm.loadingState.asObservable().subscribe(onNext: {[weak self] state in
+            guard let self = self else {return}
+            switch state {
+            case .notLoad, .loading:
+                self.view.showAnimatedGradientSkeleton()
+            case .failed, .finished:
+                DispatchQueue.main.async {
+                    self.view.hideSkeleton()
+                }
+            }
+        }).disposed(by: bag)
+    }
+    
+    @IBAction func downloadImage() {
+        guard let urlDownload = detailStory?.story?.photoURL, let url = URL(string: urlDownload) else {
+                return
+            }
+
+            // Create a URLSession with a delegate to track download progress
+            let configuration = URLSessionConfiguration.default
+            let session = URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
+
+            // Create a download task
+            downloadTask = session.downloadTask(with: url)
+            downloadTask.resume()
+        }
+}
+
+extension DetailStoryViewController: URLSessionDownloadDelegate {
+
+    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
+        // The file has been downloaded successfully, and it's located at the 'location' URL.
+        // You can move the file to your desired location or perform any other actions.
+        
+        print("Download finished: \(location)")
+        
+        // For example, copying the file to the Documents directory
+        let documentsURL = try! FileManager.default.url(for: .downloadsDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+        let destinationURL = documentsURL.appendingPathComponent("downloadedFile.zip")
+        
+        try? FileManager.default.moveItem(at: location, to: destinationURL)
+        
+        // Perform any additional actions you need with the downloaded file.
+    }
+    
+    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
+        // This method is called periodically while the file is being downloaded.
+        // You can use the progress information to update a progress bar, for example.
+        let progress = Float(totalBytesWritten) / Float(totalBytesExpectedToWrite)
+        print("Download progress: \(progress * 100)%")
+    }
+    
+    func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
+        // This method is called when the download task is completed (either successfully or with an error).
+        if let error = error {
+            print("Download failed with error: \(error.localizedDescription)")
+        } else {
+            print("Download completed successfully.")
+        }
     }
 }

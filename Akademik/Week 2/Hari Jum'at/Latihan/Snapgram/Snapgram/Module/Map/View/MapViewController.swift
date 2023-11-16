@@ -12,7 +12,6 @@ class MapViewController: BaseViewController {
     let marker = GMSMarker()
     let locationManager = CLLocationManager()
     let vm = MapViewModel()
-    let bag = DisposeBag()
     var dataMarker: [ListStory] = []
     var listMarker: [GMSMarker] = []
     let infoView = CustomViewMarker()
@@ -105,11 +104,9 @@ extension MapViewController: GMSMapViewDelegate {
            let lat = infoData.lat,
            let lon = infoData.lon {
             getLocationNameFromCoordinates(lat: lat, lon: lon) { name in
-//                self.infoView.showAnimatedGradientSkeleton()
                 self.infoView.configure(name: infoData.name, location: name, image: infoData.photoURL, caption: infoData.description, createdAt: infoData.createdAt)
                 self.infoView.storyID = infoData.id
                 self.infoView.locationLabel.isHidden = false
-//                self.infoView.hideSkeleton()
             }
         }
         mapView.addSubview(infoView)

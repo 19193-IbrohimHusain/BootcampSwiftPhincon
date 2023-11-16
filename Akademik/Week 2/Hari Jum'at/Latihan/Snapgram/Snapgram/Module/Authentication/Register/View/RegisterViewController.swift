@@ -10,6 +10,8 @@ class RegisterViewController: BaseViewController {
     @IBOutlet weak var confirmPasswordInputField: CustomInputField!
     @IBOutlet weak var signUpBtn: CustomButton!
     
+    let vm = RegisterViewModel()
+    var registerResponse: RegisterResponse?
     let showPasswordImage = UIImageView(image: UIImage(systemName: "eye.fill"))
     let showCPasswordImage = UIImageView(image: UIImage(systemName: "eye.fill"))
     let rightPasswordView = UIView()

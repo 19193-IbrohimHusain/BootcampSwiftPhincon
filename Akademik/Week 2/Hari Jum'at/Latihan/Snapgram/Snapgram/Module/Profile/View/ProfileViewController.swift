@@ -1,7 +1,7 @@
 import UIKit
 import FloatingPanel
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: BaseViewController {
     
     @IBOutlet weak var bgImage: UIImageView!
     @IBOutlet weak var profileImage: UIImageView!
@@ -46,21 +46,6 @@ class ProfileViewController: UIViewController {
         deleteToken()
         let vc = LoginViewController()
         self.navigationController?.setViewControllers([vc], animated: true)
-    }
-    
-    func deleteToken() {
-        let query: [CFString: Any] = [
-            kSecClass: kSecClassGenericPassword,
-            kSecAttrAccount: "AuthToken",
-        ]
-        
-        let status = SecItemDelete(query as CFDictionary)
-        
-        if status == errSecSuccess {
-            print("Token deleted from Keychain")
-        } else {
-            print("Failed to delete token from Keychain")
-        }
     }
 }
 

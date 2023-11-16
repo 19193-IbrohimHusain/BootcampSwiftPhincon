@@ -87,7 +87,7 @@
                             <state key="normal" title="Button"/>
                             <buttonConfiguration key="configuration" style="plain" title="Sign Up"/>
                             <connections>
-                                <action selector="onSignUpBtnTap" destination="-1" eventType="touchUpInside" id="UL4-bi-JHU"/>
+                                <action selector="onSignUpBtnTap" destination="-1" eventType="touchUpInside" id="vjP-1O-Wdw"/>
                             </connections>
                         </button>
                     </subviews>
