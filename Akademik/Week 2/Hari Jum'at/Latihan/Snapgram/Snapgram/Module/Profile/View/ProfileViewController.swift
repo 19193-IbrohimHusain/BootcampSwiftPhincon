@@ -1,34 +1,78 @@
 import UIKit
+import RxSwift
+import SkeletonView
 import FloatingPanel
 
 class ProfileViewController: BaseViewController {
     
-    @IBOutlet weak var bgImage: UIImageView!
     @IBOutlet weak var profileImage: UIImageView!
-    @IBOutlet weak var imageCollection: UICollectionView!
+    @IBOutlet weak var profileTable: UITableView!
     @IBOutlet weak var logoutBtn: UIButton!
     
+    private let vm = ProfileViewModel()
     private var fpc = FloatingPanelController()
     private var fpcOption = FloatingPanelController()
+    private var listStory: [ListStory] = [] {
+        didSet {
+            DispatchQueue.main.async {
+                self.profileTable.reloadData()
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setup()
+        UINavigationBar.appearance().barTintColor = .white
+        UINavigationBar.appearance().isHidden = true
+        UINavigationBar.appearance().isTranslucent = true
+        setupTable()
+        bindData()
     }
     
-    func setup() {
-        profileImage.layer.cornerRadius = 75
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(editProfile))
-        profileImage.isUserInteractionEnabled = true
-        profileImage.addGestureRecognizer(tapGesture)
-        logoutBtn.tintColor = UIColor.systemRed
-        setupCollection()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        vm.fetchStory(param: StoryTableParam(size: 1000))
+        UINavigationBar.appearance().barTintColor = .white
+        UINavigationBar.appearance().isHidden = true
+        UINavigationBar.appearance().isTranslucent = true
     }
     
-    func setupCollection() {
-        imageCollection.delegate =  self
-        imageCollection.dataSource =  self
-        imageCollection.registerCellWithNib(ProfileCollectionViewCell.self)
+    func setupTable() {
+        noSafeArea()
+        profileTable.delegate =  self
+        profileTable.dataSource =  self
+        profileTable.registerCellWithNib(ProfileTableCell.self)
+        profileTable.registerCellWithNib(CategoryTableCell.self)
+        profileTable.registerCellWithNib(PostTableCell.self)
+    }
+    
+    func noSafeArea(){
+            self.navigationController?.isNavigationBarHidden = true
+            let topInset: CGFloat = -20  // Adjust this value as needed
+            profileTable.contentInset = UIEdgeInsets(top: topInset, left: 0, bottom: 0, right: 0)
+            profileTable.scrollIndicatorInsets = UIEdgeInsets(top: topInset, left: 0, bottom: 0, right: 0)
+        }
+    
+    func bindData() {
+        vm.storyData.asObservable().subscribe(onNext: { [weak self] data in
+            guard let self = self else { return }
+            if let story = data?.listStory {
+                self.listStory.append(contentsOf: story)
+            }
+        }).disposed(by: bag)
+        
+        vm.loadingState.asObservable().subscribe(onNext: {[weak self] state in
+            guard let self = self else {return}
+            switch state {
+            case .notLoad, .loading:
+                self.profileTable.showAnimatedGradientSkeleton()
+            case .failed, .finished:
+                DispatchQueue.main.async {
+                    self.refreshControl.endRefreshing()
+                    self.profileTable.hideSkeleton()
+                }
+            }
+        }).disposed(by: bag)
     }
     
     @objc func editProfile(_ sender: UITapGestureRecognizer) {
@@ -49,33 +93,79 @@ class ProfileViewController: BaseViewController {
     }
 }
 
-extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return collectionItem.count
+enum SectionProfileTable: Int, CaseIterable {
+    case profile, category, post
+}
+
+extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 3
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as ProfileCollectionViewCell
-        let profileEntity = collectionItem[indexPath.row]
-        cell.configureCollection(with: profileEntity)
-        return cell
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch section {
+        case 0:
+            return 1
+        case 1:
+            return 1
+        case 2:
+            return 1
+        default:
+            return 0
+        }
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let collectionViewWidth = collectionView.bounds.width
-        let itemWidth = collectionViewWidth / 3.0
-        return CGSize(width: itemWidth, height: 150)
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let table = SectionProfileTable(rawValue: indexPath.section)
+        switch table {
+        case .profile:
+            let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as ProfileTableCell
+            cell.delegate = self
+            return cell
+        case .category:
+            let cell1 = tableView.dequeueReusableCell(forIndexPath: indexPath) as CategoryTableCell
+            return cell1
+        case .post:
+            let cell2 = tableView.dequeueReusableCell(forIndexPath: indexPath) as PostTableCell
+            return cell2
+        default: return UITableViewCell()
+            
+        }
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
-    }
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        SharedDataSource.shared.tableViewOffset = scrollView.contentOffset.y
+        UINavigationBar.appearance().barTintColor = .white
+        updateNavigationBarAppearance(SharedDataSource.shared.tableViewOffset)
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+    func updateNavigationBarAppearance(_ yOffset: CGFloat) {
+            // You can customize this part based on your requirements
+            let threshold: CGFloat = 100
+            let alpha = min(1, yOffset / threshold)
+
+            // Set the background color and alpha of the navigation bar
+            navigationController?.navigationBar.backgroundColor = UIColor.white.withAlphaComponent(alpha)
+        }
+    
+}
+
+extension ProfileViewController: ProfileTableCellDelegate {
+    func editProfile() {
+        let epvc = EditProfileViewController()
+        self.navigationController?.pushViewController(epvc, animated: true)
+    }
+    
+    func shareProfile() {
+        deleteToken()
+        let vc = LoginViewController()
+        self.navigationController?.setViewControllers([vc], animated: true)
+    }
+    
+    func discover() {
+        let dvc = EditProfileViewController()
+        self.navigationController?.pushViewController(dvc, animated: true)
     }
 }
 

@@ -2,8 +2,7 @@ import UIKit
 import RxSwift
 import RxRelay
 
-class AddStoryViewModel {
-    var loadingState = BehaviorRelay<StateLoading>(value: .notLoad)
+class AddStoryViewModel: BaseViewModel{
     var addStory = BehaviorRelay<AddStoryResponse?>(value: nil)
     
     func postStory(param: AddStoryParam) {
@@ -12,8 +11,13 @@ class AddStoryViewModel {
             guard let self = self else { return }
             switch result {
             case .success(let response):
-                self.loadingState.accept(.finished)
-                self.addStory.accept(response)
+                if response.error == true {
+                    self.loadingState.accept(.failed)
+                    self.addStory.accept(response)
+                } else {
+                    self.loadingState.accept(.finished)
+                    self.addStory.accept(response)
+                }
             case .failure(let error):
                 self.loadingState.accept(.failed)
                 print(String(describing: error))

@@ -8,9 +8,6 @@ class MapViewController: BaseViewController {
     
     @IBOutlet weak var mapView: GMSMapView!
     
-    var bounds = GMSCoordinateBounds()
-    let marker = GMSMarker()
-    let locationManager = CLLocationManager()
     let vm = MapViewModel()
     var dataMarker: [ListStory] = []
     var listMarker: [GMSMarker] = []
@@ -25,13 +22,14 @@ class MapViewController: BaseViewController {
         super.viewWillAppear(animated)
         mapView.delegate = self
         fetchData()
+        setup()
     }
     
     func setup() {
         mapView.delegate = self
         locationManager.delegate = self
         infoView.delegate = self
-        checkLocationAuthorization()
+        checkLocationAuthorization(mapView)
     }
     
     func fetchData() {
@@ -82,11 +80,10 @@ extension MapViewController: GMSMapViewDelegate {
         infoView.removeFromSuperview()
     }
     
-    func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
-        infoView.center = mapView.projection.point(for: marker.position)
-        infoView.center.y = infoView.center.y - 120
-        mapView.selectedMarker = nil
-    }
+//    func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
+//        infoView.center = mapView.projection.point(for: marker.position)
+//        infoView.center.y = infoView.center.y - 100
+//    }
     
     func showInfoView(marker: GMSMarker, at point: CGPoint) {
         let width = 200.0

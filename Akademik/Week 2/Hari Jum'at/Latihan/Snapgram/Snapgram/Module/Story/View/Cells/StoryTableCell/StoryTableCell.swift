@@ -3,7 +3,9 @@ import Kingfisher
 import GoogleMaps
 
 protocol StoryTableCellDelegate {
+    func getLocationName(lat: Double?, lon: Double?, completion: ((String) -> Void)?)
     func addLike(index: Int, isLike: Bool)
+    func openComment(index: Int)
 }
 
 class StoryTableCell: UITableViewCell {
@@ -13,6 +15,8 @@ class StoryTableCell: UITableViewCell {
     @IBOutlet weak var username: UILabel!
     @IBOutlet weak var uploadedImage: UIImageView!
     @IBOutlet weak var likeButton: UIButton!
+    @IBOutlet weak var commentBtn: UIButton!
+    @IBOutlet weak var shareBtn: UIButton!
     @IBOutlet weak var likeCount: UILabel!
     @IBOutlet weak var caption: UILabel!
     @IBOutlet weak var commentCount: UILabel!
@@ -26,9 +30,18 @@ class StoryTableCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        setup()
+    }
+    
+    func setup() {
         self.selectionStyle = .none
         profileImage.layer.cornerRadius = 18
+        commentCount.isUserInteractionEnabled = true
+        commentCount.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onCommentLabelTap(_:))))
         likeButton.isSelected = false
+        likeButton.setAnimateBounce()
+        commentBtn.setAnimateBounce()
+        shareBtn.setAnimateBounce()
     }
     
     func configure(with storyEntity: ListStory) {
@@ -57,47 +70,38 @@ class StoryTableCell: UITableViewCell {
             createdAt.text = timeAgo
         }
         guard storyEntity.lat == nil && storyEntity.lon == nil else {
-            getLocationNameFromCoordinates(latitude: storyEntity.lat, longitude: storyEntity.lon) { name in
-                if let locationName = name {
+            self.delegate?.getLocationName(lat: storyEntity.lat, lon: storyEntity.lon) { locationName in
                     self.location.isHidden = false
                     self.location.text = locationName
-                }
             }
             return location.isHidden = true
         }
     }
     
-    @IBAction func onLikeBtnTap(_ sender: Any) {
+    @IBAction func onLikeBtnTap(_ sender: UIButton) {
         likeButton.isSelected.toggle()
         if likeButton.isSelected {
-            self.delegate?.addLike(index: indexSelected , isLike: likeButton.isSelected)
             likeButton.setImage(UIImage(systemName: "heart.fill"), for: .selected)
             likeButton.tintColor = UIColor.systemRed
+            guard sender.tag == indexSelected else {
+                return
+            }
+            self.delegate?.addLike(index: sender.tag , isLike: true)
         } else {
-            self.delegate?.addLike(index: indexSelected, isLike: false)
             likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
             likeButton.tintColor = UIColor.label
+            guard sender.tag == indexSelected else {
+                return
+            }
+            self.delegate?.addLike(index: sender.tag, isLike: false)
         }
     }
     
-    func getLocationNameFromCoordinates(latitude: Double?, longitude: Double?, completion: @escaping (String?) -> Void) {
-        guard let lat = latitude, let lon = longitude else {
-            completion(nil)
-            return
-        }
-        
-        let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
-        geocoder.reverseGeocodeCoordinate(coordinate) { response, error in
-            guard error == nil, let result = response?.results() else {
-                print("Geocoding error: \(error?.localizedDescription ?? "Unknown error")")
-                completion(nil)
-                return
-            }
-            result.forEach { data in
-                guard let city = data.locality, let country = data.country else { return }
-                let name = "\(city), \(country)"
-                completion(name)
-            }
-        }
+    @IBAction func onCommentBtnTap(_ sender: UIButton) {
+        self.delegate?.openComment(index: sender.tag)
+    }
+    
+    @objc func onCommentLabelTap(_ sender: UITapGestureRecognizer) {
+        self.delegate?.openComment(index: indexSelected)
     }
 }

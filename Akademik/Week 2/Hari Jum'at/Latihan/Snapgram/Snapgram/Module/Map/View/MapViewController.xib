@@ -10,7 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MapViewController" customModule="Snapgram" customModuleProvider="target">
             <connections>
-                <outlet property="mapView" destination="Sze-3L-iyx" id="WoA-2h-fWJ"/>
+                <outlet property="mapView" destination="Sze-3L-iyx" id="Tzd-ty-sM4"/>
                 <outlet property="view" destination="Sze-3L-iyx" id="rsv-WG-g8I"/>
             </connections>
         </placeholder>

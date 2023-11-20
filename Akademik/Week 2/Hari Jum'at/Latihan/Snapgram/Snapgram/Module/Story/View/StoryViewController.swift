@@ -2,20 +2,19 @@ import UIKit
 import RxSwift
 import RxCocoa
 import RxRelay
+import FloatingPanel
 import SkeletonView
 
-enum SectionTable: Int, CaseIterable {
+enum SectionStoryTable: Int, CaseIterable {
     case snap, story
 }
 
-class StoryViewController: UIViewController {
+class StoryViewController: BaseViewController {
     
     @IBOutlet weak var storyTable: UITableView!
     
-    let bag = DisposeBag()
     var vm = StoryViewModel()
     var page = Int()
-    let refreshControl = UIRefreshControl()
     var listStory: [ListStory] = [] {
         didSet {
             DispatchQueue.main.async {
@@ -27,13 +26,14 @@ class StoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
+        setupCommentPanel()
         bindData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
-        storyTable.refreshControl = refreshControl
+        listStory.removeAll()
+        vm.fetchStory(param: StoryTableParam())
     }
 }
 
@@ -54,7 +54,7 @@ extension StoryViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let table = SectionTable(rawValue: indexPath.section)
+        let table = SectionStoryTable(rawValue: indexPath.section)
         switch table {
         case .snap:
             let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as SnapTableCell
@@ -66,6 +66,10 @@ extension StoryViewController: UITableViewDelegate, UITableViewDataSource {
             let cell1 = tableView.dequeueReusableCell(forIndexPath: indexPath) as StoryTableCell
             let storyEntity = listStory[indexPath.row]
             cell1.configure(with: storyEntity)
+            cell1.commentCount.tag = indexPath.row
+            cell1.likeButton.tag = indexPath.row
+            cell1.commentBtn.tag = indexPath.row
+            cell1.shareBtn.tag = indexPath.row
             cell1.indexSelected = indexPath.row
             cell1.delegate = self
             return cell1
@@ -76,7 +80,7 @@ extension StoryViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
-        switch SectionTable(rawValue: indexPath.section) {
+        switch SectionStoryTable(rawValue: indexPath.section) {
         case .story:
             let total = listStory.count
             if indexPath.row == total - 1 {

@@ -5,7 +5,7 @@ class TabBarViewController:  UITabBarController, UITabBarControllerDelegate {
     var home: StoryViewController!
     var map: MapViewController!
     var addStory: AddStoryViewController!
-    var folder: FolderViewController!
+    var film: FolderViewController!
     var profile: ProfileViewController!
 
     override func viewDidLoad(){
@@ -19,23 +19,22 @@ class TabBarViewController:  UITabBarController, UITabBarControllerDelegate {
         home = StoryViewController()
         map = MapViewController()
         addStory = AddStoryViewController()
-        folder = FolderViewController()
+        film = FolderViewController()
         profile = ProfileViewController()
         navigationItem.backButtonTitle = ""
-        viewControllers = [home, map, addStory, folder, profile]
+        viewControllers = [home, map, addStory, film, profile]
+        
     }
     
     func configureTabBarItem() {
-        home.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house"), tag: 0)
-        map.tabBarItem = UITabBarItem(title: "Map", image: UIImage(systemName: "map"), tag: 1)
-        addStory.tabBarItem = UITabBarItem(title: "", image: UIImage(systemName: "plus.app"), tag: 2)
-        folder.tabBarItem = UITabBarItem(title: "Folder", image: UIImage(systemName: "folder"), tag: 3)
-        profile.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person"), tag: 4)
+        home.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "house"), selectedImage: UIImage(systemName: "house.fill"))
+        map.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "location"), selectedImage: UIImage(systemName: "location.fill"))
+        addStory.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "plus.app"), selectedImage: UIImage(systemName: "plus.app.fill"))
+        film.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "film"), selectedImage: UIImage(systemName: "film.fill"))
+        profile.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "person.crop.circle"), selectedImage: UIImage(systemName: "person.crop.circle.fill"))
         
-        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
         self.tabBar.unselectedItemTintColor = UIColor.gray
-        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black], for: .selected)
-        UITabBar.appearance().tintColor = UIColor.black
+        self.tabBar.tintColor = UIColor.black
         self.tabBar.backgroundColor = UIColor.white
     }
     //MARK: UITabbar Delegate

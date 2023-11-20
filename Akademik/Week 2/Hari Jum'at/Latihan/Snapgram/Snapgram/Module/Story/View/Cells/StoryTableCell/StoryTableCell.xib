@@ -75,6 +75,9 @@
                                 <buttonConfiguration key="configuration" style="plain" image="bubble.right" catalog="system">
                                     <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="large"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="onCommentBtnTap:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="sR0-d3-rBc"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lwa-Eq-8Gi">
                                 <rect key="frame" x="88" y="0.0" width="36" height="36"/>
@@ -91,7 +94,7 @@
                         </subviews>
                     </stackView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="109,290 comments" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jvC-M2-frl">
-                        <rect key="frame" x="15.999999999999993" y="514.33333333333337" width="102.33333333333331" height="14"/>
+                        <rect key="frame" x="16" y="514.33333333333337" width="288" height="14"/>
                         <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
                         <color key="textColor" systemColor="systemGrayColor"/>
                         <nil key="highlightedColor"/>
@@ -132,7 +135,7 @@
                         </userDefinedRuntimeAttributes>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Karawang, Indonesia" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j28-YO-esF">
-                        <rect key="frame" x="62" y="33.333333333333343" width="94" height="11.666666666666657"/>
+                        <rect key="frame" x="62" y="33.333333333333336" width="94" height="11.666666666666664"/>
                         <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="10"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -149,6 +152,7 @@
                     <constraint firstItem="mRc-w6-NuU" firstAttribute="top" secondItem="jvC-M2-frl" secondAttribute="bottom" constant="5" id="HQO-yh-5Bz"/>
                     <constraint firstItem="zd1-eF-veN" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="I2o-MC-ORW"/>
                     <constraint firstItem="nwj-bH-Zhc" firstAttribute="top" secondItem="zd1-eF-veN" secondAttribute="bottom" constant="5" id="JTV-cu-lPe"/>
+                    <constraint firstAttribute="trailing" secondItem="jvC-M2-frl" secondAttribute="trailing" constant="16" id="Jgl-iR-pX5"/>
                     <constraint firstItem="UQi-QC-WTn" firstAttribute="top" secondItem="nwj-bH-Zhc" secondAttribute="bottom" constant="5" id="KS5-bX-QsV"/>
                     <constraint firstItem="jvC-M2-frl" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="NXt-Qd-5yd"/>
                     <constraint firstItem="j28-YO-esF" firstAttribute="top" secondItem="daH-ap-LKP" secondAttribute="bottom" constant="2" id="S1d-o9-GcV"/>
@@ -175,12 +179,14 @@
             </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="caption" destination="Fyc-Al-ukX" id="dV5-Rh-eie"/>
+                <outlet property="commentBtn" destination="VZn-lZ-gZL" id="cWq-Ct-BrH"/>
                 <outlet property="commentCount" destination="jvC-M2-frl" id="ZR3-St-8x8"/>
                 <outlet property="createdAt" destination="mRc-w6-NuU" id="7sO-Qk-vn6"/>
                 <outlet property="likeButton" destination="buf-OL-jh8" id="G65-C8-4mI"/>
                 <outlet property="likeCount" destination="UQi-QC-WTn" id="vaU-DG-s3t"/>
                 <outlet property="location" destination="j28-YO-esF" id="AtQ-U7-eg8"/>
                 <outlet property="profileImage" destination="vsU-D6-czo" id="utv-4o-JO2"/>
+                <outlet property="shareBtn" destination="Lwa-Eq-8Gi" id="WlH-Zx-59o"/>
                 <outlet property="uploadedImage" destination="zd1-eF-veN" id="C44-Pw-IL9"/>
                 <outlet property="username" destination="daH-ap-LKP" id="t88-5F-tyV"/>
             </connections>

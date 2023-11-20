@@ -7,7 +7,7 @@ class ProfileCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
     }
     
-    func configureCollection(with profileEntity: ProfileCollectionEntity) {
-        imageView.image = UIImage(named: profileEntity.image)
-    }
+//    func configureCollection(with profileEntity: ProfileCollectionEntity) {
+//        imageView.image = UIImage(named: profileEntity.image)
+//    }
 }

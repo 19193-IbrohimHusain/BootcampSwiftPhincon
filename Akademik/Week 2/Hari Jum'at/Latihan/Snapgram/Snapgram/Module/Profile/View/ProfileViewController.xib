@@ -10,10 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfileViewController" customModule="Snapgram" customModuleProvider="target">
             <connections>
-                <outlet property="bgImage" destination="EAe-3U-rlU" id="6FN-B7-fWF"/>
-                <outlet property="imageCollection" destination="ph7-ro-aen" id="mJl-LO-Cwh"/>
-                <outlet property="logoutBtn" destination="rbG-mn-ch5" id="t2I-Vg-QMc"/>
-                <outlet property="profileImage" destination="e6o-CW-cfY" id="6kp-r2-u4q"/>
+                <outlet property="profileTable" destination="A2K-3W-edo" id="Hzq-ri-oBw"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -22,132 +19,27 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="iOS Developer | Flutter Enthusiast" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ydt-Za-29x">
-                    <rect key="frame" x="19.999999999999986" y="303.66666666666669" width="241.66666666666663" height="18.666666666666686"/>
-                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="16"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="A2K-3W-edo">
+                    <rect key="frame" x="0.0" y="99" width="393" height="753"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                     </userDefinedRuntimeAttributes>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Karawang, Indonesia" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6xf-XL-ASJ">
-                    <rect key="frame" x="19.999999999999993" y="332.33333333333331" width="114.33333333333331" height="14"/>
-                    <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="12"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
-                    </userDefinedRuntimeAttributes>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ibrohim Husain" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yyR-ik-Jbj">
-                    <rect key="frame" x="20" y="266" width="175" height="27.666666666666686"/>
-                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="24"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
-                    </userDefinedRuntimeAttributes>
-                </label>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Kyoto" translatesAutoresizingMaskIntoConstraints="NO" id="EAe-3U-rlU">
-                    <rect key="frame" x="0.0" y="0.0" width="393" height="186"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="186" id="5cz-dp-inI"/>
-                    </constraints>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
-                    </userDefinedRuntimeAttributes>
-                </imageView>
-                <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ha3-7h-t7y">
-                    <rect key="frame" x="20" y="356.33333333333331" width="204.66666666666666" height="16.333333333333314"/>
-                    <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" text="223 followers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3YG-lD-ZmF">
-                            <rect key="frame" x="0.0" y="0.0" width="82.666666666666671" height="16.333333333333332"/>
-                            <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
-                            <color key="textColor" systemColor="systemGray2Color"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="218 connections" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G4Y-e5-EQk">
-                            <rect key="frame" x="102.66666666666669" y="0.0" width="102" height="16.333333333333332"/>
-                            <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
-                            <color key="textColor" systemColor="systemGray2Color"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                    </subviews>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
-                    </userDefinedRuntimeAttributes>
-                </stackView>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Profile" translatesAutoresizingMaskIntoConstraints="NO" id="e6o-CW-cfY">
-                    <rect key="frame" x="20" y="106" width="150" height="150"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="150" id="edf-YO-AD6"/>
-                        <constraint firstAttribute="width" constant="150" id="yp9-gA-2h1"/>
-                    </constraints>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
-                    </userDefinedRuntimeAttributes>
-                </imageView>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="ph7-ro-aen">
-                    <rect key="frame" x="0.0" y="444" width="393" height="408"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="408" id="OUe-up-BRM"/>
-                    </constraints>
-                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="JGL-3O-sxN">
-                        <size key="itemSize" width="128" height="128"/>
-                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                    </collectionViewFlowLayout>
-                </collectionView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rbG-mn-ch5">
-                    <rect key="frame" x="50" y="397.66666666666669" width="293" height="34.333333333333314"/>
-                    <color key="tintColor" systemColor="systemRedColor"/>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="filled" title="Logout"/>
-                    <connections>
-                        <action selector="onLogoutBtnTap" destination="-1" eventType="touchUpInside" id="27w-8g-yug"/>
-                    </connections>
-                </button>
+                </tableView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="e6o-CW-cfY" firstAttribute="leading" secondItem="yyR-ik-Jbj" secondAttribute="leading" id="5Nv-cW-CPt"/>
-                <constraint firstItem="ph7-ro-aen" firstAttribute="top" secondItem="ha3-7h-t7y" secondAttribute="bottom" constant="71.329999999999998" id="B8h-ap-uKC"/>
-                <constraint firstItem="rbG-mn-ch5" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="50" id="Bf0-VH-6es"/>
-                <constraint firstItem="ph7-ro-aen" firstAttribute="trailing" secondItem="EAe-3U-rlU" secondAttribute="trailing" id="Ei0-2d-rbV"/>
-                <constraint firstItem="e6o-CW-cfY" firstAttribute="leading" secondItem="ydt-Za-29x" secondAttribute="leading" id="IB7-uh-Vjt"/>
-                <constraint firstItem="ha3-7h-t7y" firstAttribute="top" secondItem="6xf-XL-ASJ" secondAttribute="bottom" constant="10" id="JUV-JA-e9g"/>
-                <constraint firstItem="e6o-CW-cfY" firstAttribute="bottom" secondItem="EAe-3U-rlU" secondAttribute="bottom" constant="70" id="Lyh-AQ-yQM"/>
-                <constraint firstItem="e6o-CW-cfY" firstAttribute="leading" secondItem="ha3-7h-t7y" secondAttribute="leading" id="QzN-04-aCF"/>
-                <constraint firstItem="6xf-XL-ASJ" firstAttribute="top" secondItem="ydt-Za-29x" secondAttribute="bottom" constant="10" id="SY8-gK-u87"/>
-                <constraint firstItem="ydt-Za-29x" firstAttribute="top" secondItem="yyR-ik-Jbj" secondAttribute="bottom" constant="10" id="SbW-0R-fsw"/>
-                <constraint firstItem="ph7-ro-aen" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Um4-rj-3oE"/>
-                <constraint firstItem="e6o-CW-cfY" firstAttribute="leading" secondItem="6xf-XL-ASJ" secondAttribute="leading" id="WFF-GG-dDk"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="rbG-mn-ch5" secondAttribute="trailing" constant="50" id="dL9-aF-41v"/>
-                <constraint firstItem="ph7-ro-aen" firstAttribute="leading" secondItem="EAe-3U-rlU" secondAttribute="leading" id="eqw-fn-NNb"/>
-                <constraint firstItem="yyR-ik-Jbj" firstAttribute="top" secondItem="e6o-CW-cfY" secondAttribute="bottom" constant="10" id="f35-xN-Bev"/>
-                <constraint firstItem="rbG-mn-ch5" firstAttribute="top" secondItem="ha3-7h-t7y" secondAttribute="bottom" constant="25" id="stI-D6-OSv"/>
-                <constraint firstAttribute="bottom" secondItem="ph7-ro-aen" secondAttribute="bottom" id="uBg-PS-0Pn"/>
-                <constraint firstAttribute="trailing" secondItem="ph7-ro-aen" secondAttribute="trailing" id="v1m-6P-LSm"/>
-                <constraint firstItem="e6o-CW-cfY" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="wh2-rn-WNr"/>
+                <constraint firstItem="A2K-3W-edo" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="40" id="3bv-cH-qe1"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="A2K-3W-edo" secondAttribute="trailing" id="7Be-QU-sUm"/>
+                <constraint firstAttribute="bottom" secondItem="A2K-3W-edo" secondAttribute="bottom" id="IvE-T4-KvD"/>
+                <constraint firstItem="A2K-3W-edo" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="vMl-BX-kEh"/>
             </constraints>
-            <point key="canvasLocation" x="-13" y="20"/>
+            <point key="canvasLocation" x="-14.503816793893129" y="19.718309859154932"/>
         </view>
     </objects>
     <resources>
-        <image name="Kyoto" width="1000" height="667"/>
-        <image name="Profile" width="800" height="800"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGray2Color">
-            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

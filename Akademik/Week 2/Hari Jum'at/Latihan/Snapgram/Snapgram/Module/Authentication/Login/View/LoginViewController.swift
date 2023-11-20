@@ -8,6 +8,7 @@ class LoginViewController: BaseViewController {
     @IBOutlet weak var passwordInputField: CustomInputField!
     @IBOutlet weak var signInBtn: CustomButton!
     @IBOutlet weak var signInWithAppleBtn: CustomButton!
+    @IBOutlet weak var signUpBtn: UIButton!
     
     var loginResponse: LoginResponse?
     let vm = LoginViewModel()
@@ -20,7 +21,6 @@ class LoginViewController: BaseViewController {
     }
     
     @IBAction func onSignUpBtnTap() {
-        let rvc = RegisterViewController()
-        self.navigationController?.pushViewController(rvc, animated: true)
+        navigateToRegisterView()
     }
 }

@@ -21,6 +21,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.makeKeyAndVisible()
         
         UINavigationBar.appearance().isHidden = true
+        UINavigationBar.appearance().backgroundColor = .white
+        UINavigationBar.appearance().standardAppearance.backgroundColor = .white
+        UINavigationBar.appearance().scrollEdgeAppearance?.backgroundColor = .white
         UINavigationBar.appearance().barTintColor = .white
     }
 

@@ -28,12 +28,13 @@ enum Endpoint {
         switch self {
         case .fetchStory, .getDetailStory: return nil
         case .addNewStory(let param):
-            return [
+            let params: [String: Any] = [
                 "description": param.description,
                 "photo": param.photo,
-                "lat": param.lat,
-                "long": param.long
+                "lat": param.lat ?? 0.0,
+                "lon": param.lon ?? 0.0
             ]
+            return params
         case .register(let param):
             let params: [String: Any] = [
                 "name" : param.name,

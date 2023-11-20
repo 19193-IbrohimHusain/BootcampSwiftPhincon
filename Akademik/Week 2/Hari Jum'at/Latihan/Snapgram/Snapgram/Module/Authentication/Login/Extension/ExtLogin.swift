@@ -28,16 +28,16 @@ extension LoginViewController {
             DispatchQueue.main.async {
                 switch state {
                 case .notLoad:
-                    self.afterDismiss()
+                    self.afterDissmissed(self.signInBtn.customButton, title: "Sign In")
                 case .loading:
-                    self.addLoading()
+                    self.addLoading(self.signInBtn.customButton)
                 case .failed:
-                    self.afterDismiss()
+                    self.afterDissmissed(self.signInBtn.customButton, title: "Sign In")
                     if let error = self.loginResponse?.message {
                         self.displayAlert(title: "Sign In Failed", message: "\(String(describing: error)), Please try again")
                     }
                 case .finished:
-                    self.afterDismiss()
+                    self.afterDissmissed(self.signInBtn.customButton, title: "Sign In")
                     self.navigateToTabBarView()
                 }
             }
@@ -73,6 +73,7 @@ extension LoginViewController {
         signInWithAppleBtn.customButton.backgroundColor = .white
         signInWithAppleBtn.customButton.setTitleColor(.systemBlue, for: .normal)
         signInWithAppleBtn.customButton.layer.borderWidth = 1.0
+        signUpBtn.setAnimateBounce()
     }
     
     @objc func showPassword(_ sender: UITapGestureRecognizer) {
@@ -94,37 +95,27 @@ extension LoginViewController {
     }
     
     func validate() {
-        addLoading()
+        addLoading(self.signInBtn.customButton)
 
         guard validateInputField(emailInputField, message: "Please Enter Your Email", completion: {
-            self.afterDismiss()
+            self.afterDissmissed(self.signInBtn.customButton, title: "Sign In")
         }) else { return }
         
         guard validateInputField(passwordInputField, message: "Please Enter Your Password", completion: {
-            self.afterDismiss()
+            self.afterDissmissed(self.signInBtn.customButton, title: "Sign In")
         }) else { return }
         
         guard validateEmail(candidate: emailInputField.textField.text!) else {
-            displayAlert(title: "Sign In Failed", message: "Please Enter Valid Email") { self.afterDismiss() }
+            displayAlert(title: "Sign In Failed", message: "Please Enter Valid Email") { self.afterDissmissed(self.signInBtn.customButton, title: "Sign In") }
             return
         }
         
-//        guard validatePassword(candidate: passwordInputField.textField.text!) else {
-//            displayAlert(title: "Sign In Failed", message: "Please Enter Valid Password") { self.afterDismiss() }
-//            return
-//        }
+        guard validatePassword(candidate: passwordInputField.textField.text!) else {
+            displayAlert(title: "Sign In Failed", message: "Please Enter Valid Password") { self.afterDissmissed(self.signInBtn.customButton, title: "Sign In") }
+            return
+        }
         
         signIn()
-    }
-    
-    func addLoading() {
-        signInBtn.customButton.isEnabled = false
-        signInBtn.customButton.isUserInteractionEnabled = false
-        signInBtn.customButton.layer.backgroundColor = UIColor.systemGray5.cgColor
-        activityIndicator.center = CGPoint(x: signInBtn.bounds.width / 2 , y: signInBtn.bounds.height / 2)
-        signInBtn.customButton.addSubview(activityIndicator)
-        signInBtn.customButton.setTitle("", for: .disabled)
-        activityIndicator.startAnimating()
     }
     
     func signIn() {
@@ -141,13 +132,5 @@ extension LoginViewController {
     func navigateToRegisterView() {
         let rvc = RegisterViewController()
         self.navigationController?.pushViewController(rvc, animated: true)
-    }
-    
-    func afterDismiss() {
-        activityIndicator.stopAnimating()
-        signInBtn.customButton.isEnabled = true
-        signInBtn.customButton.isUserInteractionEnabled = true
-        self.signInBtn.customButton.layer.backgroundColor = UIColor.systemBlue.cgColor
-        signInBtn.customButton.setTitle("Sign In", for: .normal)
     }
 }

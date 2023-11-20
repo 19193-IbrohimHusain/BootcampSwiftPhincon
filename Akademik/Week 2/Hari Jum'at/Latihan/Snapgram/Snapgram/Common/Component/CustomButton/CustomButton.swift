@@ -40,6 +40,7 @@ class CustomButton: UIView {
     func setup(title: String, image: String?) {
         customButton.setTitle(title, for: .normal)
         customButton.setImage(UIImage(systemName: image ?? ""), for: .normal)
+        customButton.setAnimateBounce()
         customButton.layer.cornerRadius = 8.0
         customButton.layer.shadowColor = UIColor.gray.cgColor
         customButton.layer.shadowOffset = CGSize(width: 2, height: 2)

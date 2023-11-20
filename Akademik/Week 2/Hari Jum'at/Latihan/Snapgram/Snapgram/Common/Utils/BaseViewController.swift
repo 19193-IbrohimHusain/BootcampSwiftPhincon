@@ -2,13 +2,24 @@ import UIKit
 import GoogleMaps
 import Security
 import RxSwift
+import FloatingPanel
 
-class BaseViewController: UIViewController {
+class BaseViewController: UIViewController, CLLocationManagerDelegate {
+    internal let pickerImage = UIImagePickerController()
     internal let activityIndicator = UIActivityIndicatorView(style: .medium)
+    internal let locationManager = CLLocationManager()
     internal let geocoder = GMSGeocoder()
     internal let bag = DisposeBag()
+    internal let refreshControl = UIRefreshControl()
+    internal let marker = GMSMarker()
+    internal let map = GMSMapView()
+    internal var bounds = GMSCoordinateBounds()
+    internal var latitude = Double()
+    internal var longitude = Double()
+    internal var floatingPanel = FloatingPanelController()
+
     
-    func validateInputField(_ inputField: CustomInputField, message: String, completion: @escaping () -> Void) -> Bool {
+    internal func validateInputField(_ inputField: CustomInputField, message: String, completion: @escaping () -> Void) -> Bool {
         guard let text = inputField.textField.text, !text.isEmpty else {
             displayAlert(title: "Sign Up Failed", message: message) {
                 completion()
@@ -18,43 +29,75 @@ class BaseViewController: UIViewController {
         return true
     }
     
-    func validateEmail(candidate: String) -> Bool {
+    internal func validateEmail(candidate: String) -> Bool {
         let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         return NSPredicate(format: "SELF MATCHES %@", emailRegex).evaluate(with: candidate)
     }
     
-    func validatePassword(candidate: String) -> Bool {
+    internal func validatePassword(candidate: String) -> Bool {
         let passwordRegex = "^(?=.*[A-Za-z])(?=.*\\d).{8,}$"
         return NSPredicate(format: "SELF MATCHES %@", passwordRegex).evaluate(with: candidate)
     }
     
-    func displayAlert(title: String, message: String, completion: (() -> Void)? = nil) {
+    internal func displayAlert(title: String, message: String, completion: (() -> Void)? = nil) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+            completion?()
+        }
         alertController.addAction(okAction)
         present(alertController, animated: true, completion: nil)
-        completion?()
     }
     
-    func getLocationNameFromCoordinates(lat: Double, lon: Double, completion: @escaping (String?) -> Void) {
+    internal func addLoading(_ button: UIButton) {
+        button.isEnabled = false
+        button.isUserInteractionEnabled = false
+        button.layer.backgroundColor = UIColor.systemGray5.cgColor
+        activityIndicator.center = CGPoint(x: button.bounds.width / 2 , y: button.bounds.height / 2)
+        button.addSubview(activityIndicator)
+        button.setTitle("", for: .disabled)
+        activityIndicator.startAnimating()
+    }
+    
+    internal func afterDissmissed(_ button: UIButton, title: String) {
+        activityIndicator.stopAnimating()
+        button.isEnabled = true
+        button.isUserInteractionEnabled = true
+        button.layer.backgroundColor = UIColor.systemBlue.cgColor
+        button.setTitle(title, for: .normal)
+    }
+    
+    internal func getLocationNameFromCoordinates(lat: Double, lon: Double, completion: @escaping (String?) -> Void) {
         
         let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
         geocoder.reverseGeocodeCoordinate(coordinate) { response, error in
-            guard error == nil, let result = response?.results() else {
+            guard error == nil, let result = response?.firstResult() else {
                 print("Geocoding error: \(error?.localizedDescription ?? "Unknown error")")
                 completion(nil)
                 return
             }
             
-            result.forEach { data in
-                guard let city = data.locality, let country = data.country else { return }
-                let name = "\(city), \(country)"
-                completion(name)
-            }
+            guard let city = result.administrativeArea, let country = result.country else { return }
+            let address = "\(city), \(country)"
+            completion(address)
         }
     }
     
-    func storeToken(with token: String) {
+    internal func getAddressFromCurrentLocation(lat: Double, lon: Double, completion: @escaping (String?) -> Void) {
+        
+        let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
+        geocoder.reverseGeocodeCoordinate(coordinate) { response, error in
+            guard error == nil, let result = response?.firstResult() else {
+                print("Geocoding error: \(error?.localizedDescription ?? "Unknown error")")
+                completion(nil)
+                return
+            }
+            
+            var name = result.lines?.joined(separator: "")
+            completion(name)
+        }
+    }
+    
+    internal func storeToken(with token: String) {
         // Prepare the data to be stored (your authentication token)
         let tokenData = token.data(using: .utf8)
         
@@ -75,7 +118,7 @@ class BaseViewController: UIViewController {
         }
     }
     
-    func getTokenFromKeychain() -> String? {
+    internal func getTokenFromKeychain() -> String? {
         let query: [CFString: Any] = [
             kSecClass: kSecClassGenericPassword,
             kSecAttrAccount: "AuthToken",
@@ -92,7 +135,7 @@ class BaseViewController: UIViewController {
         }
     }
     
-    func deleteToken() {
+    internal func deleteToken() {
         let query: [CFString: Any] = [
             kSecClass: kSecClassGenericPassword,
             kSecAttrAccount: "AuthToken",
@@ -106,4 +149,52 @@ class BaseViewController: UIViewController {
             print("Failed to delete token from Keychain")
         }
     }
+    
+    internal func checkLocationAuthorization(_ map: GMSMapView) {
+        switch locationManager.authorizationStatus {
+        case .authorizedWhenInUse, .authorizedAlways:
+            map.isMyLocationEnabled = true
+            map.settings.myLocationButton = true
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.requestLocation()
+        case .denied, .restricted:
+            break
+        case .notDetermined:
+            locationManager.requestWhenInUseAuthorization()
+        default:
+            break
+        }
+    }
+    
+  internal func locationManager(
+    _ manager: CLLocationManager,
+    didChangeAuthorization status: CLAuthorizationStatus
+  ) {
+    checkLocationAuthorization(map)
+  }
+
+  // 6
+  internal func locationManager(
+    _ manager: CLLocationManager,
+    didUpdateLocations locations: [CLLocation]) {
+    guard let location = locations.first else {
+      return
+    }
+    latitude = location.coordinate.latitude
+    longitude = location.coordinate.longitude
+    map.camera = GMSCameraPosition(
+      target: location.coordinate,
+      zoom: 15,
+      bearing: 0,
+      viewingAngle: 0)
+  }
+
+  // 8
+  internal func locationManager(
+    _ manager: CLLocationManager,
+    didFailWithError error: Error
+  ) {
+    print(error)
+  }
 }

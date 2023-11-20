@@ -1,3 +1,4 @@
+import FloatingPanel
 import SkeletonView
 
 extension StoryViewController {
@@ -26,11 +27,20 @@ extension StoryViewController {
     
     func setup(){
         navigationItem.title = "Snapgram"
+        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        storyTable.refreshControl = refreshControl
         storyTable.delegate = self
         storyTable.dataSource = self
-        vm.fetchStory(param: StoryTableParam())
         storyTable.registerCellWithNib(StoryTableCell.self)
         storyTable.registerCellWithNib(SnapTableCell.self)
+    }
+    
+    func setupCommentPanel() {
+        floatingPanel.delegate = self
+        floatingPanel.surfaceView.makeCornerRadius(24.0)
+        floatingPanel.backdropView.dismissalTapGestureRecognizer.isEnabled = true
+        floatingPanel.isRemovalInteractionEnabled = true
+        floatingPanel.contentMode = .fitToBounds
     }
     
     func loadMoreData() {
@@ -45,6 +55,30 @@ extension StoryViewController {
         self.refreshControl.endRefreshing()
         self.storyTable.hideLoadingFooter()
     }
+}
+
+extension StoryViewController: FloatingPanelControllerDelegate {
+    
+    // Untuk membuat custom layout pada Floating Panel
+    func floatingPanel(_ vc: FloatingPanelController, layoutFor newCollection: UITraitCollection) -> FloatingPanelLayout {
+        return CustomFloatingPanelLayout()
+    }
+    // Untuk animasi saat membuka floating panel
+    func floatingPanel(_ fpc: FloatingPanelController, animatorForPresentingTo state: FloatingPanelState) -> UIViewPropertyAnimator {
+        return UIViewPropertyAnimator(duration: TimeInterval(0.16), curve: .easeOut)
+    }
+    // Untuk animasi saat menuntup floating panel
+    func floatingPanel(_ fpc: FloatingPanelController, animatorForDismissingWith velocity: CGVector) -> UIViewPropertyAnimator {
+      return UIViewPropertyAnimator(duration: TimeInterval(0.16), curve: .easeOut)
+    }
+    
+//    func floatingPanel(
+//            _ fpc: FloatingPanelController,
+//            shouldAllowToScroll trackingScrollView: UIScrollView,
+//            in state: FloatingPanelState
+//        ) -> Bool {
+//            return state == .full || state == .half
+//        }
 }
 
 extension StoryViewController: SkeletonTableViewDataSource {
@@ -62,7 +96,7 @@ extension StoryViewController: SkeletonTableViewDataSource {
         }
     }
     func collectionSkeletonView(_ tableView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
-        let table = SectionTable(rawValue: indexPath.section)
+        let table = SectionStoryTable(rawValue: indexPath.section)
         switch table {
         case .snap:
             return String(describing: SnapTableCell.self)
@@ -75,15 +109,30 @@ extension StoryViewController: SkeletonTableViewDataSource {
 }
 
 extension StoryViewController: StoryTableCellDelegate {
+    func getLocationName(lat: Double?, lon: Double?, completion: ((String) -> Void)?) {
+        if let lat = lat, let lon = lon {
+            getLocationNameFromCoordinates(lat: lat, lon: lon) { name in
+                completion?(name ?? "")
+            }
+        }
+    }
+    
+    func openComment(index: Int) {
+        let cvc = CommentViewController()
+        floatingPanel.set(contentViewController: cvc)
+        self.present(floatingPanel, animated: true)
+    }
+    
     func addLike(index: Int, isLike: Bool) {
-        if isLike {
-            listStory[index].likesCount += 1
-            print("menambahkan like index ke \(index)")
-        } else {
+//        let indexPath = storyTable.indexPathForRow(at: point)
+        guard isLike else {
             listStory[index].likesCount -= 1
             print("mengurangi like index ke \(index)")
+            storyTable.reloadRows(at: [IndexPath(row: index, section: 2)], with: .none)
+            return
         }
-        storyTable.reloadData()
+        listStory[index].likesCount += 1
+        storyTable.reloadRows(at: [IndexPath(row: index, section: 2)], with: .none)
     }
 }
 

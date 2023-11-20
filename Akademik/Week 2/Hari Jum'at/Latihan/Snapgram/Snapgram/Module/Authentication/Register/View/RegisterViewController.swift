@@ -9,6 +9,7 @@ class RegisterViewController: BaseViewController {
     @IBOutlet weak var passwordInputField: CustomInputField!
     @IBOutlet weak var confirmPasswordInputField: CustomInputField!
     @IBOutlet weak var signUpBtn: CustomButton!
+    @IBOutlet weak var signInBtn: UIButton!
     
     let vm = RegisterViewModel()
     var registerResponse: RegisterResponse?

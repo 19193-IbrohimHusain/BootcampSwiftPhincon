@@ -15,6 +15,7 @@
                 <outlet property="nameInputField" destination="M2Y-8E-Yvf" id="iKD-g7-KCD"/>
                 <outlet property="passwordInputField" destination="hru-5j-xga" id="7Tp-7s-kRS"/>
                 <outlet property="registerAnimation" destination="rrt-rv-o25" id="vip-4c-O0e"/>
+                <outlet property="signInBtn" destination="FEr-DH-OYh" id="Cs4-Eb-Xqs"/>
                 <outlet property="signUpBtn" destination="uw0-Mk-Cp0" id="fOh-jl-hgY"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>

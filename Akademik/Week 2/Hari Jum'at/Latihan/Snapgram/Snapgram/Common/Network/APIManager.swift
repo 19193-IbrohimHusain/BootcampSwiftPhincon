@@ -84,15 +84,22 @@ final class APIManager {
         
         for case let (label?, value) in mirror.children {
             switch label {
-            case "photo":
-                if let image = value as? UIImage, let imageData = image.jpegData(compressionQuality: 0.5) {
-                    body.append(multipartFormData(withName: "photo", fileName: "image.png", mimeType: "image/png", using: boundary))
-                    body.append(imageData)
-                }
-            case "lat", "long", "description":
+            case "description":
                 if let stringValue = value as? String {
                     body.append(convertFormField(named: label, value: stringValue, using: boundary))
                 }
+                
+            case "photo":
+                if let image = value as? UIImage, let imageData = image.jpegData(compressionQuality: 0.5) {
+                    body.append(multipartFormData(withName: label, fileName: "image.png", mimeType: "image/png", using: boundary))
+                    body.append(imageData)
+                }
+                
+            case "lat", "lon":
+                if let floatValue = value as? Float {
+                    body.append(convertLatLonToRequestBody(label, value: floatValue, using: boundary))
+                }
+            
             default:
                 break
             }
@@ -108,6 +115,13 @@ final class APIManager {
         request.httpBody = jsonData
     }
     
+    private func convertFormField(named name: String, value: String, using boundary: String) -> Data {
+        var fieldString = "--\(boundary)\r\n"
+        fieldString += "Content-Disposition: form-data; name=\"\(name)\"\r\n\r\n"
+        fieldString += "\(value)"
+        return fieldString.data(using: .utf8)!
+    }
+    
     private func multipartFormData(withName name: String, fileName: String, mimeType: String, using boundary: String) -> Data {
         let body = NSMutableData()
         
@@ -117,10 +131,10 @@ final class APIManager {
         return body as Data
     }
     
-    private func convertFormField(named name: String, value: String, using boundary: String) -> Data {
-        var fieldString = "--\(boundary)\r\n"
+    private func convertLatLonToRequestBody(_ name: String, value: Float, using boundary: String) -> Data {
+        var fieldString = "\r\n--\(boundary)\r\n"
         fieldString += "Content-Disposition: form-data; name=\"\(name)\"\r\n\r\n"
-        fieldString += "\(value)\r\n"
+        fieldString += "\(value)"
         return fieldString.data(using: .utf8)!
     }
 }

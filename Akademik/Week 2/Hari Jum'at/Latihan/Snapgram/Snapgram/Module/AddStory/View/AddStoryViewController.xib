@@ -15,7 +15,7 @@
                 <outlet property="locationLabel" destination="e6Q-3B-NcO" id="iye-LM-mhm"/>
                 <outlet property="openCamera" destination="NY5-fm-7aP" id="RLT-Vy-9ZQ"/>
                 <outlet property="openGallery" destination="hCf-kH-HDw" id="Ttz-TK-iuO"/>
-                <outlet property="postStoryBtn" destination="t9p-52-OZw" id="2cy-08-2Ih"/>
+                <outlet property="postStoryBtn" destination="t9p-52-OZw" id="jsH-x3-aib"/>
                 <outlet property="uploadedImage" destination="OM1-42-5ff" id="O9P-et-kpM"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -25,7 +25,7 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Blank Image" translatesAutoresizingMaskIntoConstraints="NO" id="OM1-42-5ff">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" highlightedImage="Blank Image" translatesAutoresizingMaskIntoConstraints="NO" id="OM1-42-5ff">
                     <rect key="frame" x="0.0" y="59" width="393" height="250"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="250" id="1fy-J2-7MY"/>
@@ -75,20 +75,20 @@
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="plain" image="xmark" catalog="system"/>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jatisari, Senori, 424F+QQ7, Dusun Mawot, Sugiharjo, Kec. Kosambi, Kabupaten Subang, Jawa Utara 47281, Indonesia" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e6Q-3B-NcO">
-                    <rect key="frame" x="16" y="425.33333333333331" width="361" height="70.333333333333314"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jatisari, Senori, 424F+QQ7, Dusun Mawot, Sugiharjo, Kec. Kosambi, Kabupaten Subang, Jawa Utara 47281, Indonesia" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e6Q-3B-NcO">
+                    <rect key="frame" x="16" y="425.33333333333331" width="361" height="100.33333333333331"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Caption" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SOF-hF-bL9">
-                    <rect key="frame" x="16" y="503.66666666666669" width="62" height="16.333333333333314"/>
+                    <rect key="frame" x="16" y="533.66666666666663" width="62" height="16.333333333333371"/>
                     <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="14"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Write your thoughts..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OkL-8K-yJK">
-                    <rect key="frame" x="16" y="528" width="361" height="150"/>
+                    <rect key="frame" x="16" y="558" width="361" height="150"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="150" id="ZPA-WU-WI0"/>
                     </constraints>
@@ -96,12 +96,14 @@
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t9p-52-OZw">
-                    <rect key="frame" x="50" y="688" width="293" height="50"/>
+                    <rect key="frame" x="50" y="718" width="293" height="50"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="hEQ-aY-WGI"/>
                     </constraints>
                     <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="filled" title="Post Story"/>
+                    <buttonConfiguration key="configuration" style="filled" title="Post Story">
+                        <backgroundConfiguration key="background" cornerRadius="8"/>
+                    </buttonConfiguration>
                     <connections>
                         <action selector="uploadStory" destination="-1" eventType="touchUpInside" id="LoK-vv-scF"/>
                     </connections>
@@ -131,7 +133,7 @@
                 <constraint firstItem="5LB-QQ-pa4" firstAttribute="top" secondItem="OM1-42-5ff" secondAttribute="bottom" constant="20" id="lE2-EM-shE"/>
                 <constraint firstItem="e6Q-3B-NcO" firstAttribute="top" secondItem="Jhq-L1-uOc" secondAttribute="bottom" constant="10" id="mlh-D3-lSQ"/>
                 <constraint firstItem="Jhq-L1-uOc" firstAttribute="top" secondItem="5LB-QQ-pa4" secondAttribute="bottom" constant="20" id="odC-aS-Kww"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="t9p-52-OZw" secondAttribute="bottom" constant="80" id="ojU-pd-hza"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="t9p-52-OZw" secondAttribute="bottom" constant="50" id="ojU-pd-hza"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="t9p-52-OZw" secondAttribute="trailing" constant="50" id="rGt-WC-d2Q"/>
             </constraints>
             <point key="canvasLocation" x="49.618320610687022" y="20.422535211267608"/>
