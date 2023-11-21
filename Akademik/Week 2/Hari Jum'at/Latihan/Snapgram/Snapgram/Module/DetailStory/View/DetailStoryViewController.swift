@@ -7,7 +7,6 @@ class DetailStoryViewController: BaseViewController {
     
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var username: UILabel!
-    @IBOutlet weak var location: UILabel!
     @IBOutlet weak var uploadedImage: UIImageView!
     @IBOutlet weak var likeBtn: UIButton!
     @IBOutlet weak var caption: UILabel!
@@ -42,7 +41,6 @@ class DetailStoryViewController: BaseViewController {
         if let validDetail = detailStory?.story {
             navigationItem.title = "\(validDetail.name)'s Story"
             username.text = validDetail.name
-            location.isHidden = true
             let url = URL(string: validDetail.photoURL)
             uploadedImage.kf.setImage(with: url, options: [
                 .loadDiskFileSynchronously,
@@ -65,14 +63,19 @@ class DetailStoryViewController: BaseViewController {
             }
             guard validDetail.lat == nil && validDetail.lon == nil else {
                 if let lat = validDetail.lat, let lon = validDetail.lon {
-                    getLocationNameFromCoordinates(lat: lat, lon: lon) { name in
-                        if let locationName = name {
-                            self.location.isHidden = false
-                            self.location.text = locationName
+                    DispatchQueue.main.async {
+                        self.getLocationNameFromCoordinates(lat: lat, lon: lon) { name in
+                            if let locationName = name {
+                                let attributedString = NSAttributedString(string: "\(validDetail.name)\n\(locationName)")
+                                let attributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14, weight: .regular)]
+                                let range = NSRange(location: validDetail.name.count + 1, length: locationName.count)
+                                let attributedText = attributedString.applyingAttributes(attributes, toRange: range)
+                                self.username.attributedText = attributedText
+                            }
                         }
                     }
                 }
-                return location.isHidden = true
+                return
             }
         }
     }

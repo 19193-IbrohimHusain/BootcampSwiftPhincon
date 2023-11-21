@@ -9,10 +9,11 @@ enum SectionStoryTable: Int, CaseIterable {
     case snap, story
 }
 
-class StoryViewController: BaseViewController {
+class StoryViewController: BaseBottomSheetController {
     
     @IBOutlet weak var storyTable: UITableView!
     
+    let cvc = CommentViewController()
     var vm = StoryViewModel()
     var page = Int()
     var listStory: [ListStory] = [] {
@@ -66,6 +67,7 @@ extension StoryViewController: UITableViewDelegate, UITableViewDataSource {
             let cell1 = tableView.dequeueReusableCell(forIndexPath: indexPath) as StoryTableCell
             let storyEntity = listStory[indexPath.row]
             cell1.configure(with: storyEntity)
+            cell1.uploadedImage.tag = indexPath.row
             cell1.commentCount.tag = indexPath.row
             cell1.likeButton.tag = indexPath.row
             cell1.commentBtn.tag = indexPath.row

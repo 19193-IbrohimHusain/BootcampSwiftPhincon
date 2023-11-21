@@ -80,6 +80,7 @@
 		36B1DAB62B06095C009C04EE /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B1DAB52B06095C009C04EE /* BaseViewModel.swift */; };
 		36B1DABA2B060B12009C04EE /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B1DAB92B060B12009C04EE /* LoginViewModel.swift */; };
 		36B1DAC02B061EB3009C04EE /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B1DABF2B061EB3009C04EE /* RegisterViewModel.swift */; };
+		36B6A5DB2B0C56510090E556 /* BaseBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B6A5DA2B0C56510090E556 /* BaseBottomSheetViewController.swift */; };
 		36CCE84A2AF8898500E4AF69 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 36CCE8492AF8898500E4AF69 /* Podfile */; };
 		36CCE8552AF89FE500E4AF69 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CCE8542AF89FE500E4AF69 /* APIManager.swift */; };
 		36CCE8572AF89FFC00E4AF69 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CCE8562AF89FFC00E4AF69 /* Endpoint.swift */; };
@@ -210,6 +211,7 @@
 		36B1DAB52B06095C009C04EE /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 		36B1DAB92B060B12009C04EE /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		36B1DABF2B061EB3009C04EE /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
+		36B6A5DA2B0C56510090E556 /* BaseBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseBottomSheetViewController.swift; sourceTree = "<group>"; };
 		36CCE8492AF8898500E4AF69 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		36CCE8542AF89FE500E4AF69 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		36CCE8562AF89FFC00E4AF69 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
@@ -401,6 +403,7 @@
 				361905252AF4EF2400DA3DF0 /* BaseViewController.swift */,
 				361905AD2AF4FA9A00DA3DF0 /* Constants.swift */,
 				36B1DAB52B06095C009C04EE /* BaseViewModel.swift */,
+				36B6A5DA2B0C56510090E556 /* BaseBottomSheetViewController.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1363,6 +1366,7 @@
 				361905A82AF4F10F00DA3DF0 /* SnapTableCell.swift in Sources */,
 				3684BDEB2AFA0DFA006BB9A0 /* ExtString.swift in Sources */,
 				36B1DAB42B060925009C04EE /* ProfileViewModel.swift in Sources */,
+				36B6A5DB2B0C56510090E556 /* BaseBottomSheetViewController.swift in Sources */,
 				3694B5342AFB3C16003C11D8 /* AddStoryEntity.swift in Sources */,
 				361904532AF4EC8100DA3DF0 /* SceneDelegate.swift in Sources */,
 				36EF4D0C2B070EBF00EBB278 /* ExtUIImage.swift in Sources */,

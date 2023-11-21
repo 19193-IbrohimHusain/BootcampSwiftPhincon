@@ -11,9 +11,9 @@ protocol StoryTableCellDelegate {
 class StoryTableCell: UITableViewCell {
     
     @IBOutlet weak var profileImage: UIImageView!
-    @IBOutlet weak var location: UILabel!
     @IBOutlet weak var username: UILabel!
     @IBOutlet weak var uploadedImage: UIImageView!
+    @IBOutlet weak var likePopUp: UIImageView!
     @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var commentBtn: UIButton!
     @IBOutlet weak var shareBtn: UIButton!
@@ -35,18 +35,23 @@ class StoryTableCell: UITableViewCell {
     
     func setup() {
         self.selectionStyle = .none
-        profileImage.layer.cornerRadius = 18
+        profileImage.layer.cornerRadius = 15
+        let doubleTapGesture = UITapGestureRecognizer(target: self, action: #selector(onImageDoubleTap(_:)))
+        doubleTapGesture.numberOfTapsRequired = 2
+        uploadedImage.isUserInteractionEnabled = true
+        uploadedImage.addGestureRecognizer(doubleTapGesture)
         commentCount.isUserInteractionEnabled = true
         commentCount.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onCommentLabelTap(_:))))
         likeButton.isSelected = false
         likeButton.setAnimateBounce()
         commentBtn.setAnimateBounce()
         shareBtn.setAnimateBounce()
+        self.likePopUp.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
+
     }
     
     func configure(with storyEntity: ListStory) {
         profileImage.image = UIImage(named: "Blank")
-        location.isHidden = true
         username.text = storyEntity.name
         let url = URL(string: storyEntity.photoURL)
         let processor = DownsamplingImageProcessor(size: CGSize(width: 320, height: 320))
@@ -70,35 +75,60 @@ class StoryTableCell: UITableViewCell {
             createdAt.text = timeAgo
         }
         guard storyEntity.lat == nil && storyEntity.lon == nil else {
-            self.delegate?.getLocationName(lat: storyEntity.lat, lon: storyEntity.lon) { locationName in
-                    self.location.isHidden = false
-                    self.location.text = locationName
+            DispatchQueue.main.async {
+                self.delegate?.getLocationName(lat: storyEntity.lat, lon: storyEntity.lon) { locationName in
+                    let attributedString = NSAttributedString(string: "\(storyEntity.name)\n\(locationName)")
+                    let attributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12, weight: .regular)]
+                    let range = NSRange(location: storyEntity.name.count + 1, length: locationName.count)
+                    let attributedText = attributedString.applyingAttributes(attributes, toRange: range)
+                    self.username.attributedText = attributedText
+                }
             }
-            return location.isHidden = true
+            return
         }
     }
     
+    @objc func onImageDoubleTap(_ sender: UITapGestureRecognizer) {
+        DispatchQueue.main.async {
+            guard self.likeButton.isSelected == false else{ return }
+            self.likeButton.isSelected = true
+            self.likeButton.setImage(UIImage(systemName: "heart.fill"), for: .selected)
+            self.likeButton.tintColor = .systemRed
+            self.displayPopUp()
+        }
+    }
+    
+    func displayPopUp() {
+        self.likePopUp.isHidden = false
+        UIView.animate(withDuration: 0.5 , delay: 0.0 , usingSpringWithDamping: 0.5, initialSpringVelocity: 0.3, options: [.curveEaseInOut], animations: {
+            self.likePopUp.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+        }, completion: { _ in
+            UIView.animate(withDuration: 0.2, animations: {
+                self.likePopUp.transform = .identity
+            }, completion: { _ in
+                self.likePopUp.isHidden = true
+                self.delegate?.addLike(index: self.indexSelected, isLike: true)
+            })
+        })
+    }
+    
     @IBAction func onLikeBtnTap(_ sender: UIButton) {
-        likeButton.isSelected.toggle()
-        if likeButton.isSelected {
-            likeButton.setImage(UIImage(systemName: "heart.fill"), for: .selected)
-            likeButton.tintColor = UIColor.systemRed
-            guard sender.tag == indexSelected else {
-                return
+        DispatchQueue.main.async {
+            self.likeButton.isSelected.toggle()
+            if self.likeButton.isSelected {
+                self.likeButton.setImage(UIImage(systemName: "heart.fill"), for: .selected)
+                self.likeButton.tintColor = UIColor.systemRed
+                self.delegate?.addLike(index: self.indexSelected, isLike: true)
+            } else {
+                self.likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
+                self.likeButton.tintColor = UIColor.label
+                self.delegate?.addLike(index: self.indexSelected, isLike: false)
             }
-            self.delegate?.addLike(index: sender.tag , isLike: true)
-        } else {
-            likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
-            likeButton.tintColor = UIColor.label
-            guard sender.tag == indexSelected else {
-                return
-            }
-            self.delegate?.addLike(index: sender.tag, isLike: false)
         }
     }
     
     @IBAction func onCommentBtnTap(_ sender: UIButton) {
-        self.delegate?.openComment(index: sender.tag)
+        self.delegate?.openComment(index: indexSelected)
     }
     
     @objc func onCommentLabelTap(_ sender: UITapGestureRecognizer) {

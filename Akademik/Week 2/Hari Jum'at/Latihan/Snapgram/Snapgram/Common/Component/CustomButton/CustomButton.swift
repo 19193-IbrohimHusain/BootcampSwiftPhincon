@@ -28,11 +28,6 @@ class CustomButton: UIView {
         customButton.becomeFirstResponder()
         customButton.isEnabled = false
         customButton.isUserInteractionEnabled = false
-//        customButton.layer.backgroundColor = UIColor.systemGray5.cgColor
-//        let activityIndicator = UIActivityIndicatorView(style: .medium)
-//        activityIndicator.startAnimating()
-//        activityIndicator.center = CGPoint(x: customButton.bounds.width / 2 , y: customButton.bounds.height / 2)
-//        customButton.addSubview(activityIndicator)
         customButton.setTitle("", for: .disabled)
         customButton.setImage(UIImage(systemName: ""), for: .disabled)
     }

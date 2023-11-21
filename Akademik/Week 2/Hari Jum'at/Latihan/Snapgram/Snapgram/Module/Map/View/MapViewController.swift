@@ -80,10 +80,10 @@ extension MapViewController: GMSMapViewDelegate {
         infoView.removeFromSuperview()
     }
     
-//    func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
-//        infoView.center = mapView.projection.point(for: marker.position)
-//        infoView.center.y = infoView.center.y - 100
-//    }
+    //    func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
+    //        infoView.center = mapView.projection.point(for: marker.position)
+    //        infoView.center.y = infoView.center.y - 100
+    //    }
     
     func showInfoView(marker: GMSMarker, at point: CGPoint) {
         let width = 200.0
@@ -112,9 +112,10 @@ extension MapViewController: GMSMapViewDelegate {
 
 extension MapViewController: CustomViewMarkerDelegate {
     func navigateTo(id: String) {
-            let vc = DetailStoryViewController()
-            vc.storyID = id
-            self.navigationController?.pushViewController(vc, animated: true)
-            infoView.removeFromSuperview()
+        let vc = DetailStoryViewController()
+        vc.storyID = id
+        self.navigationController?.isNavigationBarHidden = false
+        self.navigationController?.pushViewController(vc, animated: true)
+        infoView.removeFromSuperview()
     }
 }

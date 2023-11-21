@@ -36,11 +36,7 @@ extension StoryViewController {
     }
     
     func setupCommentPanel() {
-        floatingPanel.delegate = self
-        floatingPanel.surfaceView.makeCornerRadius(24.0)
-        floatingPanel.backdropView.dismissalTapGestureRecognizer.isEnabled = true
-        floatingPanel.isRemovalInteractionEnabled = true
-        floatingPanel.contentMode = .fitToBounds
+        setupBottomSheet(contentVC: cvc, floatingPanelDelegate: self)
     }
     
     func loadMoreData() {
@@ -112,27 +108,24 @@ extension StoryViewController: StoryTableCellDelegate {
     func getLocationName(lat: Double?, lon: Double?, completion: ((String) -> Void)?) {
         if let lat = lat, let lon = lon {
             getLocationNameFromCoordinates(lat: lat, lon: lon) { name in
-                completion?(name ?? "")
+                completion!(name ?? "")
             }
         }
     }
     
     func openComment(index: Int) {
-        let cvc = CommentViewController()
-        floatingPanel.set(contentViewController: cvc)
         self.present(floatingPanel, animated: true)
     }
     
     func addLike(index: Int, isLike: Bool) {
-//        let indexPath = storyTable.indexPathForRow(at: point)
-        guard isLike else {
+        if isLike {
+            listStory[index].likesCount += 1
+            print("menambahkan like index ke \(index)")
+        } else {
             listStory[index].likesCount -= 1
             print("mengurangi like index ke \(index)")
-            storyTable.reloadRows(at: [IndexPath(row: index, section: 2)], with: .none)
-            return
         }
-        listStory[index].likesCount += 1
-        storyTable.reloadRows(at: [IndexPath(row: index, section: 2)], with: .none)
+        storyTable.reloadSections(IndexSet(integer: 1), with: .none)
     }
 }
 
@@ -140,6 +133,7 @@ extension StoryViewController: SnapTableCellDelegate {
     func navigateToDetail(id: String) {
         let vc = DetailStoryViewController()
         vc.storyID = id
+        self.navigationController?.isNavigationBarHidden = false
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }

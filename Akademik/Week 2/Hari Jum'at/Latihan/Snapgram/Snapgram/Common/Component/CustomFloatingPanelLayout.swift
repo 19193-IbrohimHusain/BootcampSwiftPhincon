@@ -11,11 +11,14 @@ class CustomFloatingPanelLayout: FloatingPanelLayout {
     ]
     
     func backdropAlpha(for state: FloatingPanelState) -> CGFloat {
-        if state == .half {
-            return 0.64
-        } else {
+        switch state {
+        case .full:
+            return 0.8
+        case .half:
+            return 0.5
+        default:
             return 0
-      }
+        }
     }
 }
 

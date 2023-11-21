@@ -48,9 +48,9 @@ class ProfileViewController: BaseViewController {
     
     func noSafeArea(){
             self.navigationController?.isNavigationBarHidden = true
-            let topInset: CGFloat = -20  // Adjust this value as needed
-            profileTable.contentInset = UIEdgeInsets(top: topInset, left: 0, bottom: 0, right: 0)
-            profileTable.scrollIndicatorInsets = UIEdgeInsets(top: topInset, left: 0, bottom: 0, right: 0)
+//            let topInset: CGFloat = -20  // Adjust this value as needed
+//            profileTable.contentInset = UIEdgeInsets(top: topInset, left: 0, bottom: 0, right: 0)
+//            profileTable.scrollIndicatorInsets = UIEdgeInsets(top: topInset, left: 0, bottom: 0, right: 0)
         }
     
     func bindData() {

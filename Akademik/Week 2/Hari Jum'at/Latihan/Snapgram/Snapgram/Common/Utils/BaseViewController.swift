@@ -2,7 +2,6 @@ import UIKit
 import GoogleMaps
 import Security
 import RxSwift
-import FloatingPanel
 
 class BaseViewController: UIViewController, CLLocationManagerDelegate {
     internal let pickerImage = UIImagePickerController()
@@ -16,8 +15,6 @@ class BaseViewController: UIViewController, CLLocationManagerDelegate {
     internal var bounds = GMSCoordinateBounds()
     internal var latitude = Double()
     internal var longitude = Double()
-    internal var floatingPanel = FloatingPanelController()
-
     
     internal func validateInputField(_ inputField: CustomInputField, message: String, completion: @escaping () -> Void) -> Bool {
         guard let text = inputField.textField.text, !text.isEmpty else {
@@ -92,7 +89,7 @@ class BaseViewController: UIViewController, CLLocationManagerDelegate {
                 return
             }
             
-            var name = result.lines?.joined(separator: "")
+            let name = result.lines?.joined(separator: "")
             completion(name)
         }
     }

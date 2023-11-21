@@ -10,7 +10,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CommentViewController" customModule="Snapgram" customModuleProvider="target">
             <connections>
+                <outlet property="bottomView" destination="fez-pk-l9p" id="4Xr-7v-qzj"/>
                 <outlet property="commentTable" destination="rfK-fQ-KIq" id="mW2-mF-5ec"/>
+                <outlet property="commentTextField" destination="wi4-I4-lmT" id="Y3F-ze-6l2"/>
+                <outlet property="emojiCollection" destination="n0P-4L-do4" id="GxB-9i-dhP"/>
+                <outlet property="gifBtn" destination="M2m-tj-3tS" id="qug-en-93d"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -19,39 +23,60 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="rfK-fQ-KIq">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="rfK-fQ-KIq">
                     <rect key="frame" x="0.0" y="131" width="393" height="721"/>
                 </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fez-pk-l9p">
-                    <rect key="frame" x="0.0" y="739" width="393" height="113"/>
+                    <rect key="frame" x="0.0" y="738" width="393" height="114"/>
                     <subviews>
                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="n0P-4L-do4">
-                            <rect key="frame" x="0.0" y="0.0" width="393" height="50"/>
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="40"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="50" id="w3B-Sc-mng"/>
+                                <constraint firstAttribute="height" constant="40" id="w3B-Sc-mng"/>
                             </constraints>
                             <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="wep-Yx-meO">
-                                <size key="itemSize" width="128" height="128"/>
+                                <size key="itemSize" width="36" height="40"/>
                                 <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                 <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                 <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                             </collectionViewFlowLayout>
                         </collectionView>
-                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wi4-I4-lmT">
-                            <rect key="frame" x="50" y="60" width="293" height="43"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
+                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Add a comment for ..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wi4-I4-lmT">
+                            <rect key="frame" x="60" y="40" width="281" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="tUS-cn-Iv5"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
                         </textField>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Blank" translatesAutoresizingMaskIntoConstraints="NO" id="eNq-FU-Sg0">
+                            <rect key="frame" x="16" y="42" width="36" height="36"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="36" id="PiV-8j-v6H"/>
+                                <constraint firstAttribute="width" constant="36" id="x8L-EH-DOZ"/>
+                            </constraints>
+                        </imageView>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GIF" translatesAutoresizingMaskIntoConstraints="NO" id="M2m-tj-3tS">
+                            <rect key="frame" x="341" y="42" width="36" height="36"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="36" id="9gn-Go-aX5"/>
+                                <constraint firstAttribute="height" constant="36" id="wMm-uB-gVo"/>
+                            </constraints>
+                        </imageView>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
+                        <constraint firstAttribute="trailing" secondItem="M2m-tj-3tS" secondAttribute="trailing" constant="16" id="0r9-RK-D8Z"/>
+                        <constraint firstItem="M2m-tj-3tS" firstAttribute="leading" secondItem="wi4-I4-lmT" secondAttribute="trailing" id="3sv-oT-Gsg"/>
+                        <constraint firstItem="wi4-I4-lmT" firstAttribute="top" secondItem="n0P-4L-do4" secondAttribute="bottom" id="4oM-qN-JFq"/>
                         <constraint firstItem="n0P-4L-do4" firstAttribute="leading" secondItem="fez-pk-l9p" secondAttribute="leading" id="5eR-4r-L7l"/>
-                        <constraint firstAttribute="bottom" secondItem="wi4-I4-lmT" secondAttribute="bottom" constant="10" id="D92-tH-HQH"/>
-                        <constraint firstItem="wi4-I4-lmT" firstAttribute="top" secondItem="n0P-4L-do4" secondAttribute="bottom" constant="10" id="Gr3-r6-7ie"/>
-                        <constraint firstItem="wi4-I4-lmT" firstAttribute="leading" secondItem="fez-pk-l9p" secondAttribute="leading" constant="50" id="Nhb-0p-PDa"/>
-                        <constraint firstAttribute="trailing" secondItem="wi4-I4-lmT" secondAttribute="trailing" constant="50" id="Sxg-ym-FPk"/>
+                        <constraint firstItem="M2m-tj-3tS" firstAttribute="centerY" secondItem="wi4-I4-lmT" secondAttribute="centerY" id="Oor-oD-wXG"/>
+                        <constraint firstItem="wi4-I4-lmT" firstAttribute="leading" secondItem="eNq-FU-Sg0" secondAttribute="trailing" constant="8" id="T9o-Dc-ykL"/>
+                        <constraint firstItem="eNq-FU-Sg0" firstAttribute="centerY" secondItem="wi4-I4-lmT" secondAttribute="centerY" id="bS2-fW-e5Q"/>
+                        <constraint firstAttribute="height" constant="114" id="d22-ov-QwO"/>
                         <constraint firstItem="n0P-4L-do4" firstAttribute="top" secondItem="fez-pk-l9p" secondAttribute="top" id="dct-Sr-S72"/>
+                        <constraint firstItem="eNq-FU-Sg0" firstAttribute="leading" secondItem="fez-pk-l9p" secondAttribute="leading" constant="16" id="gb2-ya-34Y"/>
                         <constraint firstAttribute="trailing" secondItem="n0P-4L-do4" secondAttribute="trailing" id="xga-0R-pQ3"/>
                     </constraints>
                 </view>
@@ -73,7 +98,6 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="fez-pk-l9p" secondAttribute="trailing" id="M57-I8-Kfy"/>
                 <constraint firstItem="3CD-gb-el6" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="140" id="S2k-nm-7Rm"/>
                 <constraint firstItem="3CD-gb-el6" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="40" id="UVX-9j-F5p"/>
-                <constraint firstItem="fez-pk-l9p" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="680" id="dtf-zv-Wr3"/>
                 <constraint firstItem="fez-pk-l9p" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="mCm-NG-Bza"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="rfK-fQ-KIq" secondAttribute="trailing" id="oT3-pz-fqo"/>
                 <constraint firstItem="fez-pk-l9p" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="v8p-PG-n8L"/>
@@ -83,6 +107,8 @@
         </view>
     </objects>
     <resources>
+        <image name="Blank" width="600" height="600"/>
+        <image name="GIF" width="81" height="85"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
