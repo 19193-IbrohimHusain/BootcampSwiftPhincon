@@ -2,8 +2,10 @@ import FloatingPanel
 
 class CustomFloatingPanelLayout: FloatingPanelLayout {
     
+    static let shared = CustomFloatingPanelLayout()
+    
     let position: FloatingPanelPosition = .bottom
-    let initialState: FloatingPanelState = .half
+    var initialState: FloatingPanelState = .half
     
     let anchors: [FloatingPanelState: FloatingPanelLayoutAnchoring] = [
         .full: FloatingPanelLayoutAnchor(absoluteInset: 16.0, edge: .top, referenceGuide: .safeArea),

@@ -67,11 +67,6 @@ extension StoryViewController: UITableViewDelegate, UITableViewDataSource {
             let cell1 = tableView.dequeueReusableCell(forIndexPath: indexPath) as StoryTableCell
             let storyEntity = listStory[indexPath.row]
             cell1.configure(with: storyEntity)
-            cell1.uploadedImage.tag = indexPath.row
-            cell1.commentCount.tag = indexPath.row
-            cell1.likeButton.tag = indexPath.row
-            cell1.commentBtn.tag = indexPath.row
-            cell1.shareBtn.tag = indexPath.row
             cell1.indexSelected = indexPath.row
             cell1.delegate = self
             return cell1

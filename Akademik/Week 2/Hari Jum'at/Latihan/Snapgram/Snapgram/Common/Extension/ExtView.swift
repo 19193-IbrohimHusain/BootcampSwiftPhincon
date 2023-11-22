@@ -14,8 +14,8 @@ extension UIView {
         layer.borderColor = color.cgColor
     }
     
-    func addShadow(color: UIColor = .systemGray6,
-                   offset: CGSize = CGSize(width: 0, height: 3),
+    func addShadow(color: UIColor = .systemGray,
+                   offset: CGSize = CGSize(width: 2, height: 2),
                    opacity: Float = 0.5,
                    radius: CGFloat = 2,
                    path: UIBezierPath? = nil) {

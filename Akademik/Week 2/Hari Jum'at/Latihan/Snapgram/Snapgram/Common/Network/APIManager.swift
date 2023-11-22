@@ -9,6 +9,7 @@ final class APIManager {
     enum APIError: Error {
         case failedToCreateRequest
         case failedToGetData
+        case requestTimedOut
     }
     
     public func fetchRequest<T: Codable>(endpoint: Endpoint, expecting type: T.Type, completion: @escaping (Result<T, Error>) -> Void) {
@@ -19,7 +20,11 @@ final class APIManager {
         
         URLSession.shared.dataTask(with: urlRequest) { data, _, error in
             guard let data = data, error == nil else {
-                completion(.failure(APIError.failedToGetData))
+                if let nsError = error as NSError?, nsError.code == NSURLErrorTimedOut {
+                    completion(.failure(APIError.requestTimedOut))
+                } else {
+                    completion(.failure(APIError.failedToGetData))
+                }
                 return
             }
             

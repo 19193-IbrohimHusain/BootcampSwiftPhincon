@@ -4,7 +4,7 @@ import GoogleMaps
 
 protocol StoryTableCellDelegate {
     func getLocationName(lat: Double?, lon: Double?, completion: ((String) -> Void)?)
-    func addLike(index: Int, isLike: Bool)
+    func addLike(index: Int, isLike: Bool, completion: @escaping () -> Void)
     func openComment(index: Int)
 }
 
@@ -89,42 +89,43 @@ class StoryTableCell: UITableViewCell {
     }
     
     @objc func onImageDoubleTap(_ sender: UITapGestureRecognizer) {
-        DispatchQueue.main.async {
-            guard self.likeButton.isSelected == false else{ return }
-            self.likeButton.isSelected = true
-            self.likeButton.setImage(UIImage(systemName: "heart.fill"), for: .selected)
-            self.likeButton.tintColor = .systemRed
-            self.displayPopUp()
-        }
+        guard self.likePopUp.isHidden == true else { return }
+        self.likePopUp.addShadow()
+        self.likeButton.tag = self.indexSelected
+        self.likeButton.isSelected = true
+        self.likeButton.setImage(UIImage(systemName: "heart.fill"), for: .selected)
+        self.likeButton.tintColor = .systemRed
+        self.displayPopUp()
     }
     
     func displayPopUp() {
         self.likePopUp.isHidden = false
-        UIView.animate(withDuration: 0.5 , delay: 0.0 , usingSpringWithDamping: 0.5, initialSpringVelocity: 0.3, options: [.curveEaseInOut], animations: {
+        UIView.animate(withDuration: 0.8, delay: 0.0 , usingSpringWithDamping: 0.4, initialSpringVelocity: 0.4, options: [.curveEaseInOut], animations: {
             self.likePopUp.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
         }, completion: { _ in
-            UIView.animate(withDuration: 0.2, animations: {
-                self.likePopUp.transform = .identity
+            self.delegate?.addLike(index: self.indexSelected, isLike: true) {
+                print("menambahkan like index ke \(self.indexSelected)")
+            }
+            UIView.animate(withDuration: 0.1, delay: 0.2, options: [.curveEaseInOut], animations: {
+                self.likePopUp.transform = CGAffineTransform(scaleX: 0.2, y: 0.2)
             }, completion: { _ in
                 self.likePopUp.isHidden = true
-                self.delegate?.addLike(index: self.indexSelected, isLike: true)
             })
         })
     }
     
     @IBAction func onLikeBtnTap(_ sender: UIButton) {
-        DispatchQueue.main.async {
-            self.likeButton.isSelected.toggle()
-            if self.likeButton.isSelected {
-                self.likeButton.setImage(UIImage(systemName: "heart.fill"), for: .selected)
-                self.likeButton.tintColor = UIColor.systemRed
-                self.delegate?.addLike(index: self.indexSelected, isLike: true)
-            } else {
-                self.likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
-                self.likeButton.tintColor = UIColor.label
-                self.delegate?.addLike(index: self.indexSelected, isLike: false)
-            }
+        self.likeButton.isSelected.toggle()
+        self.likeButton.isSelected ? self.delegate?.addLike(index: self.indexSelected, isLike: true) {
+            self.likeButton.tag = self.indexSelected
+            self.likeButton.setImage(UIImage(systemName: "heart.fill"), for: .selected)
+            self.likeButton.tintColor = UIColor.systemRed
+        } : self.delegate?.addLike(index: self.indexSelected, isLike: false) {
+            self.likeButton.tag = self.indexSelected
+            self.likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
+            self.likeButton.tintColor = UIColor.label
         }
+        
     }
     
     @IBAction func onCommentBtnTap(_ sender: UIButton) {

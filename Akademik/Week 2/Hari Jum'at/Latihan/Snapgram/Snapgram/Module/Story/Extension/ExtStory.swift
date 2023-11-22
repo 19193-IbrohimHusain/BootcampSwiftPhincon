@@ -17,7 +17,6 @@ extension StoryViewController {
                 self.storyTable.showAnimatedGradientSkeleton()
             case .failed, .finished:
                 DispatchQueue.main.async {
-                    self.refreshControl.endRefreshing()
                     self.storyTable.hideSkeleton()
                 }
             }
@@ -55,26 +54,17 @@ extension StoryViewController {
 
 extension StoryViewController: FloatingPanelControllerDelegate {
     
-    // Untuk membuat custom layout pada Floating Panel
     func floatingPanel(_ vc: FloatingPanelController, layoutFor newCollection: UITraitCollection) -> FloatingPanelLayout {
         return CustomFloatingPanelLayout()
     }
-    // Untuk animasi saat membuka floating panel
+
     func floatingPanel(_ fpc: FloatingPanelController, animatorForPresentingTo state: FloatingPanelState) -> UIViewPropertyAnimator {
         return UIViewPropertyAnimator(duration: TimeInterval(0.16), curve: .easeOut)
     }
-    // Untuk animasi saat menuntup floating panel
+
     func floatingPanel(_ fpc: FloatingPanelController, animatorForDismissingWith velocity: CGVector) -> UIViewPropertyAnimator {
       return UIViewPropertyAnimator(duration: TimeInterval(0.16), curve: .easeOut)
     }
-    
-//    func floatingPanel(
-//            _ fpc: FloatingPanelController,
-//            shouldAllowToScroll trackingScrollView: UIScrollView,
-//            in state: FloatingPanelState
-//        ) -> Bool {
-//            return state == .full || state == .half
-//        }
 }
 
 extension StoryViewController: SkeletonTableViewDataSource {
@@ -117,15 +107,17 @@ extension StoryViewController: StoryTableCellDelegate {
         self.present(floatingPanel, animated: true)
     }
     
-    func addLike(index: Int, isLike: Bool) {
+    func addLike(index: Int, isLike: Bool, completion: @escaping () -> Void) {
         if isLike {
             listStory[index].likesCount += 1
-            print("menambahkan like index ke \(index)")
+            completion()
         } else {
             listStory[index].likesCount -= 1
-            print("mengurangi like index ke \(index)")
+            completion()
         }
-        storyTable.reloadSections(IndexSet(integer: 1), with: .none)
+        DispatchQueue.main.async {
+            self.storyTable.reconfigureRows(at: [IndexPath(row: index, section: 1)])
+        }
     }
 }
 
