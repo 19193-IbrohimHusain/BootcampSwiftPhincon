@@ -22,9 +22,6 @@ class ProfileViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        UINavigationBar.appearance().barTintColor = .white
-        UINavigationBar.appearance().isHidden = true
-        UINavigationBar.appearance().isTranslucent = true
         setupTable()
         bindData()
     }
@@ -32,26 +29,15 @@ class ProfileViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         vm.fetchStory(param: StoryTableParam(size: 1000))
-        UINavigationBar.appearance().barTintColor = .white
-        UINavigationBar.appearance().isHidden = true
-        UINavigationBar.appearance().isTranslucent = true
     }
     
     func setupTable() {
-        noSafeArea()
         profileTable.delegate =  self
         profileTable.dataSource =  self
         profileTable.registerCellWithNib(ProfileTableCell.self)
         profileTable.registerCellWithNib(CategoryTableCell.self)
         profileTable.registerCellWithNib(PostTableCell.self)
     }
-    
-    func noSafeArea(){
-            self.navigationController?.isNavigationBarHidden = true
-//            let topInset: CGFloat = -20  // Adjust this value as needed
-//            profileTable.contentInset = UIEdgeInsets(top: topInset, left: 0, bottom: 0, right: 0)
-//            profileTable.scrollIndicatorInsets = UIEdgeInsets(top: topInset, left: 0, bottom: 0, right: 0)
-        }
     
     func bindData() {
         vm.storyData.asObservable().subscribe(onNext: { [weak self] data in
@@ -136,18 +122,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         SharedDataSource.shared.tableViewOffset = scrollView.contentOffset.y
-        UINavigationBar.appearance().barTintColor = .white
-        updateNavigationBarAppearance(SharedDataSource.shared.tableViewOffset)
     }
-    
-    func updateNavigationBarAppearance(_ yOffset: CGFloat) {
-            // You can customize this part based on your requirements
-            let threshold: CGFloat = 100
-            let alpha = min(1, yOffset / threshold)
-
-            // Set the background color and alpha of the navigation bar
-            navigationController?.navigationBar.backgroundColor = UIColor.white.withAlphaComponent(alpha)
-        }
     
 }
 

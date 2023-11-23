@@ -16,13 +16,7 @@ class StoryViewController: BaseBottomSheetController {
     let cvc = CommentViewController()
     var vm = StoryViewModel()
     var page = Int()
-    var listStory: [ListStory] = [] {
-        didSet {
-            DispatchQueue.main.async {
-                self.storyTable.reloadData()
-            }
-        }
-    }
+    var listStory = [ListStory]()
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,7 +60,7 @@ extension StoryViewController: UITableViewDelegate, UITableViewDataSource {
         case .story:
             let cell1 = tableView.dequeueReusableCell(forIndexPath: indexPath) as StoryTableCell
             let storyEntity = listStory[indexPath.row]
-            cell1.configure(with: storyEntity)
+            cell1.post = storyEntity
             cell1.indexSelected = indexPath.row
             cell1.delegate = self
             return cell1

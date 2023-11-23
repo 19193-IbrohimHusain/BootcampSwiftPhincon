@@ -3,7 +3,7 @@ import Foundation
 // MARK: - LoginResponse
 struct LoginResponse: Codable {
     let error: Bool
-    let message: String
+    let message: String?
     let loginResult: LoginResult?
 
 }

@@ -19,12 +19,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.rootViewController = UINavigationController(rootViewController: SplashScreenViewController() )
         self.window = window
         window.makeKeyAndVisible()
-        
-        UINavigationBar.appearance().isHidden = true
-        UINavigationBar.appearance().backgroundColor = .white
-        UINavigationBar.appearance().standardAppearance.backgroundColor = .white
-        UINavigationBar.appearance().scrollEdgeAppearance?.backgroundColor = .white
-        UINavigationBar.appearance().barTintColor = .white
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -54,7 +48,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
-
-
 }
 

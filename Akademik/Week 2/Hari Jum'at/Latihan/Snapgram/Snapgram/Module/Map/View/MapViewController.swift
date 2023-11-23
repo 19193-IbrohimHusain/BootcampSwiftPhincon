@@ -20,7 +20,6 @@ class MapViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        mapView.delegate = self
         fetchData()
         setup()
     }
@@ -114,7 +113,6 @@ extension MapViewController: CustomViewMarkerDelegate {
     func navigateTo(id: String) {
         let vc = DetailStoryViewController()
         vc.storyID = id
-        self.navigationController?.isNavigationBarHidden = false
         self.navigationController?.pushViewController(vc, animated: true)
         infoView.removeFromSuperview()
     }

@@ -19,21 +19,15 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Snapgram" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uPI-8K-HRN">
-                    <rect key="frame" x="16" y="59" width="118" height="28"/>
-                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="24"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="d1a-dy-Ij4">
-                    <rect key="frame" x="0.0" y="97" width="393" height="755"/>
+                    <rect key="frame" x="0.0" y="59" width="393" height="793"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                     </userDefinedRuntimeAttributes>
                 </tableView>
                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="39D-Lp-lFg">
-                    <rect key="frame" x="76.666666666666686" y="354.66666666666669" width="240" height="240.00000000000006"/>
+                    <rect key="frame" x="76.666666666666686" y="335.66666666666669" width="240" height="240.00000000000006"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="240" id="MVZ-zR-ott"/>
@@ -45,12 +39,10 @@
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="d1a-dy-Ij4" secondAttribute="bottom" id="6cb-vK-aTA"/>
+                <constraint firstItem="d1a-dy-Ij4" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="8E0-Kx-Pg8"/>
                 <constraint firstItem="d1a-dy-Ij4" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="8EI-iX-09o"/>
-                <constraint firstItem="d1a-dy-Ij4" firstAttribute="top" secondItem="uPI-8K-HRN" secondAttribute="bottom" constant="10" id="LJ9-wN-NoW"/>
                 <constraint firstItem="39D-Lp-lFg" firstAttribute="centerY" secondItem="d1a-dy-Ij4" secondAttribute="centerY" id="NKF-4H-vhD"/>
                 <constraint firstItem="39D-Lp-lFg" firstAttribute="centerX" secondItem="d1a-dy-Ij4" secondAttribute="centerX" id="d6d-YJ-sre"/>
-                <constraint firstItem="uPI-8K-HRN" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="f9n-EF-Mu9"/>
-                <constraint firstItem="uPI-8K-HRN" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="pbb-oj-Z16"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="d1a-dy-Ij4" secondAttribute="trailing" id="prQ-PH-TkF"/>
             </constraints>
             <point key="canvasLocation" x="-24" y="20"/>

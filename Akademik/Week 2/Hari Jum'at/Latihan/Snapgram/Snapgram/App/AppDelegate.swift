@@ -15,6 +15,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let cache = ImageCache.default
         cache.memoryStorage.config.totalCostLimit = 1024 * 1024 * 10
         cache.diskStorage.config.sizeLimit = 1024 * 1024 * 100
+        UINavigationBar.appearance().barTintColor = .white
+        
+        // Observe changes in the shared data source
+        NotificationCenter.default.addObserver(self, selector: #selector(updateNavBarBackgroundColor), name: NSNotification.Name("TableViewDidScroll"), object: nil)
         return true
     }
 
@@ -32,6 +36,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
 
-
+    @objc func updateNavBarBackgroundColor() {
+        // Check the table view offset from the shared data source
+        if SharedDataSource.shared.tableViewOffset > 100 { // Adjust the threshold as needed
+            UINavigationBar.appearance().barTintColor = .white
+        } else {
+            UINavigationBar.appearance().barTintColor = .white
+        }
+    }
 }
 

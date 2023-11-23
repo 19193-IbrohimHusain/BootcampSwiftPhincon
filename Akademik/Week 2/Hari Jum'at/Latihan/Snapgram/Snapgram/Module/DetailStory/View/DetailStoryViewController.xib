@@ -12,12 +12,15 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailStoryViewController" customModule="Snapgram" customModuleProvider="target">
             <connections>
                 <outlet property="caption" destination="ys6-KJ-mHa" id="eva-rq-ijB"/>
+                <outlet property="commentBtn" destination="MiS-mH-Nbr" id="FP5-Oa-PfJ"/>
                 <outlet property="commentsCount" destination="CEF-Lf-BQP" id="bC6-Gg-mKp"/>
                 <outlet property="createdAt" destination="sZm-mT-thT" id="T0g-7T-h8X"/>
                 <outlet property="downloadBtn" destination="68P-yj-rQa" id="CRz-P6-99q"/>
                 <outlet property="likeBtn" destination="Ts9-A9-SwK" id="sZJ-Wg-CbB"/>
+                <outlet property="likePopUp" destination="mMN-Bd-n24" id="Zxu-xN-zvb"/>
                 <outlet property="likesCount" destination="SQN-9h-AfJ" id="SNU-4t-UiC"/>
                 <outlet property="profileImage" destination="uX5-7q-uHN" id="seB-X9-F2f"/>
+                <outlet property="shareBtn" destination="a21-fH-Pl2" id="5Bx-4R-Vgc"/>
                 <outlet property="uploadedImage" destination="gVc-AB-gz9" id="ThI-5C-nE7"/>
                 <outlet property="username" destination="Wgs-h5-esp" id="eua-Lr-BJk"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -47,7 +50,7 @@
                         <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                     </userDefinedRuntimeAttributes>
                 </label>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="Kyoto" translatesAutoresizingMaskIntoConstraints="NO" id="gVc-AB-gz9">
+                <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="Kyoto" translatesAutoresizingMaskIntoConstraints="NO" id="gVc-AB-gz9">
                     <rect key="frame" x="0.0" y="115" width="393" height="320"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="320" id="EBg-F3-e3z"/>
@@ -55,6 +58,14 @@
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                     </userDefinedRuntimeAttributes>
+                </imageView>
+                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="mMN-Bd-n24">
+                    <rect key="frame" x="161.66666666666666" y="242" width="70" height="67"/>
+                    <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="0.85896109269999998" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="70" id="4iv-pi-B58"/>
+                        <constraint firstAttribute="width" constant="70" id="PsW-mg-XmF"/>
+                    </constraints>
                 </imageView>
                 <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="dGW-HR-MHV">
                     <rect key="frame" x="16" y="447" width="104" height="24"/>
@@ -70,6 +81,9 @@
                             <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system">
                                 <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="large"/>
                             </buttonConfiguration>
+                            <connections>
+                                <action selector="onLikeBtnTap" destination="-1" eventType="touchUpInside" id="1i0-e6-IJo"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MiS-mH-Nbr">
                             <rect key="frame" x="40" y="0.0" width="24" height="24"/>
@@ -82,6 +96,9 @@
                             <buttonConfiguration key="configuration" style="plain" image="bubble.right" catalog="system">
                                 <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="large"/>
                             </buttonConfiguration>
+                            <connections>
+                                <action selector="onCommentBtnTap" destination="-1" eventType="touchUpInside" id="AkK-S9-2KI"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a21-fH-Pl2">
                             <rect key="frame" x="80" y="0.0" width="24" height="24"/>
@@ -94,6 +111,9 @@
                             <buttonConfiguration key="configuration" style="plain" image="paperplane" catalog="system">
                                 <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="large"/>
                             </buttonConfiguration>
+                            <connections>
+                                <action selector="onShareBtnTap" destination="-1" eventType="touchUpInside" id="H12-Rc-fCr"/>
+                            </connections>
                         </button>
                     </subviews>
                 </stackView>
@@ -116,7 +136,7 @@
                         <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                     </userDefinedRuntimeAttributes>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="109,290 comments" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CEF-Lf-BQP">
+                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="109,290 comments" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CEF-Lf-BQP">
                     <rect key="frame" x="15.999999999999993" y="571.66666666666663" width="102.33333333333331" height="14"/>
                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
                     <color key="textColor" systemColor="systemGrayColor"/>
@@ -162,9 +182,11 @@
                 <constraint firstItem="gVc-AB-gz9" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="OoM-ix-TOg"/>
                 <constraint firstItem="ys6-KJ-mHa" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="Rbg-jX-GD0"/>
                 <constraint firstItem="sZm-mT-thT" firstAttribute="top" secondItem="CEF-Lf-BQP" secondAttribute="bottom" constant="5" id="Vh0-NX-gWo"/>
+                <constraint firstItem="mMN-Bd-n24" firstAttribute="centerX" secondItem="gVc-AB-gz9" secondAttribute="centerX" id="WJq-ui-AqX"/>
                 <constraint firstItem="ys6-KJ-mHa" firstAttribute="top" secondItem="SQN-9h-AfJ" secondAttribute="bottom" constant="5" id="Z36-RW-WUo"/>
                 <constraint firstItem="dGW-HR-MHV" firstAttribute="top" secondItem="gVc-AB-gz9" secondAttribute="bottom" constant="12" id="c7H-V1-3AU"/>
                 <constraint firstItem="CEF-Lf-BQP" firstAttribute="top" secondItem="ys6-KJ-mHa" secondAttribute="bottom" constant="5" id="dAB-Gj-iF8"/>
+                <constraint firstItem="mMN-Bd-n24" firstAttribute="centerY" secondItem="gVc-AB-gz9" secondAttribute="centerY" id="fmV-jt-NfU"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="gVc-AB-gz9" secondAttribute="trailing" id="gjD-11-KOA"/>
                 <constraint firstItem="Wgs-h5-esp" firstAttribute="leading" secondItem="uX5-7q-uHN" secondAttribute="trailing" constant="10" id="h5K-OQ-qXL"/>
                 <constraint firstItem="SQN-9h-AfJ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="jhB-AB-pYb"/>
@@ -183,6 +205,7 @@
         <image name="arrow.down.square.fill" catalog="system" width="128" height="114"/>
         <image name="bubble.right" catalog="system" width="128" height="110"/>
         <image name="heart" catalog="system" width="128" height="107"/>
+        <image name="heart.fill" catalog="system" width="128" height="107"/>
         <image name="paperplane" catalog="system" width="128" height="119"/>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

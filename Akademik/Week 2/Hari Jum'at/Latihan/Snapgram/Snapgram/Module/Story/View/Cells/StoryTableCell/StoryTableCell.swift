@@ -4,7 +4,7 @@ import GoogleMaps
 
 protocol StoryTableCellDelegate {
     func getLocationName(lat: Double?, lon: Double?, completion: ((String) -> Void)?)
-    func addLike(index: Int, isLike: Bool, completion: @escaping () -> Void)
+    func addLike(cell: StoryTableCell)
     func openComment(index: Int)
 }
 
@@ -23,10 +23,14 @@ class StoryTableCell: UITableViewCell {
     @IBOutlet weak var createdAt: UILabel!
     
     var delegate: StoryTableCellDelegate?
-    var indexSelected: Int = Int()
     let dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
     let dateFormatter = DateFormatter()
-    let geocoder = GMSGeocoder()
+    var indexSelected = Int()
+    var post: ListStory? {
+        didSet {
+            configure()
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -46,14 +50,13 @@ class StoryTableCell: UITableViewCell {
         likeButton.setAnimateBounce()
         commentBtn.setAnimateBounce()
         shareBtn.setAnimateBounce()
-        self.likePopUp.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
-
     }
     
-    func configure(with storyEntity: ListStory) {
+    func configure() {
+        guard let post = post else { return }
         profileImage.image = UIImage(named: "Blank")
-        username.text = storyEntity.name
-        let url = URL(string: storyEntity.photoURL)
+        username.text = post.name
+        let url = URL(string: post.photoURL)
         let processor = DownsamplingImageProcessor(size: CGSize(width: 320, height: 320))
         uploadedImage.kf.setImage(with: url, options: [
             .processor(processor),
@@ -61,25 +64,27 @@ class StoryTableCell: UITableViewCell {
             .cacheOriginalImage,
             .transition(.fade(0.25)),
         ])
-        likeCount.text = "\(storyEntity.likesCount) Likes"
-        let attributedString = NSAttributedString(string: "\(storyEntity.name)  \(storyEntity.description)")
+        likeButton.setImage(post.isLiked == true ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart"), for: .normal)
+        likeButton.tintColor = post.isLiked == true ? .systemRed : .label
+        likeCount.text = "\(post.likesCount) Likes"
+        let attributedString = NSAttributedString(string: "\(post.name)  \(post.description)")
         let attributes = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14)]
-        let range = NSRange(location: 0, length: storyEntity.name.count)
+        let range = NSRange(location: 0, length: post.name.count)
         let attributedText = attributedString.applyingAttributes(attributes, toRange: range)
         caption.attributedText = attributedText
-        commentCount.text = "\(storyEntity.commentsCount) comments"
+        commentCount.text = "\(post.commentsCount) comments"
         dateFormatter.dateFormat = dateFormat
         dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
-        if let date = dateFormatter.date(from: storyEntity.createdAt) {
+        if let date = dateFormatter.date(from: post.createdAt) {
             let timeAgo = date.convertDateToTimeAgo()
             createdAt.text = timeAgo
         }
-        guard storyEntity.lat == nil && storyEntity.lon == nil else {
+        guard post.lat == nil && post.lon == nil else {
             DispatchQueue.main.async {
-                self.delegate?.getLocationName(lat: storyEntity.lat, lon: storyEntity.lon) { locationName in
-                    let attributedString = NSAttributedString(string: "\(storyEntity.name)\n\(locationName)")
+                self.delegate?.getLocationName(lat: post.lat, lon: post.lon) { locationName in
+                    let attributedString = NSAttributedString(string: "\(post.name)\n\(locationName)")
                     let attributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12, weight: .regular)]
-                    let range = NSRange(location: storyEntity.name.count + 1, length: locationName.count)
+                    let range = NSRange(location: post.name.count + 1, length: locationName.count)
                     let attributedText = attributedString.applyingAttributes(attributes, toRange: range)
                     self.username.attributedText = attributedText
                 }
@@ -91,10 +96,6 @@ class StoryTableCell: UITableViewCell {
     @objc func onImageDoubleTap(_ sender: UITapGestureRecognizer) {
         guard self.likePopUp.isHidden == true else { return }
         self.likePopUp.addShadow()
-        self.likeButton.tag = self.indexSelected
-        self.likeButton.isSelected = true
-        self.likeButton.setImage(UIImage(systemName: "heart.fill"), for: .selected)
-        self.likeButton.tintColor = .systemRed
         self.displayPopUp()
     }
     
@@ -103,9 +104,7 @@ class StoryTableCell: UITableViewCell {
         UIView.animate(withDuration: 0.8, delay: 0.0 , usingSpringWithDamping: 0.4, initialSpringVelocity: 0.4, options: [.curveEaseInOut], animations: {
             self.likePopUp.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
         }, completion: { _ in
-            self.delegate?.addLike(index: self.indexSelected, isLike: true) {
-                print("menambahkan like index ke \(self.indexSelected)")
-            }
+            self.delegate?.addLike(cell: self)
             UIView.animate(withDuration: 0.1, delay: 0.2, options: [.curveEaseInOut], animations: {
                 self.likePopUp.transform = CGAffineTransform(scaleX: 0.2, y: 0.2)
             }, completion: { _ in
@@ -115,17 +114,7 @@ class StoryTableCell: UITableViewCell {
     }
     
     @IBAction func onLikeBtnTap(_ sender: UIButton) {
-        self.likeButton.isSelected.toggle()
-        self.likeButton.isSelected ? self.delegate?.addLike(index: self.indexSelected, isLike: true) {
-            self.likeButton.tag = self.indexSelected
-            self.likeButton.setImage(UIImage(systemName: "heart.fill"), for: .selected)
-            self.likeButton.tintColor = UIColor.systemRed
-        } : self.delegate?.addLike(index: self.indexSelected, isLike: false) {
-            self.likeButton.tag = self.indexSelected
-            self.likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
-            self.likeButton.tintColor = UIColor.label
-        }
-        
+        self.delegate?.addLike(cell: self)
     }
     
     @IBAction func onCommentBtnTap(_ sender: UIButton) {

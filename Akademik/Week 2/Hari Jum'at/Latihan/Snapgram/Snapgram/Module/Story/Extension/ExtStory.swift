@@ -17,6 +17,9 @@ extension StoryViewController {
                 self.storyTable.showAnimatedGradientSkeleton()
             case .failed, .finished:
                 DispatchQueue.main.async {
+                    UIView.performWithoutAnimation {
+                        self.storyTable.reloadData()
+                    }
                     self.storyTable.hideSkeleton()
                 }
             }
@@ -107,16 +110,23 @@ extension StoryViewController: StoryTableCellDelegate {
         self.present(floatingPanel, animated: true)
     }
     
-    func addLike(index: Int, isLike: Bool, completion: @escaping () -> Void) {
-        if isLike {
-            listStory[index].likesCount += 1
-            completion()
+    func addLike(cell: StoryTableCell) {
+        guard let indexPath = storyTable?.indexPath(for: cell) else { return }
+        var post = listStory[indexPath.item]
+        if post.isLiked {
+            post.isLiked = false
+            post.likesCount -= 1
+            self.listStory[indexPath.item] = post
+            UIView.performWithoutAnimation {
+                self.storyTable?.reloadRows(at: [indexPath], with: .none)
+            }
         } else {
-            listStory[index].likesCount -= 1
-            completion()
-        }
-        DispatchQueue.main.async {
-            self.storyTable.reconfigureRows(at: [IndexPath(row: index, section: 1)])
+            post.isLiked = true
+            post.likesCount += 1
+            self.listStory[indexPath.item] = post
+            UIView.performWithoutAnimation {
+                self.storyTable?.reloadRows(at: [indexPath], with: .none)
+            }
         }
     }
 }

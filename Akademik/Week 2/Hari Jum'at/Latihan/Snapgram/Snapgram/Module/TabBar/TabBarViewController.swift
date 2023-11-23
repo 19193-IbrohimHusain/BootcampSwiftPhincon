@@ -11,8 +11,23 @@ class TabBarViewController:  UITabBarController, UITabBarControllerDelegate {
     override func viewDidLoad(){
         super.viewDidLoad()
         self.delegate = self
+        configureNavigationTitle()
         configureTabBar()
         configureTabBarItem()
+    }
+    
+    func configureNavigationTitle() {
+        let titleLabel = UILabel()
+        titleLabel.text = "Snapgram"
+        titleLabel.textAlignment = .left
+        titleLabel.font = UIFont.systemFont(ofSize: 26, weight: .bold)
+        let spacer = UIView()
+        let constraint = spacer.widthAnchor.constraint(greaterThanOrEqualToConstant: CGFloat.greatestFiniteMagnitude)
+        constraint.isActive = true
+        constraint.priority = .defaultLow
+        let stack = UIStackView(arrangedSubviews: [titleLabel, spacer])
+        stack.axis = .horizontal
+        navigationItem.titleView = stack
     }
     
     func configureTabBar() {
@@ -23,7 +38,6 @@ class TabBarViewController:  UITabBarController, UITabBarControllerDelegate {
         profile = ProfileViewController()
         navigationItem.backButtonTitle = ""
         viewControllers = [home, map, addStory, film, profile]
-        
     }
     
     func configureTabBarItem() {

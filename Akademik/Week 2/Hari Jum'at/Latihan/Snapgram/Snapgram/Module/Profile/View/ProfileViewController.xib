@@ -20,7 +20,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="A2K-3W-edo">
-                    <rect key="frame" x="0.0" y="99" width="393" height="753"/>
+                    <rect key="frame" x="0.0" y="59" width="393" height="793"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                     </userDefinedRuntimeAttributes>
@@ -29,7 +29,7 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="A2K-3W-edo" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="40" id="3bv-cH-qe1"/>
+                <constraint firstItem="A2K-3W-edo" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="3bv-cH-qe1"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="A2K-3W-edo" secondAttribute="trailing" id="7Be-QU-sUm"/>
                 <constraint firstAttribute="bottom" secondItem="A2K-3W-edo" secondAttribute="bottom" id="IvE-T4-KvD"/>
                 <constraint firstItem="A2K-3W-edo" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="vMl-BX-kEh"/>

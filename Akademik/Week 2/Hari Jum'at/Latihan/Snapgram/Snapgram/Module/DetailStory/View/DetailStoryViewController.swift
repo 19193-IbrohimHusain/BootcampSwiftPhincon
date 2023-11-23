@@ -8,7 +8,10 @@ class DetailStoryViewController: BaseViewController {
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var username: UILabel!
     @IBOutlet weak var uploadedImage: UIImageView!
+    @IBOutlet weak var likePopUp: UIImageView!
     @IBOutlet weak var likeBtn: UIButton!
+    @IBOutlet weak var commentBtn: UIButton!
+    @IBOutlet weak var shareBtn: UIButton!
     @IBOutlet weak var caption: UILabel!
     @IBOutlet weak var likesCount: UILabel!
     @IBOutlet weak var commentsCount: UILabel!
@@ -29,56 +32,59 @@ class DetailStoryViewController: BaseViewController {
     
     func setup() {
         profileImage.layer.cornerRadius = 18
+        let doubleTapGesture = UITapGestureRecognizer(target: self, action: #selector(onImageDoubleTap(_:)))
+        doubleTapGesture.numberOfTapsRequired = 2
+        uploadedImage.addGestureRecognizer(doubleTapGesture)
+        commentsCount.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onCommentLabelTap(_:))))
+        likeBtn.setAnimateBounce()
+        commentBtn.setAnimateBounce()
+        shareBtn.setAnimateBounce()
         if let storyID = storyID {
             vm.fetchDetailStory(param: storyID)
         }
-        configure()
         bindData()
-        
     }
     
     func configure() {
-        if let validDetail = detailStory?.story {
-            navigationItem.title = "\(validDetail.name)'s Story"
-            username.text = validDetail.name
-            let url = URL(string: validDetail.photoURL)
-            uploadedImage.kf.setImage(with: url, options: [
-                .loadDiskFileSynchronously,
-                .cacheOriginalImage,
-                .transition(.fade(0.25)),
-            ])
-            likesCount.text = "12930 Likes"
-            likeBtn.isSelected = false
-            let attributedString = NSAttributedString(string: "\(validDetail.name)  \(validDetail.description)")
-            let attributes = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14)]
-            let range = NSRange(location: 0, length: validDetail.name.count)
-            let attributedText = attributedString.applyingAttributes(attributes, toRange: range)
-            caption.attributedText = attributedText
-            commentsCount.text = "10938 comments"
-            dateFormatter.dateFormat = dateFormat
-            dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
-            if let date = dateFormatter.date(from: validDetail.createdAt) {
-                let timeAgo = date.convertDateToTimeAgo()
-                createdAt.text = timeAgo
-            }
-            guard validDetail.lat == nil && validDetail.lon == nil else {
-                if let lat = validDetail.lat, let lon = validDetail.lon {
-                    DispatchQueue.main.async {
-                        self.getLocationNameFromCoordinates(lat: lat, lon: lon) { name in
-                            if let locationName = name {
-                                let attributedString = NSAttributedString(string: "\(validDetail.name)\n\(locationName)")
-                                let attributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14, weight: .regular)]
-                                let range = NSRange(location: validDetail.name.count + 1, length: locationName.count)
-                                let attributedText = attributedString.applyingAttributes(attributes, toRange: range)
-                                self.username.attributedText = attributedText
-                            }
-                        }
-                    }
+        guard let validDetail = detailStory?.story else {return}
+        navigationItem.title = "\(validDetail.name)'s Story"
+        username.text = validDetail.name
+        let url = URL(string: validDetail.photoURL)
+        uploadedImage.kf.setImage(with: url, options: [
+            .loadDiskFileSynchronously,
+            .cacheOriginalImage,
+            .transition(.fade(0.25)),
+        ])
+        likeBtn.setImage(validDetail.isLiked == true ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart"), for: .normal)
+        likeBtn.tintColor = validDetail.isLiked == true ? .systemRed : .label
+        likesCount.text = "\(validDetail.likesCount) Likes"
+        likeBtn.isSelected = false
+        let attributedString = NSAttributedString(string: "\(validDetail.name)  \(validDetail.description)")
+        let attributes = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14)]
+        let range = NSRange(location: 0, length: validDetail.name.count)
+        let attributedText = attributedString.applyingAttributes(attributes, toRange: range)
+        caption.attributedText = attributedText
+        commentsCount.text = "\(validDetail.commentsCount) comments"
+        dateFormatter.dateFormat = dateFormat
+        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+        if let date = dateFormatter.date(from: validDetail.createdAt) {
+            let timeAgo = date.convertDateToTimeAgo()
+            createdAt.text = timeAgo
+        }
+        guard validDetail.lat != nil && validDetail.lon != nil else {return}
+        if let lat = validDetail.lat, let lon = validDetail.lon {
+            self.getLocationNameFromCoordinates(lat: lat, lon: lon) { name in
+                if let locationName = name {
+                    let attributedString = NSAttributedString(string: "\(validDetail.name)\n\(locationName)")
+                    let attributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14, weight: .regular)]
+                    let range = NSRange(location: validDetail.name.count + 1, length: locationName.count)
+                    let attributedText = attributedString.applyingAttributes(attributes, toRange: range)
+                    self.username.attributedText = attributedText
                 }
-                return
             }
         }
     }
+    
     
     func bindData() {
         vm.detailStoryData.asObservable().subscribe(onNext: {[weak self] data in
@@ -103,8 +109,59 @@ class DetailStoryViewController: BaseViewController {
         }).disposed(by: bag)
     }
     
+    @objc func onImageDoubleTap(_ sender: UITapGestureRecognizer) {
+        guard self.likePopUp.isHidden == true else { return }
+        self.likePopUp.addShadow()
+        self.displayPopUp()
+    }
+    
+    func displayPopUp() {
+        self.likePopUp.isHidden = false
+        UIView.animate(withDuration: 0.8, delay: 0.0 , usingSpringWithDamping: 0.4, initialSpringVelocity: 0.4, options: [.curveEaseInOut], animations: {
+            self.likePopUp.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+        }, completion: { _ in
+            self.addLike()
+            UIView.animate(withDuration: 0.1, delay: 0.2, options: [.curveEaseInOut], animations: {
+                self.likePopUp.transform = CGAffineTransform(scaleX: 0.2, y: 0.2)
+            }, completion: { _ in
+                self.likePopUp.isHidden = true
+            })
+        })
+    }
+    
+    func addLike() {
+        var post = detailStory?.story
+        if post!.isLiked {
+            post?.isLiked = false
+            post?.likesCount -= 1
+            self.detailStory?.story = post!
+            configure()
+        } else {
+            post?.isLiked = true
+            post?.likesCount += 1
+            self.detailStory?.story = post!
+            configure()
+        }
+    }
+    
+    @IBAction func onLikeBtnTap() {
+        addLike()
+    }
+    
+    @IBAction func onCommentBtnTap() {
+        
+    }
+    
+    @IBAction func onShareBtnTap() {
+        
+    }
+    
+    @objc func onCommentLabelTap(_ sender: UITapGestureRecognizer) {
+        
+    }
+    
     @IBAction func downloadImage() {
-        guard let urlDownload = detailStory?.story?.photoURL, let url = URL(string: urlDownload) else {
+        guard let urlDownload = detailStory?.story.photoURL, let url = URL(string: urlDownload) else {
                 return
             }
 
