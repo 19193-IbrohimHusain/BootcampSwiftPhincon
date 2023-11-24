@@ -2,13 +2,13 @@ import UIKit
 import Kingfisher
 import GoogleMaps
 
-protocol StoryTableCellDelegate {
+protocol FeedTableCellDelegate {
     func getLocationName(lat: Double?, lon: Double?, completion: ((String) -> Void)?)
-    func addLike(cell: StoryTableCell)
+    func addLike(cell: FeedTableCell)
     func openComment(index: Int)
 }
 
-class StoryTableCell: UITableViewCell {
+class FeedTableCell: UITableViewCell {
     
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var username: UILabel!
@@ -22,7 +22,7 @@ class StoryTableCell: UITableViewCell {
     @IBOutlet weak var commentCount: UILabel!
     @IBOutlet weak var createdAt: UILabel!
     
-    var delegate: StoryTableCellDelegate?
+    var delegate: FeedTableCellDelegate?
     let dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
     let dateFormatter = DateFormatter()
     var indexSelected = Int()
@@ -104,7 +104,9 @@ class StoryTableCell: UITableViewCell {
         UIView.animate(withDuration: 0.8, delay: 0.0 , usingSpringWithDamping: 0.4, initialSpringVelocity: 0.4, options: [.curveEaseInOut], animations: {
             self.likePopUp.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
         }, completion: { _ in
-            self.delegate?.addLike(cell: self)
+            if self.post?.isLiked == false {
+                self.delegate?.addLike(cell: self)
+            }
             UIView.animate(withDuration: 0.1, delay: 0.2, options: [.curveEaseInOut], animations: {
                 self.likePopUp.transform = CGAffineTransform(scaleX: 0.2, y: 0.2)
             }, completion: { _ in

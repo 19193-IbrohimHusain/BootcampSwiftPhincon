@@ -25,6 +25,7 @@ class MapViewController: BaseViewController {
     }
     
     func setup() {
+        self.navigationController?.navigationBar.tintColor = .label
         mapView.delegate = self
         locationManager.delegate = self
         infoView.delegate = self
@@ -113,6 +114,7 @@ extension MapViewController: CustomViewMarkerDelegate {
     func navigateTo(id: String) {
         let vc = DetailStoryViewController()
         vc.storyID = id
+        vc.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
         infoView.removeFromSuperview()
     }

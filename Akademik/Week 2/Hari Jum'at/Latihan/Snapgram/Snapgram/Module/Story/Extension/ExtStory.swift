@@ -26,15 +26,13 @@ extension StoryViewController {
         }).disposed(by: bag)
     }
     
-    
     func setup(){
-        navigationItem.title = "Snapgram"
         refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
         storyTable.refreshControl = refreshControl
         storyTable.delegate = self
         storyTable.dataSource = self
+        storyTable.registerCellWithNib(FeedTableCell.self)
         storyTable.registerCellWithNib(StoryTableCell.self)
-        storyTable.registerCellWithNib(SnapTableCell.self)
     }
     
     func setupCommentPanel() {
@@ -55,21 +53,6 @@ extension StoryViewController {
     }
 }
 
-extension StoryViewController: FloatingPanelControllerDelegate {
-    
-    func floatingPanel(_ vc: FloatingPanelController, layoutFor newCollection: UITraitCollection) -> FloatingPanelLayout {
-        return CustomFloatingPanelLayout()
-    }
-
-    func floatingPanel(_ fpc: FloatingPanelController, animatorForPresentingTo state: FloatingPanelState) -> UIViewPropertyAnimator {
-        return UIViewPropertyAnimator(duration: TimeInterval(0.16), curve: .easeOut)
-    }
-
-    func floatingPanel(_ fpc: FloatingPanelController, animatorForDismissingWith velocity: CGVector) -> UIViewPropertyAnimator {
-      return UIViewPropertyAnimator(duration: TimeInterval(0.16), curve: .easeOut)
-    }
-}
-
 extension StoryViewController: SkeletonTableViewDataSource {
     func numSections(in collectionSkeletonView: UITableView) -> Int {
         return 2
@@ -87,17 +70,17 @@ extension StoryViewController: SkeletonTableViewDataSource {
     func collectionSkeletonView(_ tableView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
         let table = SectionStoryTable(rawValue: indexPath.section)
         switch table {
-        case .snap:
-            return String(describing: SnapTableCell.self)
         case .story:
             return String(describing: StoryTableCell.self)
+        case .feed:
+            return String(describing: FeedTableCell.self)
         default: return ""
         }
     }
     
 }
 
-extension StoryViewController: StoryTableCellDelegate {
+extension StoryViewController: FeedTableCellDelegate {
     func getLocationName(lat: Double?, lon: Double?, completion: ((String) -> Void)?) {
         if let lat = lat, let lon = lon {
             getLocationNameFromCoordinates(lat: lat, lon: lon) { name in
@@ -110,7 +93,7 @@ extension StoryViewController: StoryTableCellDelegate {
         self.present(floatingPanel, animated: true)
     }
     
-    func addLike(cell: StoryTableCell) {
+    func addLike(cell: FeedTableCell) {
         guard let indexPath = storyTable?.indexPath(for: cell) else { return }
         var post = listStory[indexPath.item]
         if post.isLiked {
@@ -131,11 +114,11 @@ extension StoryViewController: StoryTableCellDelegate {
     }
 }
 
-extension StoryViewController: SnapTableCellDelegate {
+extension StoryViewController: StoryTableCellDelegate {
     func navigateToDetail(id: String) {
         let vc = DetailStoryViewController()
         vc.storyID = id
-        self.navigationController?.isNavigationBarHidden = false
+        vc.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }

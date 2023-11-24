@@ -3,7 +3,7 @@ import Kingfisher
 import RxSwift
 
 
-class DetailStoryViewController: BaseViewController {
+class DetailStoryViewController: BaseBottomSheetController {
     
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var username: UILabel!
@@ -18,16 +18,31 @@ class DetailStoryViewController: BaseViewController {
     @IBOutlet weak var createdAt: UILabel!
     @IBOutlet weak var downloadBtn: UIButton!
     
-    var storyID: String?
-    var downloadTask: URLSessionDownloadTask!
-    var detailStory: DetailStoryResponse?
     let dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
     let dateFormatter = DateFormatter()
     let vm = DetailStoryViewModel()
+    var storyID: String?
+    var downloadTask: URLSessionDownloadTask!
+    var detailStory: DetailStoryResponse? {
+        didSet {
+            DispatchQueue.main.async {
+                self.configure()
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
+        setupCommentPanel()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let storyID = storyID {
+            vm.fetchDetailStory(param: storyID)
+        }
+        bindData()
     }
     
     func setup() {
@@ -39,10 +54,6 @@ class DetailStoryViewController: BaseViewController {
         likeBtn.setAnimateBounce()
         commentBtn.setAnimateBounce()
         shareBtn.setAnimateBounce()
-        if let storyID = storyID {
-            vm.fetchDetailStory(param: storyID)
-        }
-        bindData()
     }
     
     func configure() {
@@ -90,10 +101,6 @@ class DetailStoryViewController: BaseViewController {
         vm.detailStoryData.asObservable().subscribe(onNext: {[weak self] data in
             guard let self = self else { return }
             self.detailStory = data
-            DispatchQueue.main.async {
-                self.configure()
-                self.view.setNeedsLayout()
-            }
         }).disposed(by: bag)
         
         vm.loadingState.asObservable().subscribe(onNext: {[weak self] state in
@@ -117,10 +124,12 @@ class DetailStoryViewController: BaseViewController {
     
     func displayPopUp() {
         self.likePopUp.isHidden = false
+        if detailStory?.story.isLiked == false {
+            self.addLike()
+        }
         UIView.animate(withDuration: 0.8, delay: 0.0 , usingSpringWithDamping: 0.4, initialSpringVelocity: 0.4, options: [.curveEaseInOut], animations: {
             self.likePopUp.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
         }, completion: { _ in
-            self.addLike()
             UIView.animate(withDuration: 0.1, delay: 0.2, options: [.curveEaseInOut], animations: {
                 self.likePopUp.transform = CGAffineTransform(scaleX: 0.2, y: 0.2)
             }, completion: { _ in
@@ -129,18 +138,20 @@ class DetailStoryViewController: BaseViewController {
         })
     }
     
+    func setupCommentPanel() {
+        setupBottomSheet(contentVC: cvc, floatingPanelDelegate: self)
+    }
+    
     func addLike() {
         var post = detailStory?.story
         if post!.isLiked {
             post?.isLiked = false
             post?.likesCount -= 1
             self.detailStory?.story = post!
-            configure()
         } else {
             post?.isLiked = true
             post?.likesCount += 1
             self.detailStory?.story = post!
-            configure()
         }
     }
     
@@ -149,7 +160,7 @@ class DetailStoryViewController: BaseViewController {
     }
     
     @IBAction func onCommentBtnTap() {
-        
+        present(floatingPanel, animated: true)
     }
     
     @IBAction func onShareBtnTap() {
@@ -157,7 +168,7 @@ class DetailStoryViewController: BaseViewController {
     }
     
     @objc func onCommentLabelTap(_ sender: UITapGestureRecognizer) {
-        
+        present(floatingPanel, animated: true)
     }
     
     @IBAction func downloadImage() {

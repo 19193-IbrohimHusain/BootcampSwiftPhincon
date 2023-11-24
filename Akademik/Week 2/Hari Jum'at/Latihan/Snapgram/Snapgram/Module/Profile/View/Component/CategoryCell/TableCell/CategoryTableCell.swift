@@ -29,6 +29,12 @@ extension CategoryTableCell: UICollectionViewDelegate, UICollectionViewDataSourc
         return categoryItem.count
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let collectionViewWidth = collectionView.bounds.width
+        let itemWidth = collectionViewWidth / 2.0
+        return CGSize(width: itemWidth, height: 50)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as CategoryCollectionCell
         let categoryEntity = categoryItem[indexPath.row]

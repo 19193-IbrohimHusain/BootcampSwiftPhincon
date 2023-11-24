@@ -10,15 +10,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="257" id="KGk-i7-Jjw" customClass="ProfileTableCell" customModule="Snapgram" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="393" height="257"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="277" id="KGk-i7-Jjw" customClass="ProfileTableCell" customModule="Snapgram" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="250"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="393" height="257"/>
+                <rect key="frame" x="0.0" y="0.0" width="393" height="250"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Blank" translatesAutoresizingMaskIntoConstraints="NO" id="o2p-HJ-yUF">
-                        <rect key="frame" x="16" y="10.333333333333336" width="100" height="100"/>
+                        <rect key="frame" x="16" y="2.3333333333333357" width="100" height="100"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="100" id="0zI-Rg-kQ9"/>
                             <constraint firstAttribute="width" constant="100" id="Njl-Jf-4fR"/>
@@ -28,7 +28,7 @@
                         </userDefinedRuntimeAttributes>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ibrohim Husain" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bms-xO-gbP">
-                        <rect key="frame" x="16" y="120.33333333333331" width="145.66666666666666" height="23"/>
+                        <rect key="frame" x="16" y="112.33333333333333" width="145.66666666666666" height="22.999999999999986"/>
                         <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="20"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -37,7 +37,7 @@
                         </userDefinedRuntimeAttributes>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="iOS Developer | Flutter Enthusiast" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VtR-et-mUh">
-                        <rect key="frame" x="15.999999999999986" y="153.33333333333334" width="241.66666666666663" height="18.666666666666657"/>
+                        <rect key="frame" x="15.999999999999986" y="145.33333333333334" width="241.66666666666663" height="18.666666666666657"/>
                         <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -46,7 +46,7 @@
                         </userDefinedRuntimeAttributes>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Karawang, Indonesia" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bdK-xh-4fc">
-                        <rect key="frame" x="15.999999999999993" y="182" width="114.33333333333331" height="14"/>
+                        <rect key="frame" x="15.999999999999993" y="174" width="114.33333333333331" height="14"/>
                         <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="12"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -55,7 +55,7 @@
                         </userDefinedRuntimeAttributes>
                     </label>
                     <stackView opaque="NO" contentMode="scaleToFill" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="6Fk-Ef-1Te" userLabel="Button Stack View">
-                        <rect key="frame" x="16" y="212" width="361" height="35"/>
+                        <rect key="frame" x="16" y="204" width="361" height="35"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="swU-up-Qbe">
                                 <rect key="frame" x="0.0" y="0.0" width="150" height="35"/>
@@ -178,8 +178,8 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="6Fk-Ef-1Te" firstAttribute="leading" secondItem="o2p-HJ-yUF" secondAttribute="leading" id="4di-S3-Rom"/>
-                    <constraint firstAttribute="bottom" secondItem="6Fk-Ef-1Te" secondAttribute="bottom" constant="10" id="6U8-na-yP2"/>
-                    <constraint firstItem="o2p-HJ-yUF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="8hO-kg-TXG"/>
+                    <constraint firstItem="o2p-HJ-yUF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="1" id="8hO-kg-TXG"/>
+                    <constraint firstItem="6Fk-Ef-1Te" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="HWp-2l-dta"/>
                     <constraint firstItem="qRZ-aY-8w4" firstAttribute="centerY" secondItem="o2p-HJ-yUF" secondAttribute="centerY" id="Iey-QL-i6K"/>
                     <constraint firstItem="bms-xO-gbP" firstAttribute="leading" secondItem="o2p-HJ-yUF" secondAttribute="leading" id="KOO-aE-eGC"/>
                     <constraint firstItem="qRZ-aY-8w4" firstAttribute="leading" secondItem="o2p-HJ-yUF" secondAttribute="trailing" constant="40" id="MGS-Wp-SqT"/>
@@ -205,7 +205,7 @@
                 <outlet property="shareProfileBtn" destination="S5a-l0-DDT" id="yqR-Pm-4VD"/>
                 <outlet property="username" destination="bms-xO-gbP" id="Xxi-rz-2Jf"/>
             </connections>
-            <point key="canvasLocation" x="26.717557251908396" y="-65.845070422535215"/>
+            <point key="canvasLocation" x="26.717557251908396" y="-58.802816901408455"/>
         </tableViewCell>
     </objects>
     <resources>

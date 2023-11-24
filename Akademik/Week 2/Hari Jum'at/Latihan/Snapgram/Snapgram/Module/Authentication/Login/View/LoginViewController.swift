@@ -19,7 +19,7 @@ class LoginViewController: BaseViewController {
         super.viewDidLoad()
         setupLogin()
     }
-    
+   
     @IBAction func onSignUpBtnTap() {
         navigateToRegisterView()
     }

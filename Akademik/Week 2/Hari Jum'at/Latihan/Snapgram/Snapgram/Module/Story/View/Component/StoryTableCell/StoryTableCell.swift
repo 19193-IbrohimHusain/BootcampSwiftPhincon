@@ -1,20 +1,20 @@
 import UIKit
 import SkeletonView
 
-protocol SnapTableCellDelegate {
+protocol StoryTableCellDelegate {
     func navigateToDetail(id: String)
 }
 
-class SnapTableCell: UITableViewCell {
+class StoryTableCell: UITableViewCell {
 
-    @IBOutlet weak var snapColletionView: UICollectionView!
+    @IBOutlet weak var storyCollectionView: UICollectionView!
     
-    var delegate: SnapTableCellDelegate?
+    var delegate: StoryTableCellDelegate?
     
     var data: [ListStory]? {
         didSet {
             DispatchQueue.main.async {
-                self.snapColletionView.reloadData()
+                self.storyCollectionView.reloadData()
             }
         }
     }
@@ -25,20 +25,20 @@ class SnapTableCell: UITableViewCell {
     }
     
     func setupCollection() {
-        snapColletionView.delegate = self
-        snapColletionView.dataSource = self
-        snapColletionView.registerCellWithNib(SnapCollectionCell.self)
+        storyCollectionView.delegate = self
+        storyCollectionView.dataSource = self
+        storyCollectionView.registerCellWithNib(StoryCollectionCell.self)
     }
 }
 
-extension SnapTableCell: UICollectionViewDelegate, UICollectionViewDataSource {
+extension StoryTableCell: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return data?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let validData = data {
-            let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as SnapCollectionCell
+            let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as StoryCollectionCell
             let snapEntity = validData[indexPath.row]
             cell.configureCollection(with: snapEntity)
             
@@ -55,8 +55,8 @@ extension SnapTableCell: UICollectionViewDelegate, UICollectionViewDataSource {
     }
 }
 
-extension SnapTableCell: SkeletonCollectionViewDataSource {
+extension StoryTableCell: SkeletonCollectionViewDataSource {
     func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> ReusableCellIdentifier {
-        return String(describing: SnapCollectionCell.self)
+        return String(describing: StoryCollectionCell.self)
     }
 }

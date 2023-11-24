@@ -23,12 +23,28 @@ class ProfileViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTable()
+        setupNavigationBar()
         bindData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         vm.fetchStory(param: StoryTableParam(size: 1000))
+    }
+    
+    func setupNavigationBar() {
+        self.navigationController?.navigationBar.tintColor = .label
+        self.navigationItem.setLeftBarButton(UIBarButtonItem(customView: configureNavigationTitle(title: "Profile")), animated: false)
+        self.navigationItem.rightBarButtonItems = [
+            UIBarButtonItem(image: UIImage(systemName: "line.horizontal.3"), style: .plain, target: self, action: nil),
+            UIBarButtonItem(image: UIImage(systemName: "plus.app"), style: .plain, target: self, action: #selector(addStory))
+        ]
+    }
+    
+    @objc func addStory() {
+        let vc = AddStoryViewController()
+        vc.modalPresentationStyle = .overFullScreen
+        self.present(vc, animated: true)
     }
     
     func setupTable() {
@@ -75,6 +91,7 @@ class ProfileViewController: BaseViewController {
     @IBAction func onLogoutBtnTap() {
         deleteToken()
         let vc = LoginViewController()
+        vc.hidesBottomBarWhenPushed = true
         self.navigationController?.setViewControllers([vc], animated: true)
     }
 }
@@ -129,12 +146,14 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
 extension ProfileViewController: ProfileTableCellDelegate {
     func editProfile() {
         let epvc = EditProfileViewController()
+        epvc.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(epvc, animated: true)
     }
     
     func shareProfile() {
         deleteToken()
         let vc = LoginViewController()
+        vc.hidesBottomBarWhenPushed = true
         self.navigationController?.setViewControllers([vc], animated: true)
     }
     
@@ -144,7 +163,7 @@ extension ProfileViewController: ProfileTableCellDelegate {
     }
 }
 
-extension ProfileViewController: FloatingPanelControllerDelegate {
+extension ProfileViewController {
     func floatingPanelWillEndDragging(_ vc: FloatingPanelController, withVelocity velocity: CGPoint, targetState: UnsafeMutablePointer<FloatingPanelState>) {
         if targetState.pointee != .full {
             vc.dismiss(animated: true)

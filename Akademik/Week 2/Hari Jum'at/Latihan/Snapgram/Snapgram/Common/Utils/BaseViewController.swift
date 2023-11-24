@@ -1,9 +1,11 @@
 import UIKit
+import FloatingPanel
 import GoogleMaps
 import Security
 import RxSwift
 
 class BaseViewController: UIViewController, CLLocationManagerDelegate {
+    internal let cvc = CommentViewController()
     internal let pickerImage = UIImagePickerController()
     internal let activityIndicator = UIActivityIndicatorView(style: .medium)
     internal let locationManager = CLLocationManager()
@@ -15,6 +17,20 @@ class BaseViewController: UIViewController, CLLocationManagerDelegate {
     internal var bounds = GMSCoordinateBounds()
     internal var latitude = Double()
     internal var longitude = Double()
+    
+    internal func configureNavigationTitle(title: String) -> UIStackView {
+        let titleLabel = UILabel()
+        titleLabel.text = title
+        titleLabel.textAlignment = .left
+        titleLabel.font = UIFont.systemFont(ofSize: 26, weight: .bold)
+        let spacer = UIView()
+        let constraint = spacer.widthAnchor.constraint(greaterThanOrEqualToConstant: .greatestFiniteMagnitude)
+        constraint.isActive = true
+        constraint.priority = .defaultLow
+        let stack = UIStackView(arrangedSubviews: [titleLabel, spacer])
+        stack.axis = .horizontal
+        return stack
+    }
     
     internal func validateInputField(_ inputField: CustomInputField, message: String, completion: @escaping () -> Void) -> Bool {
         guard let text = inputField.textField.text, !text.isEmpty else {
@@ -149,7 +165,7 @@ class BaseViewController: UIViewController, CLLocationManagerDelegate {
     
     internal func checkLocationAuthorization(_ map: GMSMapView) {
         switch locationManager.authorizationStatus {
-        case .authorizedWhenInUse, .authorizedAlways:
+        case .authorized, .authorizedWhenInUse, .authorizedAlways:
             map.isMyLocationEnabled = true
             map.settings.myLocationButton = true
             locationManager.delegate = self
@@ -194,4 +210,19 @@ class BaseViewController: UIViewController, CLLocationManagerDelegate {
   ) {
     print(error)
   }
+}
+
+extension BaseViewController: FloatingPanelControllerDelegate {
+    
+    func floatingPanel(_ vc: FloatingPanelController, layoutFor newCollection: UITraitCollection) -> FloatingPanelLayout {
+        return CustomFloatingPanelLayout()
+    }
+
+    func floatingPanel(_ fpc: FloatingPanelController, animatorForPresentingTo state: FloatingPanelState) -> UIViewPropertyAnimator {
+        return UIViewPropertyAnimator(duration: TimeInterval(0.16), curve: .easeOut)
+    }
+
+    func floatingPanel(_ fpc: FloatingPanelController, animatorForDismissingWith velocity: CGVector) -> UIViewPropertyAnimator {
+      return UIViewPropertyAnimator(duration: TimeInterval(0.16), curve: .easeOut)
+    }
 }

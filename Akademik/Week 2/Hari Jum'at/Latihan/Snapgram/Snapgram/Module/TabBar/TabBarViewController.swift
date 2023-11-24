@@ -2,49 +2,40 @@ import UIKit
 
 class TabBarViewController:  UITabBarController, UITabBarControllerDelegate {
     
-    var home: StoryViewController!
-    var map: MapViewController!
+    let home = UINavigationController(rootViewController: StoryViewController())
+    let map = UINavigationController(rootViewController: MapViewController())
     var addStory: AddStoryViewController!
-    var film: FolderViewController!
-    var profile: ProfileViewController!
-
+    let store =  UINavigationController(rootViewController: StoreViewController())
+    let profile =  UINavigationController(rootViewController: ProfileViewController())
+    
     override func viewDidLoad(){
         super.viewDidLoad()
         self.delegate = self
-        configureNavigationTitle()
         configureTabBar()
         configureTabBarItem()
     }
     
-    func configureNavigationTitle() {
-        let titleLabel = UILabel()
-        titleLabel.text = "Snapgram"
-        titleLabel.textAlignment = .left
-        titleLabel.font = UIFont.systemFont(ofSize: 26, weight: .bold)
-        let spacer = UIView()
-        let constraint = spacer.widthAnchor.constraint(greaterThanOrEqualToConstant: CGFloat.greatestFiniteMagnitude)
-        constraint.isActive = true
-        constraint.priority = .defaultLow
-        let stack = UIStackView(arrangedSubviews: [titleLabel, spacer])
-        stack.axis = .horizontal
-        navigationItem.titleView = stack
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        hideNavigationBar()
     }
     
+    func hideNavigationBar() {
+        self.navigationController?.isToolbarHidden = true
+        self.navigationController?.isNavigationBarHidden = true
+    }
+
     func configureTabBar() {
-        home = StoryViewController()
-        map = MapViewController()
         addStory = AddStoryViewController()
-        film = FolderViewController()
-        profile = ProfileViewController()
-        navigationItem.backButtonTitle = ""
-        viewControllers = [home, map, addStory, film, profile]
+        viewControllers = [home, map, addStory, store, profile]
     }
     
     func configureTabBarItem() {
         home.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "house"), selectedImage: UIImage(systemName: "house.fill"))
+        home.tabBarItem.imageInsets = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
         map.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "location"), selectedImage: UIImage(systemName: "location.fill"))
         addStory.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "plus.app"), selectedImage: UIImage(systemName: "plus.app.fill"))
-        film.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "film"), selectedImage: UIImage(systemName: "film.fill"))
+        store.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "bag"), selectedImage: UIImage(systemName: "bag.fill"))
         profile.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "person.crop.circle"), selectedImage: UIImage(systemName: "person.crop.circle.fill"))
         
         self.tabBar.unselectedItemTintColor = UIColor.gray
@@ -53,13 +44,12 @@ class TabBarViewController:  UITabBarController, UITabBarControllerDelegate {
     }
     //MARK: UITabbar Delegate
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
-      if viewController.isKind(of: AddStoryViewController.self) {
-         let vc =  AddStoryViewController()
-         vc.modalPresentationStyle = .overFullScreen
-          self.present(vc, animated: true, completion: nil)
-         return false
-      }
-      return true
+        if viewController.isKind(of: AddStoryViewController.self) {
+            let vc =  AddStoryViewController()
+            vc.modalPresentationStyle = .overFullScreen
+            self.present(vc, animated: true, completion: nil)
+            return false
+        }
+        return true
     }
-    
 }
