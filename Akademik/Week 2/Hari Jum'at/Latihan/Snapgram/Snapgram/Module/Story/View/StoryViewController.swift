@@ -15,6 +15,7 @@ class StoryViewController: BaseBottomSheetController {
     
     var vm = StoryViewModel()
     var page = Int()
+    var isLoadMoreData = false
     var listStory = [ListStory]()
     
     override func viewDidLoad() {
@@ -72,8 +73,10 @@ extension StoryViewController: UITableViewDelegate, UITableViewDataSource {
             
         case .feed:
             let cell1 = tableView.dequeueReusableCell(forIndexPath: indexPath) as FeedTableCell
-            let feedEntity = listStory[indexPath.row]
-            cell1.post = feedEntity
+            if !listStory.isEmpty {
+                let feedEntity = listStory[indexPath.row]
+                cell1.post = feedEntity
+            }
             cell1.indexSelected = indexPath.row
             cell1.delegate = self
             return cell1
@@ -83,15 +86,11 @@ extension StoryViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        
         switch SectionStoryTable(rawValue: indexPath.section) {
         case .feed:
             let total = listStory.count
             if indexPath.row == total - 1 {
-                DispatchQueue.main.asyncAfter(wallDeadline: .now() + 3 ) {
-                    self.loadMoreData()
-                }
-                self.storyTable.showLoadingFooter()
+                loadMoreData()
             }
         default:
             break

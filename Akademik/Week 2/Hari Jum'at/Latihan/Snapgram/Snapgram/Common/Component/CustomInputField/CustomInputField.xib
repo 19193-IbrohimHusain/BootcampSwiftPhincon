@@ -26,7 +26,8 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                     <connections>
-                        <action selector="didEndEditing" destination="-1" eventType="editingDidEnd" id="6h3-qt-6Jq"/>
+                        <action selector="didEndEditing" destination="-1" eventType="editingDidEnd" id="gCg-DK-cBi"/>
+                        <action selector="didEndEditing" destination="-1" eventType="editingDidEndOnExit" id="l9P-8m-d92"/>
                         <action selector="inputTapTextArea" destination="-1" eventType="editingDidBegin" id="B1R-7Q-fRg"/>
                     </connections>
                 </textField>

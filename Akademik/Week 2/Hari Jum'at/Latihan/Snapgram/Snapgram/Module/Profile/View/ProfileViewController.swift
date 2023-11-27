@@ -76,24 +76,6 @@ class ProfileViewController: BaseViewController {
             }
         }).disposed(by: bag)
     }
-    
-    @objc func editProfile(_ sender: UITapGestureRecognizer) {
-        fpc.delegate = self
-        fpc.layout = MyFloatingPanelLayout()
-        fpc.surfaceView.appearance.cornerRadius = 16
-        fpc.contentMode = .fitToBounds
-        let vc = ProfileBottomSheetViewController()
-        vc.delegate = self
-        fpc.set(contentViewController: vc)
-        self.present(fpc, animated: true)
-    }
-    
-    @IBAction func onLogoutBtnTap() {
-        deleteToken()
-        let vc = LoginViewController()
-        vc.hidesBottomBarWhenPushed = true
-        self.navigationController?.setViewControllers([vc], animated: true)
-    }
 }
 
 enum SectionProfileTable: Int, CaseIterable {
@@ -159,52 +141,7 @@ extension ProfileViewController: ProfileTableCellDelegate {
     
     func discover() {
         let dvc = EditProfileViewController()
+        dvc.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(dvc, animated: true)
     }
-}
-
-extension ProfileViewController {
-    func floatingPanelWillEndDragging(_ vc: FloatingPanelController, withVelocity velocity: CGPoint, targetState: UnsafeMutablePointer<FloatingPanelState>) {
-        if targetState.pointee != .full {
-            vc.dismiss(animated: true)
-        }
-    }
-}
-
-extension ProfileViewController: ProfileBottomSheetViewControllerDelegate {
-    func showChoice() {
-        fpc.dismiss(animated: true)
-        fpcOption.delegate = self
-        fpcOption.layout = MyFloatingPanelLayout()
-        fpcOption.surfaceView.appearance.cornerRadius = 16
-        fpcOption.contentMode = .fitToBounds
-        let vc = PictureOptionBottomSheetViewController()
-        vc.delegate = self
-        fpcOption.set(contentViewController: vc)
-        self.present(fpcOption, animated: true)
-    }
-    
-    func removeProfilePic() {
-        self.profileImage.image = UIImage(named: "Blank")
-        fpc.dismiss(animated: true)
-    }
-}
-
-extension ProfileViewController: PictureOptionBottomSheetViewControllerDelegate {
-    func addNewProfile(image: [UIImagePickerController.InfoKey : Any]) {
-        fpcOption.dismiss(animated: true)
-        guard let image = image[.editedImage] as? UIImage else { return }
-        self.profileImage.image = image
-        fpcOption.dismiss(animated: true)
-    }
-    
-}
-
-
-class MyFloatingPanelLayout: FloatingPanelLayout {
-    let position: FloatingPanelPosition = .bottom
-    let initialState: FloatingPanelState = .half
-    let anchors: [FloatingPanelState: FloatingPanelLayoutAnchoring] = [
-        .half: FloatingPanelLayoutAnchor(fractionalInset: 0.2, edge: .bottom, referenceGuide: .safeArea),
-    ]
 }

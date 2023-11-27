@@ -39,8 +39,8 @@ class TabBarViewController:  UITabBarController, UITabBarControllerDelegate {
         profile.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "person.crop.circle"), selectedImage: UIImage(systemName: "person.crop.circle.fill"))
         
         self.tabBar.unselectedItemTintColor = UIColor.gray
-        self.tabBar.tintColor = UIColor.black
-        self.tabBar.backgroundColor = UIColor.white
+        self.tabBar.tintColor = UIColor.label
+        self.tabBar.backgroundColor = UIColor.systemBackground
     }
     //MARK: UITabbar Delegate
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {

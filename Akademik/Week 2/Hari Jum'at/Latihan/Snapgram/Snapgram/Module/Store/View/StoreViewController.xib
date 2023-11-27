@@ -17,8 +17,23 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fgg-2s-IWP" customClass="CustomInputField" customModule="Snapgram" customModuleProvider="target">
+                    <rect key="frame" x="16" y="67" width="361" height="75"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="75" id="weU-AX-IUl"/>
+                    </constraints>
+                </view>
+            </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="Fgg-2s-IWP" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="D8m-kV-HYa"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Fgg-2s-IWP" secondAttribute="trailing" constant="16" id="G5N-Aj-gsP"/>
+                <constraint firstItem="Fgg-2s-IWP" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="NQH-Nz-wDR"/>
+                <constraint firstItem="Fgg-2s-IWP" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="8" id="j1B-9l-A2F"/>
+            </constraints>
             <point key="canvasLocation" x="45" y="20"/>
         </view>
     </objects>

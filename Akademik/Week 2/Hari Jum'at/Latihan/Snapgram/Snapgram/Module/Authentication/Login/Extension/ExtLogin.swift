@@ -126,6 +126,7 @@ extension LoginViewController {
     
     func navigateToTabBarView() {
         let tbvc = TabBarViewController()
+        tbvc.hidesBottomBarWhenPushed = true
         self.navigationController?.setViewControllers([tbvc], animated: true)
     }
     

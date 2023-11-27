@@ -10,7 +10,6 @@ class BaseBottomSheetController: BaseViewController {
     private weak var contentVC: UIViewController? {
         didSet {
             guard let contentVC = contentVC else { return }
-            
             prepareBottomSheet(contentVC: contentVC)
         }
     }
@@ -21,12 +20,12 @@ class BaseBottomSheetController: BaseViewController {
         }
     }
     
-    func setupBottomSheet(contentVC: UIViewController?, floatingPanelDelegate: FloatingPanelControllerDelegate) {
+    internal func setupBottomSheet(contentVC: UIViewController?, floatingPanelDelegate: FloatingPanelControllerDelegate) {
         self.floatingPanelDelegate = floatingPanelDelegate
         prepareBottomSheet(contentVC: contentVC)
     }
     
-    private func prepareBottomSheet(contentVC: UIViewController?) {
+    private func prepareBottomSheet( contentVC: UIViewController?) {
         floatingPanel.surfaceView.appearance.cornerRadius = BaseConstant.fpcCornerRadius
         floatingPanel.contentMode = .fitToBounds
         floatingPanel.backdropView.dismissalTapGestureRecognizer.isEnabled = true

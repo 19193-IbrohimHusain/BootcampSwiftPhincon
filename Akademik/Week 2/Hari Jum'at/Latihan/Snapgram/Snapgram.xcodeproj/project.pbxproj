@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		360034462AFCE9C600A48FE8 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 360034452AFCE9C600A48FE8 /* MapViewController.xib */; };
+		36139ECD2B143793009611A0 /* ReplyCommentTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36139ECB2B143793009611A0 /* ReplyCommentTableCell.swift */; };
+		36139ECE2B143793009611A0 /* ReplyCommentTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36139ECC2B143793009611A0 /* ReplyCommentTableCell.xib */; };
+		36139ED12B14498A009611A0 /* CustomFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36139ED02B14498A009611A0 /* CustomFooterView.swift */; };
 		361904512AF4EC8100DA3DF0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361904502AF4EC8100DA3DF0 /* AppDelegate.swift */; };
 		361904532AF4EC8100DA3DF0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361904522AF4EC8100DA3DF0 /* SceneDelegate.swift */; };
 		361904552AF4EC8100DA3DF0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361904542AF4EC8100DA3DF0 /* ViewController.swift */; };
@@ -136,6 +139,9 @@
 		09F102B2F06C5964BF41415E /* Pods_Snapgram_SnapgramUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Snapgram_SnapgramUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		256F7EB1DF6B8F85D4EAB6A6 /* Pods-SnapgramTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SnapgramTests.debug.xcconfig"; path = "Target Support Files/Pods-SnapgramTests/Pods-SnapgramTests.debug.xcconfig"; sourceTree = "<group>"; };
 		360034452AFCE9C600A48FE8 /* MapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
+		36139ECB2B143793009611A0 /* ReplyCommentTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyCommentTableCell.swift; sourceTree = "<group>"; };
+		36139ECC2B143793009611A0 /* ReplyCommentTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReplyCommentTableCell.xib; sourceTree = "<group>"; };
+		36139ED02B14498A009611A0 /* CustomFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFooterView.swift; sourceTree = "<group>"; };
 		3619044D2AF4EC8100DA3DF0 /* Snapgram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Snapgram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		361904502AF4EC8100DA3DF0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		361904522AF4EC8100DA3DF0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -279,6 +285,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		36139ECF2B14497A009611A0 /* CustomFooter */ = {
+			isa = PBXGroup;
+			children = (
+				36139ED02B14498A009611A0 /* CustomFooterView.swift */,
+			);
+			path = CustomFooter;
+			sourceTree = "<group>";
+		};
 		361904442AF4EC8100DA3DF0 = {
 			isa = PBXGroup;
 			children = (
@@ -697,9 +711,12 @@
 		367BE3292B0B3AF80087AEC8 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				36139ECF2B14497A009611A0 /* CustomFooter */,
 				367BE3342B0B4B3C0087AEC8 /* Cells */,
 				367BE32E2B0B3B570087AEC8 /* CommentViewController.swift */,
 				367BE32F2B0B3B570087AEC8 /* CommentViewController.xib */,
+				36139ECB2B143793009611A0 /* ReplyCommentTableCell.swift */,
+				36139ECC2B143793009611A0 /* ReplyCommentTableCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1144,6 +1161,7 @@
 				36B1DAB02B05EE7F009C04EE /* DetailStoryViewController.xib in Resources */,
 				3619059E2AF4F10F00DA3DF0 /* RegisterViewController.xib in Resources */,
 				3619058E2AF4F10F00DA3DF0 /* StoreViewController.xib in Resources */,
+				36139ECE2B143793009611A0 /* ReplyCommentTableCell.xib in Resources */,
 				3619045D2AF4EC8300DA3DF0 /* LaunchScreen.storyboard in Resources */,
 				3619052D2AF4EF2400DA3DF0 /* CustomButton.xib in Resources */,
 				367BE3392B0B4B5B0087AEC8 /* CommentTableCell.xib in Resources */,
@@ -1331,11 +1349,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36139ECD2B143793009611A0 /* ReplyCommentTableCell.swift in Sources */,
 				361904552AF4EC8100DA3DF0 /* ViewController.swift in Sources */,
 				36B1DAB62B06095C009C04EE /* BaseViewModel.swift in Sources */,
 				361905312AF4EF2400DA3DF0 /* BaseViewController.swift in Sources */,
 				361905932AF4F10F00DA3DF0 /* ProfileCollectionViewCell.swift in Sources */,
 				36399C292B0215EF00D8A193 /* AddStoryViewModel.swift in Sources */,
+				36139ED12B14498A009611A0 /* CustomFooterView.swift in Sources */,
 				36EF4D0A2B0708E400EBB278 /* ExtUIButton.swift in Sources */,
 				3619059F2AF4F10F00DA3DF0 /* RegisterViewController.swift in Sources */,
 				3619052C2AF4EF2400DA3DF0 /* CustomButton.swift in Sources */,

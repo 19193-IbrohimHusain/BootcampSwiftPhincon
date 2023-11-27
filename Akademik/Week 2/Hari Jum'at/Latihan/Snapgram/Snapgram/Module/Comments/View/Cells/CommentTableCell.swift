@@ -15,6 +15,9 @@ class CommentTableCell: UITableViewCell {
     @IBOutlet weak var likeCount: UILabel!
     @IBOutlet weak var likeStackView: UIStackView!
     
+    @IBOutlet weak var replyTableView: UITableView!
+    @IBOutlet weak var heightTableView: NSLayoutConstraint!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         setup()
@@ -22,6 +25,10 @@ class CommentTableCell: UITableViewCell {
 
     func setup() {
         profileImg.layer.cornerRadius = 12
+        replyTableView.delegate = self
+        replyTableView.dataSource = self
+        replyTableView.registerCellWithNib(ReplyCommentTableCell.self)
+        heightTableView.constant = 20
     }
     
     func configure() {
@@ -35,5 +42,43 @@ class CommentTableCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+}
+
+extension CommentTableCell: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        4
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = replyTableView.dequeueReusableCell(forIndexPath: indexPath) as ReplyCommentTableCell
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let footer = tableView.dequeueReusableHeaderFooterView(withIdentifier: "CustomFooterViewIdentifier") as? CustomFooterView
+                ?? CustomFooterView(reuseIdentifier: "CustomFooterViewIdentifier")
+
+            // Configure the footer with data
+        footer.configure(with: "View 20 replies")
+        
+        footer.footerTapped = {
+            print("Footer Tapped for section \(section)")
+            // Add your custom action here
+            self.heightTableView.constant = tableView.contentSize.height
+            if let tableView = self.superview as? UITableView {
+                tableView.beginUpdates()
+                tableView.endUpdates()
+            }
+        }
+
+            return footer
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        // Set the height for the footer
+        return 20.0 // Adjust the value based on your requirements
+    }
+    
     
 }

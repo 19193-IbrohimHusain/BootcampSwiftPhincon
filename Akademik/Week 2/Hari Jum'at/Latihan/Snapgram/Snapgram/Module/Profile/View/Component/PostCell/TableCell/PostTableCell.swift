@@ -1,8 +1,13 @@
 import UIKit
 
+protocol PostTableCellDelegate {
+    func navigateToDetail(id: String)
+}
+
 class PostTableCell: UITableViewCell {
 
     @IBOutlet weak var postCollection: UICollectionView!
+    var delegate: PostTableCellDelegate?
         
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -50,6 +55,9 @@ extension PostTableCell: UICollectionViewDelegate, UICollectionViewDataSource, U
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+//        let index = indexPath.row
+//        if let storyID = data?[index].id {
+//            self.delegate?.navigateToDetail(id: storyID)
+//        }
     }
 }

@@ -14,7 +14,11 @@ extension StoryViewController {
             guard let self = self else {return}
             switch state {
             case .notLoad, .loading:
-                self.storyTable.showAnimatedGradientSkeleton()
+                guard self.isLoadMoreData else {
+                    self.storyTable.showAnimatedGradientSkeleton()
+                    return
+                }
+                self.storyTable.showLoadingFooter()
             case .failed, .finished:
                 DispatchQueue.main.async {
                     UIView.performWithoutAnimation {
@@ -41,8 +45,10 @@ extension StoryViewController {
     
     func loadMoreData() {
         page += 1
+        isLoadMoreData = true
         vm.fetchStory(param: StoryTableParam(page: page, location: 0))
-        self.storyTable.hideSkeleton()
+        storyTable.hideSkeleton()
+        isLoadMoreData = false
     }
     
     @objc func refreshData() {
