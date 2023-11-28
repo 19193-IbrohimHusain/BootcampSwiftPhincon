@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="PopularCollectionCell" customModule="Snapgram" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="200" height="320"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="200" height="320"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fZi-IV-P1W">
+                        <rect key="frame" x="0.0" y="0.0" width="200" height="320"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gxo-2D-zvC">
+                                <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="lcY-Hz-Sdd"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sepatu Adidas UltraBoost V5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qmv-rT-QqI">
+                                <rect key="frame" x="8" y="208" width="184" height="14"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rp.3.200.000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D64-x4-A3J">
+                                <rect key="frame" x="8" y="230" width="184" height="14"/>
+                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="qmv-rT-QqI" secondAttribute="trailing" constant="8" id="Kfy-ck-Kfy"/>
+                            <constraint firstAttribute="trailing" secondItem="D64-x4-A3J" secondAttribute="trailing" constant="8" id="O1k-Uj-WLu"/>
+                            <constraint firstItem="gxo-2D-zvC" firstAttribute="leading" secondItem="fZi-IV-P1W" secondAttribute="leading" id="aSw-9f-9Ve"/>
+                            <constraint firstItem="qmv-rT-QqI" firstAttribute="top" secondItem="gxo-2D-zvC" secondAttribute="bottom" constant="8" id="cVa-FL-ZAy"/>
+                            <constraint firstItem="gxo-2D-zvC" firstAttribute="top" secondItem="fZi-IV-P1W" secondAttribute="top" id="nSD-Fz-YGa"/>
+                            <constraint firstItem="qmv-rT-QqI" firstAttribute="leading" secondItem="fZi-IV-P1W" secondAttribute="leading" constant="8" id="nck-4B-thA"/>
+                            <constraint firstItem="D64-x4-A3J" firstAttribute="leading" secondItem="fZi-IV-P1W" secondAttribute="leading" constant="8" id="rXQ-WM-xLc"/>
+                            <constraint firstItem="D64-x4-A3J" firstAttribute="top" secondItem="qmv-rT-QqI" secondAttribute="bottom" constant="8" id="rwM-KQ-45Q"/>
+                            <constraint firstAttribute="trailing" secondItem="gxo-2D-zvC" secondAttribute="trailing" id="zXH-Mo-rSm"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="fZi-IV-P1W" secondAttribute="bottom" id="91E-Ve-u0c"/>
+                <constraint firstItem="fZi-IV-P1W" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Jui-wD-aNw"/>
+                <constraint firstItem="fZi-IV-P1W" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="RvS-Go-ahh"/>
+                <constraint firstAttribute="trailing" secondItem="fZi-IV-P1W" secondAttribute="trailing" id="xbD-Ss-YvJ"/>
+            </constraints>
+            <connections>
+                <outlet property="bgView" destination="fZi-IV-P1W" id="cHB-dq-T4v"/>
+                <outlet property="productImg" destination="gxo-2D-zvC" id="LLd-Cm-m4R"/>
+                <outlet property="productName" destination="qmv-rT-QqI" id="ofI-ZQ-CXE"/>
+                <outlet property="productPrice" destination="D64-x4-A3J" id="enB-wv-8Lb"/>
+            </connections>
+            <point key="canvasLocation" x="68.702290076335871" y="19.718309859154932"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

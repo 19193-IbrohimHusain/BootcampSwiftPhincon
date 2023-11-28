@@ -21,7 +21,7 @@ class StoryViewController: BaseBottomSheetController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
-        setupNavigationBar()
+        setupNavigationBar(title: "Snapgram", image1: "bubble.right", image2: "heart", action1: #selector(navigateToDM), action2: nil)
         setupCommentPanel()
         bindData()
     }
@@ -30,15 +30,6 @@ class StoryViewController: BaseBottomSheetController {
         super.viewWillAppear(animated)
         listStory.removeAll()
         vm.fetchStory(param: StoryTableParam())
-    }
-    
-    func setupNavigationBar() {
-        self.navigationController?.navigationBar.tintColor = .label
-        self.navigationItem.setLeftBarButton(UIBarButtonItem(customView: configureNavigationTitle(title: "Snapgram")), animated: false)
-        self.navigationItem.rightBarButtonItems = [
-            UIBarButtonItem(image: UIImage(systemName: "bubble.right"), style: .plain, target: self, action: #selector(navigateToDM)),
-            UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: nil)
-        ]
     }
     
     @objc func navigateToDM() {

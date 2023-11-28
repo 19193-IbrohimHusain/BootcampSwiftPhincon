@@ -73,6 +73,7 @@ extension StoryViewController: SkeletonTableViewDataSource {
         default: return 0
         }
     }
+    
     func collectionSkeletonView(_ tableView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
         let table = SectionStoryTable(rawValue: indexPath.section)
         switch table {
@@ -83,7 +84,6 @@ extension StoryViewController: SkeletonTableViewDataSource {
         default: return ""
         }
     }
-    
 }
 
 extension StoryViewController: FeedTableCellDelegate {

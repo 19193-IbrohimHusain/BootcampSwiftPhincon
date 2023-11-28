@@ -18,6 +18,15 @@ class BaseViewController: UIViewController, CLLocationManagerDelegate {
     internal var latitude = Double()
     internal var longitude = Double()
     
+    internal func setupNavigationBar(title: String, image1: String, image2: String, action1: Selector?, action2: Selector?) {
+        self.navigationController?.navigationBar.tintColor = .label
+        self.navigationItem.setLeftBarButton(UIBarButtonItem(customView: configureNavigationTitle(title: title)), animated: false)
+        self.navigationItem.rightBarButtonItems = [
+            UIBarButtonItem(image: UIImage(systemName: image1), style: .plain, target: self, action: action1),
+            UIBarButtonItem(image: UIImage(systemName: image2), style: .plain, target: self, action: action2)
+        ]
+    }
+    
     internal func configureNavigationTitle(title: String) -> UIStackView {
         let titleLabel = UILabel()
         titleLabel.text = title

@@ -12,7 +12,7 @@ enum StateLoading: Int {
 
 class BaseViewModel {
     internal let bag: DisposeBag = DisposeBag()
-    var loadingState = BehaviorRelay<StateLoading>(value: .notLoad)
+    internal var loadingState = BehaviorRelay<StateLoading>(value: .notLoad)
     
     func isInternetAvailable() -> Bool {
         var zeroAddress = sockaddr_in()
