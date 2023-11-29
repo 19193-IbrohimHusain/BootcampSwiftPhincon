@@ -2,7 +2,13 @@ import FloatingPanel
 import SkeletonView
 
 extension StoryViewController {
-    func bindData() {
+    internal func setup() {
+        setupTable()
+        bindData()
+        setupCommentPanel()
+    }
+    
+    private func bindData() {
         vm.storyData.asObservable().subscribe(onNext: { [weak self] data in
             guard let self = self else {return}
             if let validData = data?.listStory {
@@ -30,7 +36,7 @@ extension StoryViewController {
         }).disposed(by: bag)
     }
     
-    func setup(){
+    private func setupTable() {
         refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
         storyTable.refreshControl = refreshControl
         storyTable.delegate = self
@@ -39,11 +45,11 @@ extension StoryViewController {
         storyTable.registerCellWithNib(StoryTableCell.self)
     }
     
-    func setupCommentPanel() {
+    private func setupCommentPanel() {
         setupBottomSheet(contentVC: cvc, floatingPanelDelegate: self)
     }
     
-    func loadMoreData() {
+    internal func loadMoreData() {
         page += 1
         isLoadMoreData = true
         vm.fetchStory(param: StoryTableParam(page: page, location: 0))
@@ -51,7 +57,7 @@ extension StoryViewController {
         isLoadMoreData = false
     }
     
-    @objc func refreshData() {
+    @objc private func refreshData() {
         self.listStory.removeAll()
         vm.fetchStory(param: StoryTableParam())
         self.refreshControl.endRefreshing()

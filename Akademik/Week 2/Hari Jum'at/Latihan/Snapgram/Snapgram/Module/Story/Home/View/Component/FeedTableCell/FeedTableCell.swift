@@ -10,19 +10,19 @@ protocol FeedTableCellDelegate: AnyObject {
 
 class FeedTableCell: UITableViewCell {
     
-    @IBOutlet weak var profileImage: UIImageView!
-    @IBOutlet weak var username: UILabel!
-    @IBOutlet weak var uploadedImage: UIImageView!
-    @IBOutlet weak var likePopUp: UIImageView!
-    @IBOutlet weak var likeButton: UIButton!
-    @IBOutlet weak var commentBtn: UIButton!
-    @IBOutlet weak var shareBtn: UIButton!
-    @IBOutlet weak var likeCount: UILabel!
-    @IBOutlet weak var caption: UILabel!
-    @IBOutlet weak var commentCount: UILabel!
-    @IBOutlet weak var createdAt: UILabel!
+    @IBOutlet private weak var profileImage: UIImageView!
+    @IBOutlet private weak var username: UILabel!
+    @IBOutlet private weak var uploadedImage: UIImageView!
+    @IBOutlet private weak var likePopUp: UIImageView!
+    @IBOutlet private weak var likeButton: UIButton!
+    @IBOutlet private weak var commentBtn: UIButton!
+    @IBOutlet private weak var shareBtn: UIButton!
+    @IBOutlet private weak var likeCount: UILabel!
+    @IBOutlet private weak var caption: UILabel!
+    @IBOutlet private weak var commentCount: UILabel!
+    @IBOutlet private weak var createdAt: UILabel!
     
-    weak var delegate: FeedTableCellDelegate?
+    internal weak var delegate: FeedTableCellDelegate?
     private let dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
     private var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
@@ -30,9 +30,9 @@ class FeedTableCell: UITableViewCell {
         formatter.timeZone = TimeZone(abbreviation: "UTC")
         return formatter
     }
-    var indexSelected = 0
+    internal var indexSelected = 0
     
-    var post: ListStory? {
+    internal var post: ListStory? {
         didSet {
             configure()
         }
@@ -100,15 +100,13 @@ class FeedTableCell: UITableViewCell {
     }
     
     private func setupLocation(_ post: ListStory) {
-        guard post.lat != nil, post.lon != nil else {
-            delegate?.getLocationName(lat: post.lat, lon: post.lon) { locationName in
-                let attributedString = NSAttributedString(string: "\(post.name)\n\(locationName)")
-                let attributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12, weight: .regular)]
-                let range = NSRange(location: post.name.count + 1, length: locationName.count)
-                let attributedText = attributedString.applyingAttributes(attributes, toRange: range)
-                self.username.attributedText = attributedText
-            }
-            return
+        guard post.lat != nil, post.lon != nil else {return}
+        delegate?.getLocationName(lat: post.lat, lon: post.lon) { locationName in
+            let attributedString = NSAttributedString(string: "\(post.name)\n\(locationName)")
+            let attributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 12, weight: .regular)]
+            let range = NSRange(location: post.name.count + 1, length: locationName.count)
+            let attributedText = attributedString.applyingAttributes(attributes, toRange: range)
+            self.username.attributedText = attributedText
         }
     }
     
@@ -134,11 +132,11 @@ class FeedTableCell: UITableViewCell {
         })
     }
     
-    @IBAction func onLikeBtnTap(_ sender: UIButton) {
+    @IBAction private func onLikeBtnTap(_ sender: UIButton) {
         delegate?.addLike(cell: self)
     }
     
-    @IBAction func onCommentBtnTap(_ sender: UIButton) {
+    @IBAction private func onCommentBtnTap(_ sender: UIButton) {
         delegate?.openComment(index: indexSelected)
     }
     

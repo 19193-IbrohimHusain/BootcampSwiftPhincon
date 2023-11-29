@@ -7,11 +7,11 @@ protocol StoryTableCellDelegate {
 
 class StoryTableCell: UITableViewCell {
 
-    @IBOutlet weak var storyCollectionView: UICollectionView!
+    @IBOutlet private weak var storyCollectionView: UICollectionView!
     
-    var delegate: StoryTableCellDelegate?
+    internal var delegate: StoryTableCellDelegate?
     
-    var data: [ListStory]? {
+    internal var data: [ListStory]? {
         didSet {
             DispatchQueue.main.async {
                 self.storyCollectionView.reloadData()
@@ -24,7 +24,7 @@ class StoryTableCell: UITableViewCell {
         setupCollection()
     }
     
-    func setupCollection() {
+    private func setupCollection() {
         storyCollectionView.delegate = self
         storyCollectionView.dataSource = self
         storyCollectionView.registerCellWithNib(StoryCollectionCell.self)

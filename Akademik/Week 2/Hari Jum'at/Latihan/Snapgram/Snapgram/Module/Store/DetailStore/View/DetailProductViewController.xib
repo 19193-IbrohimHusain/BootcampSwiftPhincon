@@ -3,14 +3,13 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StoreViewController" customModule="Snapgram" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailProductViewController" customModule="Snapgram" customModuleProvider="target">
             <connections>
-                <outlet property="storeTable" destination="6om-yy-bG5" id="don-8O-89l"/>
+                <outlet property="detailTable" destination="W7c-pM-NSK" id="4JX-nv-Q9Y"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -19,19 +18,19 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="6om-yy-bG5">
-                    <rect key="frame" x="0.0" y="59" width="393" height="793"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="W7c-pM-NSK">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
             </subviews>
-            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="6om-yy-bG5" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="Whg-EL-8rR"/>
-                <constraint firstItem="6om-yy-bG5" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="db8-Vw-hLf"/>
-                <constraint firstAttribute="bottom" secondItem="6om-yy-bG5" secondAttribute="bottom" id="dvA-xA-eBY"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="6om-yy-bG5" secondAttribute="trailing" id="r7J-0e-IdW"/>
+                <constraint firstAttribute="bottom" secondItem="W7c-pM-NSK" secondAttribute="bottom" id="A5c-cd-RoT"/>
+                <constraint firstItem="W7c-pM-NSK" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="INC-9q-Mcb"/>
+                <constraint firstItem="W7c-pM-NSK" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Kwo-GY-7GB"/>
+                <constraint firstAttribute="trailing" secondItem="W7c-pM-NSK" secondAttribute="trailing" id="oeA-9Z-p1e"/>
             </constraints>
-            <point key="canvasLocation" x="45" y="20"/>
+            <point key="canvasLocation" x="127" y="20"/>
         </view>
     </objects>
     <resources>

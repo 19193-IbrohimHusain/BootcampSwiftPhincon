@@ -9,7 +9,7 @@ extension UIView {
     
     
     func addBorderLine(width: CGFloat = 1,
-                       color: UIColor = .systemBlue) {
+                       color: UIColor = .systemGray) {
         layer.borderWidth = width
         layer.borderColor = color.cgColor
     }

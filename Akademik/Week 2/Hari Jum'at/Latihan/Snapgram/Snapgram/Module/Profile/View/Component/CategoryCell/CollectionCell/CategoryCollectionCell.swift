@@ -11,7 +11,6 @@ class CategoryCollectionCell: UICollectionViewCell {
     var delegate: CategoryCollectionCellDelegate?
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
     
     func configureCollection(_ categoryEntity: CategoryCollectionEntity) {

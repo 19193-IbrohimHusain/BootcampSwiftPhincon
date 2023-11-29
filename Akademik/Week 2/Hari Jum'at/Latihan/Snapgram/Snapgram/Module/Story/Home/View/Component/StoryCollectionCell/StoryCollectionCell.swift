@@ -3,15 +3,15 @@ import Kingfisher
 
 class StoryCollectionCell: UICollectionViewCell {
 
-    @IBOutlet weak var storyImage: UIImageView!
-    @IBOutlet weak var username: UILabel!
+    @IBOutlet private weak var storyImage: UIImageView!
+    @IBOutlet private weak var username: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         storyImage.layer.cornerRadius = 25
     }
     
-    func configureCollection(with storyEntity: ListStory) {
+   internal func configureCollection(with storyEntity: ListStory) {
         let url = URL(string: storyEntity.photoURL)
         let processor = DownsamplingImageProcessor(size: CGSize(width: 320, height: 320))
         storyImage.kf.setImage(with: url, options: [

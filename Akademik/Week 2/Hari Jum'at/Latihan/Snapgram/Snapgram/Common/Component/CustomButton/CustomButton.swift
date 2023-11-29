@@ -20,7 +20,7 @@ class CustomButton: UIView {
     private func configureView() {
         let view = self.loadNib()
         view.frame = self.bounds
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         self.addSubview(view)
     }
     

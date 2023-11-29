@@ -8,12 +8,14 @@
 import UIKit
 
 enum SectionStoreTable: Int, CaseIterable {
-    case search, carousel, popular
+    case search, carousel, popular, newArrival, forYouProduct
 }
 
 class StoreViewController: BaseViewController {
 
     @IBOutlet weak var storeTable: UITableView!
+    
+    internal let vc = DetailProductViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +29,8 @@ class StoreViewController: BaseViewController {
         storeTable.registerCellWithNib(SearchTableCell.self)
         storeTable.registerCellWithNib(CarouselTableCell.self)
         storeTable.registerCellWithNib(PopularTableCell.self)
+        storeTable.registerCellWithNib(NATableCell.self)
+        storeTable.registerCellWithNib(FYPTableCell.self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -36,7 +40,7 @@ class StoreViewController: BaseViewController {
 
 extension StoreViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return SectionStoreTable.allCases.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -46,6 +50,10 @@ extension StoreViewController: UITableViewDelegate, UITableViewDataSource {
         case 1:
             return 1
         case 2:
+            return 1
+        case 3:
+            return 1
+        case 4:
             return 1
         default:
             return 0
@@ -63,7 +71,16 @@ extension StoreViewController: UITableViewDelegate, UITableViewDataSource {
             return cell1
         case .popular:
             let cell2 = tableView.dequeueReusableCell(forIndexPath: indexPath) as PopularTableCell
+            cell2.delegate = self
             return cell2
+        case .newArrival:
+            let cell3 = tableView.dequeueReusableCell(forIndexPath: indexPath) as NATableCell
+            cell3.delegate = self
+            return cell3
+        case .forYouProduct:
+            let cell4 = tableView.dequeueReusableCell(forIndexPath: indexPath) as FYPTableCell
+            cell4.delegate = self
+            return cell4
         default:
             return UITableViewCell()
         }
@@ -73,8 +90,18 @@ extension StoreViewController: UITableViewDelegate, UITableViewDataSource {
         switch section {
         case 2:
            return "Popular"
+        case 3:
+           return "New Arrival"
+        case 4:
+           return "For You"
         default: return nil
         }
     }
-    
+}
+
+extension StoreViewController: PopularTableCellDelegate, NATableCellDelegate, FYPTableCellDelegate {
+    func navigateToDetail() {
+        vc.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }

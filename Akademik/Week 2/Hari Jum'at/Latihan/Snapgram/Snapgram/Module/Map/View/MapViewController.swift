@@ -34,6 +34,7 @@ class MapViewController: BaseViewController {
     
     func fetchData() {
         vm.fetchLocationStory(param: StoryTableParam(size: 30, location: 1))
+        
         vm.mapData.asObservable().subscribe(onNext: { [weak self] data in
             guard let self = self, let data = data?.listStory else { return }
             self.dataMarker.append(contentsOf: data)

@@ -1,15 +1,15 @@
 //
-//  PopularCollectionCell.swift
+//  FYPCollectionCell.swift
 //  Snapgram
 //
-//  Created by Phincon on 28/11/23.
+//  Created by Phincon on 29/11/23.
 //
 
 import UIKit
 
-class PopularCollectionCell: UICollectionViewCell {
-    
-    @IBOutlet weak var bgView: UIView!
+class FYPCollectionCell: UICollectionViewCell {
+
+    @IBOutlet private weak var bgView: UIView!
     @IBOutlet weak var productImg: UIImageView!
     @IBOutlet weak var productName: UILabel!
     @IBOutlet weak var productPrice: UILabel!
@@ -25,9 +25,10 @@ class PopularCollectionCell: UICollectionViewCell {
         bgView.layer.masksToBounds = false
     }
     
-    func configure(with product: CarouselCollectionEntity) {
+    internal func configure(with product: CarouselCollectionEntity) {
         productImg.layer.cornerRadius = 16
         productImg.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
         productImg.image = UIImage(named: product.image)
     }
+
 }

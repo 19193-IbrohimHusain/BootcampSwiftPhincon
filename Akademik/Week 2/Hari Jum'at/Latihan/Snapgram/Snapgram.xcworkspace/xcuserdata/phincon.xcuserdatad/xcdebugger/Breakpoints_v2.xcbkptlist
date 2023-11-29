@@ -527,22 +527,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "62CB10BF-B0AA-487A-A823-3E917A38084F"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Snapgram/Common/Network/APIManager.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "17"
-            endingLineNumber = "17"
-            landmarkName = "fetchRequest(endpoint:expecting:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "A2CA3667-1DAD-41CD-88F7-D38F0650431A"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -1046,8 +1030,8 @@
             filePath = "Snapgram/Module/Map/View/MapViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
             landmarkName = "mapView(_:didTapAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1359,22 +1343,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "5012B50A-BA2C-43AD-A423-933440CC1567"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Snapgram/Common/Network/APIManager.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "145"
-            endingLineNumber = "145"
-            landmarkName = "APIManager"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "91C3F06E-FC90-49A3-B0EB-52D58BF88C5D"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -1496,22 +1464,6 @@
             startingLineNumber = "115"
             endingLineNumber = "115"
             landmarkName = "setMultipartFormData(for:with:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "1504C47C-34E4-4BD0-97DB-8C1A3923C3A7"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Snapgram/Common/Network/APIManager.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "143"
-            endingLineNumber = "143"
-            landmarkName = "convertLatLonToRequestBody(_:value:using:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1781,6 +1733,54 @@
             endingLineNumber = "21"
             landmarkName = "bindData()"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4CC13731-832B-4223-B409-C83071011694"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Snapgram/Module/Story/View/Component/FeedTableCell/FeedTableCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "104"
+            endingLineNumber = "104"
+            landmarkName = "setupLocation(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "4CC13731-832B-4223-B409-C83071011694 - 1ed4481e54d0b6fa"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Snapgram.FeedTableCell.setupLocation(Snapgram.ListStory) -&gt; ()"
+                  moduleName = "Snapgram"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/phincon/Documents/GitHub/BootcampSwiftPhincon/Akademik/Week%202/Hari%20Jum&apos;at/Latihan/Snapgram/Snapgram/Module/Story/View/Component/FeedTableCell/FeedTableCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "104"
+                  endingLineNumber = "104"
+                  offsetFromSymbolStart = "216">
+               </Location>
+               <Location
+                  uuid = "4CC13731-832B-4223-B409-C83071011694 - f77a2201525704bc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.String) -&gt; () in Snapgram.FeedTableCell.setupLocation(Snapgram.ListStory) -&gt; ()"
+                  moduleName = "Snapgram"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/phincon/Documents/GitHub/BootcampSwiftPhincon/Akademik/Week%202/Hari%20Jum&apos;at/Latihan/Snapgram/Snapgram/Module/Story/View/Component/FeedTableCell/FeedTableCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "105"
+                  endingLineNumber = "105"
+                  offsetFromSymbolStart = "144">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

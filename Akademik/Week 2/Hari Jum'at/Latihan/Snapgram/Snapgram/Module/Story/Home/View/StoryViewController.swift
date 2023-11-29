@@ -11,19 +11,17 @@ enum SectionStoryTable: Int, CaseIterable {
 
 class StoryViewController: BaseBottomSheetController {
     
-    @IBOutlet weak var storyTable: UITableView!
+    @IBOutlet internal weak var storyTable: UITableView!
     
-    var vm = StoryViewModel()
-    var page = Int()
-    var isLoadMoreData = false
-    var listStory = [ListStory]()
+    internal var vm = StoryViewModel()
+    internal var page = Int()
+    internal var isLoadMoreData = false
+    internal var listStory = [ListStory]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
         setupNavigationBar(title: "Snapgram", image1: "bubble.right", image2: "heart", action1: #selector(navigateToDM), action2: nil)
-        setupCommentPanel()
-        bindData()
     }
         
     override func viewWillAppear(_ animated: Bool) {
@@ -32,7 +30,7 @@ class StoryViewController: BaseBottomSheetController {
         vm.fetchStory(param: StoryTableParam())
     }
     
-    @objc func navigateToDM() {
+    @objc private func navigateToDM() {
         
     }
 }

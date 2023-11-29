@@ -7,14 +7,19 @@
 
 import UIKit
 
+protocol PopularTableCellDelegate {
+    func navigateToDetail()
+}
+
 class PopularTableCell: UITableViewCell {
 
     @IBOutlet weak var popularCollection: UICollectionView!
     
+    internal var delegate: PopularTableCellDelegate?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         setup()
-        // Initialization code
     }
     
     private func setup() {
@@ -35,5 +40,9 @@ extension PopularTableCell: UICollectionViewDelegate, UICollectionViewDataSource
         cell.configure(with: popularItem)
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.navigateToDetail()
     }
 }
