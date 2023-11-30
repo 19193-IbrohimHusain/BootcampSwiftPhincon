@@ -12,7 +12,7 @@ final class APIManager {
         case requestTimedOut
     }
     
-    public func fetchRequest<T: Codable>(endpoint: Endpoint, expecting type: T.Type, completion: @escaping (Result<T, Error>) -> Void) {
+    public func fetchRequest<T: Codable>(endpoint: EndpointStory, expecting type: T.Type, completion: @escaping (Result<T, Error>) -> Void) {
         guard let urlRequest = self.request(endpoint: endpoint) else {
             completion(.failure(APIError.failedToCreateRequest))
             return
@@ -37,7 +37,7 @@ final class APIManager {
         }.resume()
     }
     
-    public func request(endpoint: Endpoint) -> URLRequest? {
+    public func request(endpoint: EndpointStory) -> URLRequest? {
         guard let url = URL(string: endpoint.urlString) else { return nil }
         
         var request = URLRequest(url: endpoint.method == "GET" ? finalURL(with: endpoint, base: url) : url)
@@ -53,7 +53,7 @@ final class APIManager {
         return request
     }
     
-    private func finalURL(with endpoint: Endpoint, base: URL) -> URL {
+    private func finalURL(with endpoint: EndpointStory, base: URL) -> URL {
         guard let queryItems = endpoint.queryParam?.map({ URLQueryItem(name: $0, value: "\($1)") }) else {
             return base
         }
@@ -61,7 +61,7 @@ final class APIManager {
         return base.appendingQueryItems(queryItems)
     }
     
-    private func setHeaders(for request: inout URLRequest, with endpoint: Endpoint) {
+    private func setHeaders(for request: inout URLRequest, with endpoint: EndpointStory) {
         endpoint.headers?.forEach { key, value in
             request.setValue(value as? String, forHTTPHeaderField: key)
         }
@@ -69,7 +69,7 @@ final class APIManager {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
     }
     
-    private func setBody(for request: inout URLRequest, with endpoint: Endpoint) {
+    private func setBody(for request: inout URLRequest, with endpoint: EndpointStory) {
         switch endpoint {
         case .addNewStory(let param):
             setMultipartFormData(for: &request, with: param)

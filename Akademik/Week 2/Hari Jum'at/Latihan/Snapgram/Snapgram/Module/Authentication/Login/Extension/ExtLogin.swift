@@ -17,9 +17,15 @@ extension LoginViewController {
     func bindData() {
         vm.loginResponse.asObservable().subscribe(onNext: { [weak self] data in
             guard let self = self else { return }
-            self.loginResponse = data
-            if let token = data?.loginResult?.token {
-                self.storeToken(with: token)
+            if let validData = data?.loginResult {
+                self.storeToken(with: validData.token)
+                let user = User(email: self.emailInputField.textField.text!, username: validData.name, userid: validData.userId)
+                do {
+                    let userData = try JSONEncoder().encode(user)
+                    BaseConstant.userDef.set(userData, forKey: "userData")
+                } catch {
+                    print("Error encoding user data: \(error)")
+                }
             }
         }).disposed(by: bag)
         

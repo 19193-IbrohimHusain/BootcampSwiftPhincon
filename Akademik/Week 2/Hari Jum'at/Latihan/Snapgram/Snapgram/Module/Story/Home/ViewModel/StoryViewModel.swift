@@ -2,6 +2,10 @@ import Foundation
 import RxSwift
 import RxCocoa
 
+enum SectionStoryTable: Int, CaseIterable {
+    case story, feed
+}
+
 class StoryViewModel : BaseViewModel {
     var storyData = BehaviorRelay<StoryResponse?>(value: nil)
     

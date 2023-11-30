@@ -5,36 +5,33 @@ import RxCocoa
 
 class MapViewController: BaseViewController {
     
+    @IBOutlet private weak var mapView: GMSMapView!
     
-    @IBOutlet weak var mapView: GMSMapView!
-    
-    let vm = MapViewModel()
-    var dataMarker: [ListStory] = []
-    var listMarker: [GMSMarker] = []
-    let infoView = CustomViewMarker()
+    private let vm = MapViewModel()
+    private var dataMarker: [ListStory] = []
+    private var listMarker: [GMSMarker] = []
+    private let infoView = CustomViewMarker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
+        bindData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        fetchData()
-        setup()
+        checkLocationAuthorization(mapView)
+        vm.fetchLocationStory(param: StoryTableParam(size: 30, location: 1))
     }
     
-    func setup() {
+    private func setup() {
         self.navigationController?.navigationBar.tintColor = .label
         mapView.delegate = self
         locationManager.delegate = self
         infoView.delegate = self
-        checkLocationAuthorization(mapView)
     }
     
-    func fetchData() {
-        vm.fetchLocationStory(param: StoryTableParam(size: 30, location: 1))
-        
+    private func bindData() {
         vm.mapData.asObservable().subscribe(onNext: { [weak self] data in
             guard let self = self, let data = data?.listStory else { return }
             self.dataMarker.append(contentsOf: data)
@@ -42,7 +39,7 @@ class MapViewController: BaseViewController {
         }).disposed(by: bag)
     }
     
-    func updateMapMarkers() {
+    private func updateMapMarkers() {
         DispatchQueue.main.async {
             self.dataMarker.forEach { item in
                 let marker = GMSMarker()
@@ -81,12 +78,13 @@ extension MapViewController: GMSMapViewDelegate {
         infoView.removeFromSuperview()
     }
     
+    // Function for centering infoView of marker
     //    func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
     //        infoView.center = mapView.projection.point(for: marker.position)
     //        infoView.center.y = infoView.center.y - 100
     //    }
     
-    func showInfoView(marker: GMSMarker, at point: CGPoint) {
+    private func showInfoView(marker: GMSMarker, at point: CGPoint) {
         let width = 200.0
         let height = 320.0
         let offset: CGFloat = 40

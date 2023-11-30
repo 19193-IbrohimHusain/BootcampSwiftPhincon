@@ -5,29 +5,85 @@ import RxRelay
 import FloatingPanel
 import SkeletonView
 
-enum SectionStoryTable: Int, CaseIterable {
-    case story, feed
-}
-
 class StoryViewController: BaseBottomSheetController {
     
     @IBOutlet internal weak var storyTable: UITableView!
     
-    internal var vm = StoryViewModel()
-    internal var page = Int()
-    internal var isLoadMoreData = false
+    private var vm = StoryViewModel()
+    private var page = Int()
+    private var isLoadMoreData = false
     internal var listStory = [ListStory]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
-        setupNavigationBar(title: "Snapgram", image1: "bubble.right", image2: "heart", action1: #selector(navigateToDM), action2: nil)
     }
         
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         listStory.removeAll()
         vm.fetchStory(param: StoryTableParam())
+    }
+    
+    private func setup() {
+        setupNavigationBar(title: "Snapgram", image1: "bubble.right", image2: "heart", action1: #selector(navigateToDM), action2: nil)
+        setupTable()
+        bindData()
+        setupCommentPanel()
+    }
+    
+    private func bindData() {
+        vm.storyData.asObservable().subscribe(onNext: { [weak self] data in
+            guard let self = self, let validData = data?.listStory else {return}
+            self.listStory.append(contentsOf: validData)
+        }).disposed(by: bag)
+        
+        vm.loadingState.asObservable().subscribe(onNext: {[weak self] state in
+            guard let self = self else {return}
+            switch state {
+            case .notLoad, .loading:
+                guard self.isLoadMoreData else {
+                    self.storyTable.showAnimatedGradientSkeleton()
+                    return
+                }
+                self.storyTable.showLoadingFooter()
+            case .failed, .finished:
+                DispatchQueue.main.async {
+                    UIView.performWithoutAnimation {
+                        self.storyTable.reloadData()
+                    }
+                    self.storyTable.hideSkeleton()
+                }
+            }
+        }).disposed(by: bag)
+    }
+    
+    private func setupTable() {
+        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        storyTable.refreshControl = refreshControl
+        storyTable.delegate = self
+        storyTable.dataSource = self
+        storyTable.registerCellWithNib(FeedTableCell.self)
+        storyTable.registerCellWithNib(StoryTableCell.self)
+    }
+    
+    private func setupCommentPanel() {
+        setupBottomSheet(contentVC: cvc, floatingPanelDelegate: self)
+    }
+    
+    internal func loadMoreData() {
+        page += 1
+        isLoadMoreData = true
+        vm.fetchStory(param: StoryTableParam(page: page, location: 0))
+        storyTable.hideSkeleton()
+        isLoadMoreData = false
+    }
+    
+    @objc private func refreshData() {
+        self.listStory.removeAll()
+        vm.fetchStory(param: StoryTableParam())
+        self.refreshControl.endRefreshing()
+        self.storyTable.hideLoadingFooter()
     }
     
     @objc private func navigateToDM() {
@@ -42,10 +98,11 @@ extension StoryViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case 0:
+        let table = SectionStoryTable(rawValue: section)
+        switch table {
+        case .story:
             return 1
-        case 1 :
+        case .feed :
             return listStory.count
         default: return 0
         }
@@ -58,8 +115,8 @@ extension StoryViewController: UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as StoryTableCell
             cell.data = listStory
             cell.delegate = self
-            return cell
             
+            return cell
         case .feed:
             let cell1 = tableView.dequeueReusableCell(forIndexPath: indexPath) as FeedTableCell
             if !listStory.isEmpty {
@@ -68,8 +125,8 @@ extension StoryViewController: UITableViewDelegate, UITableViewDataSource {
             }
             cell1.indexSelected = indexPath.row
             cell1.delegate = self
-            return cell1
             
+            return cell1
         default: return UITableViewCell()
         }
     }
@@ -81,11 +138,8 @@ extension StoryViewController: UITableViewDelegate, UITableViewDataSource {
             if indexPath.row == total - 1 {
                 loadMoreData()
             }
-        default:
-            break
-            
+        default: break
         }
-        
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

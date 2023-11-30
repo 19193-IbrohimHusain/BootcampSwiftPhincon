@@ -3,17 +3,15 @@ import Foundation
 // MARK: - LoginResponse
 struct LoginResponse: Codable {
     let error: Bool
-    let message: String?
-    let loginResult: LoginResult?
-
+    let message: String
+    let loginResult: LoginResult
 }
 
 // MARK: - LoginResult
 struct LoginResult: Codable {
-    let userID, name, token: String
+    let userId, name, token: String
 
     enum CodingKeys: String, CodingKey {
-        case userID = "userId"
-        case name, token
+        case userId, name, token
     }
 }

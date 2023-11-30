@@ -1,88 +1,25 @@
 import FloatingPanel
 import SkeletonView
 
-extension StoryViewController {
-    internal func setup() {
-        setupTable()
-        bindData()
-        setupCommentPanel()
-    }
-    
-    private func bindData() {
-        vm.storyData.asObservable().subscribe(onNext: { [weak self] data in
-            guard let self = self else {return}
-            if let validData = data?.listStory {
-                self.listStory.append(contentsOf: validData)
-            }
-        }).disposed(by: bag)
-        
-        vm.loadingState.asObservable().subscribe(onNext: {[weak self] state in
-            guard let self = self else {return}
-            switch state {
-            case .notLoad, .loading:
-                guard self.isLoadMoreData else {
-                    self.storyTable.showAnimatedGradientSkeleton()
-                    return
-                }
-                self.storyTable.showLoadingFooter()
-            case .failed, .finished:
-                DispatchQueue.main.async {
-                    UIView.performWithoutAnimation {
-                        self.storyTable.reloadData()
-                    }
-                    self.storyTable.hideSkeleton()
-                }
-            }
-        }).disposed(by: bag)
-    }
-    
-    private func setupTable() {
-        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
-        storyTable.refreshControl = refreshControl
-        storyTable.delegate = self
-        storyTable.dataSource = self
-        storyTable.registerCellWithNib(FeedTableCell.self)
-        storyTable.registerCellWithNib(StoryTableCell.self)
-    }
-    
-    private func setupCommentPanel() {
-        setupBottomSheet(contentVC: cvc, floatingPanelDelegate: self)
-    }
-    
-    internal func loadMoreData() {
-        page += 1
-        isLoadMoreData = true
-        vm.fetchStory(param: StoryTableParam(page: page, location: 0))
-        storyTable.hideSkeleton()
-        isLoadMoreData = false
-    }
-    
-    @objc private func refreshData() {
-        self.listStory.removeAll()
-        vm.fetchStory(param: StoryTableParam())
-        self.refreshControl.endRefreshing()
-        self.storyTable.hideLoadingFooter()
-    }
-}
-
 extension StoryViewController: SkeletonTableViewDataSource {
     func numSections(in collectionSkeletonView: UITableView) -> Int {
-        return 2
+        return SectionStoryTable.allCases.count
     }
     
     func collectionSkeletonView(_ skeletonView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case 0:
+        let tableSection = SectionStoryTable(rawValue: section)
+        switch tableSection {
+        case .story:
             return 1
-        case 1:
+        case .feed:
             return 2
         default: return 0
         }
     }
     
     func collectionSkeletonView(_ tableView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
-        let table = SectionStoryTable(rawValue: indexPath.section)
-        switch table {
+        let tableSection = SectionStoryTable(rawValue: indexPath.section)
+        switch tableSection {
         case .story:
             return String(describing: StoryTableCell.self)
         case .feed:

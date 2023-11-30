@@ -10,6 +10,7 @@ class ProfileViewController: BaseViewController {
     @IBOutlet weak var logoutBtn: UIButton!
     
     private let vm = ProfileViewModel()
+    private var currentUser: User?
     private var fpc = FloatingPanelController()
     private var fpcOption = FloatingPanelController()
     private var listStory: [ListStory] = [] {
@@ -58,8 +59,16 @@ class ProfileViewController: BaseViewController {
     func bindData() {
         vm.storyData.asObservable().subscribe(onNext: { [weak self] data in
             guard let self = self else { return }
-            if let story = data?.listStory {
-                self.listStory.append(contentsOf: story)
+            if let savedUser = BaseConstant.userDef.data(forKey: "userData") {
+                do {
+                    self.currentUser = try JSONDecoder().decode(User.self, from: savedUser)
+                    if let story = data?.listStory {
+                        let filteredStory = story.filter { $0.name == self.currentUser?.username }
+                        self.listStory.append(contentsOf: filteredStory)
+                    }
+                } catch {
+                    print("Error decoding user data: \(error)")
+                }
             }
         }).disposed(by: bag)
         
@@ -106,6 +115,9 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         switch table {
         case .profile:
             let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as ProfileTableCell
+            if let user = currentUser {
+                cell.configure(with: user)
+            }
             cell.delegate = self
             return cell
         case .category:
@@ -113,6 +125,9 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             return cell1
         case .post:
             let cell2 = tableView.dequeueReusableCell(forIndexPath: indexPath) as PostTableCell
+            cell2.delegate = self
+            cell2.configure(data: listStory)
+            
             return cell2
         default: return UITableViewCell()
             
@@ -134,6 +149,7 @@ extension ProfileViewController: ProfileTableCellDelegate {
     
     func shareProfile() {
         deleteToken()
+        BaseConstant.userDef.removeObject(forKey: "userData")
         let vc = LoginViewController()
         vc.hidesBottomBarWhenPushed = true
         self.navigationController?.setViewControllers([vc], animated: true)
@@ -143,5 +159,14 @@ extension ProfileViewController: ProfileTableCellDelegate {
         let dvc = EditProfileViewController()
         dvc.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(dvc, animated: true)
+    }
+}
+
+extension ProfileViewController: PostTableCellDelegate {
+    func navigateToDetail(id: String) {
+        let vc = DetailStoryViewController()
+        vc.storyID = id
+        vc.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }

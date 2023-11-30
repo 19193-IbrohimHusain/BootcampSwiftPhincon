@@ -1,6 +1,6 @@
 import Foundation
 
-enum Endpoint {
+enum EndpointStory {
     case login(param: LoginParam)
     case register(param: RegisterParam)
     case fetchStory(param: StoryTableParam)
@@ -91,6 +91,6 @@ enum Endpoint {
     }
     
     var urlString: String {
-        return BaseConstant.baseUrl + path
+        return BaseConstant.urlStory + path
     }
 }

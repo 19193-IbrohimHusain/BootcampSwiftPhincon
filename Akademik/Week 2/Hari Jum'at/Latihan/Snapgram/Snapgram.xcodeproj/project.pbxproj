@@ -36,8 +36,6 @@
 		3619058E2AF4F10F00DA3DF0 /* StoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3619055C2AF4F10E00DA3DF0 /* StoreViewController.xib */; };
 		3619058F2AF4F10F00DA3DF0 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3619055E2AF4F10E00DA3DF0 /* TabBarViewController.swift */; };
 		361905902AF4F10F00DA3DF0 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361905602AF4F10E00DA3DF0 /* MapViewController.swift */; };
-		361905922AF4F10F00DA3DF0 /* ProfileCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 361905642AF4F10E00DA3DF0 /* ProfileCollectionViewCell.xib */; };
-		361905932AF4F10F00DA3DF0 /* ProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361905652AF4F10E00DA3DF0 /* ProfileCollectionViewCell.swift */; };
 		361905942AF4F10F00DA3DF0 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 361905662AF4F10E00DA3DF0 /* ProfileViewController.xib */; };
 		361905952AF4F10F00DA3DF0 /* PostCollectionEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361905682AF4F10E00DA3DF0 /* PostCollectionEntity.swift */; };
 		361905962AF4F10F00DA3DF0 /* ProfileBottomSheetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3619056B2AF4F10E00DA3DF0 /* ProfileBottomSheetViewController.xib */; };
@@ -117,7 +115,7 @@
 		36B6A5DB2B0C56510090E556 /* BaseBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B6A5DA2B0C56510090E556 /* BaseBottomSheetViewController.swift */; };
 		36CCE84A2AF8898500E4AF69 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 36CCE8492AF8898500E4AF69 /* Podfile */; };
 		36CCE8552AF89FE500E4AF69 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CCE8542AF89FE500E4AF69 /* APIManager.swift */; };
-		36CCE8572AF89FFC00E4AF69 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CCE8562AF89FFC00E4AF69 /* Endpoint.swift */; };
+		36CCE8572AF89FFC00E4AF69 /* EndpointStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CCE8562AF89FFC00E4AF69 /* EndpointStory.swift */; };
 		36CCE85A2AF8B75000E4AF69 /* StoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CCE8592AF8B75000E4AF69 /* StoryModel.swift */; };
 		36CCE85C2AF8B7A800E4AF69 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CCE85B2AF8B7A800E4AF69 /* LoginModel.swift */; };
 		36CCE85E2AF8B83900E4AF69 /* RegisterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CCE85D2AF8B83900E4AF69 /* RegisterModel.swift */; };
@@ -127,6 +125,11 @@
 		36CCE8672AF8BA0E00E4AF69 /* SplashScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36CCE8652AF8BA0E00E4AF69 /* SplashScreenViewController.xib */; };
 		36CCE8692AF8E39500E4AF69 /* RegisterEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CCE8682AF8E39500E4AF69 /* RegisterEntity.swift */; };
 		36CCE86B2AF8E9CF00E4AF69 /* LoginEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CCE86A2AF8E9CF00E4AF69 /* LoginEntity.swift */; };
+		36D1EA1C2B1842C900645020 /* APIManagerExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D1EA1B2B1842C900645020 /* APIManagerExt.swift */; };
+		36D1EA1E2B18433100645020 /* EndpointProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D1EA1D2B18433100645020 /* EndpointProduct.swift */; };
+		36D1EA202B1844DE00645020 /* ProductParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D1EA1F2B1844DE00645020 /* ProductParam.swift */; };
+		36D1EA222B1845BD00645020 /* ProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D1EA212B1845BD00645020 /* ProductModel.swift */; };
+		36D1EA252B185EFC00645020 /* StoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D1EA242B185EFC00645020 /* StoreViewModel.swift */; };
 		36D38B252B10579A00C2558F /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D38B242B10579A00C2558F /* Helper.swift */; };
 		36EF4D0A2B0708E400EBB278 /* ExtUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EF4D092B0708E400EBB278 /* ExtUIButton.swift */; };
 		36EF4D0C2B070EBF00EBB278 /* ExtUIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EF4D0B2B070EBF00EBB278 /* ExtUIImage.swift */; };
@@ -202,8 +205,6 @@
 		3619055C2AF4F10E00DA3DF0 /* StoreViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StoreViewController.xib; sourceTree = "<group>"; };
 		3619055E2AF4F10E00DA3DF0 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		361905602AF4F10E00DA3DF0 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		361905642AF4F10E00DA3DF0 /* ProfileCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileCollectionViewCell.xib; sourceTree = "<group>"; };
-		361905652AF4F10E00DA3DF0 /* ProfileCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCollectionViewCell.swift; sourceTree = "<group>"; };
 		361905662AF4F10E00DA3DF0 /* ProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
 		361905682AF4F10E00DA3DF0 /* PostCollectionEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCollectionEntity.swift; sourceTree = "<group>"; };
 		3619056B2AF4F10E00DA3DF0 /* ProfileBottomSheetViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileBottomSheetViewController.xib; sourceTree = "<group>"; };
@@ -283,7 +284,7 @@
 		36B6A5DA2B0C56510090E556 /* BaseBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseBottomSheetViewController.swift; sourceTree = "<group>"; };
 		36CCE8492AF8898500E4AF69 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		36CCE8542AF89FE500E4AF69 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
-		36CCE8562AF89FFC00E4AF69 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		36CCE8562AF89FFC00E4AF69 /* EndpointStory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointStory.swift; sourceTree = "<group>"; };
 		36CCE8592AF8B75000E4AF69 /* StoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryModel.swift; sourceTree = "<group>"; };
 		36CCE85B2AF8B7A800E4AF69 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		36CCE85D2AF8B83900E4AF69 /* RegisterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterModel.swift; sourceTree = "<group>"; };
@@ -293,6 +294,11 @@
 		36CCE8652AF8BA0E00E4AF69 /* SplashScreenViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplashScreenViewController.xib; sourceTree = "<group>"; };
 		36CCE8682AF8E39500E4AF69 /* RegisterEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterEntity.swift; sourceTree = "<group>"; };
 		36CCE86A2AF8E9CF00E4AF69 /* LoginEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginEntity.swift; sourceTree = "<group>"; };
+		36D1EA1B2B1842C900645020 /* APIManagerExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManagerExt.swift; sourceTree = "<group>"; };
+		36D1EA1D2B18433100645020 /* EndpointProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointProduct.swift; sourceTree = "<group>"; };
+		36D1EA1F2B1844DE00645020 /* ProductParam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductParam.swift; sourceTree = "<group>"; };
+		36D1EA212B1845BD00645020 /* ProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductModel.swift; sourceTree = "<group>"; };
+		36D1EA242B185EFC00645020 /* StoreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreViewModel.swift; sourceTree = "<group>"; };
 		36D38B242B10579A00C2558F /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		36EF4D092B0708E400EBB278 /* ExtUIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtUIButton.swift; sourceTree = "<group>"; };
 		36EF4D0B2B070EBF00EBB278 /* ExtUIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtUIImage.swift; sourceTree = "<group>"; };
@@ -438,9 +444,10 @@
 		3619051B2AF4EF2400DA3DF0 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				36D1EA1A2B18425900645020 /* Alamofire API */,
 				36CCE8582AF8B73500E4AF69 /* Model */,
 				36CCE8542AF89FE500E4AF69 /* APIManager.swift */,
-				36CCE8562AF89FFC00E4AF69 /* Endpoint.swift */,
+				36CCE8562AF89FFC00E4AF69 /* EndpointStory.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -522,6 +529,7 @@
 		3619055A2AF4F10E00DA3DF0 /* Store */ = {
 			isa = PBXGroup;
 			children = (
+				36D1EA232B185D4F00645020 /* ViewModel */,
 				36A65F112B16E36E0038F956 /* DetailStore */,
 				36A20F4A2B15CBB400F54132 /* Model */,
 				36B1DAC42B06348D009C04EE /* View */,
@@ -552,20 +560,10 @@
 				36EF4D292B074A5800EBB278 /* EditProfile */,
 				36B1DAB22B06090E009C04EE /* ViewModel */,
 				36B1DAB12B060902009C04EE /* View */,
-				361905632AF4F10E00DA3DF0 /* CollectionCell */,
 				361905672AF4F10E00DA3DF0 /* Model */,
 				361905692AF4F10E00DA3DF0 /* BottomSheet */,
 			);
 			path = Profile;
-			sourceTree = "<group>";
-		};
-		361905632AF4F10E00DA3DF0 /* CollectionCell */ = {
-			isa = PBXGroup;
-			children = (
-				361905642AF4F10E00DA3DF0 /* ProfileCollectionViewCell.xib */,
-				361905652AF4F10E00DA3DF0 /* ProfileCollectionViewCell.swift */,
-			);
-			path = CollectionCell;
 			sourceTree = "<group>";
 		};
 		361905672AF4F10E00DA3DF0 /* Model */ = {
@@ -886,6 +884,7 @@
 			isa = PBXGroup;
 			children = (
 				36A20F4B2B15CC0200F54132 /* CarouselCollectionEntity.swift */,
+				36D1EA1F2B1844DE00645020 /* ProductParam.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1194,6 +1193,7 @@
 				36CCE85D2AF8B83900E4AF69 /* RegisterModel.swift */,
 				36CCE85F2AF8B86C00E4AF69 /* DetailStoryModel.swift */,
 				36CCE8612AF8B95700E4AF69 /* AddStoryModel.swift */,
+				36D1EA212B1845BD00645020 /* ProductModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1204,6 +1204,23 @@
 				36B1DAC52B063497009C04EE /* View */,
 			);
 			path = SplashScreen;
+			sourceTree = "<group>";
+		};
+		36D1EA1A2B18425900645020 /* Alamofire API */ = {
+			isa = PBXGroup;
+			children = (
+				36D1EA1B2B1842C900645020 /* APIManagerExt.swift */,
+				36D1EA1D2B18433100645020 /* EndpointProduct.swift */,
+			);
+			path = "Alamofire API";
+			sourceTree = "<group>";
+		};
+		36D1EA232B185D4F00645020 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				36D1EA242B185EFC00645020 /* StoreViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		36EF4D0D2B071E9000EBB278 /* Component */ = {
@@ -1481,7 +1498,6 @@
 				36A20F572B15DB6000F54132 /* PopularTableCell.xib in Resources */,
 				3619045A2AF4EC8300DA3DF0 /* Assets.xcassets in Resources */,
 				361905A32AF4F10F00DA3DF0 /* FeedTableCell.xib in Resources */,
-				361905922AF4F10F00DA3DF0 /* ProfileCollectionViewCell.xib in Resources */,
 				36EF4D2F2B074B2E00EBB278 /* EditProfileViewController.xib in Resources */,
 				36399C302B02191900D8A193 /* AddStoryViewController.xib in Resources */,
 				361904582AF4EC8100DA3DF0 /* Main.storyboard in Resources */,
@@ -1654,7 +1670,6 @@
 				36A65F052B16DA010038F956 /* FYPTableCell.swift in Sources */,
 				36B1DAB62B06095C009C04EE /* BaseViewModel.swift in Sources */,
 				361905312AF4EF2400DA3DF0 /* BaseViewController.swift in Sources */,
-				361905932AF4F10F00DA3DF0 /* ProfileCollectionViewCell.swift in Sources */,
 				36399C292B0215EF00D8A193 /* AddStoryViewModel.swift in Sources */,
 				36139ED12B14498A009611A0 /* CustomFooterView.swift in Sources */,
 				36A65F152B16E39C0038F956 /* DetailProductViewController.swift in Sources */,
@@ -1677,6 +1692,7 @@
 				36F4E7CF2AFE08F40055D291 /* CustomViewMarker.swift in Sources */,
 				36EF4D2E2B074B2E00EBB278 /* EditProfileViewController.swift in Sources */,
 				3619052A2AF4EF2400DA3DF0 /* ExtLogin.swift in Sources */,
+				36D1EA252B185EFC00645020 /* StoreViewModel.swift in Sources */,
 				36CCE85C2AF8B7A800E4AF69 /* LoginModel.swift in Sources */,
 				36EF4D1E2B0740AA00EBB278 /* PostCollectionCell.swift in Sources */,
 				36CCE8602AF8B86C00E4AF69 /* DetailStoryModel.swift in Sources */,
@@ -1687,17 +1703,21 @@
 				36B1DABA2B060B12009C04EE /* LoginViewModel.swift in Sources */,
 				36CCE8692AF8E39500E4AF69 /* RegisterEntity.swift in Sources */,
 				36CCE8552AF89FE500E4AF69 /* APIManager.swift in Sources */,
+				36D1EA202B1844DE00645020 /* ProductParam.swift in Sources */,
 				36CCE8662AF8BA0E00E4AF69 /* SplashScreenViewController.swift in Sources */,
 				367BE3382B0B4B5B0087AEC8 /* CommentTableCell.swift in Sources */,
+				36D1EA1E2B18433100645020 /* EndpointProduct.swift in Sources */,
 				36A20F482B15CAE900F54132 /* CarouselCollectionCell.swift in Sources */,
 				36A20F3D2B1596A600F54132 /* SearchTableCell.swift in Sources */,
 				3619058D2AF4F10F00DA3DF0 /* StoreViewController.swift in Sources */,
 				36CCE8622AF8B95700E4AF69 /* AddStoryModel.swift in Sources */,
 				361905272AF4EF2400DA3DF0 /* ExtTableView.swift in Sources */,
 				36A65F0A2B16DAB00038F956 /* NACollectionCell.swift in Sources */,
+				36D1EA222B1845BD00645020 /* ProductModel.swift in Sources */,
 				36A65EFE2B16D8E70038F956 /* NATableCell.swift in Sources */,
 				361905A22AF4F10F00DA3DF0 /* LoginViewController.swift in Sources */,
 				367BE3302B0B3B570087AEC8 /* CommentViewController.swift in Sources */,
+				36D1EA1C2B1842C900645020 /* APIManagerExt.swift in Sources */,
 				361905282AF4EF2400DA3DF0 /* ExtView.swift in Sources */,
 				361905A82AF4F10F00DA3DF0 /* StoryTableCell.swift in Sources */,
 				3684BDEB2AFA0DFA006BB9A0 /* ExtString.swift in Sources */,
@@ -1731,7 +1751,7 @@
 				361905902AF4F10F00DA3DF0 /* MapViewController.swift in Sources */,
 				36A20F562B15DB6000F54132 /* PopularTableCell.swift in Sources */,
 				36CCE85E2AF8B83900E4AF69 /* RegisterModel.swift in Sources */,
-				36CCE8572AF89FFC00E4AF69 /* Endpoint.swift in Sources */,
+				36CCE8572AF89FFC00E4AF69 /* EndpointStory.swift in Sources */,
 				3694B53C2AFB944C003C11D8 /* MapViewModel.swift in Sources */,
 				361905A52AF4F10F00DA3DF0 /* StoryCollectionCell.swift in Sources */,
 				3694B5322AFB2AFA003C11D8 /* StoryViewModel.swift in Sources */,

@@ -19,21 +19,27 @@ class ProfileTableCell: UITableViewCell {
     @IBOutlet weak var shareProfileBtn: UIButton!
     @IBOutlet weak var discoverBtn: UIButton!
     
-    var delegate: ProfileTableCellDelegate?
+    internal var delegate: ProfileTableCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        configure()
+        setup()
     }
     
-    func configure() {
+    private func setup() {
         profileImg.layer.cornerRadius = 50.0
         configureBtn(editProfileBtn)
         configureBtn(shareProfileBtn)
         configureBtn(discoverBtn)
     }
     
-    func configureBtn(_ button: UIButton) {
+    internal func configure(with user: User) {
+        username.text = user.username
+        bio.text = user.email
+        address.text = user.userid
+    }
+    
+    private func configureBtn(_ button: UIButton) {
         button.setAnimateBounce()
         button.layer.cornerRadius = 8.0
         button.layer.shadowColor = UIColor.gray.cgColor
@@ -42,23 +48,15 @@ class ProfileTableCell: UITableViewCell {
         button.layer.shadowOpacity = 0.5
     }
     
-    
-    @IBAction func onEditProfileBtnTap() {
+    @IBAction private func onEditProfileBtnTap() {
         self.delegate?.editProfile()
     }
     
-    @IBAction func onShareProfileBtnTap() {
+    @IBAction private func onShareProfileBtnTap() {
         self.delegate?.shareProfile()
     }
     
-    @IBAction func onDiscoverBtnTap() {
+    @IBAction private func onDiscoverBtnTap() {
         self.delegate?.discover()
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-    
 }

@@ -7,7 +7,9 @@ protocol PostTableCellDelegate {
 class PostTableCell: UITableViewCell {
 
     @IBOutlet weak var postCollection: UICollectionView!
-    var delegate: PostTableCellDelegate?
+    
+    internal var delegate: PostTableCellDelegate?
+    internal var post: [ListStory]?
         
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -20,25 +22,26 @@ class PostTableCell: UITableViewCell {
         postCollection.registerCellWithNib(PostCollectionCell.self)
 
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
     
+    func configure(data: [ListStory]) {
+        self.post = data
+        postCollection.reloadData()
+    }
 }
 
 extension PostTableCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return postItem.count
+        return post?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as PostCollectionCell
-        let postEntity = postItem[indexPath.row]
-        cell.configureCollection(postEntity)
-        return cell
+        if let dataPost = post {
+            let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as PostCollectionCell
+            let postEntity = dataPost[indexPath.row]
+            cell.configureCollection(postEntity)
+            return cell
+        }
+        return UICollectionViewCell()
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -47,17 +50,10 @@ extension PostTableCell: UICollectionViewDelegate, UICollectionViewDataSource, U
         return CGSize(width: itemWidth, height: 150)
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
-    }
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
-    }
-    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let index = indexPath.row
-//        if let storyID = data?[index].id {
-//            self.delegate?.navigateToDetail(id: storyID)
-//        }
+        let index = indexPath.row
+        if let storyID = post?[index].id {
+            self.delegate?.navigateToDetail(id: storyID)
+        }
     }
 }

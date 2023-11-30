@@ -1,12 +1,10 @@
 import RxSwift
 import RxCocoa
 
-class MapViewModel {
+class MapViewModel: BaseViewModel {
+    internal var mapData = BehaviorRelay<StoryResponse?>(value: nil)
     
-    var loadingState = BehaviorRelay<StateLoading>(value: .notLoad)
-    var mapData = BehaviorRelay<StoryResponse?>(value: nil)
-    
-    func fetchLocationStory(param: StoryTableParam) {
+    internal func fetchLocationStory(param: StoryTableParam) {
         loadingState.accept(.notLoad)
         APIManager.shared.fetchRequest(endpoint: .fetchStory(param: param), expecting: StoryResponse.self) { [weak self] result in
             guard let self = self else {return}

@@ -7,20 +7,24 @@
 
 import UIKit
 
-enum SectionStoreTable: Int, CaseIterable {
-    case search, carousel, popular, newArrival, forYouProduct
-}
-
 class StoreViewController: BaseViewController {
 
     @IBOutlet weak var storeTable: UITableView!
     
     internal let vc = DetailProductViewController()
+    internal let vm = StoreViewModel()
+    internal var product: ProductModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
         setupNavigationBar(title: "SnapStore", image1: "line.horizontal.3", image2: "cart", action1: nil, action2: nil)
+        bindData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        vm.fetchProduct(param: ProductParam())
     }
     
     private func setup() {
@@ -33,9 +37,14 @@ class StoreViewController: BaseViewController {
         storeTable.registerCellWithNib(FYPTableCell.self)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    private func bindData() {
+        vm.productData.asObservable().subscribe(onNext: { [weak self] product in
+            guard let self = self, let dataProduct = product?.data else {return}
+            self.product = dataProduct
+        }).disposed(by: bag)
     }
+    
+    
 }
 
 extension StoreViewController: UITableViewDelegate, UITableViewDataSource {

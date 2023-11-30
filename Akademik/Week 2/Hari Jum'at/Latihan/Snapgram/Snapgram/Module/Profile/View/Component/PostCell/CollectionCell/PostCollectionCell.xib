@@ -35,7 +35,7 @@
             <connections>
                 <outlet property="postImage" destination="ij2-SK-Ixg" id="Fru-Kr-zd1"/>
             </connections>
-            <point key="canvasLocation" x="27" y="20"/>
+            <point key="canvasLocation" x="25.954198473282442" y="19.718309859154932"/>
         </collectionViewCell>
     </objects>
 </document>

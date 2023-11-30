@@ -17,6 +17,8 @@ class BaseViewController: UIViewController, CLLocationManagerDelegate {
     internal var bounds = GMSCoordinateBounds()
     internal var latitude = Double()
     internal var longitude = Double()
+    var address: String = String()
+
     
     internal func setupNavigationBar(title: String, image1: String, image2: String, action1: Selector?, action2: Selector?) {
         self.navigationController?.navigationBar.tintColor = .label
@@ -89,7 +91,6 @@ class BaseViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     internal func getLocationNameFromCoordinates(lat: Double, lon: Double, completion: @escaping (String?) -> Void) {
-        
         let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
         geocoder.reverseGeocodeCoordinate(coordinate) { response, error in
             guard error == nil, let result = response?.firstResult() else {
@@ -97,7 +98,7 @@ class BaseViewController: UIViewController, CLLocationManagerDelegate {
                 completion(nil)
                 return
             }
-            
+
             guard let city = result.administrativeArea, let country = result.country else { return }
             let address = "\(city), \(country)"
             completion(address)

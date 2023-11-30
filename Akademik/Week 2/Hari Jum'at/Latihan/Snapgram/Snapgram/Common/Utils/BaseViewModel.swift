@@ -1,5 +1,6 @@
 import Foundation
 import SystemConfiguration
+import GoogleMaps
 import RxSwift
 import RxCocoa
 
@@ -12,7 +13,24 @@ enum StateLoading: Int {
 
 class BaseViewModel {
     internal let bag: DisposeBag = DisposeBag()
+    internal let geocoder = GMSGeocoder()
     internal var loadingState = BehaviorRelay<StateLoading>(value: .notLoad)
+    internal var location = BehaviorRelay<String?>(value: nil)
+    
+    internal func getLocationNameFromCoordinates(lat: Double, lon: Double) {
+        let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
+        var address = ""
+        geocoder.reverseGeocodeCoordinate(coordinate) { [weak self ] response, error in
+            guard error == nil, let self = self, let result = response?.firstResult() else {
+                print("Geocoding error: \(error?.localizedDescription ?? "Unknown error")")
+                return
+            }
+
+            guard let city = result.administrativeArea, let country = result.country else { return }
+            address = "\(city), \(country)"
+            self.location.accept(address)
+        }
+    }
     
     func isInternetAvailable() -> Bool {
         var zeroAddress = sockaddr_in()
