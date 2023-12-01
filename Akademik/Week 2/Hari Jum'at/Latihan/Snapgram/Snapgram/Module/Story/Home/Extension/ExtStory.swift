@@ -3,7 +3,7 @@ import SkeletonView
 
 extension StoryViewController: SkeletonTableViewDataSource {
     func numSections(in collectionSkeletonView: UITableView) -> Int {
-        return SectionStoryTable.allCases.count
+        return tables.count
     }
     
     func collectionSkeletonView(_ skeletonView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -70,9 +70,4 @@ extension StoryViewController: StoryTableCellDelegate {
         vc.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
     }
-}
-
-class SharedDataSource {
-    static let shared = SharedDataSource()
-    var tableViewOffset: CGFloat = 0
 }

@@ -103,11 +103,11 @@ extension LoginViewController {
     func validate() {
         addLoading(self.signInBtn.customButton)
 
-        guard validateInputField(emailInputField, message: "Please Enter Your Email", completion: {
+        guard validateInputField(emailInputField, title: "Sign In Failed", message: "Please Enter Your Email", completion: {
             self.afterDissmissed(self.signInBtn.customButton, title: "Sign In")
         }) else { return }
         
-        guard validateInputField(passwordInputField, message: "Please Enter Your Password", completion: {
+        guard validateInputField(passwordInputField, title: "Sign In Failed", message: "Please Enter Your Password", completion: {
             self.afterDissmissed(self.signInBtn.customButton, title: "Sign In")
         }) else { return }
         

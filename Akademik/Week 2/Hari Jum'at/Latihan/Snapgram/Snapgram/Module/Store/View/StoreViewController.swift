@@ -6,20 +6,20 @@
 //
 
 import UIKit
+import SkeletonView
 
 class StoreViewController: BaseViewController {
 
     @IBOutlet weak var storeTable: UITableView!
     
     internal let vc = DetailProductViewController()
+    internal let tables = SectionStoreTable.allCases
     internal let vm = StoreViewModel()
-    internal var product: ProductModel?
+    internal var product: [ProductModel]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
-        setupNavigationBar(title: "SnapStore", image1: "line.horizontal.3", image2: "cart", action1: nil, action2: nil)
-        bindData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -28,41 +28,46 @@ class StoreViewController: BaseViewController {
     }
     
     private func setup() {
+        setupNavigationBar(title: "SnapStore", image1: "line.horizontal.3", image2: "cart", action1: nil, action2: nil)
         storeTable.delegate = self
         storeTable.dataSource = self
-        storeTable.registerCellWithNib(SearchTableCell.self)
-        storeTable.registerCellWithNib(CarouselTableCell.self)
-        storeTable.registerCellWithNib(PopularTableCell.self)
-        storeTable.registerCellWithNib(NATableCell.self)
-        storeTable.registerCellWithNib(FYPTableCell.self)
+        tables.forEach { cell in
+            storeTable.registerCellWithNib(cell.cellTypes)
+        }
+        bindData()
     }
     
     private func bindData() {
         vm.productData.asObservable().subscribe(onNext: { [weak self] product in
-            guard let self = self, let dataProduct = product?.data else {return}
-            self.product = dataProduct
+            guard let self = self, let dataProduct = product?.data.data else {return}
+            self.product?.append(contentsOf: dataProduct)
+        }).disposed(by: bag)
+        
+        vm.loadingState.asObservable().subscribe(onNext: { [weak self] state in
+            guard let self = self else {return}
+            switch state {
+            case .notLoad:
+                self.errorView.removeFromSuperview()
+            case .loading:
+                self.storeTable.showAnimatedGradientSkeleton()
+            case .finished:
+                self.storeTable.hideSkeleton()
+            case .failed:
+                self.storeTable.addSubview(self.errorView)
+            }
         }).disposed(by: bag)
     }
-    
-    
 }
 
 extension StoreViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return SectionStoreTable.allCases.count
+        return tables.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case 0:
-            return 1
-        case 1:
-            return 1
-        case 2:
-            return 1
-        case 3:
-            return 1
-        case 4:
+        let tableSection = SectionStoreTable(rawValue: section)
+        switch tableSection {
+        case .search, .carousel, .popular, .newArrival, .forYouProduct:
             return 1
         default:
             return 0
@@ -96,14 +101,47 @@ extension StoreViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch section {
-        case 2:
+        let tableSection = SectionStoreTable(rawValue: section)
+        switch tableSection {
+        case .popular:
            return "Popular"
-        case 3:
+        case .newArrival:
            return "New Arrival"
-        case 4:
+        case .forYouProduct:
            return "For You"
         default: return nil
+        }
+    }
+}
+
+extension StoreViewController: SkeletonTableViewDataSource {
+    func numSections(in collectionSkeletonView: UITableView) -> Int {
+        return tables.count
+    }
+    
+    func collectionSkeletonView(_ skeletonView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let tableSection = SectionStoreTable(rawValue: section)
+        switch tableSection {
+        case .search, .carousel, .popular, .newArrival, .forYouProduct:
+            return 1
+        default: return 0
+        }
+    }
+    
+    func collectionSkeletonView(_ tableView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
+        let tableSection = SectionStoreTable(rawValue: indexPath.section)
+        switch tableSection {
+        case .search:
+            return String(describing: SearchTableCell.self)
+        case .carousel:
+            return String(describing: CarouselTableCell.self)
+        case .popular:
+            return String(describing: PopularTableCell.self)
+        case .newArrival:
+            return String(describing: NATableCell.self)
+        case .forYouProduct:
+            return String(describing: FYPTableCell.self)
+        default: return ""
         }
     }
 }

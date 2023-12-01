@@ -113,19 +113,19 @@ extension RegisterViewController {
     @objc func onSignUpBtnTap(_ sender: Any) {
         addLoading(signUpBtn.customButton)
         
-        guard validateInputField(nameInputField, message: "Please Enter Your Name", completion: {
+        guard validateInputField(nameInputField, title: "Sign Up Failed", message: "Please Enter Your Name", completion: {
             self.afterDissmissed(self.signUpBtn.customButton, title: "Sign Up")
         }) else { return }
         
-        guard validateInputField(emailInputField, message: "Please Enter Your Email", completion: {
+        guard validateInputField(emailInputField, title: "Sign Up Failed", message: "Please Enter Your Email", completion: {
             self.afterDissmissed(self.signUpBtn.customButton, title: "Sign Up")
         }) else { return }
         
-        guard validateInputField(passwordInputField, message: "Please Enter Your Password", completion: {
+        guard validateInputField(passwordInputField, title: "Sign Up Failed", message: "Please Enter Your Password", completion: {
             self.afterDissmissed(self.signUpBtn.customButton, title: "Sign Up")
         }) else { return }
         
-        guard validateInputField(confirmPasswordInputField, message: "Please Confirm Your Password", completion: {
+        guard validateInputField(confirmPasswordInputField, title: "Sign Up Failed", message: "Please Confirm Your Password", completion: {
             self.afterDissmissed(self.signUpBtn.customButton, title: "Sign Up")
         }) else { return }
         

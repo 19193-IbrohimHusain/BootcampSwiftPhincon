@@ -4,6 +4,15 @@ import RxCocoa
 
 enum SectionStoryTable: Int, CaseIterable {
     case story, feed
+    
+    var cellTypes: UITableViewCell.Type {
+        switch self {
+        case .story:
+            return StoryTableCell.self
+        case .feed:
+            return FeedTableCell.self
+        }
+    }
 }
 
 class StoryViewModel : BaseViewModel {

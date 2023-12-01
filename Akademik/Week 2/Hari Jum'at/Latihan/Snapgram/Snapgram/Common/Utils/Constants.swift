@@ -6,3 +6,9 @@ class BaseConstant {
     static let fpcCornerRadius: CGFloat = 24.0
     static let userDef = UserDefaults.standard
 }
+
+
+class SharedDataSource {
+    static let shared = SharedDataSource()
+    var tableViewOffset: CGFloat = 0
+}

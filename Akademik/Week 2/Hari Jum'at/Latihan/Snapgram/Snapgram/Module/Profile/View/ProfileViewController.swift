@@ -5,11 +5,10 @@ import FloatingPanel
 
 class ProfileViewController: BaseViewController {
     
-    @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var profileTable: UITableView!
-    @IBOutlet weak var logoutBtn: UIButton!
     
     private let vm = ProfileViewModel()
+    private let tables = SectionProfileTable.allCases
     private var currentUser: User?
     private var fpc = FloatingPanelController()
     private var fpcOption = FloatingPanelController()
@@ -30,6 +29,7 @@ class ProfileViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        listStory.removeAll()
         vm.fetchStory(param: StoryTableParam(size: 1000))
     }
     
@@ -51,9 +51,9 @@ class ProfileViewController: BaseViewController {
     func setupTable() {
         profileTable.delegate =  self
         profileTable.dataSource =  self
-        profileTable.registerCellWithNib(ProfileTableCell.self)
-        profileTable.registerCellWithNib(CategoryTableCell.self)
-        profileTable.registerCellWithNib(PostTableCell.self)
+        tables.forEach { cell in
+            profileTable.registerCellWithNib(cell.cellTypes)
+        }
     }
     
     func bindData() {
@@ -75,35 +75,32 @@ class ProfileViewController: BaseViewController {
         vm.loadingState.asObservable().subscribe(onNext: {[weak self] state in
             guard let self = self else {return}
             switch state {
-            case .notLoad, .loading:
+            case .notLoad:
+                self.errorView.removeFromSuperview()
+            case .loading:
                 self.profileTable.showAnimatedGradientSkeleton()
-            case .failed, .finished:
+            case .finished:
                 DispatchQueue.main.async {
                     self.refreshControl.endRefreshing()
                     self.profileTable.hideSkeleton()
                 }
+            case .failed:
+                self.profileTable.addSubview(self.errorView)
             }
         }).disposed(by: bag)
     }
 }
 
-enum SectionProfileTable: Int, CaseIterable {
-    case profile, category, post
-}
-
 extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return tables.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case 0:
-            return 1
-        case 1:
-            return 1
-        case 2:
+        let tableSection = SectionProfileTable(rawValue: section)
+        switch tableSection {
+        case .profile, .category, .post:
             return 1
         default:
             return 0
@@ -133,7 +130,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             
         }
     }
-    
+        
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         SharedDataSource.shared.tableViewOffset = scrollView.contentOffset.y
     }

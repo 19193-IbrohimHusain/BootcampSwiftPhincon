@@ -8,6 +8,8 @@ class PostTableCell: UITableViewCell {
 
     @IBOutlet weak var postCollection: UICollectionView!
     
+    @IBOutlet weak var heightCollection: NSLayoutConstraint!
+    
     internal var delegate: PostTableCellDelegate?
     internal var post: [ListStory]?
         
@@ -20,6 +22,7 @@ class PostTableCell: UITableViewCell {
         postCollection.delegate = self
         postCollection.dataSource = self
         postCollection.registerCellWithNib(PostCollectionCell.self)
+        heightCollection.constant = 450
 
     }
     
@@ -39,6 +42,7 @@ extension PostTableCell: UICollectionViewDelegate, UICollectionViewDataSource, U
             let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as PostCollectionCell
             let postEntity = dataPost[indexPath.row]
             cell.configureCollection(postEntity)
+            heightCollection.constant = collectionView.contentSize.height
             return cell
         }
         return UICollectionViewCell()

@@ -25,18 +25,29 @@
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="useFontLineHeight" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rp.2.400.000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oJG-jQ-uYs">
                                 <rect key="frame" x="16" y="230" width="164" height="14"/>
                                 <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="useFontLineHeight" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VZz-KP-mUN">
                                 <rect key="frame" x="0.0" y="0.0" width="196" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="wZ0-Gs-12D"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -51,6 +62,9 @@
                             <constraint firstItem="cjp-1c-Hnt" firstAttribute="leading" secondItem="iWE-xG-bDv" secondAttribute="leading" constant="16" id="fWW-WY-FNm"/>
                             <constraint firstItem="oJG-jQ-uYs" firstAttribute="leading" secondItem="iWE-xG-bDv" secondAttribute="leading" constant="16" id="vNa-zx-RPX"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                        </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
             </view>
@@ -61,6 +75,9 @@
                 <constraint firstItem="iWE-xG-bDv" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="2" id="uHH-3E-Q0P"/>
                 <constraint firstAttribute="trailing" secondItem="iWE-xG-bDv" secondAttribute="trailing" constant="2" id="uqK-h5-izU"/>
             </constraints>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+            </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="bgView" destination="iWE-xG-bDv" id="NnT-it-dU4"/>
                 <outlet property="productImg" destination="VZz-KP-mUN" id="vZW-kI-Ezt"/>

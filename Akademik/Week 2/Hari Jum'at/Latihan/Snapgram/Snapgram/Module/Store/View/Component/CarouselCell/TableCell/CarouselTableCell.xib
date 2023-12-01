@@ -17,7 +17,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="393" height="200"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="jN7-T0-JPh">
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="jN7-T0-JPh">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="200"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
@@ -29,7 +29,14 @@
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="16" minY="0.0" maxX="16" maxY="0.0"/>
                         </collectionViewFlowLayout>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                        </userDefinedRuntimeAttributes>
                     </collectionView>
+                    <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="8iQ-Zk-xMX">
+                        <rect key="frame" x="138" y="163" width="116" height="26"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </pageControl>
                 </subviews>
                 <constraints>
                     <constraint firstItem="jN7-T0-JPh" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="4RO-AG-dmz"/>
@@ -37,8 +44,14 @@
                     <constraint firstItem="jN7-T0-JPh" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="gpK-ao-9aS"/>
                     <constraint firstAttribute="bottom" secondItem="jN7-T0-JPh" secondAttribute="bottom" id="vu2-XQ-2PJ"/>
                 </constraints>
+                <userDefinedRuntimeAttributes>
+                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                </userDefinedRuntimeAttributes>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+            </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="carouselCollection" destination="jN7-T0-JPh" id="4Lq-7F-wvL"/>
             </connections>

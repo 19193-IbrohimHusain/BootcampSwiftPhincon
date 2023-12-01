@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SkeletonView
 
 protocol NATableCellDelegate {
     func navigateToDetail()
@@ -51,5 +52,11 @@ extension NATableCell: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         delegate?.navigateToDetail()
+    }
+}
+
+extension NATableCell: SkeletonCollectionViewDataSource {
+    func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> SkeletonView.ReusableCellIdentifier {
+        return String(describing: NACollectionCell.self)
     }
 }

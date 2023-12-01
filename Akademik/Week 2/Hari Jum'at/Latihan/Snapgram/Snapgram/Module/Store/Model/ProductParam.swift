@@ -8,16 +8,16 @@
 import Foundation
 
 struct ProductParam {
-    var id: Int
-    var limit: Int
-    var name: String
-    var description: String
-    var priceFrom: Int
-    var priceTo: Int
-    var tags: String
-    var categories: Int
+    var id: Int?
+    var limit: Int?
+    var name: String?
+    var description: String?
+    var priceFrom: Int?
+    var priceTo: Int?
+    var tags: String?
+    var categories: Int?
     
-    init(id: Int = 1, limit: Int = 6, name: String = "Nike", description: String = "", priceFrom: Int = 1, priceTo: Int = 100000, tags: String = "popular", categories: Int = 1) {
+    init(id: Int? = nil, limit: Int? = 0, name: String? = nil, description: String? = nil, priceFrom: Int? = nil, priceTo: Int? = nil, tags: String? = nil, categories: Int? = nil) {
         self.id = id
         self.limit = limit
         self.name = name

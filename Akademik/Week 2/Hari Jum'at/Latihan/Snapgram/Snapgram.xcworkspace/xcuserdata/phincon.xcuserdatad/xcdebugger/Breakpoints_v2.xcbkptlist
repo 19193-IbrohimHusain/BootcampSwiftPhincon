@@ -870,8 +870,8 @@
             filePath = "Snapgram/Module/Profile/ViewModel/ProfileViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "8"
-            endingLineNumber = "8"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
             landmarkName = "fetchStory(param:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -886,8 +886,8 @@
             filePath = "Snapgram/Module/Profile/ViewModel/ProfileViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "15"
-            endingLineNumber = "15"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
             landmarkName = "fetchStory(param:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -902,8 +902,8 @@
             filePath = "Snapgram/Module/Profile/ViewModel/ProfileViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "17"
-            endingLineNumber = "17"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
             landmarkName = "fetchStory(param:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -918,8 +918,8 @@
             filePath = "Snapgram/Module/Profile/View/ProfileViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
             landmarkName = "bindData()"
             landmarkType = "7">
          </BreakpointContent>
@@ -998,8 +998,8 @@
             filePath = "Snapgram/Common/Utils/BaseViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "201"
-            endingLineNumber = "201"
+            startingLineNumber = "200"
+            endingLineNumber = "200"
             landmarkName = "locationManager(_:didUpdateLocations:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1014,8 +1014,8 @@
             filePath = "Snapgram/Common/Utils/BaseViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "183"
-            endingLineNumber = "183"
+            startingLineNumber = "182"
+            endingLineNumber = "182"
             landmarkName = "checkLocationAuthorization(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1030,8 +1030,8 @@
             filePath = "Snapgram/Common/Utils/BaseViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "180"
-            endingLineNumber = "180"
+            startingLineNumber = "179"
+            endingLineNumber = "179"
             landmarkName = "checkLocationAuthorization(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1046,8 +1046,8 @@
             filePath = "Snapgram/Common/Utils/BaseViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "204"
-            endingLineNumber = "204"
+            startingLineNumber = "203"
+            endingLineNumber = "203"
             landmarkName = "locationManager(_:didUpdateLocations:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1062,8 +1062,8 @@
             filePath = "Snapgram/Common/Utils/BaseViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "209"
-            endingLineNumber = "209"
+            startingLineNumber = "208"
+            endingLineNumber = "208"
             landmarkName = "locationManager(_:didUpdateLocations:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1739,7 +1739,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "DCB520AA-3C66-4D24-A52C-3E6552C3546A"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Snapgram/Module/Authentication/Login/Extension/ExtLogin.swift"
@@ -1755,7 +1755,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "A2CDDFF9-3527-4231-AD95-28718E2E0580"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Snapgram/Module/Authentication/Login/Extension/ExtLogin.swift"
@@ -1921,8 +1921,8 @@
             filePath = "Snapgram/Module/Profile/View/ProfileViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "129"
-            endingLineNumber = "129"
+            startingLineNumber = "126"
+            endingLineNumber = "126"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1953,8 +1953,8 @@
             filePath = "Snapgram/Module/Profile/View/Component/PostCell/TableCell/PostTableCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "12"
-            endingLineNumber = "12"
+            startingLineNumber = "14"
+            endingLineNumber = "14"
             landmarkName = "PostTableCell"
             landmarkType = "3">
             <Locations>
@@ -2061,8 +2061,8 @@
             filePath = "Snapgram/Module/Profile/View/Component/PostCell/TableCell/PostTableCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
             landmarkName = "collectionView(_:cellForItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2077,8 +2077,8 @@
             filePath = "Snapgram/Module/Profile/View/Component/PostCell/TableCell/PostTableCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
             landmarkName = "collectionView(_:numberOfItemsInSection:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2093,8 +2093,8 @@
             filePath = "Snapgram/Module/Profile/View/Component/PostCell/TableCell/PostTableCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
             landmarkName = "collectionView(_:layout:sizeForItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2109,8 +2109,8 @@
             filePath = "Snapgram/Module/Profile/View/Component/PostCell/TableCell/PostTableCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
             landmarkName = "collectionView(_:numberOfItemsInSection:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2125,8 +2125,8 @@
             filePath = "Snapgram/Module/Profile/View/Component/PostCell/TableCell/PostTableCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
             landmarkName = "collectionView(_:didSelectItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2141,8 +2141,8 @@
             filePath = "Snapgram/Module/Profile/View/ProfileViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "170"
-            endingLineNumber = "170"
+            startingLineNumber = "167"
+            endingLineNumber = "167"
             landmarkName = "navigateToDetail(id:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2205,8 +2205,8 @@
             filePath = "Snapgram/Module/Story/Home/View/StoryViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
             landmarkName = "loadMoreData()"
             landmarkType = "7">
          </BreakpointContent>
@@ -2221,8 +2221,8 @@
             filePath = "Snapgram/Module/Story/Home/View/StoryViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
             landmarkName = "loadMoreData()"
             landmarkType = "7">
          </BreakpointContent>
@@ -2237,8 +2237,8 @@
             filePath = "Snapgram/Module/Story/Home/View/StoryViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
             landmarkName = "loadMoreData()"
             landmarkType = "7">
          </BreakpointContent>
@@ -2285,8 +2285,8 @@
             filePath = "Snapgram/Module/Store/ViewModel/StoreViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "26"
-            endingLineNumber = "26"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
             landmarkName = "fetchProduct(param:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2301,8 +2301,8 @@
             filePath = "Snapgram/Module/Store/ViewModel/StoreViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
             landmarkName = "fetchProduct(param:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2311,14 +2311,14 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "D998A80C-6DC9-49D6-805E-0BB976B48BC2"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Snapgram/Module/Store/ViewModel/StoreViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
             landmarkName = "fetchProduct(param:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2343,7 +2343,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "2343AC1E-E1C5-4C1F-9618-D57165C518F9"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Snapgram/Common/Network/Alamofire API/APIManagerExt.swift"
@@ -2359,7 +2359,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "1E74AAA1-F93E-420C-A97D-577072318802"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Snapgram/Common/Network/Alamofire API/APIManagerExt.swift"
@@ -2439,14 +2439,14 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "E6ABC3FD-943C-45A8-924A-BF0ADD03F9FC"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Snapgram/Module/Store/View/StoreViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "48"
-            endingLineNumber = "48"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
             landmarkName = "StoreViewController"
             landmarkType = "3">
          </BreakpointContent>

@@ -2,6 +2,21 @@ import Foundation
 import RxSwift
 import RxCocoa
 
+enum SectionProfileTable: Int, CaseIterable {
+    case profile, category, post
+    
+    var cellTypes: UITableViewCell.Type {
+        switch self {
+        case .profile:
+            return ProfileTableCell.self
+        case .category:
+            return CategoryTableCell.self
+        case .post:
+            return PostTableCell.self
+        }
+    }
+}
+
 class ProfileViewModel : BaseViewModel {
     var storyData = BehaviorRelay<StoryResponse?>(value: nil)
     

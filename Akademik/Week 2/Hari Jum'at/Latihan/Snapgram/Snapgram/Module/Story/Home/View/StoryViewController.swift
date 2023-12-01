@@ -1,7 +1,4 @@
 import UIKit
-import RxSwift
-import RxCocoa
-import RxRelay
 import FloatingPanel
 import SkeletonView
 
@@ -9,6 +6,7 @@ class StoryViewController: BaseBottomSheetController {
     
     @IBOutlet internal weak var storyTable: UITableView!
     
+    internal let tables = SectionStoryTable.allCases
     private var vm = StoryViewModel()
     private var page = Int()
     private var isLoadMoreData = false
@@ -41,19 +39,23 @@ class StoryViewController: BaseBottomSheetController {
         vm.loadingState.asObservable().subscribe(onNext: {[weak self] state in
             guard let self = self else {return}
             switch state {
-            case .notLoad, .loading:
+            case .notLoad:
+                self.errorView.removeFromSuperview()
+            case .loading:
                 guard self.isLoadMoreData else {
                     self.storyTable.showAnimatedGradientSkeleton()
                     return
                 }
                 self.storyTable.showLoadingFooter()
-            case .failed, .finished:
+            case .finished:
                 DispatchQueue.main.async {
                     UIView.performWithoutAnimation {
                         self.storyTable.reloadData()
                     }
                     self.storyTable.hideSkeleton()
                 }
+            case .failed:
+                self.storyTable.addSubview(self.errorView)
             }
         }).disposed(by: bag)
     }
@@ -63,8 +65,9 @@ class StoryViewController: BaseBottomSheetController {
         storyTable.refreshControl = refreshControl
         storyTable.delegate = self
         storyTable.dataSource = self
-        storyTable.registerCellWithNib(FeedTableCell.self)
-        storyTable.registerCellWithNib(StoryTableCell.self)
+        tables.forEach { cell in
+            storyTable.registerCellWithNib(cell.cellTypes)
+        }
     }
     
     private func setupCommentPanel() {
@@ -94,12 +97,12 @@ class StoryViewController: BaseBottomSheetController {
 extension StoryViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return SectionStoryTable.allCases.count
+        return tables.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let table = SectionStoryTable(rawValue: section)
-        switch table {
+        let tableSection = SectionStoryTable(rawValue: section)
+        switch tableSection {
         case .story:
             return 1
         case .feed :
@@ -109,8 +112,8 @@ extension StoryViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let table = SectionStoryTable(rawValue: indexPath.section)
-        switch table {
+        let tableSection = SectionStoryTable(rawValue: indexPath.section)
+        switch tableSection {
         case .story:
             let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as StoryTableCell
             cell.data = listStory

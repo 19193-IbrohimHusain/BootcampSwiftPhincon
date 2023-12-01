@@ -44,6 +44,7 @@
                 <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
             </userDefinedRuntimeAttributes>
             <connections>
+                <outlet property="heightCollection" destination="oya-mn-Pk3" id="i82-9f-iNY"/>
                 <outlet property="postCollection" destination="TcB-bX-fbb" id="Doh-yI-Apf"/>
             </connections>
             <point key="canvasLocation" x="4.5801526717557248" y="20.422535211267608"/>

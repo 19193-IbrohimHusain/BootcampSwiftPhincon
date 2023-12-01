@@ -29,6 +29,9 @@
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="16" minY="0.0" maxX="16" maxY="0.0"/>
                         </collectionViewFlowLayout>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                        </userDefinedRuntimeAttributes>
                     </collectionView>
                 </subviews>
                 <constraints>
@@ -37,8 +40,14 @@
                     <constraint firstAttribute="bottom" secondItem="IU9-gY-uWU" secondAttribute="bottom" id="ahe-SJ-6dN"/>
                     <constraint firstItem="IU9-gY-uWU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="gjW-Be-2Fh"/>
                 </constraints>
+                <userDefinedRuntimeAttributes>
+                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                </userDefinedRuntimeAttributes>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+            </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="fYPCollection" destination="IU9-gY-uWU" id="qDM-g2-0cP"/>
             </connections>

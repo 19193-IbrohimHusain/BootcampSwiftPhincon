@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SkeletonView
 
 class CarouselTableCell: UITableViewCell {
 
@@ -34,5 +35,11 @@ extension CarouselTableCell: UICollectionViewDelegate, UICollectionViewDataSourc
         cell.configure(with: carousel)
         
         return cell
+    }
+}
+
+extension CarouselTableCell: SkeletonCollectionViewDataSource {
+    func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> SkeletonView.ReusableCellIdentifier {
+        return String(describing: CarouselCollectionCell.self)
     }
 }

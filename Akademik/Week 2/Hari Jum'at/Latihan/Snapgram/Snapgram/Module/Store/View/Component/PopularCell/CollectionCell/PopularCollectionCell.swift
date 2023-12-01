@@ -16,18 +16,18 @@ class PopularCollectionCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        setupBgView()
+        setupCollection()
     }
     
-    private func setupBgView() {
+    private func setupCollection() {
         bgView.addShadow()
         bgView.makeCornerRadius(16)
         bgView.layer.masksToBounds = false
+        productImg.layer.cornerRadius = 16
+        productImg.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
     }
     
     func configure(with product: CarouselCollectionEntity) {
-        productImg.layer.cornerRadius = 16
-        productImg.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
         productImg.image = UIImage(named: product.image)
     }
 }

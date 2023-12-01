@@ -13,12 +13,12 @@
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="PopularTableCell" customModule="Snapgram" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="300"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="300"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="XXC-hy-h3W">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="300"/>
+                        <rect key="frame" x="0.0" y="10" width="320" height="300"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="300" id="2wJ-dt-68H"/>
@@ -29,20 +29,29 @@
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="16" minY="0.0" maxX="16" maxY="0.0"/>
                         </collectionViewFlowLayout>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                        </userDefinedRuntimeAttributes>
                     </collectionView>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="XXC-hy-h3W" secondAttribute="trailing" id="J26-dS-L4O"/>
                     <constraint firstItem="XXC-hy-h3W" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="sSX-jz-AvA"/>
-                    <constraint firstItem="XXC-hy-h3W" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="uTz-Vl-G3r"/>
+                    <constraint firstItem="XXC-hy-h3W" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="uTz-Vl-G3r"/>
                     <constraint firstAttribute="bottom" secondItem="XXC-hy-h3W" secondAttribute="bottom" id="uqV-Yx-X1s"/>
                 </constraints>
+                <userDefinedRuntimeAttributes>
+                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                </userDefinedRuntimeAttributes>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+            </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="popularCollection" destination="XXC-hy-h3W" id="NRq-Vt-QBn"/>
             </connections>
-            <point key="canvasLocation" x="96" y="20"/>
+            <point key="canvasLocation" x="94.656488549618317" y="19.718309859154932"/>
         </tableViewCell>
     </objects>
     <resources>

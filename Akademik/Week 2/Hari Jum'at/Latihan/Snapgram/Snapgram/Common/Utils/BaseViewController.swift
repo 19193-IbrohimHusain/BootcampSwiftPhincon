@@ -12,13 +12,12 @@ class BaseViewController: UIViewController, CLLocationManagerDelegate {
     internal let geocoder = GMSGeocoder()
     internal let bag = DisposeBag()
     internal let refreshControl = UIRefreshControl()
+    internal let errorView = CustomErrorView()
     internal let marker = GMSMarker()
     internal let map = GMSMapView()
     internal var bounds = GMSCoordinateBounds()
     internal var latitude = Double()
     internal var longitude = Double()
-    var address: String = String()
-
     
     internal func setupNavigationBar(title: String, image1: String, image2: String, action1: Selector?, action2: Selector?) {
         self.navigationController?.navigationBar.tintColor = .label
@@ -43,9 +42,9 @@ class BaseViewController: UIViewController, CLLocationManagerDelegate {
         return stack
     }
     
-    internal func validateInputField(_ inputField: CustomInputField, message: String, completion: @escaping () -> Void) -> Bool {
+    internal func validateInputField(_ inputField: CustomInputField, title: String, message: String, completion: @escaping () -> Void) -> Bool {
         guard let text = inputField.textField.text, !text.isEmpty else {
-            displayAlert(title: "Sign Up Failed", message: message) {
+            displayAlert(title: title, message: message) {
                 completion()
             }
             return false

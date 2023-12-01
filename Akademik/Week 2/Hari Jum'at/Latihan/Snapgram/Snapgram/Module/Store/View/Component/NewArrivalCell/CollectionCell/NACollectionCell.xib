@@ -25,18 +25,29 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="3jl-0n-GU0"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nike ZoomFly 15" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zxl-it-ahv">
                                 <rect key="frame" x="16" y="208" width="164" height="14"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="useFontLineHeight" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rp.3.300.000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YI5-n1-SI3">
                                 <rect key="frame" x="16" y="230" width="164" height="14"/>
                                 <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="useFontLineHeight" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                             </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -51,6 +62,9 @@
                             <constraint firstAttribute="trailing" secondItem="6eg-9s-zVI" secondAttribute="trailing" id="p04-bA-odk"/>
                             <constraint firstItem="Zxl-it-ahv" firstAttribute="leading" secondItem="jA4-gl-JgC" secondAttribute="leading" constant="16" id="xmK-R2-0YR"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                        </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
             </view>
@@ -61,6 +75,9 @@
                 <constraint firstAttribute="bottom" secondItem="jA4-gl-JgC" secondAttribute="bottom" constant="2" id="myb-Rx-Lg3"/>
                 <constraint firstAttribute="trailing" secondItem="jA4-gl-JgC" secondAttribute="trailing" constant="2" id="pBd-Ux-Q3e"/>
             </constraints>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+            </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="bgView" destination="jA4-gl-JgC" id="Tuk-ox-wZW"/>
                 <outlet property="productImg" destination="6eg-9s-zVI" id="7QY-3W-8rE"/>

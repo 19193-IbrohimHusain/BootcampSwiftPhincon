@@ -11,10 +11,26 @@ import RxRelay
 
 enum SectionStoreTable: Int, CaseIterable {
     case search, carousel, popular, newArrival, forYouProduct
+    
+    var cellTypes: UITableViewCell.Type {
+        switch self {
+        case .search:
+            return SearchTableCell.self
+        case .carousel:
+            return CarouselTableCell.self
+        case .popular:
+            return PopularTableCell.self
+        case .newArrival:
+            return NATableCell.self
+        case .forYouProduct:
+            return FYPTableCell.self
+        }
+    }
 }
 
 class StoreViewModel: BaseViewModel {
     var productData = BehaviorRelay<ProductResponse?>(value: nil)
+    
     
     func fetchProduct(param: ProductParam) {
         loadingState.accept(.loading)

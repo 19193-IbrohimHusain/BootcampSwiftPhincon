@@ -13,10 +13,10 @@ class CarouselCollectionCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        carouselImg.layer.cornerRadius = 16.0
     }
     
     func configure(with carousel: CarouselCollectionEntity) {
-        carouselImg.layer.cornerRadius = 16.0
         carouselImg.image = UIImage(named: carousel.image)
     }
 

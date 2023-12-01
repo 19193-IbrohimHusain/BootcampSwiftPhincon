@@ -2,7 +2,7 @@ import Foundation
 
 struct ProductResponse: Codable {
     let meta: Meta
-    let data: ProductModel
+    let data: ProductData
     
     enum CodingKeys: String, CodingKey {
         case meta
@@ -22,9 +22,11 @@ struct Meta: Codable {
 
 // MARK: - DataClass
 struct ProductData: Codable {
+    let currentPage: Int
     let data: [ProductModel]
     
     enum CodingKeys: String, CodingKey {
+        case currentPage = "current_page"
         case data
     }
 }
@@ -42,16 +44,6 @@ struct ProductModel: Codable {
     enum CodingKeys: String, CodingKey {
         case id, name, price, description, tags, category, galleries
         case categoriesId = "categories_id"
-    }
-}
-
-struct CategoryModel: Codable {
-    let id: Int
-    let name: String
-    
-    enum CodingKeys: String, CodingKey {
-        case id
-        case name
     }
 }
 

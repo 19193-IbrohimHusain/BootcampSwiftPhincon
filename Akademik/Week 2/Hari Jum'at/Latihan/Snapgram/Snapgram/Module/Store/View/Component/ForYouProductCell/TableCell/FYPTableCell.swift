@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SkeletonView
 
 protocol FYPTableCellDelegate {
     func navigateToDetail()
@@ -50,5 +51,11 @@ extension FYPTableCell: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         delegate?.navigateToDetail()
+    }
+}
+
+extension FYPTableCell: SkeletonCollectionViewDataSource {
+    func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> SkeletonView.ReusableCellIdentifier {
+        return String(describing: FYPCollectionCell.self)
     }
 }

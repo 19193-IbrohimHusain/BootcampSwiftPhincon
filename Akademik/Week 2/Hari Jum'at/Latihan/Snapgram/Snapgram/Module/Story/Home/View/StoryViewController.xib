@@ -26,14 +26,6 @@
                         <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                     </userDefinedRuntimeAttributes>
                 </tableView>
-                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="39D-Lp-lFg">
-                    <rect key="frame" x="76.666666666666686" y="335.66666666666669" width="240" height="240.00000000000006"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="240" id="MVZ-zR-ott"/>
-                        <constraint firstAttribute="height" constant="240" id="uV9-x7-eEV"/>
-                    </constraints>
-                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -41,11 +33,9 @@
                 <constraint firstAttribute="bottom" secondItem="d1a-dy-Ij4" secondAttribute="bottom" id="6cb-vK-aTA"/>
                 <constraint firstItem="d1a-dy-Ij4" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="8E0-Kx-Pg8"/>
                 <constraint firstItem="d1a-dy-Ij4" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="8EI-iX-09o"/>
-                <constraint firstItem="39D-Lp-lFg" firstAttribute="centerY" secondItem="d1a-dy-Ij4" secondAttribute="centerY" id="NKF-4H-vhD"/>
-                <constraint firstItem="39D-Lp-lFg" firstAttribute="centerX" secondItem="d1a-dy-Ij4" secondAttribute="centerX" id="d6d-YJ-sre"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="d1a-dy-Ij4" secondAttribute="trailing" id="prQ-PH-TkF"/>
             </constraints>
-            <point key="canvasLocation" x="-24" y="20"/>
+            <point key="canvasLocation" x="-25.190839694656489" y="19.718309859154932"/>
         </view>
     </objects>
     <resources>

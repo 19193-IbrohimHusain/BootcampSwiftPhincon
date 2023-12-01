@@ -25,18 +25,27 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="lcY-Hz-Sdd"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sepatu Adidas UltraBoost V5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qmv-rT-QqI">
                                 <rect key="frame" x="16" y="208" width="164" height="14"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rp.3.200.000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D64-x4-A3J">
                                 <rect key="frame" x="16" y="230" width="164" height="14"/>
                                 <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                             </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -51,6 +60,9 @@
                             <constraint firstAttribute="trailing" secondItem="D64-x4-A3J" secondAttribute="trailing" constant="16" id="ua0-tK-Beu"/>
                             <constraint firstItem="D64-x4-A3J" firstAttribute="leading" secondItem="3h0-W4-YTT" secondAttribute="leading" constant="16" id="yhj-7D-v6f"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                        </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
             </view>
@@ -61,6 +73,9 @@
                 <constraint firstAttribute="trailing" secondItem="3h0-W4-YTT" secondAttribute="trailing" constant="2" id="WdE-YA-jyv"/>
                 <constraint firstItem="3h0-W4-YTT" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="2" id="j2P-7O-7mt"/>
             </constraints>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+            </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="bgView" destination="3h0-W4-YTT" id="EIX-ve-xMI"/>
                 <outlet property="productImg" destination="gxo-2D-zvC" id="LLd-Cm-m4R"/>

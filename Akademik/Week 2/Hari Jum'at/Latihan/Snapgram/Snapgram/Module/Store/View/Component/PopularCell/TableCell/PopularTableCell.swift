@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SkeletonView
 
 protocol PopularTableCellDelegate {
     func navigateToDetail()
@@ -44,5 +45,11 @@ extension PopularTableCell: UICollectionViewDelegate, UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         delegate?.navigateToDetail()
+    }
+}
+
+extension PopularTableCell: SkeletonCollectionViewDataSource {
+    func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> SkeletonView.ReusableCellIdentifier {
+        return String(describing: PopularCollectionCell.self)
     }
 }

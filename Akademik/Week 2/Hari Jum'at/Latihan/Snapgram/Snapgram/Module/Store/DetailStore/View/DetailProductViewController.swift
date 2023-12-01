@@ -7,13 +7,11 @@
 
 import UIKit
 
-enum SectionTableDetail: Int, CaseIterable {
-case image, name, desc, store, recommendation
-}
-
 class DetailProductViewController: BaseViewController {
     
     @IBOutlet weak var detailTable: UITableView!
+    
+    private let tables = SectionDetailProductTable.allCases
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,8 +22,9 @@ class DetailProductViewController: BaseViewController {
         detailTable.contentInsetAdjustmentBehavior = .never
         detailTable.delegate = self
         detailTable.dataSource = self
-        detailTable.registerCellWithNib(DetailImageTableCell.self)
-        detailTable.registerCellWithNib(DetailNameTableCell.self)
+        tables.forEach { cell in
+            detailTable.registerCellWithNib(cell.cellTypes)
+        }
     }
     
 }
@@ -33,20 +32,20 @@ class DetailProductViewController: BaseViewController {
 extension DetailProductViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return SectionTableDetail.allCases.count
+        return tables.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let section = SectionTableDetail(rawValue: section)
+        let section = SectionDetailProductTable(rawValue: section)
         switch section {
-        case .image, .name:
+        case .image, .name, .desc:
             return 1
         default: return 0
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let section = SectionTableDetail(rawValue: indexPath.section)
+        let section = SectionDetailProductTable(rawValue: indexPath.section)
         switch section {
         case .image:
             let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as DetailImageTableCell

@@ -21,16 +21,16 @@ enum EndpointProduct {
     var queryParams: [String: Any]? {
         switch self {
         case .products(let param):
-            let params: [String: Any] = [
-                "id" : param.id,
-                "limit" : param.limit,
-                "name" : param.name,
-                "description" : param.description,
-                "priceFrom" : param.priceFrom,
-                "priceTo" : param.priceTo,
-                "tags" : param.tags,
-                "categories" : param.categories
-            ]
+            var params: [String: Any] = [:]
+            
+            if let id = param.id { params["id"] = id }
+            if let limit = param.limit { params["limit"] = limit }
+            if let name = param.name { params["name"] = name }
+            if let description = param.description { params["description"] = description }
+            if let priceFrom = param.priceFrom { params["priceFrom"] = priceFrom }
+            if let priceTo = param.priceTo { params["priceTo"] = priceTo }
+            if let tags = param.tags { params["tags"] = tags }
+            if let categories = param.categories { params["categories"] = categories }
             
             return params
         default:
