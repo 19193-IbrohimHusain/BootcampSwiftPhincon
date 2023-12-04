@@ -5,7 +5,7 @@ import RxCocoa
 enum SectionProfileTable: Int, CaseIterable {
     case profile, category, post
     
-    var cellTypes: UITableViewCell.Type {
+    internal var cellTypes: UITableViewCell.Type {
         switch self {
         case .profile:
             return ProfileTableCell.self
@@ -13,6 +13,19 @@ enum SectionProfileTable: Int, CaseIterable {
             return CategoryTableCell.self
         case .post:
             return PostTableCell.self
+        }
+    }
+}
+
+enum SectionPostCollection: Int, CaseIterable {
+    case post, tagged
+    
+    internal var cellTypes: UICollectionViewCell.Type {
+        switch self {
+        case .post:
+            return PostCollectionCell.self
+        case .tagged:
+            return TaggedPostCollectionCell.self
         }
     }
 }

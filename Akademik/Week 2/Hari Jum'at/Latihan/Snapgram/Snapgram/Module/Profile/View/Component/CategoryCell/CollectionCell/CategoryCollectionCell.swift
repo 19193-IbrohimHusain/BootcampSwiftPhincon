@@ -1,14 +1,27 @@
 import UIKit
 
 protocol CategoryCollectionCellDelegate {
-    func onCategorySelected()
+    func onCategorySelected(index: Int)
 }
 
 class CategoryCollectionCell: UICollectionViewCell {
 
     @IBOutlet weak var categoryBtn: UIButton!
     
+    var index: Int = Int()
     var delegate: CategoryCollectionCellDelegate?
+    
+    override var isHighlighted: Bool {
+        didSet {
+            categoryBtn.tintColor = isHighlighted ? .systemGray : .label
+        }
+    }
+    
+    override var isSelected: Bool {
+        didSet {
+            categoryBtn.tintColor = isSelected ? .label : .systemGray
+        }
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -18,6 +31,6 @@ class CategoryCollectionCell: UICollectionViewCell {
     }
     
     @IBAction func onCategoryBtnTap() {
-        self.delegate?.onCategorySelected()
+        self.delegate?.onCategorySelected(index: index)
     }
 }

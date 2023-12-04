@@ -1,17 +1,14 @@
 import UIKit
 import RxSwift
 import SkeletonView
-import FloatingPanel
 
-class ProfileViewController: BaseViewController {
+class ProfileViewController: BaseBottomSheetController {
     
-    @IBOutlet weak var profileTable: UITableView!
+    @IBOutlet private weak var profileTable: UITableView!
     
     private let vm = ProfileViewModel()
     private let tables = SectionProfileTable.allCases
     private var currentUser: User?
-    private var fpc = FloatingPanelController()
-    private var fpcOption = FloatingPanelController()
     private var listStory: [ListStory] = [] {
         didSet {
             DispatchQueue.main.async {
@@ -22,9 +19,7 @@ class ProfileViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupTable()
-        setupNavigationBar()
-        bindData()
+        setup()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -33,22 +28,16 @@ class ProfileViewController: BaseViewController {
         vm.fetchStory(param: StoryTableParam(size: 1000))
     }
     
-    func setupNavigationBar() {
-        self.navigationController?.navigationBar.tintColor = .label
-        self.navigationItem.setLeftBarButton(UIBarButtonItem(customView: configureNavigationTitle(title: "Profile")), animated: false)
-        self.navigationItem.rightBarButtonItems = [
-            UIBarButtonItem(image: UIImage(systemName: "line.horizontal.3"), style: .plain, target: self, action: nil),
-            UIBarButtonItem(image: UIImage(systemName: "plus.app"), style: .plain, target: self, action: #selector(addStory))
-        ]
+    private func setup() {
+        setupNavigationBar(title: "Profile", image1: "line.horizontal.3", image2: "plus.app", action1: #selector(showSettings), action2: #selector(addStory))
+        setupTable()
+        bindData()
+        setupBottomSheet(contentVC: SettingsViewController(), floatingPanelDelegate: self)
     }
     
-    @objc func addStory() {
-        let vc = AddStoryViewController()
-        vc.modalPresentationStyle = .overFullScreen
-        self.present(vc, animated: true)
-    }
-    
-    func setupTable() {
+    private func setupTable() {
+        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        profileTable.refreshControl = refreshControl
         profileTable.delegate =  self
         profileTable.dataSource =  self
         tables.forEach { cell in
@@ -56,7 +45,7 @@ class ProfileViewController: BaseViewController {
         }
     }
     
-    func bindData() {
+    private func bindData() {
         vm.storyData.asObservable().subscribe(onNext: { [weak self] data in
             guard let self = self else { return }
             if let savedUser = BaseConstant.userDef.data(forKey: "userData") {
@@ -85,14 +74,41 @@ class ProfileViewController: BaseViewController {
                     self.profileTable.hideSkeleton()
                 }
             case .failed:
-                self.profileTable.addSubview(self.errorView)
+                DispatchQueue.main.async {
+                    self.profileTable.hideSkeleton()
+                    self.profileTable.addSubview(self.errorView)
+                }
             }
         }).disposed(by: bag)
+    }
+    
+    private func scrollToMenuIndex(sectionIndex: Int) {
+        let index = IndexPath(row: 0, section: 2)
+        if let cell = profileTable.cellForRow(at: index) as? PostTableCell {
+            let indexPath = IndexPath(item: 0, section: sectionIndex)
+            cell.postCollection.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        }
+    }
+    
+    @objc private func addStory() {
+        let vc = AddStoryViewController()
+        vc.modalPresentationStyle = .overFullScreen
+        self.present(vc, animated: true)
+    }
+    
+    @objc private func showSettings() {
+        self.present(floatingPanel, animated: true)
+    }
+    
+    @objc private func refreshData() {
+        listStory.removeAll()
+        vm.fetchStory(param: StoryTableParam(size: 1000))
+        refreshControl.endRefreshing()
+        profileTable.hideLoadingFooter()
     }
 }
 
 extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         return tables.count
     }
@@ -116,9 +132,12 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.configure(with: user)
             }
             cell.delegate = self
+            
             return cell
         case .category:
             let cell1 = tableView.dequeueReusableCell(forIndexPath: indexPath) as CategoryTableCell
+            cell1.delegate = self
+            
             return cell1
         case .post:
             let cell2 = tableView.dequeueReusableCell(forIndexPath: indexPath) as PostTableCell
@@ -134,7 +153,6 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         SharedDataSource.shared.tableViewOffset = scrollView.contentOffset.y
     }
-    
 }
 
 extension ProfileViewController: ProfileTableCellDelegate {
@@ -159,7 +177,29 @@ extension ProfileViewController: ProfileTableCellDelegate {
     }
 }
 
+extension ProfileViewController: CategoryTableCellDelegate {
+    func setCurrentSection(index: Int) {
+        self.scrollToMenuIndex(sectionIndex: index)
+    }
+}
+
 extension ProfileViewController: PostTableCellDelegate {
+    func willEndDragging(contentOffset: UnsafeMutablePointer<CGPoint>) {
+        let index = IndexPath(row: 0, section: 1)
+        if let cell = profileTable.cellForRow(at: index) as? CategoryTableCell {
+            let index = Int(contentOffset.pointee.x / view.frame.width)
+            let indexPath = IndexPath(item: index, section: 0)
+            cell.categoryCollection.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
+        }
+    }
+    
+    func didScroll(scrollView: UIScrollView) {
+        let index = IndexPath(row: 0, section: 1)
+        if let cell = profileTable.cellForRow(at: index) as? CategoryTableCell {
+            cell.horizontalBarLeftAnchorConstraint?.constant = scrollView.contentOffset.x / 2
+        }
+    }
+    
     func navigateToDetail(id: String) {
         let vc = DetailStoryViewController()
         vc.storyID = id

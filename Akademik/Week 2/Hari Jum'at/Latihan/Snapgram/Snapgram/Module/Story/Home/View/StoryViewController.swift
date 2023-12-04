@@ -55,7 +55,10 @@ class StoryViewController: BaseBottomSheetController {
                     self.storyTable.hideSkeleton()
                 }
             case .failed:
-                self.storyTable.addSubview(self.errorView)
+                DispatchQueue.main.async {
+                    self.storyTable.hideSkeleton()
+                    self.storyTable.addSubview(self.errorView)
+                }
             }
         }).disposed(by: bag)
     }

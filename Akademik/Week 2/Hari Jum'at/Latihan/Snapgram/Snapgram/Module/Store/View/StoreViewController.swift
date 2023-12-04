@@ -53,7 +53,10 @@ class StoreViewController: BaseViewController {
             case .finished:
                 self.storeTable.hideSkeleton()
             case .failed:
-                self.storeTable.addSubview(self.errorView)
+                DispatchQueue.main.async {
+                    self.storeTable.hideSkeleton()
+                    self.storeTable.addSubview(self.errorView)
+                }
             }
         }).disposed(by: bag)
     }
