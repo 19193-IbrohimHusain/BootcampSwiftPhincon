@@ -31,7 +31,9 @@ enum SectionPostCollection: Int, CaseIterable {
 }
 
 class ProfileViewModel : BaseViewModel {
-    var storyData = BehaviorRelay<StoryResponse?>(value: nil)
+    internal var userPost = BehaviorRelay<[ListStory]?>(value: nil)
+    internal var taggedPost = BehaviorRelay<[ListStory]?>(value: nil)
+    internal var currentUser = BehaviorRelay<User?>(value: nil)
     
     func fetchStory(param: StoryTableParam) {
         loadingState.accept(.loading)
@@ -40,7 +42,18 @@ class ProfileViewModel : BaseViewModel {
             switch result {
             case .success(let data):
                 self.loadingState.accept(.finished)
-                self.storyData.accept(data)
+                self.taggedPost.accept(data.listStory)
+                if let savedUser = BaseConstant.userDef.data(forKey: "userData") {
+                    do {
+                        let user = try JSONDecoder().decode(User.self, from: savedUser)
+                        self.currentUser.accept(user)
+                        let story = data.listStory
+                        let filteredStory = story.filter { $0.name == self.currentUser.value?.username }
+                        self.userPost.accept(filteredStory)
+                    } catch {
+                        print("Error decoding user data: \(error)")
+                    }
+                }
             case .failure(let error):
                 self.loadingState.accept(.failed)
                 print(String(describing: error))
@@ -48,4 +61,3 @@ class ProfileViewModel : BaseViewModel {
         }
     }
 }
-    

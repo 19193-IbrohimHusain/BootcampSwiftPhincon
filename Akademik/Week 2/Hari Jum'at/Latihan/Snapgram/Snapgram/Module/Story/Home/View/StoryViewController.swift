@@ -1,5 +1,4 @@
 import UIKit
-import FloatingPanel
 import SkeletonView
 
 class StoryViewController: BaseBottomSheetController {
@@ -57,7 +56,7 @@ class StoryViewController: BaseBottomSheetController {
             case .failed:
                 DispatchQueue.main.async {
                     self.storyTable.hideSkeleton()
-                    self.storyTable.addSubview(self.errorView)
+                    self.storyTable.backgroundView = self.errorView
                 }
             }
         }).disposed(by: bag)

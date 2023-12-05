@@ -37,11 +37,6 @@
 		3619058F2AF4F10F00DA3DF0 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3619055E2AF4F10E00DA3DF0 /* TabBarViewController.swift */; };
 		361905902AF4F10F00DA3DF0 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361905602AF4F10E00DA3DF0 /* MapViewController.swift */; };
 		361905942AF4F10F00DA3DF0 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 361905662AF4F10E00DA3DF0 /* ProfileViewController.xib */; };
-		361905952AF4F10F00DA3DF0 /* PostCollectionEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361905682AF4F10E00DA3DF0 /* PostCollectionEntity.swift */; };
-		361905962AF4F10F00DA3DF0 /* ProfileBottomSheetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3619056B2AF4F10E00DA3DF0 /* ProfileBottomSheetViewController.xib */; };
-		361905972AF4F10F00DA3DF0 /* ProfileBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3619056C2AF4F10E00DA3DF0 /* ProfileBottomSheetViewController.swift */; };
-		361905982AF4F10F00DA3DF0 /* PictureOptionBottomSheetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3619056E2AF4F10E00DA3DF0 /* PictureOptionBottomSheetViewController.xib */; };
-		361905992AF4F10F00DA3DF0 /* PictureOptionBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3619056F2AF4F10E00DA3DF0 /* PictureOptionBottomSheetViewController.swift */; };
 		3619059A2AF4F10F00DA3DF0 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361905702AF4F10E00DA3DF0 /* ProfileViewController.swift */; };
 		3619059B2AF4F10F00DA3DF0 /* CameraStoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 361905722AF4F10E00DA3DF0 /* CameraStoryViewController.xib */; };
 		3619059C2AF4F10F00DA3DF0 /* CameraAddStoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361905732AF4F10E00DA3DF0 /* CameraAddStoryViewController.swift */; };
@@ -116,6 +111,11 @@
 		36B1DABA2B060B12009C04EE /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B1DAB92B060B12009C04EE /* LoginViewModel.swift */; };
 		36B1DAC02B061EB3009C04EE /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B1DABF2B061EB3009C04EE /* RegisterViewModel.swift */; };
 		36B6A5DB2B0C56510090E556 /* BaseBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B6A5DA2B0C56510090E556 /* BaseBottomSheetViewController.swift */; };
+		36C40B2D2B1F1650000FE2EE /* TagPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C40B2B2B1F1650000FE2EE /* TagPhotoCell.swift */; };
+		36C40B2E2B1F1650000FE2EE /* TagPhotoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36C40B2C2B1F1650000FE2EE /* TagPhotoCell.xib */; };
+		36C40B312B1F1783000FE2EE /* PostPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C40B2F2B1F1783000FE2EE /* PostPhotoCell.swift */; };
+		36C40B322B1F1783000FE2EE /* PostPhotoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36C40B302B1F1783000FE2EE /* PostPhotoCell.xib */; };
+		36C40B352B1F2476000FE2EE /* ExtProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C40B342B1F2476000FE2EE /* ExtProfile.swift */; };
 		36CCE84A2AF8898500E4AF69 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 36CCE8492AF8898500E4AF69 /* Podfile */; };
 		36CCE8552AF89FE500E4AF69 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CCE8542AF89FE500E4AF69 /* APIManager.swift */; };
 		36CCE8572AF89FFC00E4AF69 /* EndpointStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CCE8562AF89FFC00E4AF69 /* EndpointStory.swift */; };
@@ -216,11 +216,6 @@
 		3619055E2AF4F10E00DA3DF0 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		361905602AF4F10E00DA3DF0 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		361905662AF4F10E00DA3DF0 /* ProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
-		361905682AF4F10E00DA3DF0 /* PostCollectionEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCollectionEntity.swift; sourceTree = "<group>"; };
-		3619056B2AF4F10E00DA3DF0 /* ProfileBottomSheetViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileBottomSheetViewController.xib; sourceTree = "<group>"; };
-		3619056C2AF4F10E00DA3DF0 /* ProfileBottomSheetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileBottomSheetViewController.swift; sourceTree = "<group>"; };
-		3619056E2AF4F10E00DA3DF0 /* PictureOptionBottomSheetViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PictureOptionBottomSheetViewController.xib; sourceTree = "<group>"; };
-		3619056F2AF4F10E00DA3DF0 /* PictureOptionBottomSheetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureOptionBottomSheetViewController.swift; sourceTree = "<group>"; };
 		361905702AF4F10E00DA3DF0 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		361905722AF4F10E00DA3DF0 /* CameraStoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CameraStoryViewController.xib; sourceTree = "<group>"; };
 		361905732AF4F10E00DA3DF0 /* CameraAddStoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraAddStoryViewController.swift; sourceTree = "<group>"; };
@@ -295,6 +290,11 @@
 		36B1DAB92B060B12009C04EE /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		36B1DABF2B061EB3009C04EE /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		36B6A5DA2B0C56510090E556 /* BaseBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseBottomSheetViewController.swift; sourceTree = "<group>"; };
+		36C40B2B2B1F1650000FE2EE /* TagPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagPhotoCell.swift; sourceTree = "<group>"; };
+		36C40B2C2B1F1650000FE2EE /* TagPhotoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TagPhotoCell.xib; sourceTree = "<group>"; };
+		36C40B2F2B1F1783000FE2EE /* PostPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostPhotoCell.swift; sourceTree = "<group>"; };
+		36C40B302B1F1783000FE2EE /* PostPhotoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostPhotoCell.xib; sourceTree = "<group>"; };
+		36C40B342B1F2476000FE2EE /* ExtProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtProfile.swift; sourceTree = "<group>"; };
 		36CCE8492AF8898500E4AF69 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		36CCE8542AF89FE500E4AF69 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		36CCE8562AF89FFC00E4AF69 /* EndpointStory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointStory.swift; sourceTree = "<group>"; };
@@ -580,10 +580,10 @@
 			children = (
 				36FBA1802B1DE6FA0090D898 /* Settings */,
 				36EF4D292B074A5800EBB278 /* EditProfile */,
+				36C40B332B1F245B000FE2EE /* Extension */,
 				36B1DAB22B06090E009C04EE /* ViewModel */,
 				36B1DAB12B060902009C04EE /* View */,
 				361905672AF4F10E00DA3DF0 /* Model */,
-				361905692AF4F10E00DA3DF0 /* BottomSheet */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -591,37 +591,9 @@
 		361905672AF4F10E00DA3DF0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				361905682AF4F10E00DA3DF0 /* PostCollectionEntity.swift */,
 				36EF4D302B07526E00EBB278 /* CategoryCollectionEntity.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		361905692AF4F10E00DA3DF0 /* BottomSheet */ = {
-			isa = PBXGroup;
-			children = (
-				3619056A2AF4F10E00DA3DF0 /* ProfileBottomSheet */,
-				3619056D2AF4F10E00DA3DF0 /* PictureOptionBottomSheet */,
-			);
-			path = BottomSheet;
-			sourceTree = "<group>";
-		};
-		3619056A2AF4F10E00DA3DF0 /* ProfileBottomSheet */ = {
-			isa = PBXGroup;
-			children = (
-				3619056B2AF4F10E00DA3DF0 /* ProfileBottomSheetViewController.xib */,
-				3619056C2AF4F10E00DA3DF0 /* ProfileBottomSheetViewController.swift */,
-			);
-			path = ProfileBottomSheet;
-			sourceTree = "<group>";
-		};
-		3619056D2AF4F10E00DA3DF0 /* PictureOptionBottomSheet */ = {
-			isa = PBXGroup;
-			children = (
-				3619056E2AF4F10E00DA3DF0 /* PictureOptionBottomSheetViewController.xib */,
-				3619056F2AF4F10E00DA3DF0 /* PictureOptionBottomSheetViewController.swift */,
-			);
-			path = PictureOptionBottomSheet;
 			sourceTree = "<group>";
 		};
 		361905712AF4F10E00DA3DF0 /* AddStory */ = {
@@ -814,8 +786,6 @@
 				367BE3342B0B4B3C0087AEC8 /* Cells */,
 				367BE32E2B0B3B570087AEC8 /* CommentViewController.swift */,
 				367BE32F2B0B3B570087AEC8 /* CommentViewController.xib */,
-				36139ECB2B143793009611A0 /* ReplyCommentTableCell.swift */,
-				36139ECC2B143793009611A0 /* ReplyCommentTableCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -833,6 +803,8 @@
 			children = (
 				367BE3362B0B4B5B0087AEC8 /* CommentTableCell.swift */,
 				367BE3372B0B4B5B0087AEC8 /* CommentTableCell.xib */,
+				36139ECB2B143793009611A0 /* ReplyCommentTableCell.swift */,
+				36139ECC2B143793009611A0 /* ReplyCommentTableCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1224,6 +1196,14 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		36C40B332B1F245B000FE2EE /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				36C40B342B1F2476000FE2EE /* ExtProfile.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		36CCE8582AF8B73500E4AF69 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -1402,6 +1382,8 @@
 			children = (
 				36EF4D1C2B0740AA00EBB278 /* PostCollectionCell.swift */,
 				36EF4D1D2B0740AA00EBB278 /* PostCollectionCell.xib */,
+				36C40B2F2B1F1783000FE2EE /* PostPhotoCell.swift */,
+				36C40B302B1F1783000FE2EE /* PostPhotoCell.xib */,
 			);
 			path = Post;
 			sourceTree = "<group>";
@@ -1411,6 +1393,8 @@
 			children = (
 				36FBA17C2B1D5E590090D898 /* TaggedPostCollectionCell.swift */,
 				36FBA17D2B1D5E590090D898 /* TaggedPostCollectionCell.xib */,
+				36C40B2B2B1F1650000FE2EE /* TagPhotoCell.swift */,
+				36C40B2C2B1F1650000FE2EE /* TagPhotoCell.xib */,
 			);
 			path = Tagged;
 			sourceTree = "<group>";
@@ -1589,7 +1573,7 @@
 				361905A72AF4F10F00DA3DF0 /* StoryTableCell.xib in Resources */,
 				36CCE84A2AF8898500E4AF69 /* Podfile in Resources */,
 				361905A62AF4F10F00DA3DF0 /* StoryCollectionCell.xib in Resources */,
-				361905982AF4F10F00DA3DF0 /* PictureOptionBottomSheetViewController.xib in Resources */,
+				36C40B2E2B1F1650000FE2EE /* TagPhotoCell.xib in Resources */,
 				367BE3312B0B3B570087AEC8 /* CommentViewController.xib in Resources */,
 				36A20F572B15DB6000F54132 /* PopularTableCell.xib in Resources */,
 				3619045A2AF4EC8300DA3DF0 /* Assets.xcassets in Resources */,
@@ -1600,7 +1584,7 @@
 				361904582AF4EC8100DA3DF0 /* Main.storyboard in Resources */,
 				36FBA17F2B1D5E590090D898 /* TaggedPostCollectionCell.xib in Resources */,
 				36A65F212B1706150038F956 /* DetailNameTableCell.xib in Resources */,
-				361905962AF4F10F00DA3DF0 /* ProfileBottomSheetViewController.xib in Resources */,
+				36C40B322B1F1783000FE2EE /* PostPhotoCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1777,6 +1761,7 @@
 				36A65F2C2B1712BD0038F956 /* DetailImageCollectionCell.swift in Sources */,
 				36A20F4C2B15CC0200F54132 /* CarouselCollectionEntity.swift in Sources */,
 				3619059F2AF4F10F00DA3DF0 /* RegisterViewController.swift in Sources */,
+				36C40B352B1F2476000FE2EE /* ExtProfile.swift in Sources */,
 				36A65F282B17113C0038F956 /* DetailImageTableCell.swift in Sources */,
 				3619052C2AF4EF2400DA3DF0 /* CustomButton.swift in Sources */,
 				361DCB552B1989BC00BFE0B7 /* CustomErrorView.swift in Sources */,
@@ -1792,6 +1777,7 @@
 				3619059C2AF4F10F00DA3DF0 /* CameraAddStoryViewController.swift in Sources */,
 				361904512AF4EC8100DA3DF0 /* AppDelegate.swift in Sources */,
 				36F4E7CF2AFE08F40055D291 /* CustomViewMarker.swift in Sources */,
+				36C40B312B1F1783000FE2EE /* PostPhotoCell.swift in Sources */,
 				36EF4D2E2B074B2E00EBB278 /* EditProfileViewController.swift in Sources */,
 				3619052A2AF4EF2400DA3DF0 /* ExtLogin.swift in Sources */,
 				36D1EA252B185EFC00645020 /* StoreViewModel.swift in Sources */,
@@ -1821,6 +1807,7 @@
 				361905A22AF4F10F00DA3DF0 /* LoginViewController.swift in Sources */,
 				367BE3302B0B3B570087AEC8 /* CommentViewController.swift in Sources */,
 				36D1EA1C2B1842C900645020 /* APIManagerExt.swift in Sources */,
+				36C40B2D2B1F1650000FE2EE /* TagPhotoCell.swift in Sources */,
 				361905282AF4EF2400DA3DF0 /* ExtView.swift in Sources */,
 				361905A82AF4F10F00DA3DF0 /* StoryTableCell.swift in Sources */,
 				3684BDEB2AFA0DFA006BB9A0 /* ExtString.swift in Sources */,
@@ -1834,11 +1821,9 @@
 				36A856A22B04E1CA00CE3A60 /* ExtStory.swift in Sources */,
 				3619052F2AF4EF2400DA3DF0 /* CustomInputField.swift in Sources */,
 				361905AB2AF4F10F00DA3DF0 /* StoryTableEntity.swift in Sources */,
-				361905952AF4F10F00DA3DF0 /* PostCollectionEntity.swift in Sources */,
 				3619058F2AF4F10F00DA3DF0 /* TabBarViewController.swift in Sources */,
 				361905262AF4EF2400DA3DF0 /* ExtCamera.swift in Sources */,
 				367BE3332B0B42150087AEC8 /* CustomFloatingPanelLayout.swift in Sources */,
-				361905992AF4F10F00DA3DF0 /* PictureOptionBottomSheetViewController.swift in Sources */,
 				36EF4D172B07206200EBB278 /* CategoryCollectionCell.swift in Sources */,
 				3694B5362AFB4B92003C11D8 /* DetailStoryViewModel.swift in Sources */,
 				3619059A2AF4F10F00DA3DF0 /* ProfileViewController.swift in Sources */,
@@ -1847,7 +1832,6 @@
 				3694B5382AFB5CE6003C11D8 /* ExtDate.swift in Sources */,
 				36D38B252B10579A00C2558F /* Helper.swift in Sources */,
 				36B1DAC02B061EB3009C04EE /* RegisterViewModel.swift in Sources */,
-				361905972AF4F10F00DA3DF0 /* ProfileBottomSheetViewController.swift in Sources */,
 				36CCE86B2AF8E9CF00E4AF69 /* LoginEntity.swift in Sources */,
 				36A20F422B159B4700F54132 /* CarouselTableCell.swift in Sources */,
 				36EF4D312B07526E00EBB278 /* CategoryCollectionEntity.swift in Sources */,

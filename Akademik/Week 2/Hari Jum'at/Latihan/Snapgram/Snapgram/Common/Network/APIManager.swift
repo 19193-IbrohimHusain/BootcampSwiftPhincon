@@ -42,7 +42,7 @@ final class APIManager {
         
         var request = URLRequest(url: endpoint.method == "GET" ? finalURL(with: endpoint, base: url) : url)
         request.httpMethod = endpoint.method
-        request.timeoutInterval = 60
+        request.timeoutInterval = 30
         
         setHeaders(for: &request, with: endpoint)
         

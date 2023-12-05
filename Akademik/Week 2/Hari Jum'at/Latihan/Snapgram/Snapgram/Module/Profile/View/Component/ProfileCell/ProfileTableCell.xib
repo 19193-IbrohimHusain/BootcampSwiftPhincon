@@ -128,6 +128,9 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="45" id="i3I-Mc-XLJ"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="cxZ-4g-r0k" userLabel="Followers Stack">
                                 <rect key="frame" x="61" y="0.0" width="72" height="48.666666666666664"/>
@@ -151,6 +154,9 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                 </subviews>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="GEM-s1-KJx" userLabel="Following Stack">
                                 <rect key="frame" x="149" y="0.0" width="72" height="48.666666666666664"/>
@@ -174,8 +180,14 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                 </subviews>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                             </stackView>
                         </subviews>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                        </userDefinedRuntimeAttributes>
                     </stackView>
                 </subviews>
                 <constraints>
@@ -195,7 +207,13 @@
                     <constraint firstAttribute="bottom" secondItem="6Fk-Ef-1Te" secondAttribute="bottom" constant="8" id="pT8-ox-nqK"/>
                     <constraint firstItem="bdK-xh-4fc" firstAttribute="top" secondItem="VtR-et-mUh" secondAttribute="bottom" constant="10" id="yUY-yf-btL"/>
                 </constraints>
+                <userDefinedRuntimeAttributes>
+                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                </userDefinedRuntimeAttributes>
             </tableViewCellContentView>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+            </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="address" destination="bdK-xh-4fc" id="nB6-jU-oPV"/>
                 <outlet property="bio" destination="VtR-et-mUh" id="Rfp-0c-ARS"/>

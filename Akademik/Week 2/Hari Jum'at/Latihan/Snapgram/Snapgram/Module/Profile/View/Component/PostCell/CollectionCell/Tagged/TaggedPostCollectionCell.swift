@@ -6,25 +6,57 @@
 //
 
 import UIKit
-import Kingfisher
+
+protocol TaggedPostCollectionCellDelegate {
+    func navigateToDetail(id: String)
+}
 
 class TaggedPostCollectionCell: UICollectionViewCell {
     
-    @IBOutlet weak var taggedImg: UIImageView!
+    @IBOutlet weak var tagCollection: UICollectionView!
+    
+    var delegate: TaggedPostCollectionCellDelegate?
+    var tagged: [ListStory]?
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        setupCollection()
     }
     
-    func configureCollection(_ post: ListStory) {
-        let url = URL(string: post.photoURL)
-        let processor = DownsamplingImageProcessor(size: CGSize(width: 150, height: 150))
-        taggedImg.kf.setImage(with: url, options: [
-            .processor(processor),
-            .loadDiskFileSynchronously,
-            .cacheOriginalImage,
-            .transition(.fade(0.25)),
-        ])
+    private func setupCollection() {
+        tagCollection.delegate = self
+        tagCollection.dataSource = self
+        tagCollection.registerCellWithNib(TagPhotoCell.self)
     }
+    
+    internal func configure(data: [ListStory]) {
+        self.tagged = data
+        tagCollection.reloadData()
+    }
+}
 
+extension TaggedPostCollectionCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return tagged?.count ?? 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as TagPhotoCell
+        if let tagData = tagged?[indexPath.item] {
+            cell.configureCollection(tagData)
+        }
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let storyID = tagged?[indexPath.item].id {
+            self.delegate?.navigateToDetail(id: storyID)
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let itemWidth = collectionView.bounds.width / 3
+        return CGSize(width: itemWidth, height: 150)
+    }
 }

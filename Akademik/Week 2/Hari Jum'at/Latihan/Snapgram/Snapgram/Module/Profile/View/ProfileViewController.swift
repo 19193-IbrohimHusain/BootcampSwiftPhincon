@@ -4,12 +4,13 @@ import SkeletonView
 
 class ProfileViewController: BaseBottomSheetController {
     
-    @IBOutlet private weak var profileTable: UITableView!
+    @IBOutlet internal weak var profileTable: UITableView!
     
+    internal let tables = SectionProfileTable.allCases
     private let vm = ProfileViewModel()
-    private let tables = SectionProfileTable.allCases
     private var currentUser: User?
-    private var listStory: [ListStory] = [] {
+    private var taggedPost: [ListStory] = []
+    private var userPost: [ListStory] = [] {
         didSet {
             DispatchQueue.main.async {
                 self.profileTable.reloadData()
@@ -24,7 +25,7 @@ class ProfileViewController: BaseBottomSheetController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        listStory.removeAll()
+        userPost.removeAll()
         vm.fetchStory(param: StoryTableParam(size: 1000))
     }
     
@@ -46,19 +47,19 @@ class ProfileViewController: BaseBottomSheetController {
     }
     
     private func bindData() {
-        vm.storyData.asObservable().subscribe(onNext: { [weak self] data in
-            guard let self = self else { return }
-            if let savedUser = BaseConstant.userDef.data(forKey: "userData") {
-                do {
-                    self.currentUser = try JSONDecoder().decode(User.self, from: savedUser)
-                    if let story = data?.listStory {
-                        let filteredStory = story.filter { $0.name == self.currentUser?.username }
-                        self.listStory.append(contentsOf: filteredStory)
-                    }
-                } catch {
-                    print("Error decoding user data: \(error)")
-                }
-            }
+        vm.userPost.asObservable().subscribe(onNext: { [weak self] data in
+            guard let self = self, let validData = data else { return }
+            self.userPost.append(contentsOf: validData)
+        }).disposed(by: bag)
+        
+        vm.taggedPost.asObservable().subscribe(onNext: { [weak self] data in
+            guard let self = self, let validData = data else { return }
+            self.taggedPost.append(contentsOf: validData)
+        }).disposed(by: bag)
+        
+        vm.currentUser.asObservable().subscribe(onNext: { [weak self] user in
+            guard let self = self, let user = user else { return }
+            self.currentUser = user
         }).disposed(by: bag)
         
         vm.loadingState.asObservable().subscribe(onNext: {[weak self] state in
@@ -82,7 +83,7 @@ class ProfileViewController: BaseBottomSheetController {
         }).disposed(by: bag)
     }
     
-    private func scrollToMenuIndex(sectionIndex: Int) {
+    internal func scrollToMenuIndex(sectionIndex: Int) {
         let index = IndexPath(row: 0, section: 2)
         if let cell = profileTable.cellForRow(at: index) as? PostTableCell {
             let indexPath = IndexPath(item: 0, section: sectionIndex)
@@ -101,7 +102,7 @@ class ProfileViewController: BaseBottomSheetController {
     }
     
     @objc private func refreshData() {
-        listStory.removeAll()
+        userPost.removeAll()
         vm.fetchStory(param: StoryTableParam(size: 1000))
         refreshControl.endRefreshing()
         profileTable.hideLoadingFooter()
@@ -142,7 +143,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         case .post:
             let cell2 = tableView.dequeueReusableCell(forIndexPath: indexPath) as PostTableCell
             cell2.delegate = self
-            cell2.configure(data: listStory)
+            cell2.configure(post: userPost, tag: taggedPost)
             
             return cell2
         default: return UITableViewCell()
@@ -152,58 +153,5 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         SharedDataSource.shared.tableViewOffset = scrollView.contentOffset.y
-    }
-}
-
-extension ProfileViewController: ProfileTableCellDelegate {
-    func editProfile() {
-        let epvc = EditProfileViewController()
-        epvc.hidesBottomBarWhenPushed = true
-        self.navigationController?.pushViewController(epvc, animated: true)
-    }
-    
-    func shareProfile() {
-        deleteToken()
-        BaseConstant.userDef.removeObject(forKey: "userData")
-        let vc = LoginViewController()
-        vc.hidesBottomBarWhenPushed = true
-        self.navigationController?.setViewControllers([vc], animated: true)
-    }
-    
-    func discover() {
-        let dvc = EditProfileViewController()
-        dvc.hidesBottomBarWhenPushed = true
-        self.navigationController?.pushViewController(dvc, animated: true)
-    }
-}
-
-extension ProfileViewController: CategoryTableCellDelegate {
-    func setCurrentSection(index: Int) {
-        self.scrollToMenuIndex(sectionIndex: index)
-    }
-}
-
-extension ProfileViewController: PostTableCellDelegate {
-    func willEndDragging(contentOffset: UnsafeMutablePointer<CGPoint>) {
-        let index = IndexPath(row: 0, section: 1)
-        if let cell = profileTable.cellForRow(at: index) as? CategoryTableCell {
-            let index = Int(contentOffset.pointee.x / view.frame.width)
-            let indexPath = IndexPath(item: index, section: 0)
-            cell.categoryCollection.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
-        }
-    }
-    
-    func didScroll(scrollView: UIScrollView) {
-        let index = IndexPath(row: 0, section: 1)
-        if let cell = profileTable.cellForRow(at: index) as? CategoryTableCell {
-            cell.horizontalBarLeftAnchorConstraint?.constant = scrollView.contentOffset.x / 2
-        }
-    }
-    
-    func navigateToDetail(id: String) {
-        let vc = DetailStoryViewController()
-        vc.storyID = id
-        vc.hidesBottomBarWhenPushed = true
-        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
