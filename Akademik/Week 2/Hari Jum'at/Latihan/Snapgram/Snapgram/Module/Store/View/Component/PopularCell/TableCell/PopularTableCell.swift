@@ -17,6 +17,7 @@ class PopularTableCell: UITableViewCell {
     @IBOutlet weak var popularCollection: UICollectionView!
     
     internal var delegate: PopularTableCellDelegate?
+    private var product: [ProductModel]?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,18 +29,23 @@ class PopularTableCell: UITableViewCell {
         popularCollection.dataSource = self
         popularCollection.registerCellWithNib(PopularCollectionCell.self)
     }
+    
+    internal func configure(data: [ProductModel]) {
+        self.product = data
+        popularCollection.reloadData()
+    }
 }
 
 extension PopularTableCell: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 8
+        return product?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as PopularCollectionCell
-        let popularItem = carouselItem[indexPath.row]
-        cell.configure(with: popularItem)
-        
+        if let popularItem = product?[indexPath.row] {
+            cell.configure(with: popularItem)
+        }
         return cell
     }
     

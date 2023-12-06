@@ -17,6 +17,7 @@ class FYPTableCell: UITableViewCell {
     @IBOutlet weak var fYPCollection: UICollectionView!
     
     internal var delegate: FYPTableCellDelegate?
+    private var product: [ProductModel]?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,10 +30,9 @@ class FYPTableCell: UITableViewCell {
         fYPCollection.registerCellWithNib(FYPCollectionCell.self)
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    internal func configure(data: [ProductModel]) {
+        self.product = data
+        fYPCollection.reloadData()
     }
 }
 
@@ -43,9 +43,9 @@ extension FYPTableCell: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as FYPCollectionCell
-        let fYPProduct = carouselItem[indexPath.row]
-        cell.configure(with: fYPProduct)
-        
+        if let fYPProduct = product?[indexPath.row] {
+            cell.configure(with: fYPProduct)
+        }
         return cell
     }
     

@@ -7,7 +7,9 @@ protocol PostCollectionCellDelegate {
 
 class PostCollectionCell: UICollectionViewCell {
 
-    @IBOutlet weak var postCollection: UICollectionView!
+    @IBOutlet weak var collectionView: UICollectionView!
+    
+    @IBOutlet weak var heightConstant: NSLayoutConstraint!
     
     internal var delegate: PostCollectionCellDelegate?
     internal var post: [ListStory]?
@@ -18,14 +20,14 @@ class PostCollectionCell: UICollectionViewCell {
     }
     
     private func setupCollection() {
-        postCollection.delegate = self
-        postCollection.dataSource = self
-        postCollection.registerCellWithNib(PostPhotoCell.self)
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.registerCellWithNib(PostPhotoCell.self)
     }
     
     internal func configure(data: [ListStory]) {
         self.post = data
-        postCollection.reloadData()
+        collectionView.reloadData()
     }
 }
 
@@ -39,7 +41,6 @@ extension PostCollectionCell: UICollectionViewDelegate, UICollectionViewDataSour
         if let dataPost = post?[indexPath.item] {
             cell.configureCollection(dataPost)
         }
-        
         return cell
     }
     

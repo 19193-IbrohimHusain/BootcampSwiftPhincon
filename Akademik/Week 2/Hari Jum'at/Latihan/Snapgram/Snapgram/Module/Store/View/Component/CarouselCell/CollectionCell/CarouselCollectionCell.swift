@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class CarouselCollectionCell: UICollectionViewCell {
     
@@ -16,8 +17,13 @@ class CarouselCollectionCell: UICollectionViewCell {
         carouselImg.layer.cornerRadius = 16.0
     }
     
-    func configure(with carousel: CarouselCollectionEntity) {
-        carouselImg.image = UIImage(named: carousel.image)
+    func configure(with carousel: GalleryModel) {
+        let url = URL(string: carousel.url)
+        carouselImg.kf.setImage(with: url, options: [
+            .loadDiskFileSynchronously,
+            .cacheOriginalImage,
+            .transition(.fade(0.25)),
+        ])
     }
 
 }

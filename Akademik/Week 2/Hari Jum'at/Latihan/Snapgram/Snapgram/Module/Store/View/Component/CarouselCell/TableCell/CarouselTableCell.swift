@@ -12,15 +12,22 @@ class CarouselTableCell: UITableViewCell {
 
     @IBOutlet weak var carouselCollection: UICollectionView!
     
+    private var product: [ProductModel]?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        configure()
+        setup()
     }
 
-    private func configure() {
+    private func setup() {
         carouselCollection.delegate = self
         carouselCollection.dataSource = self
         carouselCollection.registerCellWithNib(CarouselCollectionCell.self)
+    }
+    
+    internal func configure(data: [ProductModel]) {
+        self.product = data
+        carouselCollection.reloadData()
     }
 }
 
@@ -31,10 +38,15 @@ extension CarouselTableCell: UICollectionViewDelegate, UICollectionViewDataSourc
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as CarouselCollectionCell
-        let carousel = carouselItem[indexPath.row]
-        cell.configure(with: carousel)
-        
+        let item = product?[indexPath.item]
+        item?.galleries?.forEach { carousel in
+            cell.configure(with: carousel)
+        }
         return cell
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        carouselCollection.scrollToNearestVisibleCollectionViewCell()
     }
 }
 

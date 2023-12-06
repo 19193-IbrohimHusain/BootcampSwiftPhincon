@@ -39,8 +39,9 @@ class StoreViewController: BaseViewController {
     
     private func bindData() {
         vm.productData.asObservable().subscribe(onNext: { [weak self] product in
-            guard let self = self, let dataProduct = product?.data.data else {return}
-            self.product?.append(contentsOf: dataProduct)
+            guard let self = self, var dataProduct = product?.data.data else {return}
+            dataProduct.remove(at: 0)
+            self.product = dataProduct
         }).disposed(by: bag)
         
         vm.loadingState.asObservable().subscribe(onNext: { [weak self] state in
@@ -52,6 +53,7 @@ class StoreViewController: BaseViewController {
                 self.storeTable.showAnimatedGradientSkeleton()
             case .finished:
                 self.storeTable.hideSkeleton()
+                self.storeTable.reloadData()
             case .failed:
                 DispatchQueue.main.async {
                     self.storeTable.hideSkeleton()
@@ -85,18 +87,30 @@ extension StoreViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         case .carousel:
             let cell1 = tableView.dequeueReusableCell(forIndexPath: indexPath) as CarouselTableCell
+            if let data = product {
+                cell1.configure(data: data)
+            }
             return cell1
         case .popular:
             let cell2 = tableView.dequeueReusableCell(forIndexPath: indexPath) as PopularTableCell
             cell2.delegate = self
+            if let data = product {
+                cell2.configure(data: data)
+            }
             return cell2
         case .newArrival:
             let cell3 = tableView.dequeueReusableCell(forIndexPath: indexPath) as NATableCell
             cell3.delegate = self
+            if let data = product {
+                cell3.configure(data: data)
+            }
             return cell3
         case .forYouProduct:
             let cell4 = tableView.dequeueReusableCell(forIndexPath: indexPath) as FYPTableCell
             cell4.delegate = self
+            if let data = product {
+                cell4.configure(data: data)
+            }
             return cell4
         default:
             return UITableViewCell()

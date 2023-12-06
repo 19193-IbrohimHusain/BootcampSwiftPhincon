@@ -26,6 +26,7 @@ class ProfileViewController: BaseBottomSheetController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         userPost.removeAll()
+        taggedPost.removeAll()
         vm.fetchStory(param: StoryTableParam(size: 1000))
     }
     
@@ -103,6 +104,7 @@ class ProfileViewController: BaseBottomSheetController {
     
     @objc private func refreshData() {
         userPost.removeAll()
+        taggedPost.removeAll()
         vm.fetchStory(param: StoryTableParam(size: 1000))
         refreshControl.endRefreshing()
         profileTable.hideLoadingFooter()
@@ -144,7 +146,8 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             let cell2 = tableView.dequeueReusableCell(forIndexPath: indexPath) as PostTableCell
             cell2.delegate = self
             cell2.configure(post: userPost, tag: taggedPost)
-            
+            cell2.heightCollection.constant = CGFloat(50 * taggedPost.count)
+
             return cell2
         default: return UITableViewCell()
             

@@ -13,8 +13,10 @@ class PostTableCell: UITableViewCell {
     
     @IBOutlet weak var heightCollection: NSLayoutConstraint!
     
-    private var collections = SectionPostCollection.allCases
     internal var delegate: PostTableCellDelegate?
+    private var collections = SectionPostCollection.allCases
+    private var postHeight = CGFloat()
+    private var tagHeight = CGFloat()
     private var tagged: [ListStory]?
     private var post: [ListStory]?
         
@@ -34,6 +36,7 @@ class PostTableCell: UITableViewCell {
     func configure(post: [ListStory], tag: [ListStory]) {
         self.post = post
         self.tagged = tag
+        postCollection.collectionViewLayout.invalidateLayout()
         postCollection.reloadData()
     }
 }
@@ -63,7 +66,8 @@ extension PostTableCell: UICollectionViewDelegate, UICollectionViewDataSource, U
             if let data = post {
                 cell.configure(data: data)
             }
-            heightCollection.constant = collectionView.contentSize.height
+            cell.heightConstant.constant = self.heightCollection.constant
+            cell.collectionView.collectionViewLayout.invalidateLayout()
             return cell
         case .tagged:
             let cell1 = collectionView.dequeueReusableCell(forIndexPath: indexPath) as TaggedPostCollectionCell
@@ -71,7 +75,8 @@ extension PostTableCell: UICollectionViewDelegate, UICollectionViewDataSource, U
             if let data = tagged {
                 cell1.configure(data: data)
             }
-            heightCollection.constant = collectionView.contentSize.height
+            cell1.heightCollection.constant = self.heightCollection.constant
+            cell1.tagCollection.collectionViewLayout.invalidateLayout()
             return cell1
         default:
             return UICollectionViewCell()
@@ -79,9 +84,19 @@ extension PostTableCell: UICollectionViewDelegate, UICollectionViewDataSource, U
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let itemWidth = collectionView.bounds.width
-        let itemHeight = collectionView.bounds.height
-        return CGSize(width: itemWidth, height: itemHeight)
+        let sectionCollection = SectionPostCollection(rawValue: indexPath.section)
+        switch sectionCollection {
+        case .post:
+            let itemWidth = collectionView.bounds.width
+            let itemHeight = self.heightCollection.constant
+            return CGSize(width: itemWidth, height: itemHeight)
+        case .tagged:
+            let itemWidth = collectionView.bounds.width
+            let itemHeight = self.heightCollection.constant
+            return CGSize(width: itemWidth, height: itemHeight)
+        default:
+            return CGSize()
+        }
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

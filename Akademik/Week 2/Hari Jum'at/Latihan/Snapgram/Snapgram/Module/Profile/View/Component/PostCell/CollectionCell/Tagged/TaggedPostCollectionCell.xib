@@ -20,6 +20,9 @@
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="gei-jO-GDP">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="450"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="450" id="WgI-p0-6e7"/>
+                        </constraints>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="7uz-jU-Njz">
                             <size key="itemSize" width="128" height="128"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -37,6 +40,7 @@
                 <constraint firstAttribute="bottom" secondItem="gei-jO-GDP" secondAttribute="bottom" id="kWM-On-EOW"/>
             </constraints>
             <connections>
+                <outlet property="heightCollection" destination="WgI-p0-6e7" id="AbA-68-O13"/>
                 <outlet property="tagCollection" destination="gei-jO-GDP" id="zvA-xP-Xfh"/>
             </connections>
             <point key="canvasLocation" x="42.748091603053432" y="20.422535211267608"/>

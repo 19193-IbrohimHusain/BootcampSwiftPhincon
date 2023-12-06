@@ -17,6 +17,7 @@ class NATableCell: UITableViewCell {
     @IBOutlet weak var nACollection: UICollectionView!
     
     internal var delegate: NATableCellDelegate?
+    private var product: [ProductModel]?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,12 +30,10 @@ class NATableCell: UITableViewCell {
         nACollection.registerCellWithNib(NACollectionCell.self)
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    internal func configure(data: [ProductModel]) {
+        self.product = data
+        nACollection.reloadData()
     }
-    
 }
 
 extension NATableCell: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -44,9 +43,9 @@ extension NATableCell: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as NACollectionCell
-        let nAProduct = carouselItem[indexPath.row]
-        cell.configure(with: nAProduct)
-        
+        if let nAProduct = product?[indexPath.row] {
+            cell.configure(with: nAProduct)
+        }
         return cell
     }
     

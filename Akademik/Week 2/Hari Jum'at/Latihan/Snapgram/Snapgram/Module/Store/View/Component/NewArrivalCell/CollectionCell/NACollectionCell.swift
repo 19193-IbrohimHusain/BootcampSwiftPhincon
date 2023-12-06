@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class NACollectionCell: UICollectionViewCell {
 
@@ -27,8 +28,23 @@ class NACollectionCell: UICollectionViewCell {
         productImg.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
     }
     
-    internal func configure(with product: CarouselCollectionEntity) {
-        productImg.image = UIImage(named: product.image)
+    internal func configure(with product: ProductModel) {
+        configureImage(product)
+        productName.text = product.name
+        productPrice.text = "\(product.price)"
     }
-
+    
+    private func configureImage(_ product: ProductModel) {
+        if let gallery = product.galleries?.dropFirst(3).first {
+            let url = URL(string: gallery.url)
+            let size = productImg.intrinsicContentSize
+            let processor = DownsamplingImageProcessor(size: size)
+            productImg.kf.setImage(with: url, options: [
+                .processor(processor),
+                .loadDiskFileSynchronously,
+                .cacheOriginalImage,
+                .transition(.fade(0.25)),
+            ])
+        }
+    }
 }

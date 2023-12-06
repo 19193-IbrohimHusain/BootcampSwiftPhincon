@@ -15,6 +15,8 @@ class TaggedPostCollectionCell: UICollectionViewCell {
     
     @IBOutlet weak var tagCollection: UICollectionView!
     
+    @IBOutlet weak var heightCollection: NSLayoutConstraint!
+    
     var delegate: TaggedPostCollectionCellDelegate?
     var tagged: [ListStory]?
     
@@ -45,7 +47,7 @@ extension TaggedPostCollectionCell: UICollectionViewDelegate, UICollectionViewDa
         if let tagData = tagged?[indexPath.item] {
             cell.configureCollection(tagData)
         }
-        
+    
         return cell
     }
     

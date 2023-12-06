@@ -918,8 +918,8 @@
             filePath = "Snapgram/Module/Profile/View/ProfileViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
             landmarkName = "bindData()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1962,70 +1962,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "B15C0789-3F69-4983-B473-10A01106CEC9"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Snapgram/Module/Store/View/StoreViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
-            landmarkName = "bindData()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "94D8382B-A980-4934-8CD2-E330D5139B00"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Snapgram/Module/Store/View/StoreViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
-            landmarkName = "bindData()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "94D8382B-A980-4934-8CD2-E330D5139B00 - 271d995b4dd45a81"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Snapgram.StoreViewController.bindData() -&gt; ()"
-                  moduleName = "Snapgram"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/phincon/Documents/GitHub/BootcampSwiftPhincon/Akademik/Week%202/Hari%20Jum&apos;at/Latihan/Snapgram/Snapgram/Module/Store/View/StoreViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "44"
-                  endingLineNumber = "44"
-                  offsetFromSymbolStart = "392">
-               </Location>
-               <Location
-                  uuid = "94D8382B-A980-4934-8CD2-E330D5139B00 - a1288dfedc9a5236"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Snapgram.ProductResponse&gt;) -&gt; () in Snapgram.StoreViewController.bindData() -&gt; ()"
-                  moduleName = "Snapgram"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/phincon/Documents/GitHub/BootcampSwiftPhincon/Akademik/Week%202/Hari%20Jum&apos;at/Latihan/Snapgram/Snapgram/Module/Store/View/StoreViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "44"
-                  endingLineNumber = "44"
-                  offsetFromSymbolStart = "1168">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "E6ABC3FD-943C-45A8-924A-BF0ADD03F9FC"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -2033,8 +1969,8 @@
             filePath = "Snapgram/Module/Store/View/StoreViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
             landmarkName = "StoreViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -2065,8 +2001,8 @@
             filePath = "Snapgram/Module/Profile/View/ProfileViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
             landmarkName = "bindData()"
             landmarkType = "7">
          </BreakpointContent>
@@ -2081,8 +2017,8 @@
             filePath = "Snapgram/Module/Profile/View/ProfileViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
             landmarkName = "bindData()"
             landmarkType = "7">
          </BreakpointContent>
@@ -2097,8 +2033,8 @@
             filePath = "Snapgram/Module/Profile/View/ProfileViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
             landmarkName = "setup()"
             landmarkType = "7">
          </BreakpointContent>
@@ -2106,7 +2042,23 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "076B5957-7C5E-40AE-8ED3-948F5CB4DFB7"
+            uuid = "93DF0F6B-FA27-4EFE-9BB0-2E076655F5E2"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Snapgram/Module/Store/View/StoreViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FC21964D-9A3D-4516-A6DF-F57CFFAD574D"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -2116,6 +2068,22 @@
             startingLineNumber = "59"
             endingLineNumber = "59"
             landmarkName = "bindData()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5801697D-3B63-45DC-9531-7F1A44F8404F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Snapgram/Module/Profile/View/Component/PostCell/CollectionCell/Tagged/TaggedPostCollectionCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "collectionView(_:cellForItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
