@@ -44,18 +44,18 @@ extension StoryViewController: FeedTableCellDelegate {
     
     func addLike(cell: FeedTableCell) {
         guard let indexPath = storyTable?.indexPath(for: cell) else { return }
-        var post = listStory[indexPath.item]
+        var post = listStory[indexPath.row]
         if post.isLiked {
             post.isLiked = false
             post.likesCount -= 1
-            self.listStory[indexPath.item] = post
+            self.listStory[indexPath.row] = post
             UIView.performWithoutAnimation {
                 self.storyTable?.reloadRows(at: [indexPath], with: .none)
             }
         } else {
             post.isLiked = true
             post.likesCount += 1
-            self.listStory[indexPath.item] = post
+            self.listStory[indexPath.row] = post
             UIView.performWithoutAnimation {
                 self.storyTable?.reloadRows(at: [indexPath], with: .none)
             }

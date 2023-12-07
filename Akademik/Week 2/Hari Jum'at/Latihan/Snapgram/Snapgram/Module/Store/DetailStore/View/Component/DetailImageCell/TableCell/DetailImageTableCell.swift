@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SkeletonView
 
 class DetailImageTableCell: UITableViewCell {
 
@@ -21,13 +22,6 @@ class DetailImageTableCell: UITableViewCell {
         dICollection.dataSource = self
         dICollection.registerCellWithNib(DetailImageCollectionCell.self)
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-    
 }
 
 extension DetailImageTableCell: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -42,6 +36,10 @@ extension DetailImageTableCell: UICollectionViewDelegate, UICollectionViewDataSo
         
         return cell
     }
-    
-    
+}
+
+extension DetailImageTableCell: SkeletonCollectionViewDataSource {
+    func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> ReusableCellIdentifier {
+        return String(describing: DetailImageCollectionCell.self)
+    }
 }

@@ -31,9 +31,7 @@ class StoreViewController: BaseViewController {
         setupNavigationBar(title: "SnapStore", image1: "line.horizontal.3", image2: "cart", action1: nil, action2: nil)
         storeTable.delegate = self
         storeTable.dataSource = self
-        tables.forEach { cell in
-            storeTable.registerCellWithNib(cell.cellTypes)
-        }
+        tables.forEach { storeTable.registerCellWithNib($0.cellTypes) }
         bindData()
     }
     
@@ -87,7 +85,9 @@ extension StoreViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         case .carousel:
             let cell1 = tableView.dequeueReusableCell(forIndexPath: indexPath) as CarouselTableCell
-            if let data = product {
+            cell1.delegate = self
+            if let product = product {
+                let data = Array(product.prefix(5))
                 cell1.configure(data: data)
             }
             return cell1
@@ -147,24 +147,19 @@ extension StoreViewController: SkeletonTableViewDataSource {
     
     func collectionSkeletonView(_ tableView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
         let tableSection = SectionStoreTable(rawValue: indexPath.section)
-        switch tableSection {
-        case .search:
-            return String(describing: SearchTableCell.self)
-        case .carousel:
-            return String(describing: CarouselTableCell.self)
-        case .popular:
-            return String(describing: PopularTableCell.self)
-        case .newArrival:
-            return String(describing: NATableCell.self)
-        case .forYouProduct:
-            return String(describing: FYPTableCell.self)
-        default: return ""
+        guard let section = tableSection else { return "" }
+        
+        if let identifier = SectionStoreTable.sectionIdentifiers[section] {
+            return identifier
+        } else {
+            return ""
         }
     }
 }
 
-extension StoreViewController: PopularTableCellDelegate, NATableCellDelegate, FYPTableCellDelegate {
-    func navigateToDetail() {
+extension StoreViewController: CarouselTableCellDelegate, PopularTableCellDelegate, NATableCellDelegate, FYPTableCellDelegate {
+    func navigateToDetail(id: Int) {
+        vc.id = id
         vc.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
     }

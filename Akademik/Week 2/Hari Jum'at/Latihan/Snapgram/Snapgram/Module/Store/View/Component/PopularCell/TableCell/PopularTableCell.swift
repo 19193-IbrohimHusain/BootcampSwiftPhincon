@@ -9,7 +9,7 @@ import UIKit
 import SkeletonView
 
 protocol PopularTableCellDelegate {
-    func navigateToDetail()
+    func navigateToDetail(id: Int)
 }
 
 class PopularTableCell: UITableViewCell {
@@ -43,14 +43,17 @@ extension PopularTableCell: UICollectionViewDelegate, UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as PopularCollectionCell
-        if let popularItem = product?[indexPath.row] {
+        if let popularItem = product?[indexPath.item] {
             cell.configure(with: popularItem)
         }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.navigateToDetail()
+        let index = indexPath.item
+        if let productID = product?[index].id {
+            self.delegate?.navigateToDetail(id: productID)
+        }
     }
 }
 

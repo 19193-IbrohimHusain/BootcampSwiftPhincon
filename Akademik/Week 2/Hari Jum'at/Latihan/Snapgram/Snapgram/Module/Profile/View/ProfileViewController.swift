@@ -42,9 +42,7 @@ class ProfileViewController: BaseBottomSheetController {
         profileTable.refreshControl = refreshControl
         profileTable.delegate =  self
         profileTable.dataSource =  self
-        tables.forEach { cell in
-            profileTable.registerCellWithNib(cell.cellTypes)
-        }
+        tables.forEach { profileTable.registerCellWithNib($0.cellTypes) }
     }
     
     private func bindData() {

@@ -60,5 +60,34 @@ extension UICollectionView {
             return (contentOffset.y + bounds.height + clearance) >= contentSize.height
         }
     }
+    
+    func showLoadingFooter() {
+        let spinner = UIActivityIndicatorView(style: .medium)
+        spinner.startAnimating()
+        spinner.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: self.bounds.width, height: CGFloat(44))
+        
+        // Create a supplementary view representing the footer
+        let footerView = UICollectionReusableView()
+        footerView.addSubview(spinner)
+        
+        // Add the supplementary view to the collection view
+        self.supplementaryView(forElementKind: UICollectionView.elementKindSectionFooter, at: IndexPath(item: 0, section: self.numberOfSections - 1))?.addSubview(spinner)
+        
+        // Insert a new section with one item
+        self.performBatchUpdates({
+            self.insertSections(IndexSet(integer: self.numberOfSections))
+            self.insertItems(at: [IndexPath(item: 0, section: self.numberOfSections - 1)])
+        }, completion: nil)
+    }
+    
+    func hideLoadingFooter() {
+        // Remove the supplementary view to hide the loading spinner
+        self.supplementaryView(forElementKind: UICollectionView.elementKindSectionFooter, at: IndexPath(item: 0, section: self.numberOfSections - 1))?.removeFromSuperview()
+        
+        // Delete the last section
+        self.performBatchUpdates({
+            self.deleteSections(IndexSet(integer: self.numberOfSections - 1))
+        }, completion: nil)
+    }
 }
 

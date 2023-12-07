@@ -17,7 +17,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="393" height="200"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="jN7-T0-JPh">
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="jN7-T0-JPh">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="200"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
@@ -33,13 +33,23 @@
                             <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                         </userDefinedRuntimeAttributes>
                     </collectionView>
-                    <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="8iQ-Zk-xMX">
-                        <rect key="frame" x="138" y="163" width="116" height="26"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" hidesForSinglePage="YES" numberOfPages="5" translatesAutoresizingMaskIntoConstraints="NO" id="8iQ-Zk-xMX" customClass="CustomPageControl" customModule="Snapgram" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="165" width="393" height="26"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="393" id="CNu-IT-01Z"/>
+                        </constraints>
+                        <color key="pageIndicatorTintColor" systemColor="labelColor"/>
+                        <color key="currentPageIndicatorTintColor" systemColor="labelColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHiddenWhenSkeletonIsActive" value="YES"/>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                        </userDefinedRuntimeAttributes>
                     </pageControl>
                 </subviews>
                 <constraints>
                     <constraint firstItem="jN7-T0-JPh" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="4RO-AG-dmz"/>
+                    <constraint firstItem="8iQ-Zk-xMX" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="Adw-OP-szb"/>
+                    <constraint firstItem="8iQ-Zk-xMX" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" constant="2" id="Uht-xq-G93"/>
                     <constraint firstAttribute="trailing" secondItem="jN7-T0-JPh" secondAttribute="trailing" id="VJc-cC-XE9"/>
                     <constraint firstItem="jN7-T0-JPh" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="gpK-ao-9aS"/>
                     <constraint firstAttribute="bottom" secondItem="jN7-T0-JPh" secondAttribute="bottom" id="vu2-XQ-2PJ"/>
@@ -54,11 +64,15 @@
             </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="carouselCollection" destination="jN7-T0-JPh" id="4Lq-7F-wvL"/>
+                <outlet property="customPageControl" destination="8iQ-Zk-xMX" id="BRu-63-tsj"/>
             </connections>
-            <point key="canvasLocation" x="20" y="20"/>
+            <point key="canvasLocation" x="19.083969465648853" y="19.718309859154932"/>
         </tableViewCell>
     </objects>
     <resources>
+        <systemColor name="labelColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -96,13 +96,7 @@ class CustomViewMarker: UIView {
     
     // Setup view and constraints
     private func setupView() {
-        addSubview(imgView)
-        addSubview(username)
-        addSubview(locationLabel)
-        addSubview(uploadedImage)
-        addSubview(captionLabel)
-        addSubview(timeCreated)
-        addSubview(navigationButton)
+        [imgView, username, locationLabel, uploadedImage, captionLabel, timeCreated, navigationButton].forEach { addSubview($0) }
         addShadow()
         addBorderLine()
         

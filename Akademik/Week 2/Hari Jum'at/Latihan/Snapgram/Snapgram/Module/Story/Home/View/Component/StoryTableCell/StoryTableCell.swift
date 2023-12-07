@@ -39,7 +39,7 @@ extension StoryTableCell: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let validData = data {
             let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as StoryCollectionCell
-            let snapEntity = validData[indexPath.row]
+            let snapEntity = validData[indexPath.item]
             cell.configureCollection(with: snapEntity)
             
             return cell
@@ -48,7 +48,7 @@ extension StoryTableCell: UICollectionViewDelegate, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let index = indexPath.row
+        let index = indexPath.item
         if let storyID = data?[index].id {
             self.delegate?.navigateToDetail(id: storyID)
         }

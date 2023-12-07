@@ -9,7 +9,7 @@ import UIKit
 import SkeletonView
 
 protocol NATableCellDelegate {
-    func navigateToDetail()
+    func navigateToDetail(id: Int)
 }
 
 class NATableCell: UITableViewCell {
@@ -34,6 +34,8 @@ class NATableCell: UITableViewCell {
         self.product = data
         nACollection.reloadData()
     }
+    
+//    private func
 }
 
 extension NATableCell: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -42,15 +44,18 @@ extension NATableCell: UICollectionViewDelegate, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as NACollectionCell
-        if let nAProduct = product?[indexPath.row] {
+        let cell: NACollectionCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+        if let nAProduct = product?[indexPath.item] {
             cell.configure(with: nAProduct)
         }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.navigateToDetail()
+        let index = indexPath.item
+        if let productID = product?[index].id {
+            self.delegate?.navigateToDetail(id: productID)
+        }
     }
 }
 

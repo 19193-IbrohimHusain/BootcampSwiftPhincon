@@ -10,11 +10,12 @@ import Kingfisher
 
 class CarouselCollectionCell: UICollectionViewCell {
     
+    @IBOutlet weak var bgView: UIView!
     @IBOutlet weak var carouselImg: UIImageView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        carouselImg.layer.cornerRadius = 16.0
+        bgView.makeCornerRadius(16.0)
     }
     
     func configure(with carousel: GalleryModel) {

@@ -67,9 +67,7 @@ class StoryViewController: BaseBottomSheetController {
         storyTable.refreshControl = refreshControl
         storyTable.delegate = self
         storyTable.dataSource = self
-        tables.forEach { cell in
-            storyTable.registerCellWithNib(cell.cellTypes)
-        }
+        tables.forEach { storyTable.registerCellWithNib($0.cellTypes) }
     }
     
     private func setupCommentPanel() {

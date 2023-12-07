@@ -65,7 +65,7 @@ extension ProfileViewController: CategoryTableCellDelegate {
 }
 
 extension ProfileViewController: PostTableCellDelegate {
-    func willEndDragging(contentOffset: UnsafeMutablePointer<CGPoint>) {
+    func willEndDragging(contentOffset: UnsafeMutablePointer<CGPoint>, indexPath: IndexPath ) {
         let index = IndexPath(row: 0, section: 1)
         if let cell = profileTable.cellForRow(at: index) as? CategoryTableCell {
             let index = Int(contentOffset.pointee.x / view.frame.width)

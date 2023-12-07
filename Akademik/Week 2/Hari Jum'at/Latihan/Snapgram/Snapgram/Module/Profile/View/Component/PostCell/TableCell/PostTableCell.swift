@@ -3,7 +3,7 @@ import SkeletonView
 
 protocol PostTableCellDelegate {
     func didScroll(scrollView: UIScrollView)
-    func willEndDragging(contentOffset: UnsafeMutablePointer<CGPoint>)
+    func willEndDragging(contentOffset: UnsafeMutablePointer<CGPoint>, indexPath: IndexPath)
     func navigateToDetail(id: String)
 }
 
@@ -103,8 +103,8 @@ extension PostTableCell: UICollectionViewDelegate, UICollectionViewDataSource, U
         self.delegate?.didScroll(scrollView: scrollView)
     }
     
-    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        self.delegate?.willEndDragging(contentOffset: targetContentOffset)
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>, indexPath: IndexPath) {
+        self.delegate?.willEndDragging(contentOffset: targetContentOffset, indexPath: indexPath)
     }
 }
 

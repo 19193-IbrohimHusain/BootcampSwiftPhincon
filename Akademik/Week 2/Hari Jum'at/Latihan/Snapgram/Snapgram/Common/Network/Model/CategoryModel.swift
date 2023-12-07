@@ -26,9 +26,21 @@ struct CategoryData: Codable {
     }
 }
 
-struct CategoryModel: Codable {
+struct CategoryModel: Codable, Hashable {
     let id: Int
     let name: String
+    
+    // Custom implementation of the equality operator
+    static func == (lhs: CategoryModel, rhs: CategoryModel) -> Bool {
+        return lhs.id == rhs.id &&
+        lhs.name == rhs.name
+    }
+    
+    // Implementation of the hash(into:) method
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+        hasher.combine(name)
+    }
     
     enum CodingKeys: String, CodingKey {
         case id

@@ -18,6 +18,9 @@
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kEZ-8L-JO0">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="200"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                        </userDefinedRuntimeAttributes>
                     </imageView>
                 </subviews>
             </view>
@@ -28,6 +31,9 @@
                 <constraint firstAttribute="trailing" secondItem="kEZ-8L-JO0" secondAttribute="trailing" id="K9g-XU-4GR"/>
                 <constraint firstAttribute="bottom" secondItem="kEZ-8L-JO0" secondAttribute="bottom" id="gz5-4B-CY4"/>
             </constraints>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+            </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="productImg" destination="kEZ-8L-JO0" id="JZw-3J-ZZH"/>
             </connections>
