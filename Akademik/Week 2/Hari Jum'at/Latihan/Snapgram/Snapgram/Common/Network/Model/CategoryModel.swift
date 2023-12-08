@@ -32,14 +32,12 @@ struct CategoryModel: Codable, Hashable {
     
     // Custom implementation of the equality operator
     static func == (lhs: CategoryModel, rhs: CategoryModel) -> Bool {
-        return lhs.id == rhs.id &&
-        lhs.name == rhs.name
+        return lhs.id == rhs.id
     }
     
     // Implementation of the hash(into:) method
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
-        hasher.combine(name)
     }
     
     enum CodingKeys: String, CodingKey {

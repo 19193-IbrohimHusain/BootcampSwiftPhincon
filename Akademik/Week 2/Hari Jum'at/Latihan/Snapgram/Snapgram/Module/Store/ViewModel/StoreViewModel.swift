@@ -9,36 +9,7 @@ import Foundation
 import RxSwift
 import RxRelay
 
-enum SectionStoreTable: Int, CaseIterable {
-    case search, carousel, popular, newArrival, forYouProduct
-    
-    var cellTypes: UITableViewCell.Type {
-        switch self {
-        case .search:
-            return SearchTableCell.self
-        case .carousel:
-            return CarouselTableCell.self
-        case .popular:
-            return PopularTableCell.self
-        case .newArrival:
-            return NATableCell.self
-        case .forYouProduct:
-            return FYPTableCell.self
-        }
-    }
-    
-    static var sectionIdentifiers: [SectionStoreTable: String] {
-        return [
-            .search: String(describing: SearchTableCell.self),
-            .carousel: String(describing: CarouselTableCell.self),
-            .popular: String(describing: PopularTableCell.self),
-            .newArrival: String(describing: NATableCell.self),
-            .forYouProduct: String(describing: FYPTableCell.self)
-        ]
-    }
-}
-
-enum SectionStoreCollection: Int, CaseIterable {
+enum SectionStoreCollection: Int, Hashable, CaseIterable {
     case search, carousel, popular, forYouProduct
     
     var cellTypes: UICollectionViewCell.Type {
@@ -53,6 +24,11 @@ enum SectionStoreCollection: Int, CaseIterable {
             return FYPCollectionCell.self
         }
     }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(rawValue)
+    }
+   
     
     static var sectionIdentifiers: [SectionStoreCollection: String] {
         return [

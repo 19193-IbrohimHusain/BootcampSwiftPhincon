@@ -10,7 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StoreViewController" customModule="Snapgram" customModuleProvider="target">
             <connections>
-                <outlet property="storeTable" destination="6om-yy-bG5" id="don-8O-89l"/>
+                <outlet property="storeCollection" destination="S3f-nK-usr" id="IeT-fq-bfk"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -19,20 +19,24 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="16" estimatedSectionHeaderHeight="-1" sectionFooterHeight="16" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="6om-yy-bG5">
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="S3f-nK-usr">
                     <rect key="frame" x="0.0" y="59" width="393" height="793"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
-                    </userDefinedRuntimeAttributes>
-                </tableView>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="wub-E2-Tvm">
+                        <size key="itemSize" width="128" height="128"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="6om-yy-bG5" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="Whg-EL-8rR"/>
-                <constraint firstItem="6om-yy-bG5" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="db8-Vw-hLf"/>
-                <constraint firstAttribute="bottom" secondItem="6om-yy-bG5" secondAttribute="bottom" id="dvA-xA-eBY"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="6om-yy-bG5" secondAttribute="trailing" id="r7J-0e-IdW"/>
+                <constraint firstAttribute="bottom" secondItem="S3f-nK-usr" secondAttribute="bottom" id="81X-6k-Y8d"/>
+                <constraint firstItem="S3f-nK-usr" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="CjR-ol-ehf"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="S3f-nK-usr" secondAttribute="trailing" id="E8t-2J-hEG"/>
+                <constraint firstItem="S3f-nK-usr" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="J4a-3s-ISa"/>
             </constraints>
             <point key="canvasLocation" x="45" y="20"/>
         </view>

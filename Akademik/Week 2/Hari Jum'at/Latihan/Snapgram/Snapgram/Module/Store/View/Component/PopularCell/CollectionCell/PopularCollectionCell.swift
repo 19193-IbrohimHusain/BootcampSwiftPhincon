@@ -12,6 +12,7 @@ class PopularCollectionCell: UICollectionViewCell {
     
     @IBOutlet weak var bgView: UIView!
     @IBOutlet weak var productImg: UIImageView!
+    @IBOutlet weak var productCategory: UILabel!
     @IBOutlet weak var productName: UILabel!
     @IBOutlet weak var productPrice: UILabel!
     
@@ -25,11 +26,12 @@ class PopularCollectionCell: UICollectionViewCell {
         bgView.makeCornerRadius(16)
         bgView.layer.masksToBounds = false
         productImg.layer.cornerRadius = 16
-        productImg.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
+        productImg.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
     }
     
     internal func configure(with product: ProductModel) {
         configureImage(product)
+        productCategory.text = product.category.name
         productName.text = product.name
         productPrice.text = "\(product.price)"
     }

@@ -11,6 +11,7 @@
 		36139ECD2B143793009611A0 /* ReplyCommentTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36139ECB2B143793009611A0 /* ReplyCommentTableCell.swift */; };
 		36139ECE2B143793009611A0 /* ReplyCommentTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36139ECC2B143793009611A0 /* ReplyCommentTableCell.xib */; };
 		36139ED12B14498A009611A0 /* CustomFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36139ED02B14498A009611A0 /* CustomFooterView.swift */; };
+		36148A6A2B23152C00FE3E52 /* FYPLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36148A692B23152C00FE3E52 /* FYPLayout.swift */; };
 		361904512AF4EC8100DA3DF0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361904502AF4EC8100DA3DF0 /* AppDelegate.swift */; };
 		361904532AF4EC8100DA3DF0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361904522AF4EC8100DA3DF0 /* SceneDelegate.swift */; };
 		361904552AF4EC8100DA3DF0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361904542AF4EC8100DA3DF0 /* ViewController.swift */; };
@@ -140,7 +141,6 @@
 		36E50ADC2B21DF4300BB4D65 /* ExtStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E50ADB2B21DF4300BB4D65 /* ExtStore.swift */; };
 		36E50ADE2B21DFA600BB4D65 /* ExtNSCollectionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E50ADD2B21DFA600BB4D65 /* ExtNSCollectionLayout.swift */; };
 		36E50AE02B21E17700BB4D65 /* ExtNSDirectionalEdgeInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E50ADF2B21E17700BB4D65 /* ExtNSDirectionalEdgeInsets.swift */; };
-		36E50AE22B21F1E900BB4D65 /* StoreViewControllerV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E50AE12B21F1E900BB4D65 /* StoreViewControllerV2.swift */; };
 		36EF4D0A2B0708E400EBB278 /* ExtUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EF4D092B0708E400EBB278 /* ExtUIButton.swift */; };
 		36EF4D0C2B070EBF00EBB278 /* ExtUIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EF4D0B2B070EBF00EBB278 /* ExtUIImage.swift */; };
 		36EF4D112B071F0000EBB278 /* CategoryTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EF4D0F2B071F0000EBB278 /* CategoryTableCell.swift */; };
@@ -193,6 +193,7 @@
 		36139ECB2B143793009611A0 /* ReplyCommentTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplyCommentTableCell.swift; sourceTree = "<group>"; };
 		36139ECC2B143793009611A0 /* ReplyCommentTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReplyCommentTableCell.xib; sourceTree = "<group>"; };
 		36139ED02B14498A009611A0 /* CustomFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFooterView.swift; sourceTree = "<group>"; };
+		36148A692B23152C00FE3E52 /* FYPLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYPLayout.swift; sourceTree = "<group>"; };
 		3619044D2AF4EC8100DA3DF0 /* Snapgram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Snapgram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		361904502AF4EC8100DA3DF0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		361904522AF4EC8100DA3DF0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -326,7 +327,6 @@
 		36E50ADB2B21DF4300BB4D65 /* ExtStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtStore.swift; sourceTree = "<group>"; };
 		36E50ADD2B21DFA600BB4D65 /* ExtNSCollectionLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtNSCollectionLayout.swift; sourceTree = "<group>"; };
 		36E50ADF2B21E17700BB4D65 /* ExtNSDirectionalEdgeInsets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtNSDirectionalEdgeInsets.swift; sourceTree = "<group>"; };
-		36E50AE12B21F1E900BB4D65 /* StoreViewControllerV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreViewControllerV2.swift; sourceTree = "<group>"; };
 		36EF4D092B0708E400EBB278 /* ExtUIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtUIButton.swift; sourceTree = "<group>"; };
 		36EF4D0B2B070EBF00EBB278 /* ExtUIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtUIImage.swift; sourceTree = "<group>"; };
 		36EF4D0F2B071F0000EBB278 /* CategoryTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableCell.swift; sourceTree = "<group>"; };
@@ -967,6 +967,7 @@
 			children = (
 				36A65F0C2B16DCED0038F956 /* CollectionCell */,
 				36A65F012B16D9D70038F956 /* TableCell */,
+				36148A692B23152C00FE3E52 /* FYPLayout.swift */,
 			);
 			path = ForYouProductCell;
 			sourceTree = "<group>";
@@ -1194,7 +1195,6 @@
 				36A20F392B15967700F54132 /* Component */,
 				3619055B2AF4F10E00DA3DF0 /* StoreViewController.swift */,
 				3619055C2AF4F10E00DA3DF0 /* StoreViewController.xib */,
-				36E50AE12B21F1E900BB4D65 /* StoreViewControllerV2.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1842,6 +1842,7 @@
 				36C40B312B1F1783000FE2EE /* PostPhotoCell.swift in Sources */,
 				36EF4D2E2B074B2E00EBB278 /* EditProfileViewController.swift in Sources */,
 				3619052A2AF4EF2400DA3DF0 /* ExtLogin.swift in Sources */,
+				36148A6A2B23152C00FE3E52 /* FYPLayout.swift in Sources */,
 				36D1EA252B185EFC00645020 /* StoreViewModel.swift in Sources */,
 				36B115EC2B2171F100574ADA /* CustomPageControl.swift in Sources */,
 				36CCE85C2AF8B7A800E4AF69 /* LoginModel.swift in Sources */,
@@ -1887,7 +1888,6 @@
 				3619052F2AF4EF2400DA3DF0 /* CustomInputField.swift in Sources */,
 				361905AB2AF4F10F00DA3DF0 /* StoryTableEntity.swift in Sources */,
 				3619058F2AF4F10F00DA3DF0 /* TabBarViewController.swift in Sources */,
-				36E50AE22B21F1E900BB4D65 /* StoreViewControllerV2.swift in Sources */,
 				361905262AF4EF2400DA3DF0 /* ExtCamera.swift in Sources */,
 				367BE3332B0B42150087AEC8 /* CustomFloatingPanelLayout.swift in Sources */,
 				36EF4D172B07206200EBB278 /* CategoryCollectionCell.swift in Sources */,

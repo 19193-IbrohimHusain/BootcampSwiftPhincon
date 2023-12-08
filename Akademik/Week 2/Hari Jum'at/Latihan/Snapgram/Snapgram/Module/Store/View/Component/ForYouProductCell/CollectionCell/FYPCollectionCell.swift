@@ -12,6 +12,7 @@ class FYPCollectionCell: UICollectionViewCell {
 
     @IBOutlet private weak var bgView: UIView!
     @IBOutlet weak var productImg: UIImageView!
+    @IBOutlet weak var productCategory: UILabel!
     @IBOutlet weak var productName: UILabel!
     @IBOutlet weak var productPrice: UILabel!
     
@@ -30,6 +31,7 @@ class FYPCollectionCell: UICollectionViewCell {
     
     internal func configure(with product: ProductModel) {
         configureImage(product)
+        productCategory.text = product.category.name
         productName.text = product.name
         productPrice.text = "\(product.price)"
     }
