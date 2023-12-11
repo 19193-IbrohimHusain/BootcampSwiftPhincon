@@ -12,7 +12,7 @@ class CarouselCollectionCell: UICollectionViewCell {
     
     @IBOutlet weak var bgView: UIView!
     @IBOutlet weak var carouselImg: UIImageView!
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         bgView.makeCornerRadius(16.0)

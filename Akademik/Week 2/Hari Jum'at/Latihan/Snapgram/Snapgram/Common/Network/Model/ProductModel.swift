@@ -32,7 +32,7 @@ struct ProductData: Codable {
 }
 
 struct ProductModel: Codable, Hashable {
-    let id: Int
+    var id: Int
     let name: String
     let price: Double
     let description: String

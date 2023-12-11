@@ -52,45 +52,96 @@ extension NSCollectionLayoutSection {
     }
     
     static func carouselSection() -> NSCollectionLayoutSection {
-        let item = NSCollectionLayoutItem.entireHeight(withWidth: .fractionalWidth(1.0))
+        // Supplementary item for page control
+        let pageControlItem = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(44)),
+            elementKind: UICollectionView.elementKindSectionFooter,
+            alignment: .bottom
+        )
+
+        let item = NSCollectionLayoutItem.withEntireSize()
         
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.9), heightDimension: .absolute(200))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .groupPagingCentered
+        section.boundarySupplementaryItems = [pageControlItem]
         section.interGroupSpacing = 8
 
         return section
     }
     
     static func popularListSection() -> NSCollectionLayoutSection {
+        let pageControlItem = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(44)),
+            elementKind: UICollectionView.elementKindSectionFooter,
+            alignment: .bottom
+        )
+        
         let item = NSCollectionLayoutItem.entireWidth(withHeight: .fractionalHeight(1/3))
         item.contentInsets = .verticalInsets(size: 5)
         
-        let layoutGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(345))
+        let layoutGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.8), heightDimension: .absolute(345))
         
         let layoutGroup = NSCollectionLayoutGroup.vertical(layoutSize: layoutGroupSize, subitems: [item])
-        layoutGroup.contentInsets = .horizontalInsets(size: 16)
         
         let section = NSCollectionLayoutSection(group: layoutGroup)
         section.orthogonalScrollingBehavior = .groupPaging
-        section.contentInsets =  NSDirectionalEdgeInsets(top: 16, leading: 0, bottom: 16, trailing: 30)
+        section.boundarySupplementaryItems = [pageControlItem]
+        section.interGroupSpacing = 16
+        section.contentInsets =  NSDirectionalEdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16)
         return section
     }
     
     static func forYouPageSection() -> NSCollectionLayoutSection {
-        let item = NSCollectionLayoutItem.entireHeight(withWidth: .fractionalWidth(1/2))
+        let randomHeight = CGFloat.random(in: 250...300)
+        let itemLayout = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(randomHeight))
+        let item = NSCollectionLayoutItem(layoutSize: itemLayout)
         item.contentInsets = .uniform(size: 5)
         
-        let layoutGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(350))
+        let layoutGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/2), heightDimension: .absolute(2600))
         
-        let layoutGroup = NSCollectionLayoutGroup.horizontal(layoutSize: layoutGroupSize, subitems: [item])
-        layoutGroup.contentInsets = .uniform(size: 16)
+        let layoutGroup = NSCollectionLayoutGroup.vertical(layoutSize: layoutGroupSize, repeatingSubitem: item, count: 7)
         
         let section = NSCollectionLayoutSection(group: layoutGroup)
+        section.orthogonalScrollingBehavior = .groupPaging
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 32)
+        section.interGroupSpacing = 5
         
         return section
+    }
+    
+    static func createFYPLayout(env: NSCollectionLayoutEnvironment, items: [ProductModel]) -> NSCollectionLayoutSection {
+        
+        let sectionHorizontalSpacing: CGFloat = 20
+    
+        let layout = FYPLayout.makeLayoutSection(
+            config: .init(
+                columnCount: 2,
+                interItemSpacing: 10,
+                sectionHorizontalSpacing: sectionHorizontalSpacing,
+                itemCountProvider:  {
+                    return items.count
+                },
+                itemHeightProvider: { index, itemWidth in
+                    var randomHeight = CGFloat()
+                    items.forEach { _ in
+                        randomHeight = CGFloat.random(in: 280...350)
+                    }
+                    return CGFloat(randomHeight)
+                }),
+            enviroment: env, sectionIndex: 3
+        )
+        
+        layout.contentInsets = .init(
+            top: 20,
+            leading: 50,
+            bottom: 20,
+            trailing: 8
+        )
+        
+        return layout
     }
     
     static func largeGridSection(itemInsets: NSDirectionalEdgeInsets = .uniform(size: 5)) -> NSCollectionLayoutSection {

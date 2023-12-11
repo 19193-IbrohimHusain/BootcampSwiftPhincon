@@ -1,143 +1,134 @@
-//
-//  FYPLayout.swift
-//  Snapgram
-//
-//  Created by Phincon on 08/12/23.
-//
-
 import UIKit
 
-protocol Ratioable {
-    var ratio: CGFloat { get }
-}
-
-final class FYPLayoutSection {
-    
-    var section: NSCollectionLayoutSection {
-        let section = NSCollectionLayoutSection(group: customLayoutGroup)
-        section.contentInsets = .init(top: 0, leading: padding, bottom: 0, trailing: padding)
+public final class FYPLayout {
+    public static func makeLayoutSection(
+        config: Configuration,
+        enviroment: NSCollectionLayoutEnvironment,
+        sectionIndex: Int
+    ) -> NSCollectionLayoutSection {
+        
+        // NSCollectionLayoutGroupCustomItem to create layout with custom frames
+        var items = [NSCollectionLayoutGroupCustomItem]()
+        
+        
+        let itemProvider = LayoutBuilder(
+            configuration: config,
+            collectionWidth: enviroment.container.contentSize.width
+        )
+        
+        for i in 0..<config.itemCountProvider() {
+            let item = itemProvider.makeLayoutItem(for: i)
+            items.append(item)
+        }
+        
+        let groupLayoutSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .absolute(itemProvider.maxColumnHeight())
+        )
+        print("maxColumnHeight \(itemProvider.maxColumnHeight())")
+        
+        let group = NSCollectionLayoutGroup.custom(layoutSize: groupLayoutSize) { _ in
+            return items
+        }
+                
+        let section = NSCollectionLayoutSection(group: group)
+        section.contentInsetsReference = config.contentInsetsReference
+        section.orthogonalScrollingBehavior = .groupPagingCentered
         return section
     }
-    
-    //MARK: - Private methods
-    
-    private let numberOfColumns: Int
-    private let itemRatios: [Ratioable]
-    private let spacing: CGFloat
-    private let contentWidth: CGFloat
-    
-    private var padding: CGFloat {
-        spacing / 2
-    }
-    
-    // Padding around cells equal to the distance between cells
-    private var insets: NSDirectionalEdgeInsets {
-        return .init(top: padding, leading: padding, bottom: padding, trailing: padding)
-    }
-    
-    private lazy var frames: [CGRect] = {
-        calculateFrames()
-    }()
-    
-    // Max height for section
-    private lazy var sectionHeight: CGFloat = {
-        (frames
-            .map(\.maxY)
-            .max() ?? 0
-        ) + insets.bottom
-    }()
-    
-    private lazy var customLayoutGroup: NSCollectionLayoutGroup = {
-        let layoutSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1.0),
-            heightDimension: .absolute(sectionHeight)
-        )
-        return NSCollectionLayoutGroup.custom(layoutSize: layoutSize) { _ in
-            self.frames.map { .init(frame: $0) }
-        }
-    }()
-    
-    init(
-        columnsCount: Int,
-        itemRatios: [Ratioable],
-        spacing: CGFloat,
-        contentWidth: CGFloat
-    ) {
-        self.numberOfColumns = columnsCount
-        self.itemRatios = itemRatios
-        self.spacing = spacing
-        self.contentWidth = contentWidth
-    }
-    
-    private func calculateFrames() -> [CGRect] {
-        var contentHeight: CGFloat = 0
-        
-        // Subtract the margin from the total width and divide by the number of columns
-        let columnWidth = (contentWidth - insets.leading - insets.trailing) / CGFloat(numberOfColumns)
-        
-        // Stores x-coordinate offset for each column. Not changing
-        let xOffset = (0..<numberOfColumns).map { CGFloat($0) * columnWidth }
-        
-        var currentColumn = 0
+}
 
-        // Stores x-coordinate offset for each column.
-        var yOffset: [CGFloat] = .init(repeating: 0, count: numberOfColumns)
-        
-        // Total number of frames
-        var frames = [CGRect]()
-        
-        for index in 0..<itemRatios.count {
-            let aspectRatio = itemRatios[index]
+public extension FYPLayout {
+    typealias ItemHeightProvider = (_ index: Int, _ itemWidth: CGFloat) -> CGFloat
+    typealias ItemCountProvider = () -> Int
+    
+    struct Configuration {
+        public let columnCount: Int
+        public let interItemSpacing: CGFloat
+        public let sectionHorizontalSpacing: CGFloat
+        public let contentInsetsReference: UIContentInsetsReference
+        public let itemHeightProvider: ItemHeightProvider
+        public let itemCountProvider: ItemCountProvider
             
-            // Сalculate the frame.
-            let frame = CGRect(
-                x: xOffset[currentColumn],
-                y: yOffset[currentColumn],
-                width: columnWidth,
-                height: columnWidth / aspectRatio.ratio
-            )
-            // Total frame inset between cells and along edges
-            .insetBy(dx: padding, dy: padding)
-            // Additional top and left offset to account for padding
-            .offsetBy(dx: 0, dy: insets.leading)
-            // update the height to keep the correct aspect ratio
-            .setHeight(ratio: aspectRatio.ratio)
-            
-            frames.append(frame)
-        
-            // Сalculate the height
-            let columnLowestPoint = frame.maxY
-            contentHeight = max(contentHeight, columnLowestPoint)
-            yOffset[currentColumn] = columnLowestPoint
-            // Adding the next element to the minimum height column.
-            // We can move sequentially, but then there is a chance that some columns will be much longer than others
-            currentColumn = yOffset.indexOfMinElement ?? 0
+        public init(
+            columnCount: Int = 2,
+            interItemSpacing: CGFloat = 8,
+            sectionHorizontalSpacing: CGFloat = 0,
+            contentInsetsReference: UIContentInsetsReference = .automatic,
+            itemCountProvider: @escaping ItemCountProvider,
+            itemHeightProvider: @escaping ItemHeightProvider
+        ) {
+            self.columnCount = columnCount
+            self.interItemSpacing = interItemSpacing
+            self.sectionHorizontalSpacing = sectionHorizontalSpacing * 2
+            self.contentInsetsReference = contentInsetsReference
+            self.itemCountProvider = itemCountProvider
+            self.itemHeightProvider = itemHeightProvider
         }
-        return frames
     }
 }
 
-private extension Array where Element: Comparable {
-    // Index of min element in Array
-    var indexOfMinElement: Int? {
-        guard count > 0 else { return nil }
-        var min = first
-        var index = 0
+
+extension FYPLayout {
+    final class LayoutBuilder {
+        private var columnHeights: [CGFloat]
+        private let columnCount: CGFloat
+        private let itemHeightProvider: ItemHeightProvider
+        private let interItemSpacing: CGFloat
+        private let sectionHorizontalSpacing: CGFloat
+        private let collectionWidth: CGFloat
         
-        indices.forEach { i in
-            let currentItem = self[i]
-            if let minumum = min, currentItem < minumum {
-                min = currentItem
-                index = i
-            }
+        init(
+            configuration: Configuration,
+            collectionWidth: CGFloat
+        ) {
+            self.columnHeights = [CGFloat](repeating: 0, count: configuration.columnCount)
+            self.columnCount = CGFloat(configuration.columnCount)
+            self.itemHeightProvider = configuration.itemHeightProvider
+            self.interItemSpacing = configuration.interItemSpacing
+            self.sectionHorizontalSpacing = configuration.sectionHorizontalSpacing
+            self.collectionWidth = collectionWidth
         }
         
-        return index
+        func makeLayoutItem(for row: Int) -> NSCollectionLayoutGroupCustomItem {
+            let frame = frame(for: row)
+            columnHeights[columnIndex()] = frame.maxY + interItemSpacing
+            print("frame: \(frame)")
+            return NSCollectionLayoutGroupCustomItem(frame: frame)
+        }
+        
+        func maxColumnHeight() -> CGFloat {
+            print("columnHeights\(columnHeights)")
+            return columnHeights.max() ?? 0
+        }
     }
 }
 
-private extension CGRect {
-    func setHeight(ratio: CGFloat) -> CGRect {
-        .init(x: minX, y: minY, width: width, height: width / ratio)
+private extension FYPLayout.LayoutBuilder {
+    private var columnWidth: CGFloat {
+        let spacing = (columnCount - 1) * interItemSpacing
+        return (collectionWidth - spacing - sectionHorizontalSpacing) / columnCount
+    }
+    
+    func frame(for row: Int) -> CGRect {
+        let width = columnWidth
+        let height = itemHeightProvider(row, width)
+        let size = CGSize(width: width, height: height)
+        let origin = itemOrigin(width: size.width)
+        return CGRect(origin: origin, size: size)
+    }
+    
+    private func itemOrigin(width: CGFloat) -> CGPoint {
+        let y = columnHeights[columnIndex()].rounded()
+        let x = (width + interItemSpacing) * CGFloat(columnIndex())
+        return CGPoint(x: x, y: y)
+    }
+    
+    private func columnIndex() -> Int {
+        columnHeights
+            .enumerated()
+            .min(by: { $0.element < $1.element })?
+            .offset ?? 0
     }
 }
+
