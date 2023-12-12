@@ -17,7 +17,11 @@ class StoreViewController: BaseViewController {
     internal let collections = SectionStoreCollection.allCases
     internal let vm = StoreViewModel()
     internal var product: [ProductModel]?
+    private var popular: [ProductModel]?
+    private var category: [CategoryModel]?
     private var fyp: [ProductModel] = []
+    private var timer: Timer?
+    private var currentIndex = 0
     private var loadedIndex: Int = 5
     private var isLoadMoreData = false
     private var snapshot = NSDiffableDataSourceSnapshot<SectionStoreCollection, ProductModel>()
@@ -56,9 +60,11 @@ class StoreViewController: BaseViewController {
         refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
         storeCollection.refreshControl = refreshControl
         storeCollection.delegate = self
-        collections.forEach { storeCollection.registerCellWithNib($0.cellTypes) }
-        storeCollection.register(PageControlSupplementaryView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "pageControl")
-
+        storeCollection.allowsFocus = false
+        collections.forEach {
+            storeCollection.registerCellWithNib($0.cellTypes)
+            $0.registerHeaderFooterTypes(collectionView: storeCollection)
+        }
         setupDataSource()
         setupCompositionalLayout()
         bindData()
@@ -70,6 +76,9 @@ class StoreViewController: BaseViewController {
             switch product.cellTypes {
             case .search:
                 let cell: SearchCollectionCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+                cell.delegate = self
+                cell.searchInputField.textField
+                
                 return cell
             case .carousel:
                 let cell1: CarouselCollectionCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
@@ -97,16 +106,31 @@ class StoreViewController: BaseViewController {
             }
         }
         
-        dataSource.supplementaryViewProvider = { (collectionView, kind, indexPath) in
-            if kind == UICollectionView.elementKindSectionFooter {
-                let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: PageControlSupplementaryView.reuseIdentifier, for: indexPath) as? PageControlSupplementaryView
-                footer?.pageControl.numberOfPages = 5
-                footer?.pageControl.hidesForSinglePage = true
-                footer?.pageControl.direction = .leftToRight
-                
-                return footer
+        dataSource.supplementaryViewProvider = { [weak self] (collectionView, kind, indexPath) in
+            guard let self = self, let section = SectionStoreCollection(rawValue: indexPath.section) else { return UICollectionReusableView() }
+            switch section {
+                case .carousel:
+                    let footer: CarouselFooter = collectionView.dequeueHeaderFooterCell(kind: UICollectionView.elementKindSectionFooter, forIndexPath: indexPath)
+                    footer.subscribeTo(subject: self.vm.pagingCarousel, for: self.collections[1].rawValue)
+                    return footer
+                case .popular:
+                    if kind == UICollectionView.elementKindSectionHeader {
+                        let header: PopularHeader = collectionView.dequeueHeaderFooterCell(kind: UICollectionView.elementKindSectionHeader, forIndexPath: indexPath)
+                        return header
+                    } else {
+                        let footer: PopularFooter = collectionView.dequeueHeaderFooterCell(kind: UICollectionView.elementKindSectionFooter, forIndexPath: indexPath)
+                        footer.subscribeTo(subject: self.vm.pagingPopular, for: self.collections[2].rawValue)
+                        return footer
+                    }
+                case .forYouProduct:
+                    let header: FYPHeader = collectionView.dequeueHeaderFooterCell(kind: UICollectionView.elementKindSectionHeader, forIndexPath: indexPath)
+//                    header.delegate = self
+                    if let category = self.category {
+                        header.configure(data: category)
+                    }
+                    return header
+                default: return nil
             }
-            return nil
         }
     }
     
@@ -118,9 +142,9 @@ class StoreViewController: BaseViewController {
             case .search:
                 return NSCollectionLayoutSection.searchSection()
             case .carousel:
-                return NSCollectionLayoutSection.carouselSection()
+                return NSCollectionLayoutSection.carouselSection(pagingInfo: self.vm.pagingCarousel)
             case .popular:
-                return NSCollectionLayoutSection.popularListSection()
+                return NSCollectionLayoutSection.popularListSection(pagingInfo: self.vm.pagingPopular)
             case .forYouProduct:
                 return NSCollectionLayoutSection.createFYPLayout(env: env, items: product)
             }
@@ -147,12 +171,6 @@ class StoreViewController: BaseViewController {
                 return modifiedItem
             }
             
-            product.forEach {
-                var modifiedItem = $0
-                modifiedItem.id += 14
-                fyp.append(modifiedItem)
-            }
-            
             let section4 = fyp.prefix(loadedIndex).map {
                 var modifiedItem = $0
                 modifiedItem.cellTypes = .forYouProduct
@@ -168,11 +186,62 @@ class StoreViewController: BaseViewController {
     
     private func bindData() {
         vm.productData.asObservable().subscribe(onNext: { [weak self] product in
-            guard let self = self, var dataProduct = product?.data.data else {return}
+            guard let self = self, var dataProduct = product else {return}
             dataProduct.remove(at: 0)
             self.product = dataProduct
             self.fyp.append(contentsOf: dataProduct)
             self.reloadSnapshot()
+            self.startTimer()
+        }).disposed(by: bag)
+        
+        vm.runningShoes.asObservable().subscribe(onNext: {[weak self] product in
+            guard let self = self, let dataProduct = product else {return}
+            dataProduct.forEach {
+                var modifiedItem = $0
+                modifiedItem.id += 14
+                self.fyp.append(modifiedItem)
+            }
+        }).disposed(by: bag)
+        
+        vm.trainingShoes.asObservable().subscribe(onNext: {[weak self] product in
+            guard let self = self, let dataProduct = product else {return}
+            dataProduct.forEach {
+                var modifiedItem = $0
+                modifiedItem.id += 14
+                self.fyp.append(modifiedItem)
+            }
+        }).disposed(by: bag)
+        
+        vm.basketShoes.asObservable().subscribe(onNext: {[weak self] product in
+            guard let self = self, let dataProduct = product else {return}
+            dataProduct.forEach {
+                var modifiedItem = $0
+                modifiedItem.id += 14
+                self.fyp.append(modifiedItem)
+            }
+        }).disposed(by: bag)
+        
+        vm.hikingShoes.asObservable().subscribe(onNext: {[weak self] product in
+            guard let self = self, let dataProduct = product else {return}
+            dataProduct.forEach {
+                var modifiedItem = $0
+                modifiedItem.id += 14
+                self.fyp.append(modifiedItem)
+            }
+        }).disposed(by: bag)
+        
+        vm.sportShoes.asObservable().subscribe(onNext: {[weak self] product in
+            guard let self = self, let dataProduct = product else {return}
+            dataProduct.forEach {
+                var modifiedItem = $0
+                modifiedItem.id += 29
+                self.fyp.append(modifiedItem)
+            }
+        }).disposed(by: bag)
+        
+        vm.categoryData.asObservable().subscribe(onNext: { [weak self] category in
+            guard let self = self, let dataCategory = category else { return }
+            self.category = dataCategory.reversed()
         }).disposed(by: bag)
         
         vm.loadingState.asObservable().subscribe(onNext: { [weak self] state in
@@ -221,25 +290,52 @@ class StoreViewController: BaseViewController {
         loadingIndicator.startAnimating()
     }
     
+    private func scrollToMenuIndex(index: Int) {
+        let index = IndexPath(row: 0, section: 3)
+    }
+    
+    private func startTimer() {
+        timer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
+    }
+    
+    @objc private func timerAction() {
+        currentIndex =  (currentIndex + 1) % (product?.prefix(5).count ?? 5)
+        storeCollection.scrollToItem(at: IndexPath(item: currentIndex, section: 1), at: .centeredHorizontally, animated: true)
+    }
+    
     @objc func refreshData() {
         loadedIndex = 5
         product?.removeAll()
         snapshot.deleteAllItems()
         snapshot.deleteSections(collections)
         dataSource.apply(snapshot, animatingDifferences: true)
-        vm.fetchProduct(param: ProductParam())
+        vm.fetchProduct()
+        vm.fetchCategories()
     }
 }
 
 extension StoreViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if indexPath.section == SectionStoreCollection.forYouProduct.rawValue &&
+        if indexPath.section == collections[3].rawValue &&
             indexPath.item == dataSource.snapshot().itemIdentifiers(inSection: .forYouProduct).count - 1 {
             // Last item in the For You Product section is about to be displayed
             loadMoreData()
         }
     }
 }
+
+extension StoreViewController: SearchCollectionCellDelegate {
+    func search() {
+        self.dataSource
+    }
+}
+
+extension StoreViewController: FYPHeaderDelegate {
+    func setCurrentSection(index: Int) {
+        self.scrollToMenuIndex(index: index)
+    }
+}
+
 
 extension StoreViewController: CarouselTableCellDelegate, PopularTableCellDelegate, NATableCellDelegate, FYPTableCellDelegate {
     func navigateToDetail(id: Int) {

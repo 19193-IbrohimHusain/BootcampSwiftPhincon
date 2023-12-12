@@ -48,6 +48,14 @@ extension UICollectionView {
         register(nib, forSupplementaryViewOfKind: kind, withReuseIdentifier: identifier)
     }
     
+    func dequeueHeaderFooterCell<Cell: UICollectionReusableView>(kind: String, forIndexPath indexPath: IndexPath) -> Cell {
+        let identifier = String(describing: Cell.self)
+        guard let cell = self.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: identifier, for: indexPath) as? Cell else {
+            fatalError("Error for cell if: \(identifier) at \(indexPath)")
+        }
+        return cell
+    }
+    
     func near(edge: Edge, clearance: CGFloat = 0) -> Bool {
         switch edge {
         case .left:
@@ -91,3 +99,8 @@ extension UICollectionView {
     }
 }
 
+extension UICollectionReusableView {
+    static var reuseIdentifier: String {
+        return String(describing: Self.self)
+    }
+}

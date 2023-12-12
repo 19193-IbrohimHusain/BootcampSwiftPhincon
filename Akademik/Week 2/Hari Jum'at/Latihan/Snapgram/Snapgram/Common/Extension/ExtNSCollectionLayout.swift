@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RxSwift
 
 extension NSCollectionLayoutItem {
     static func withEntireSize() -> NSCollectionLayoutItem {
@@ -51,14 +52,15 @@ extension NSCollectionLayoutSection {
         return section
     }
     
-    static func carouselSection() -> NSCollectionLayoutSection {
+    static func carouselSection(pagingInfo: BehaviorSubject<PagingInfo?>) -> NSCollectionLayoutSection {
         // Supplementary item for page control
         let pageControlItem = NSCollectionLayoutBoundarySupplementaryItem(
-            layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(44)),
+            layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.9), heightDimension: .estimated(44)),
             elementKind: UICollectionView.elementKindSectionFooter,
-            alignment: .bottom
+            alignment: .bottom,
+            absoluteOffset: CGPoint(x: 0, y: -40)
         )
-
+        
         let item = NSCollectionLayoutItem.withEntireSize()
         
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.9), heightDimension: .absolute(200))
@@ -68,12 +70,22 @@ extension NSCollectionLayoutSection {
         section.orthogonalScrollingBehavior = .groupPagingCentered
         section.boundarySupplementaryItems = [pageControlItem]
         section.interGroupSpacing = 8
-
+        section.visibleItemsInvalidationHandler = { (items, offset, env) in
+            let page = round(offset.x / env.container.contentSize.width)
+            pagingInfo.onNext(PagingInfo(sectionIndex: 1, currentPage: Int(page)))
+        }
+        
         return section
     }
     
-    static func popularListSection() -> NSCollectionLayoutSection {
-        let pageControlItem = NSCollectionLayoutBoundarySupplementaryItem(
+    static func popularListSection(pagingInfo: BehaviorSubject<PagingInfo?>) -> NSCollectionLayoutSection {
+        let header = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(40)),
+            elementKind: UICollectionView.elementKindSectionHeader,
+            alignment: .top
+        )
+        
+        let footer = NSCollectionLayoutBoundarySupplementaryItem(
             layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(44)),
             elementKind: UICollectionView.elementKindSectionFooter,
             alignment: .bottom
@@ -88,9 +100,13 @@ extension NSCollectionLayoutSection {
         
         let section = NSCollectionLayoutSection(group: layoutGroup)
         section.orthogonalScrollingBehavior = .groupPaging
-        section.boundarySupplementaryItems = [pageControlItem]
+        section.boundarySupplementaryItems = [header, footer]
         section.interGroupSpacing = 16
         section.contentInsets =  NSDirectionalEdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16)
+        section.visibleItemsInvalidationHandler = { (items, offset, env) in
+            let page = round(offset.x / env.container.contentSize.width)
+            pagingInfo.onNext(PagingInfo(sectionIndex: 2, currentPage: Int(page)))
+        }
         return section
     }
     
@@ -115,7 +131,7 @@ extension NSCollectionLayoutSection {
     static func createFYPLayout(env: NSCollectionLayoutEnvironment, items: [ProductModel]) -> NSCollectionLayoutSection {
         
         let sectionHorizontalSpacing: CGFloat = 20
-    
+        
         let layout = FYPLayout.makeLayoutSection(
             config: .init(
                 columnCount: 2,
@@ -136,9 +152,9 @@ extension NSCollectionLayoutSection {
         
         layout.contentInsets = .init(
             top: 20,
-            leading: 50,
+            leading: 0,
             bottom: 20,
-            trailing: 8
+            trailing: 0
         )
         
         return layout

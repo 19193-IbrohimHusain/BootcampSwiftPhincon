@@ -1,15 +1,22 @@
+//
+//  CategoryCollectionCell.swift
+//  Snapgram
+//
+//  Created by Phincon on 12/12/23.
+//
+
 import UIKit
 
-protocol CategoryCollectionCellDelegate {
-    func onCategorySelected(index: Int)
+protocol StoreCategoryCellDelegate {
+    func onSelected(index: Int)
 }
 
-class CategoryCollectionCell: UICollectionViewCell {
+class StoreCategoryCell: UICollectionViewCell {
 
     @IBOutlet private weak var categoryBtn: UIButton!
     
-    var index: Int = Int()
-    var delegate: CategoryCollectionCellDelegate?
+    internal var index = Int()
+    internal var delegate: StoreCategoryCellDelegate?
     
     override var isHighlighted: Bool {
         didSet {
@@ -22,15 +29,16 @@ class CategoryCollectionCell: UICollectionViewCell {
             categoryBtn.tintColor = isSelected ? .label : .systemGray
         }
     }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-    
-    func configureCollection(_ categoryEntity: CategoryCollectionEntity) {
-        categoryBtn.setImage(UIImage(systemName: categoryEntity.image), for: .normal)
+
+    internal func configure(data category: CategoryModel) {
+        categoryBtn.setTitle(category.name, for: .normal)
     }
     
     @IBAction func onCategoryBtnTap() {
-        self.delegate?.onCategorySelected(index: index)
+        self.delegate?.onSelected(index: index)
     }
 }

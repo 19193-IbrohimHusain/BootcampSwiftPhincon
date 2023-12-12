@@ -7,10 +7,15 @@
 
 import UIKit
 
+protocol SearchCollectionCellDelegate {
+    func search()
+}
+
 class SearchCollectionCell: UICollectionViewCell {
 
     @IBOutlet weak var searchInputField: CustomInputField!
     
+    internal var delegate: SearchCollectionCellDelegate?
     private var leftView = UIView()
     private var image = UIImageView(image: UIImage(systemName: "magnifyingglass"))
     
