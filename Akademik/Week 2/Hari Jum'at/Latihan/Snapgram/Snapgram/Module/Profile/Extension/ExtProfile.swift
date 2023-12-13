@@ -65,19 +65,14 @@ extension ProfileViewController: CategoryTableCellDelegate {
 }
 
 extension ProfileViewController: PostTableCellDelegate {
-    func willEndDragging(contentOffset: UnsafeMutablePointer<CGPoint>, indexPath: IndexPath ) {
-        let index = IndexPath(row: 0, section: 1)
-        if let cell = profileTable.cellForRow(at: index) as? CategoryTableCell {
-            let index = Int(contentOffset.pointee.x / view.frame.width)
-            let indexPath = IndexPath(item: index, section: 0)
-            cell.categoryCollection.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
-        }
-    }
-    
     func didScroll(scrollView: UIScrollView) {
         let index = IndexPath(row: 0, section: 1)
         if let cell = profileTable.cellForRow(at: index) as? CategoryTableCell {
             cell.horizontalBarLeftAnchorConstraint?.constant = scrollView.contentOffset.x / 2
+            
+            let itemIndex = Int(scrollView.contentOffset.x / view.frame.width)
+            let indexPath = IndexPath(item: itemIndex, section: 0)
+            cell.categoryCollection.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
         }
     }
     

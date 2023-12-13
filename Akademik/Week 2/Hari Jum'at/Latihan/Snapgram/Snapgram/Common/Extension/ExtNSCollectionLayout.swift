@@ -110,25 +110,27 @@ extension NSCollectionLayoutSection {
         return section
     }
     
-    static func forYouPageSection() -> NSCollectionLayoutSection {
-        let randomHeight = CGFloat.random(in: 250...300)
-        let itemLayout = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(randomHeight))
-        let item = NSCollectionLayoutItem(layoutSize: itemLayout)
-        item.contentInsets = .uniform(size: 5)
+    static func forYouPageSection(env: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection {
+        let header = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(70)),
+            elementKind: UICollectionView.elementKindSectionHeader,
+            alignment: .top
+        )
         
-        let layoutGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/2), heightDimension: .absolute(2600))
+        let item = NSCollectionLayoutItem.withEntireSize()
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(env.container.contentSize.height * 3))
         
-        let layoutGroup = NSCollectionLayoutGroup.vertical(layoutSize: layoutGroupSize, repeatingSubitem: item, count: 7)
+        let layoutGroup = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         
         let section = NSCollectionLayoutSection(group: layoutGroup)
-        section.orthogonalScrollingBehavior = .groupPaging
-        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 32)
-        section.interGroupSpacing = 5
+        section.contentInsets = .horizontalInsets(size: 16)
+        section.boundarySupplementaryItems = [header]
+        section.boundarySupplementaryItems[0].pinToVisibleBounds = true
         
         return section
     }
     
-    static func createFYPLayout(env: NSCollectionLayoutEnvironment, items: [ProductModel]) -> NSCollectionLayoutSection {
+    static func createFYPLayout(env: NSCollectionLayoutEnvironment, items: [ProductModel], section: Int) -> NSCollectionLayoutSection {
         
         let sectionHorizontalSpacing: CGFloat = 20
         
@@ -143,11 +145,11 @@ extension NSCollectionLayoutSection {
                 itemHeightProvider: { index, itemWidth in
                     var randomHeight = CGFloat()
                     items.forEach { _ in
-                        randomHeight = CGFloat.random(in: 280...350)
+                        randomHeight = CGFloat.random(in: 280...360)
                     }
                     return CGFloat(randomHeight)
                 }),
-            enviroment: env, sectionIndex: 3
+            enviroment: env, sectionIndex: section
         )
         
         layout.contentInsets = .init(

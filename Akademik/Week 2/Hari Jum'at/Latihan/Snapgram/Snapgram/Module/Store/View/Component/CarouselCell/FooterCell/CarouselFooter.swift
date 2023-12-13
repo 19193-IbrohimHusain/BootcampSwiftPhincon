@@ -10,7 +10,7 @@ import RxSwift
 
 class CarouselFooter: UICollectionReusableView {
 
-    @IBOutlet weak var pageControl: UIPageControl!
+    @IBOutlet weak var pageControl: CustomPageControl!
     
     private var bag = DisposeBag()
     

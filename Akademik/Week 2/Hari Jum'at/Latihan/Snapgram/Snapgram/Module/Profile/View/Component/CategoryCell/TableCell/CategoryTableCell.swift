@@ -69,3 +69,4 @@ extension CategoryTableCell: CategoryCollectionCellDelegate {
         self.delegate?.setCurrentSection(index: index)
     }
 }
+

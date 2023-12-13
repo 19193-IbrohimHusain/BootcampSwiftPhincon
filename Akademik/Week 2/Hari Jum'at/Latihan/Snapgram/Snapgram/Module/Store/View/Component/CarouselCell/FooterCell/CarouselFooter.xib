@@ -14,7 +14,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
-                <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" numberOfPages="5" translatesAutoresizingMaskIntoConstraints="NO" id="mtP-2o-R2c">
+                <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" numberOfPages="5" translatesAutoresizingMaskIntoConstraints="NO" id="mtP-2o-R2c" customClass="CustomPageControl" customModule="Snapgram" customModuleProvider="target">
                     <rect key="frame" x="84.333333333333329" y="12" width="151.66666666666669" height="26"/>
                     <color key="pageIndicatorTintColor" systemColor="separatorColor"/>
                     <color key="currentPageIndicatorTintColor" systemColor="labelColor"/>
@@ -29,7 +29,7 @@
                 <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
             </userDefinedRuntimeAttributes>
             <connections>
-                <outlet property="pageControl" destination="mtP-2o-R2c" id="OZL-Rz-rdi"/>
+                <outlet property="pageControl" destination="mtP-2o-R2c" id="whX-cc-EOM"/>
             </connections>
             <point key="canvasLocation" x="59.541984732824424" y="19.718309859154932"/>
         </collectionReusableView>

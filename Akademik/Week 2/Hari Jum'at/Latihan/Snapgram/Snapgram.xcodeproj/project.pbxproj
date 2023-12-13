@@ -62,6 +62,8 @@
 		36399C292B0215EF00D8A193 /* AddStoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36399C282B0215EF00D8A193 /* AddStoryViewModel.swift */; };
 		36399C2F2B02191900D8A193 /* AddStoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36399C2D2B02191900D8A193 /* AddStoryViewController.swift */; };
 		36399C302B02191900D8A193 /* AddStoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36399C2E2B02191900D8A193 /* AddStoryViewController.xib */; };
+		3663BB882B296B4500676AE8 /* FYPCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3663BB862B296B4500676AE8 /* FYPCollectionViewCell.swift */; };
+		3663BB892B296B4500676AE8 /* FYPCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3663BB872B296B4500676AE8 /* FYPCollectionViewCell.xib */; };
 		367BE32D2B0B3B2A0087AEC8 /* CommentEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367BE32C2B0B3B2A0087AEC8 /* CommentEntity.swift */; };
 		367BE3302B0B3B570087AEC8 /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367BE32E2B0B3B570087AEC8 /* CommentViewController.swift */; };
 		367BE3312B0B3B570087AEC8 /* CommentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 367BE32F2B0B3B570087AEC8 /* CommentViewController.xib */; };
@@ -258,6 +260,8 @@
 		36399C282B0215EF00D8A193 /* AddStoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStoryViewModel.swift; sourceTree = "<group>"; };
 		36399C2D2B02191900D8A193 /* AddStoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStoryViewController.swift; sourceTree = "<group>"; };
 		36399C2E2B02191900D8A193 /* AddStoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddStoryViewController.xib; sourceTree = "<group>"; };
+		3663BB862B296B4500676AE8 /* FYPCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FYPCollectionViewCell.swift; sourceTree = "<group>"; };
+		3663BB872B296B4500676AE8 /* FYPCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FYPCollectionViewCell.xib; sourceTree = "<group>"; };
 		367BE32C2B0B3B2A0087AEC8 /* CommentEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentEntity.swift; sourceTree = "<group>"; };
 		367BE32E2B0B3B570087AEC8 /* CommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
 		367BE32F2B0B3B570087AEC8 /* CommentViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentViewController.xib; sourceTree = "<group>"; };
@@ -808,6 +812,15 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		3663BB8A2B296B4E00676AE8 /* FYPCell */ = {
+			isa = PBXGroup;
+			children = (
+				36A65F0D2B16DD010038F956 /* FYPCollectionCell.swift */,
+				36A65F0E2B16DD010038F956 /* FYPCollectionCell.xib */,
+			);
+			path = FYPCell;
+			sourceTree = "<group>";
+		};
 		367BE3282B0B3A2E0087AEC8 /* Comments */ = {
 			isa = PBXGroup;
 			children = (
@@ -1017,8 +1030,9 @@
 		36A65F0C2B16DCED0038F956 /* CollectionCell */ = {
 			isa = PBXGroup;
 			children = (
-				36A65F0D2B16DD010038F956 /* FYPCollectionCell.swift */,
-				36A65F0E2B16DD010038F956 /* FYPCollectionCell.xib */,
+				3663BB8A2B296B4E00676AE8 /* FYPCell */,
+				3663BB862B296B4500676AE8 /* FYPCollectionViewCell.swift */,
+				3663BB872B296B4500676AE8 /* FYPCollectionViewCell.xib */,
 			);
 			path = CollectionCell;
 			sourceTree = "<group>";
@@ -1696,6 +1710,7 @@
 				36A20F532B15D77700F54132 /* PopularCollectionCell.xib in Resources */,
 				36A65F062B16DA010038F956 /* FYPTableCell.xib in Resources */,
 				36EF4D122B071F0000EBB278 /* CategoryTableCell.xib in Resources */,
+				3663BB892B296B4500676AE8 /* FYPCollectionViewCell.xib in Resources */,
 				360034462AFCE9C600A48FE8 /* MapViewController.xib in Resources */,
 				3619059B2AF4F10F00DA3DF0 /* CameraStoryViewController.xib in Resources */,
 				36EF4D282B07436100EBB278 /* ProfileTableCell.xib in Resources */,
@@ -1925,6 +1940,7 @@
 				36EF4D1E2B0740AA00EBB278 /* PostCollectionCell.swift in Sources */,
 				36CCE8602AF8B86C00E4AF69 /* DetailStoryModel.swift in Sources */,
 				36F1898B2B27F343008006C4 /* FYPHeader.swift in Sources */,
+				3663BB882B296B4500676AE8 /* FYPCollectionViewCell.swift in Sources */,
 				361905302AF4EF2400DA3DF0 /* CapturedImageView.swift in Sources */,
 				36A65F242B1710010038F956 /* DetailDescriptionTableCell.swift in Sources */,
 				361905A92AF4F10F00DA3DF0 /* StoryViewController.swift in Sources */,

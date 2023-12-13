@@ -9,6 +9,7 @@ import UIKit
 
 protocol TaggedPostCollectionCellDelegate {
     func navigateToDetail(id: String)
+    func sendTagHeight(height: CGFloat)
 }
 
 class TaggedPostCollectionCell: UICollectionViewCell {
@@ -47,6 +48,7 @@ extension TaggedPostCollectionCell: UICollectionViewDelegate, UICollectionViewDa
         if let tagData = tagged?[indexPath.item] {
             cell.configureCollection(tagData)
         }
+        self.delegate?.sendTagHeight(height: collectionView.contentSize.height)
     
         return cell
     }

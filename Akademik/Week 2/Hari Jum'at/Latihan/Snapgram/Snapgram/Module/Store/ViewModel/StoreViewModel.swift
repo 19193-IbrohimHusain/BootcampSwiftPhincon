@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 import RxRelay
 
-enum SectionStoreCollection: Int, Hashable, CaseIterable {
+enum SectionStoreCollection: Int, CaseIterable {
     case search, carousel, popular, forYouProduct
     
     var cellTypes: UICollectionViewCell.Type {
@@ -21,7 +21,7 @@ enum SectionStoreCollection: Int, Hashable, CaseIterable {
         case .popular:
             return PopularCollectionCell.self
         case .forYouProduct:
-            return FYPCollectionCell.self
+            return FYPCollectionViewCell.self
         }
     }
     
@@ -77,6 +77,10 @@ enum SectionStoreCollection: Int, Hashable, CaseIterable {
     }
 }
 
+enum SectionFYPCollection: Int, CaseIterable {
+    case allShoes, running, training, basketball, hiking, sport
+}
+
 struct PagingInfo: Equatable, Hashable {
     let sectionIndex: Int
     let currentPage: Int
@@ -84,10 +88,6 @@ struct PagingInfo: Equatable, Hashable {
 
 class StoreViewModel: BaseViewModel {
     var productData = BehaviorRelay<[ProductModel]?>(value: nil)
-    var runningShoes = BehaviorRelay<[ProductModel]?>(value: nil)
-    var trainingShoes = BehaviorRelay<[ProductModel]?>(value: nil)
-    var basketShoes = BehaviorRelay<[ProductModel]?>(value: nil)
-    var hikingShoes = BehaviorRelay<[ProductModel]?>(value: nil)
     var sportShoes = BehaviorRelay<[ProductModel]?>(value: nil)
     var categoryData = BehaviorRelay<[CategoryModel]?>(value: nil)
     var pagingCarousel = BehaviorSubject<PagingInfo?>(value: nil)
@@ -101,22 +101,6 @@ class StoreViewModel: BaseViewModel {
             case .success(let data):
                 self.loadingState.accept(.finished)
                 self.productData.accept(data.data.data)
-                let runningShoes = data.data.data.filter {
-                    $0.category.name == "Running"
-                }
-                self.runningShoes.accept(runningShoes)
-                let trainingShoes = data.data.data.filter {
-                    $0.category.name == "Training"
-                }
-                self.trainingShoes.accept(trainingShoes)
-                let basketShoes = data.data.data.filter {
-                    $0.category.name == "Basketball"
-                }
-                self.basketShoes.accept(basketShoes)
-                let hikingShoes = data.data.data.filter {
-                    $0.category.name == "Hiking"
-                }
-                self.hikingShoes.accept(hikingShoes)
                 let sportShoes = data.data.data.filter {
                     $0.category.name == "Sport"
                 }

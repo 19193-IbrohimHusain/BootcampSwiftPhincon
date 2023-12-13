@@ -3,7 +3,6 @@ import SkeletonView
 
 protocol PostTableCellDelegate {
     func didScroll(scrollView: UIScrollView)
-    func willEndDragging(contentOffset: UnsafeMutablePointer<CGPoint>, indexPath: IndexPath)
     func navigateToDetail(id: String)
 }
 
@@ -14,9 +13,9 @@ class PostTableCell: UITableViewCell {
     @IBOutlet weak var heightCollection: NSLayoutConstraint!
     
     internal var delegate: PostTableCellDelegate?
+    internal var postHeight: CGFloat?
+    internal var tagHeight: CGFloat?
     private var collections = SectionPostCollection.allCases
-    private var postHeight = CGFloat()
-    private var tagHeight = CGFloat()
     private var tagged: [ListStory]?
     private var post: [ListStory]?
         
@@ -28,6 +27,7 @@ class PostTableCell: UITableViewCell {
     func setupCollection() {
         postCollection.delegate = self
         postCollection.dataSource = self
+        heightCollection.constant = 450
         collections.forEach { cell in
             postCollection.registerCellWithNib(cell.cellTypes)
         }
@@ -36,8 +36,24 @@ class PostTableCell: UITableViewCell {
     func configure(post: [ListStory], tag: [ListStory]) {
         self.post = post
         self.tagged = tag
-        postCollection.collectionViewLayout.invalidateLayout()
         postCollection.reloadData()
+    }
+    
+    internal func updateLayout() {
+        let isIndexPathVisible = postCollection.indexPathsForVisibleItems.contains { indexPath in
+            return indexPath.section == 1
+        }
+        
+        print("section 1 visible? \(isIndexPathVisible)")
+        if isIndexPathVisible {
+            self.invalidateIntrinsicContentSize()
+            postCollection.collectionViewLayout.invalidateLayout()
+            self.heightCollection.constant = tagHeight ?? 450
+        } else {
+            self.invalidateIntrinsicContentSize()
+            postCollection.collectionViewLayout.invalidateLayout()
+            self.heightCollection.constant = 450
+        }
     }
 }
 
@@ -66,8 +82,6 @@ extension PostTableCell: UICollectionViewDelegate, UICollectionViewDataSource, U
             if let data = post {
                 cell.configure(data: data)
             }
-            cell.heightConstant.constant = self.heightCollection.constant
-            cell.collectionView.collectionViewLayout.invalidateLayout()
             return cell
         case .tagged:
             let cell1 = collectionView.dequeueReusableCell(forIndexPath: indexPath) as TaggedPostCollectionCell
@@ -75,8 +89,7 @@ extension PostTableCell: UICollectionViewDelegate, UICollectionViewDataSource, U
             if let data = tagged {
                 cell1.configure(data: data)
             }
-            cell1.heightCollection.constant = self.heightCollection.constant
-            cell1.tagCollection.collectionViewLayout.invalidateLayout()
+            
             return cell1
         default:
             return UICollectionViewCell()
@@ -103,8 +116,8 @@ extension PostTableCell: UICollectionViewDelegate, UICollectionViewDataSource, U
         self.delegate?.didScroll(scrollView: scrollView)
     }
     
-    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>, indexPath: IndexPath) {
-        self.delegate?.willEndDragging(contentOffset: targetContentOffset, indexPath: indexPath)
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        self.updateLayout()
     }
 }
 
@@ -121,5 +134,13 @@ extension PostTableCell: SkeletonCollectionViewDataSource {
 extension PostTableCell: PostCollectionCellDelegate, TaggedPostCollectionCellDelegate {
     func navigateToDetail(id: String) {
         self.delegate?.navigateToDetail(id: id)
+    }
+    
+    func sendPostHeight(height: CGFloat) {
+        postHeight = height
+    }
+    
+    func sendTagHeight(height: CGFloat) {
+        tagHeight = height
     }
 }

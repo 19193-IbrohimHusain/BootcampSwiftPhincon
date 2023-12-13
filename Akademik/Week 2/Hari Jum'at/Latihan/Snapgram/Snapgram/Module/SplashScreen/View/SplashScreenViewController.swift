@@ -22,4 +22,8 @@ class SplashScreenViewController: BaseViewController {
         splashScreen.loopMode = .loop
         splashScreen.play()
     }
+    
+    deinit {
+        self.splashScreen = nil
+    }
 }

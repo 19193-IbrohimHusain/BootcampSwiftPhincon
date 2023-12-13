@@ -3,6 +3,7 @@ import SkeletonView
 
 protocol PostCollectionCellDelegate {
     func navigateToDetail(id: String)
+    func sendPostHeight(height: CGFloat)
 }
 
 class PostCollectionCell: UICollectionViewCell {
@@ -41,6 +42,8 @@ extension PostCollectionCell: UICollectionViewDelegate, UICollectionViewDataSour
         if let dataPost = post?[indexPath.item] {
             cell.configureCollection(dataPost)
         }
+        self.delegate?.sendPostHeight(height: collectionView.contentSize.height)
+        
         return cell
     }
     

@@ -17,25 +17,16 @@ class StoreViewController: BaseViewController {
     internal let collections = SectionStoreCollection.allCases
     internal let vm = StoreViewModel()
     internal var product: [ProductModel]?
-    private var popular: [ProductModel]?
     private var category: [CategoryModel]?
     private var fyp: [ProductModel] = []
     private var timer: Timer?
     private var currentIndex = 0
-    private var loadedIndex: Int = 5
-    private var isLoadMoreData = false
+    private var isCarouselSectionVisible: Bool?
+    private var fypSectionHeight: CGFloat?
+    private var headerFYP: UICollectionView!
     private var snapshot = NSDiffableDataSourceSnapshot<SectionStoreCollection, ProductModel>()
     private var dataSource: UICollectionViewDiffableDataSource<SectionStoreCollection, ProductModel>!
     private var layout: UICollectionViewCompositionalLayout!
-    
-    private lazy var loadingIndicator: UIActivityIndicatorView = {
-        let indicator = UIActivityIndicatorView(style: .medium)
-        indicator.translatesAutoresizingMaskIntoConstraints = false
-        
-        indicator.hidesWhenStopped = true
-        
-        return indicator
-    }()
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,31 +38,26 @@ class StoreViewController: BaseViewController {
         refreshData()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        timer?.invalidate()
+    }
+    
     private func setup() {
         setupNavigationBar(title: "SnapStore", image1: "line.horizontal.3", image2: "cart", action1: nil, action2: nil)
-        let layoutGuide = view.safeAreaLayoutGuide
-        view.addSubview(loadingIndicator)
-        
-        NSLayoutConstraint.activate([
-            layoutGuide.centerXAnchor.constraint(equalTo: loadingIndicator.centerXAnchor),
-            layoutGuide.bottomAnchor.constraint(equalTo: loadingIndicator.bottomAnchor, constant: 8)
-        ])
-        loadingIndicator.hidesWhenStopped = true
         refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
         storeCollection.refreshControl = refreshControl
         storeCollection.delegate = self
-        storeCollection.allowsFocus = false
         collections.forEach {
             storeCollection.registerCellWithNib($0.cellTypes)
             $0.registerHeaderFooterTypes(collectionView: storeCollection)
         }
         setupDataSource()
-        setupCompositionalLayout()
         bindData()
     }
     
     private func setupDataSource() {
-        dataSource = .init(collectionView: storeCollection) { [weak self] collectionView, indexPath, product in
+        dataSource = .init(collectionView: storeCollection) { [weak self] (collectionView, indexPath, product) in
             guard let self = self else { return UICollectionViewCell()}
             switch product.cellTypes {
             case .search:
@@ -97,10 +83,10 @@ class StoreViewController: BaseViewController {
                 }
                 return cell2
             case .forYouProduct:
-                let cell3: FYPCollectionCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-                if let item = self.dataSource.itemIdentifier(for: indexPath) {
-                    cell3.configure(with: item)
-                }
+                let cell3: FYPCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+                cell3.bindData(data: self.fyp)
+                cell3.delegate = self
+                
                 return cell3
             default: return UICollectionViewCell()
             }
@@ -124,7 +110,7 @@ class StoreViewController: BaseViewController {
                     }
                 case .forYouProduct:
                     let header: FYPHeader = collectionView.dequeueHeaderFooterCell(kind: UICollectionView.elementKindSectionHeader, forIndexPath: indexPath)
-//                    header.delegate = self
+                    header.delegate = self
                     if let category = self.category {
                         header.configure(data: category)
                     }
@@ -135,8 +121,8 @@ class StoreViewController: BaseViewController {
     }
     
     private func setupCompositionalLayout() {
-        layout = .init(sectionProvider: { [weak self] sectionIndex, env in
-            guard let self = self, let product = self.product, let section = SectionStoreCollection(rawValue: sectionIndex) else { fatalError("Invalid section index") }
+        layout = .init(sectionProvider: { [weak self] (sectionIndex, env) in
+            guard let self = self, let section = SectionStoreCollection(rawValue: sectionIndex) else { fatalError("Invalid section index") }
             
             switch section {
             case .search:
@@ -146,42 +132,50 @@ class StoreViewController: BaseViewController {
             case .popular:
                 return NSCollectionLayoutSection.popularListSection(pagingInfo: self.vm.pagingPopular)
             case .forYouProduct:
-                return NSCollectionLayoutSection.createFYPLayout(env: env, items: product)
+                return NSCollectionLayoutSection.forYouPageSection(env: env)
             }
         })
         
         storeCollection.collectionViewLayout = layout
     }
     
-    private func reloadSnapshot() {
+    private func loadSnapshot() {
+        // append sections to snapshot
         snapshot.appendSections(collections)
+        
+        // append item to snapshot
         if let product = product {
+            // append item to section search
             if var section1 = product.first {
                 section1.cellTypes = .search
                 snapshot.appendItems([section1], toSection: .search)
             }
+            
+            // append item to section carousel
             let section2 = product.prefix(5).map {
                 var modifiedItem = $0
                 modifiedItem.cellTypes = .carousel
                 return modifiedItem
             }
-            let section3 = product.map {
+            snapshot.appendItems(section2, toSection: .carousel)
+            
+            // append item to section popular
+            let section3 = product.prefix(9).map {
                 var modifiedItem = $0
                 modifiedItem.cellTypes = .popular
                 return modifiedItem
             }
-            
-            let section4 = fyp.prefix(loadedIndex).map {
-                var modifiedItem = $0
-                modifiedItem.cellTypes = .forYouProduct
-                return modifiedItem
-            }
-            
-            snapshot.appendItems(section2, toSection: .carousel)
             snapshot.appendItems(section3, toSection: .popular)
-            snapshot.appendItems(section4, toSection: .forYouProduct)
+            
+            // append item to section fyp
+            if var section4 = product.first {
+                section4.cellTypes = .forYouProduct
+                snapshot.appendItems([section4], toSection: .forYouProduct)
+            }
         }
+        // apply snapshot to datasource
         dataSource.apply(snapshot, animatingDifferences: true)
+        setupCompositionalLayout()
     }
     
     private func bindData() {
@@ -190,44 +184,12 @@ class StoreViewController: BaseViewController {
             dataProduct.remove(at: 0)
             self.product = dataProduct
             self.fyp.append(contentsOf: dataProduct)
-            self.reloadSnapshot()
+            dataProduct.forEach {
+                var modifiedItems = $0
+                modifiedItems.id += 14
+                self.fyp.append(modifiedItems)
+            }
             self.startTimer()
-        }).disposed(by: bag)
-        
-        vm.runningShoes.asObservable().subscribe(onNext: {[weak self] product in
-            guard let self = self, let dataProduct = product else {return}
-            dataProduct.forEach {
-                var modifiedItem = $0
-                modifiedItem.id += 14
-                self.fyp.append(modifiedItem)
-            }
-        }).disposed(by: bag)
-        
-        vm.trainingShoes.asObservable().subscribe(onNext: {[weak self] product in
-            guard let self = self, let dataProduct = product else {return}
-            dataProduct.forEach {
-                var modifiedItem = $0
-                modifiedItem.id += 14
-                self.fyp.append(modifiedItem)
-            }
-        }).disposed(by: bag)
-        
-        vm.basketShoes.asObservable().subscribe(onNext: {[weak self] product in
-            guard let self = self, let dataProduct = product else {return}
-            dataProduct.forEach {
-                var modifiedItem = $0
-                modifiedItem.id += 14
-                self.fyp.append(modifiedItem)
-            }
-        }).disposed(by: bag)
-        
-        vm.hikingShoes.asObservable().subscribe(onNext: {[weak self] product in
-            guard let self = self, let dataProduct = product else {return}
-            dataProduct.forEach {
-                var modifiedItem = $0
-                modifiedItem.id += 14
-                self.fyp.append(modifiedItem)
-            }
         }).disposed(by: bag)
         
         vm.sportShoes.asObservable().subscribe(onNext: {[weak self] product in
@@ -236,6 +198,7 @@ class StoreViewController: BaseViewController {
                 var modifiedItem = $0
                 modifiedItem.id += 29
                 self.fyp.append(modifiedItem)
+                self.loadSnapshot()
             }
         }).disposed(by: bag)
         
@@ -264,47 +227,36 @@ class StoreViewController: BaseViewController {
         }).disposed(by: bag)
     }
     
-    private func loadMoreData() {
-        // Fetch more items for the For You Product section
-        guard let product = product, loadedIndex < fyp.count else {
-            return // No more items to load
-        }
-        
-        isLoadMoreData = true
-        
-        let moreItems = fyp[loadedIndex..<min(loadedIndex + 5, fyp.count)]
-        let modifiedItems = moreItems.map {
-            var modifiedItem = $0
-            modifiedItem.cellTypes = .forYouProduct
-            return modifiedItem
-        }
-        
-        loadedIndex += 5 // Update the loaded index
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            // Update the snapshot with the newly loaded items
-            self.snapshot.appendItems(modifiedItems, toSection: .forYouProduct)
-            self.dataSource.apply(self.snapshot, animatingDifferences: true)
-            self.isLoadMoreData = false
-            self.loadingIndicator.stopAnimating()
-        }
-        loadingIndicator.startAnimating()
-    }
-    
     private func scrollToMenuIndex(index: Int) {
-        let index = IndexPath(row: 0, section: 3)
+        let sectionIndex = IndexPath(row: 0, section: 3)
+        if let cell = storeCollection.cellForItem(at: sectionIndex) as? FYPCollectionViewCell {
+            cell.fypCollection.scrollToItem(at: IndexPath(item: 0, section: index), at: .centeredHorizontally, animated: true)
+        }
     }
     
     private func startTimer() {
+        isCarouselSectionVisible = true
         timer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(timerAction), userInfo: nil, repeats: true)
     }
     
+    private func updateCarouselSectionVisibility() {
+        guard let collectionView = storeCollection.collectionViewLayout.collectionView else { return }
+
+        let carouselSectionIndex = SectionStoreCollection.carousel.rawValue
+        let isCarouselVisible = collectionView.indexPathsForVisibleItems.contains { indexPath in
+            return indexPath.section == carouselSectionIndex
+        }
+
+        isCarouselSectionVisible = isCarouselVisible
+    }
+    
     @objc private func timerAction() {
-        currentIndex =  (currentIndex + 1) % (product?.prefix(5).count ?? 5)
+        guard let isVisible = isCarouselSectionVisible, let product = product?.prefix(5), isVisible else { return }
+        currentIndex =  (currentIndex + 1) % (product.count)
         storeCollection.scrollToItem(at: IndexPath(item: currentIndex, section: 1), at: .centeredHorizontally, animated: true)
     }
     
     @objc func refreshData() {
-        loadedIndex = 5
         product?.removeAll()
         snapshot.deleteAllItems()
         snapshot.deleteSections(collections)
@@ -315,12 +267,8 @@ class StoreViewController: BaseViewController {
 }
 
 extension StoreViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if indexPath.section == collections[3].rawValue &&
-            indexPath.item == dataSource.snapshot().itemIdentifiers(inSection: .forYouProduct).count - 1 {
-            // Last item in the For You Product section is about to be displayed
-            loadMoreData()
-        }
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        updateCarouselSectionVisibility()
     }
 }
 
@@ -330,8 +278,24 @@ extension StoreViewController: SearchCollectionCellDelegate {
     }
 }
 
+extension StoreViewController: FYPCollectionViewCellDelegate {
+    func didScroll(scrollView: UIScrollView) {
+        // MARK: Not fix yet
+        let itemIndex = Int(scrollView.contentOffset.x / view.frame.width)
+        let indexPath = IndexPath(item: itemIndex, section: 0)
+        if let headerFYP = self.headerFYP {
+            headerFYP.selectItem(at: indexPath, animated: true, scrollPosition: .left)
+        }
+    }
+    
+    func sendHeight(height: CGFloat) {
+        self.fypSectionHeight = height
+    }
+}
+
 extension StoreViewController: FYPHeaderDelegate {
-    func setCurrentSection(index: Int) {
+    func setCurrentSection(index: Int, collectionView: UICollectionView) {
+        self.headerFYP = collectionView
         self.scrollToMenuIndex(index: index)
     }
 }

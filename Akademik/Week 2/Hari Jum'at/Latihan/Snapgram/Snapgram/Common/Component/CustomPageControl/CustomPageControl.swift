@@ -7,103 +7,108 @@
 
 import UIKit
 
-public class CustomPageControl: UIPageControl {
-    // MARK: - Private Properties
+class CustomPageControl: UIPageControl {
+    
     private var selectedIndex: Int = 0
     private var remainingDecimal: CGFloat = 0
-    private var selectedColor: UIColor = .clear {
+    
+    // active page indicator
+    open var activeColor = UIColor.label
+    
+    // inactive indicator
+    open var inactiveColor = UIColor.separator
+    
+    // active size
+    public var activeSize = CGSize(width: 16, height: 6)
+    
+    // inactive size
+    public var inactiveSize = CGSize(width: 6, height: 6)
+    
+    // page control position
+    public var isCenter: Bool = true
+    
+    private let magicTag = "KMPageControl".hash
+    
+    // spacing
+    public var dotSpacing: CGFloat = 5.0 {
         didSet {
-            reset()
-        }
-    }
-    private var unselectedColor: UIColor = .clear {
-        didSet {
-            reset()
+            self.pageIndicatorTintColor = .clear
+            self.currentPageIndicatorTintColor = .clear
+            updateDots()
         }
     }
     
-    // MARK: - Public Properties
-    public var dotRadius: CGFloat = 3 {
+    override var numberOfPages: Int {
         didSet {
-            reset()
-        }
-    }
-    public var dotSpacings: CGFloat = 8 {
-        didSet {
-            reset()
-        }
-    }
-    public override var numberOfPages: Int {
-        didSet {
-            reset()
-        }
-    }
-    /// Currently selected page.
-    /// The first page is 1 and not 0.
-    public override var currentPage: Int {
-        didSet {
-            reset()
-        }
-    }
-    public override var pageIndicatorTintColor: UIColor? {
-        set {
-            unselectedColor = newValue ?? .clear
-        }
-        get {
-            .clear
-        }
-    }
-    public override var currentPageIndicatorTintColor: UIColor? {
-        set {
-            selectedColor = newValue ?? .clear
-        }
-        get {
-            return .clear
-        }
-    }
-    
-    public override func draw(_ rect: CGRect) {
-        guard numberOfPages > 0 else { return }
-        
-        let totalWidth = CGFloat(numberOfPages) * (dotRadius * 2 + dotSpacings) - dotSpacings
-        var startX = (rect.width - totalWidth) / 2.0
-        
-        for index in 0 ..< numberOfPages {
-            let previousCirclesX = startX
-            var percentageWidth: CGFloat = 0
-            var originX: CGFloat = previousCirclesX
-            var barColor: UIColor = selectedColor
-            
-            switch index {
-            case selectedIndex:
-                percentageWidth = dotRadius * 2 + ((dotRadius * 2 + dotSpacings) * (1 - self.remainingDecimal))
-                barColor = between(selectedColor, and: unselectedColor, percentage: remainingDecimal)
-            case selectedIndex + 2:
-                percentageWidth = dotRadius * 2 + ((dotRadius * 2 + dotSpacings) * (self.remainingDecimal))
-                originX = previousCirclesX - percentageWidth + dotRadius * 2
-                barColor = between(unselectedColor, and: selectedColor, percentage: remainingDecimal)
-            default:
-                percentageWidth = dotRadius * 2
-                barColor = unselectedColor
+            // remove all subviews before add new subviews
+            for view in self.subviews {
+                view.removeFromSuperview()
             }
-            
-            barColor.setFill()
-            let bezierPath = UIBezierPath(roundedRect: .init(x: originX,
-                                                             y: 0,
-                                                             width: percentageWidth,
-                                                             height: dotRadius * 2),
-                                          cornerRadius: dotRadius)
-            bezierPath.fill()
-            
-            startX += percentageWidth + dotSpacings
         }
     }
-
     
-    public override var intrinsicContentSize: CGSize {
-        let spacesWidth = CGFloat(numberOfPages) * dotSpacings
-        let dotsWidth = CGFloat(numberOfPages + 1) * (dotRadius * 2)
-        return .init(width: spacesWidth + dotsWidth, height: dotRadius * 2)
+    override public var currentPage: Int {
+        didSet {
+            self.pageIndicatorTintColor = .clear
+            self.currentPageIndicatorTintColor = .clear
+            updateDots()
+        }
+    }
+    
+    override public func layoutSubviews() {
+        super.layoutSubviews()
+        self.pageIndicatorTintColor = .clear
+        self.currentPageIndicatorTintColor = .clear
+        updateDots(animated: false)
+    }
+    
+    func updateDots(animated: Bool = true) {
+        guard numberOfPages > 0 else { return }
+        let view = self
+        let spacing = dotSpacing
+        let dotsTotalW: CGFloat = CGFloat(numberOfPages - 1)
+        * (inactiveSize.width + spacing)
+        + activeSize.width
+        let totalW = view.bounds.width
+        
+        var startX: CGFloat = (totalW - dotsTotalW)/2.0
+        
+        if !isCenter {
+            startX = 0
+        }
+        
+        for idx in (0..<numberOfPages) {
+            let isActive = idx == currentPage
+            let color = isActive ? activeColor : inactiveColor
+            let size = isActive ? activeSize: inactiveSize
+            let imageV = self.imageView(for: view, index: idx)
+            let pointX = startX
+            let pointY = view.bounds.midY - size.height/2.0
+            
+            let change = {
+                imageV?.frame = .init(x: pointX, y: pointY, width: size.width, height: size.height)
+                imageV?.layer.cornerRadius = min(size.width, size.height)/2.0
+                imageV?.backgroundColor = color
+            }
+            if animated {
+                UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseInOut, animations: {
+                    change()
+                })
+            }else {
+                change()
+            }
+            startX += size.width + spacing
+        }
+    }
+    func imageView(for view: UIView, index page: Int) -> UIImageView?   {
+        let tag = magicTag + page
+        if let imageV = view.viewWithTag(tag) as? UIImageView {
+            return imageV
+        }
+        let imageV  = UIImageView()
+        imageV.tag = tag
+        view.addSubview(imageV)
+        return imageV
     }
     
     public func setOffset(_ offset: CGFloat, width: CGFloat) {
@@ -114,28 +119,5 @@ public class CustomPageControl: UIPageControl {
     
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         self.setOffset(scrollView.contentOffset.x, width: scrollView.bounds.width)
-    }
-    
-    // MARK: - Private Functions
-    private func reset() {
-        self.invalidateIntrinsicContentSize()
-        self.setNeedsDisplay()
-    }
-    
-    private func between(_ color1: UIColor, and color2: UIColor, percentage: CGFloat) -> UIColor {
-        let percentage = max(min(percentage, 100), 0)
-        switch percentage {
-        case 0: return color1
-        case 1: return color2
-        default:
-            var (red1, green1, blue1, alpha1): (CGFloat, CGFloat, CGFloat, CGFloat) = (0, 0, 0, 0)
-            var (red2, green2, blue2, alpha2): (CGFloat, CGFloat, CGFloat, CGFloat) = (0, 0, 0, 0)
-            guard color1.getRed(&red1, green: &green1, blue: &blue1, alpha: &alpha1) else { return color1 }
-            guard color2.getRed(&red2, green: &green2, blue: &blue2, alpha: &alpha2) else { return color2 }
-            return UIColor(red: CGFloat(red1 + (red2 - red1) * percentage),
-                           green: CGFloat(green1 + (green2 - green1) * percentage),
-                           blue: CGFloat(blue1 + (blue2 - blue1) * percentage),
-                           alpha: CGFloat(alpha1 + (alpha2 - alpha1) * percentage))
-        }
     }
 }

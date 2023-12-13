@@ -7,12 +7,6 @@ public final class FYPLayout {
         sectionIndex: Int
     ) -> NSCollectionLayoutSection {
         
-        let header = NSCollectionLayoutBoundarySupplementaryItem(
-            layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(70)),
-            elementKind: UICollectionView.elementKindSectionHeader,
-            alignment: .top
-        )
-        
         // NSCollectionLayoutGroupCustomItem to create layout with custom frames
         var items = [NSCollectionLayoutGroupCustomItem]()
         
@@ -29,7 +23,7 @@ public final class FYPLayout {
         
         let groupLayoutSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1),
-            heightDimension: .absolute(itemProvider.maxColumnHeight())
+            heightDimension: .estimated(itemProvider.maxColumnHeight())
         )
         print("maxColumnHeight \(itemProvider.maxColumnHeight())")
         
@@ -39,14 +33,6 @@ public final class FYPLayout {
                 
         let section = NSCollectionLayoutSection(group: group)
         section.contentInsetsReference = config.contentInsetsReference
-        section.orthogonalScrollingBehavior = .groupPagingCentered
-        section.boundarySupplementaryItems = [header]
-        section.boundarySupplementaryItems[0].extendsBoundary = true
-        section.boundarySupplementaryItems[0].pinToVisibleBounds = true
-        section.visibleItemsInvalidationHandler = { (items, offset, env) in
-            let page = round(offset.x / env.container.contentSize.width)
-            
-        }
 
         return section
     }

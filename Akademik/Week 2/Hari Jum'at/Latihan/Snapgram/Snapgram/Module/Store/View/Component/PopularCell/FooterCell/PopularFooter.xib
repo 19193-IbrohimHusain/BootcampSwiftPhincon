@@ -14,8 +14,8 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
-                <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="5" translatesAutoresizingMaskIntoConstraints="NO" id="y10-KI-Bx7">
-                    <rect key="frame" x="84.333333333333329" y="12" width="151.66666666666669" height="26"/>
+                <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="y10-KI-Bx7" customClass="CustomPageControl" customModule="Snapgram" customModuleProvider="target">
+                    <rect key="frame" x="102.33333333333331" y="12" width="115.66666666666669" height="26"/>
                     <color key="pageIndicatorTintColor" systemColor="separatorColor"/>
                     <color key="currentPageIndicatorTintColor" systemColor="labelColor"/>
                 </pageControl>
@@ -29,7 +29,7 @@
                 <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
             </userDefinedRuntimeAttributes>
             <connections>
-                <outlet property="pageControl" destination="y10-KI-Bx7" id="usy-x9-5zF"/>
+                <outlet property="pageControl" destination="y10-KI-Bx7" id="ulZ-80-33c"/>
             </connections>
             <point key="canvasLocation" x="-264.12213740458014" y="-12.67605633802817"/>
         </collectionReusableView>

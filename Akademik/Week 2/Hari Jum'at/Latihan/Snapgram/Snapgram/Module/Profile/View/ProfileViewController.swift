@@ -9,8 +9,8 @@ class ProfileViewController: BaseBottomSheetController {
     internal let tables = SectionProfileTable.allCases
     private let vm = ProfileViewModel()
     private var currentUser: User?
-    private var taggedPost: [ListStory] = []
-    private var userPost: [ListStory] = [] {
+    private var taggedPost: [ListStory]?
+    private var userPost: [ListStory]? {
         didSet {
             DispatchQueue.main.async {
                 self.profileTable.reloadData()
@@ -25,9 +25,7 @@ class ProfileViewController: BaseBottomSheetController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        userPost.removeAll()
-        taggedPost.removeAll()
-        vm.fetchStory(param: StoryTableParam(size: 1000))
+        refreshData()
     }
     
     private func setup() {
@@ -48,12 +46,12 @@ class ProfileViewController: BaseBottomSheetController {
     private func bindData() {
         vm.userPost.asObservable().subscribe(onNext: { [weak self] data in
             guard let self = self, let validData = data else { return }
-            self.userPost.append(contentsOf: validData)
+            self.userPost = validData
         }).disposed(by: bag)
         
         vm.taggedPost.asObservable().subscribe(onNext: { [weak self] data in
             guard let self = self, let validData = data else { return }
-            self.taggedPost.append(contentsOf: validData)
+            self.taggedPost = validData
         }).disposed(by: bag)
         
         vm.currentUser.asObservable().subscribe(onNext: { [weak self] user in
@@ -87,6 +85,15 @@ class ProfileViewController: BaseBottomSheetController {
         if let cell = profileTable.cellForRow(at: index) as? PostTableCell {
             let indexPath = IndexPath(item: 0, section: sectionIndex)
             cell.postCollection.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+            if indexPath.section == 0 {
+                cell.invalidateIntrinsicContentSize()
+                cell.postCollection.collectionViewLayout.invalidateLayout()
+                cell.heightCollection.constant = cell.postHeight ?? 450
+            } else if indexPath.section == 1 {
+                cell.invalidateIntrinsicContentSize()
+                cell.postCollection.collectionViewLayout.invalidateLayout()
+                cell.heightCollection.constant = cell.tagHeight ?? 450
+            }
         }
     }
     
@@ -101,9 +108,9 @@ class ProfileViewController: BaseBottomSheetController {
     }
     
     @objc private func refreshData() {
-        userPost.removeAll()
-        taggedPost.removeAll()
-        vm.fetchStory(param: StoryTableParam(size: 1000))
+        userPost?.removeAll()
+        taggedPost?.removeAll()
+        vm.fetchStory(param: StoryTableParam(size: 500))
         refreshControl.endRefreshing()
         profileTable.hideLoadingFooter()
     }
@@ -143,9 +150,10 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         case .post:
             let cell2 = tableView.dequeueReusableCell(forIndexPath: indexPath) as PostTableCell
             cell2.delegate = self
-            cell2.configure(post: userPost, tag: taggedPost)
-            cell2.heightCollection.constant = CGFloat(50 * taggedPost.count)
-
+            if let post = userPost, let tag = taggedPost {
+                cell2.configure(post: post, tag: tag)
+            }
+            
             return cell2
         default: return UITableViewCell()
             
