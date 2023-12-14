@@ -13,7 +13,6 @@ class StoreViewController: BaseViewController {
     @IBOutlet weak var storeCollection: UICollectionView!
     
     
-    internal let vc = DetailProductViewController()
     internal let collections = SectionStoreCollection.allCases
     internal let vm = StoreViewModel()
     internal var product: [ProductModel]?
@@ -40,6 +39,7 @@ class StoreViewController: BaseViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+        clearSnapshot()
         timer?.invalidate()
     }
     
@@ -102,6 +102,8 @@ class StoreViewController: BaseViewController {
                 case .popular:
                     if kind == UICollectionView.elementKindSectionHeader {
                         let header: PopularHeader = collectionView.dequeueHeaderFooterCell(kind: UICollectionView.elementKindSectionHeader, forIndexPath: indexPath)
+                        header.delegate = self
+                        
                         return header
                     } else {
                         let footer: PopularFooter = collectionView.dequeueHeaderFooterCell(kind: UICollectionView.elementKindSectionFooter, forIndexPath: indexPath)
@@ -110,6 +112,7 @@ class StoreViewController: BaseViewController {
                     }
                 case .forYouProduct:
                     let header: FYPHeader = collectionView.dequeueHeaderFooterCell(kind: UICollectionView.elementKindSectionHeader, forIndexPath: indexPath)
+                    self.headerFYP = header.headerCollection
                     header.delegate = self
                     if let category = self.category {
                         header.configure(data: category)
@@ -184,12 +187,6 @@ class StoreViewController: BaseViewController {
             dataProduct.remove(at: 0)
             self.product = dataProduct
             self.fyp.append(contentsOf: dataProduct)
-            dataProduct.forEach {
-                var modifiedItems = $0
-                modifiedItems.id += 14
-                self.fyp.append(modifiedItems)
-            }
-            self.startTimer()
         }).disposed(by: bag)
         
         vm.sportShoes.asObservable().subscribe(onNext: {[weak self] product in
@@ -199,6 +196,7 @@ class StoreViewController: BaseViewController {
                 modifiedItem.id += 29
                 self.fyp.append(modifiedItem)
                 self.loadSnapshot()
+                self.startTimer()
             }
         }).disposed(by: bag)
         
@@ -228,10 +226,11 @@ class StoreViewController: BaseViewController {
     }
     
     private func scrollToMenuIndex(index: Int) {
-        let sectionIndex = IndexPath(row: 0, section: 3)
+        let sectionIndex = IndexPath(item: 0, section: 3)
         if let cell = storeCollection.cellForItem(at: sectionIndex) as? FYPCollectionViewCell {
             cell.fypCollection.scrollToItem(at: IndexPath(item: 0, section: index), at: .centeredHorizontally, animated: true)
         }
+        storeCollection.scrollToItem(at: sectionIndex, at: .top, animated: true)
     }
     
     private func startTimer() {
@@ -250,6 +249,29 @@ class StoreViewController: BaseViewController {
         isCarouselSectionVisible = isCarouselVisible
     }
     
+    private func clearSnapshot() {
+        product?.removeAll()
+        fyp.removeAll()
+        snapshot.deleteAllItems()
+        snapshot.deleteSections(collections)
+        dataSource.apply(snapshot, animatingDifferences: true)
+    }
+    
+    private func navigateToSearch() {
+        let vc = SearchProductViewController()
+        vc.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    private func navigateToDetail(index: Int) {
+        if let productID = product?[index].id {
+            let vc = DetailProductViewController()
+            vc.id = productID
+            vc.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
     @objc private func timerAction() {
         guard let isVisible = isCarouselSectionVisible, let product = product?.prefix(5), isVisible else { return }
         currentIndex =  (currentIndex + 1) % (product.count)
@@ -257,16 +279,22 @@ class StoreViewController: BaseViewController {
     }
     
     @objc func refreshData() {
-        product?.removeAll()
-        snapshot.deleteAllItems()
-        snapshot.deleteSections(collections)
-        dataSource.apply(snapshot, animatingDifferences: true)
+        clearSnapshot()
         vm.fetchProduct()
         vm.fetchCategories()
     }
 }
 
 extension StoreViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if indexPath.section == 0 {
+            navigateToSearch()
+        } else if indexPath.section != 3 && indexPath.section != 0 {
+            let index = indexPath.item
+            navigateToDetail(index: index)
+        }
+    }
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         updateCarouselSectionVisibility()
     }
@@ -279,12 +307,12 @@ extension StoreViewController: SearchCollectionCellDelegate {
 }
 
 extension StoreViewController: FYPCollectionViewCellDelegate {
-    func didScroll(scrollView: UIScrollView) {
-        // MARK: Not fix yet
-        let itemIndex = Int(scrollView.contentOffset.x / view.frame.width)
-        let indexPath = IndexPath(item: itemIndex, section: 0)
+    func willEndDragging(index: Int) {
+        let indexPath = IndexPath(item: index, section: 0)
         if let headerFYP = self.headerFYP {
             headerFYP.selectItem(at: indexPath, animated: true, scrollPosition: .left)
+            let sectionIndex = IndexPath(item: 0, section: 3)
+            storeCollection.scrollToItem(at: sectionIndex, at: .top, animated: true)
         }
     }
     
@@ -294,19 +322,19 @@ extension StoreViewController: FYPCollectionViewCellDelegate {
 }
 
 extension StoreViewController: FYPHeaderDelegate {
-    func setCurrentSection(index: Int, collectionView: UICollectionView) {
-        self.headerFYP = collectionView
+    func setCurrentSection(index: Int) {
         self.scrollToMenuIndex(index: index)
     }
 }
 
-
-extension StoreViewController: CarouselTableCellDelegate, PopularTableCellDelegate, NATableCellDelegate, FYPTableCellDelegate {
-    func navigateToDetail(id: Int) {
-        vc.id = id
+extension StoreViewController: PopularHeaderDelegate {
+    func navigateToPopular() {
+        let vc = PopularProductViewController()
         vc.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
     }
+    
+    
 }
 
 extension StoreViewController: SkeletonCollectionViewDataSource {

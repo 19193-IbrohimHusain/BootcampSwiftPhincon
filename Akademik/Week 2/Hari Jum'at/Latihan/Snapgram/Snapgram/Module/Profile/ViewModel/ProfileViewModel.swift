@@ -42,7 +42,8 @@ class ProfileViewModel : BaseViewModel {
             switch result {
             case .success(let data):
                 self.loadingState.accept(.finished)
-                self.taggedPost.accept(data.listStory)
+                let tagData = Array(data.listStory.prefix(200))
+                self.taggedPost.accept(tagData)
                 if let savedUser = BaseConstant.userDef.data(forKey: "userData") {
                     do {
                         let user = try JSONDecoder().decode(User.self, from: savedUser)

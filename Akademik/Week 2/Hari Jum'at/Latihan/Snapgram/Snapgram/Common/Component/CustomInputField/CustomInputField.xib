@@ -20,9 +20,6 @@
             <subviews>
                 <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5qd-j3-An9">
                     <rect key="frame" x="0.0" y="0.0" width="353" height="50"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="50" id="Hyg-AL-ezu"/>
-                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                     <connections>

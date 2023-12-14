@@ -8,7 +8,7 @@
 import UIKit
 
 protocol FYPHeaderDelegate {
-    func setCurrentSection(index: Int, collectionView: UICollectionView)
+    func setCurrentSection(index: Int)
 }
 
 class FYPHeader: UICollectionReusableView {
@@ -65,6 +65,6 @@ extension FYPHeader: StoreCategoryCellDelegate {
     func onSelected(index: Int) {
         let indexPath = IndexPath(item: index, section: 0)
         self.headerCollection.selectItem(at: indexPath, animated: true, scrollPosition: .left)
-        self.delegate?.setCurrentSection(index: index, collectionView: headerCollection)
+        self.delegate?.setCurrentSection(index: index)
     }
 }

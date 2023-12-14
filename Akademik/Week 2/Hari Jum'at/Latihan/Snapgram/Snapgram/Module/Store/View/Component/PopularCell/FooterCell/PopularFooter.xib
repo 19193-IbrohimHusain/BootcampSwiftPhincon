@@ -14,7 +14,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
-                <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="y10-KI-Bx7" customClass="CustomPageControl" customModule="Snapgram" customModuleProvider="target">
+                <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="y10-KI-Bx7" customClass="CustomPageControl" customModule="Snapgram" customModuleProvider="target">
                     <rect key="frame" x="102.33333333333331" y="12" width="115.66666666666669" height="26"/>
                     <color key="pageIndicatorTintColor" systemColor="separatorColor"/>
                     <color key="currentPageIndicatorTintColor" systemColor="labelColor"/>

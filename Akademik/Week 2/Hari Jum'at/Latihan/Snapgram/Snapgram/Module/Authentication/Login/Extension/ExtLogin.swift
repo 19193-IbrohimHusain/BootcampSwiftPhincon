@@ -4,17 +4,7 @@ import RxSwift
 import RxCocoa
 
 extension LoginViewController {
-    
-    func setupLogin() {
-        bindData()
-        configureLoginAnimation()
-        configureShowImage()
-        configureTextField()
-        configureButton()
-        navigate()
-    }
-    
-    func bindData() {
+    internal func bindData() {
         vm.loginResponse.asObservable().subscribe(onNext: { [weak self] data in
             guard let self = self else { return }
             if let validData = data?.loginResult {
@@ -50,57 +40,7 @@ extension LoginViewController {
         }).disposed(by: bag)
     }
     
-    func configureLoginAnimation() {
-        loginAnimation.play()
-        loginAnimation.contentMode = .scaleAspectFill
-        loginAnimation.loopMode = .loop
-    }
-    
-    func configureShowImage() {
-        rightView.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
-        rightView.addSubview(imageView)
-        imageView.center = CGPoint(x: rightView.bounds.width / 2, y: rightView.bounds.height / 2)
-        imageView.isUserInteractionEnabled = true
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(showPassword))
-        imageView.addGestureRecognizer(tapGesture)
-    }
-    
-    func configureTextField() {
-        emailInputField.setup(placeholder: "Email", errorText: "Your email format is not valid")
-        passwordInputField.setup(placeholder: "Password", errorText: "Password must be at least 8 characters")
-        passwordInputField.textField.isSecureTextEntry = true
-        passwordInputField.textField.rightView = rightView
-        passwordInputField.textField.rightViewMode = .always
-    }
-    
-    func configureButton() {
-        signInBtn.setup(title: "Sign In", image: "")
-        signInWithAppleBtn.setup(title: "Sign In With Apple ID", image: "apple.logo")
-        signInWithAppleBtn.customButton.backgroundColor = .white
-        signInWithAppleBtn.customButton.setTitleColor(.systemBlue, for: .normal)
-        signInWithAppleBtn.customButton.layer.borderWidth = 1.0
-        signUpBtn.setAnimateBounce()
-    }
-    
-    @objc func showPassword(_ sender: UITapGestureRecognizer) {
-        passwordInputField.textField.isSecureTextEntry.toggle()
-        imageView.image = UIImage(systemName: passwordInputField.textField.isSecureTextEntry ? "eye.fill" : "eye.slash.fill")
-    }
-    
-    func navigate() {
-        signInBtn.customButton.addTarget(self, action: #selector(onSignInBtnTap), for: .touchUpInside)
-        signInWithAppleBtn.customButton.addTarget(self, action: #selector(onSignInWithAppleBtnTap), for: .touchUpInside)
-    }
-    
-    @objc func onSignInBtnTap() {
-        validate()
-    }
-    
-    @objc func onSignInWithAppleBtnTap() {
-        // Handle Apple sign-in
-    }
-    
-    func validate() {
+    internal func validate() {
         addLoading(self.signInBtn.customButton)
 
         guard validateInputField(emailInputField, title: "Sign In Failed", message: "Please Enter Your Email", completion: {
@@ -124,19 +64,19 @@ extension LoginViewController {
         signIn()
     }
     
-    func signIn() {
+    private func signIn() {
         let enteredEmail = emailInputField.textField.text!
         let enteredPassword = passwordInputField.textField.text!
         vm.signIn(param: LoginParam(email: enteredEmail, password: enteredPassword))
     }
     
-    func navigateToTabBarView() {
+    internal func navigateToTabBarView() {
         let tbvc = TabBarViewController()
         tbvc.hidesBottomBarWhenPushed = true
         self.navigationController?.setViewControllers([tbvc], animated: true)
     }
     
-    func navigateToRegisterView() {
+    internal func navigateToRegisterView() {
         let rvc = RegisterViewController()
         self.navigationController?.pushViewController(rvc, animated: true)
     }

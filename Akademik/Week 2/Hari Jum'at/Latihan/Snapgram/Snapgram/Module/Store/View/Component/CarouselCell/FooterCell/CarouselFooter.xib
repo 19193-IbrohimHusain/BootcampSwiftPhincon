@@ -14,7 +14,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
-                <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" numberOfPages="5" translatesAutoresizingMaskIntoConstraints="NO" id="mtP-2o-R2c" customClass="CustomPageControl" customModule="Snapgram" customModuleProvider="target">
+                <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" numberOfPages="5" translatesAutoresizingMaskIntoConstraints="NO" id="mtP-2o-R2c" customClass="CustomPageControl" customModule="Snapgram" customModuleProvider="target">
                     <rect key="frame" x="84.333333333333329" y="12" width="151.66666666666669" height="26"/>
                     <color key="pageIndicatorTintColor" systemColor="separatorColor"/>
                     <color key="currentPageIndicatorTintColor" systemColor="labelColor"/>

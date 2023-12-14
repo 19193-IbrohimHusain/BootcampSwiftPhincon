@@ -9,32 +9,72 @@ import UIKit
 import Lottie
 
 class CustomErrorView: UIView {
-    
-    @IBOutlet weak var errorAnimation: LottieAnimationView!
-    
+
+    private let animationView: LottieAnimationView = {
+        let animationView = LottieAnimationView()
+        animationView.translatesAutoresizingMaskIntoConstraints = false
+        animationView.backgroundColor = .systemBackground
+        animationView.contentMode = .scaleToFill
+        animationView.animation = LottieAnimation.named("error_animation")
+        return animationView
+    }()
+
+    private let titleLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Uh oh! Something's wrong!"
+        label.font = UIFont(name: "Helvetica-Bold", size: 14)
+        return label
+    }()
+
+    private let descriptionLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Please refresh to continue"
+        label.font = UIFont(name: "Helvetica", size: 12)
+        return label
+    }()
+
     // MARK: - Initializer
+
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+        configureView()
+        configureAnimation()
     }
-    
+
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         configureView()
-    }
-    
-    // MARK: - Functions
-    private func configureView() {
-        let view = self.loadNib()
-        view.frame = self.bounds
-        view.backgroundColor = .systemBackground
-        self.addSubview(view)
         configureAnimation()
+    }
+
+    // MARK: - Functions
+
+    private func configureView() {
+        backgroundColor = .systemBackground
+
+        addSubview(animationView)
+        addSubview(titleLabel)
+        addSubview(descriptionLabel)
+
+        NSLayoutConstraint.activate([
+            animationView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            animationView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            animationView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            animationView.heightAnchor.constraint(equalToConstant: 200),
+
+            titleLabel.topAnchor.constraint(equalTo: animationView.bottomAnchor, constant: 8),
+            titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+
+            descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
+            descriptionLabel.centerXAnchor.constraint(equalTo: centerXAnchor)
+        ])
     }
     
     private func configureAnimation() {
-        errorAnimation.contentMode = .scaleAspectFill
-        errorAnimation.loopMode = .loop
-        errorAnimation.play()
+        animationView.contentMode = .scaleAspectFill
+        animationView.loopMode = .loop
+        animationView.play()
     }
 }

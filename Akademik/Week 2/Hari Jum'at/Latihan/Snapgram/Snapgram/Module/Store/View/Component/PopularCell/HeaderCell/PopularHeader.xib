@@ -34,6 +34,9 @@
                             </fragment>
                         </attributedString>
                     </buttonConfiguration>
+                    <connections>
+                        <action selector="navigate" destination="U6b-Vx-4bR" eventType="touchUpInside" id="b3w-Id-kGS"/>
+                    </connections>
                 </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="VXr-Tz-HHm"/>

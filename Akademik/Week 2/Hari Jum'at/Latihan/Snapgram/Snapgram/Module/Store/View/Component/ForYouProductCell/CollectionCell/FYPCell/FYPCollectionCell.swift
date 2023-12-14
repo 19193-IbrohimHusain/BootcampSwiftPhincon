@@ -33,7 +33,7 @@ class FYPCollectionCell: UICollectionViewCell {
         configureImage(product)
         productCategory.text = product.category.name
         productName.text = product.name
-        productPrice.text = "\(product.price)"
+        productPrice.text = "$ \(product.price)"
     }
     
     private func configureImage(_ product: ProductModel) {

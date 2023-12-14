@@ -9,7 +9,7 @@ import UIKit
 
 protocol FYPCollectionViewCellDelegate {
     func sendHeight(height: CGFloat)
-    func didScroll(scrollView: UIScrollView)
+    func willEndDragging(index: Int)
 }
 
 class FYPCollectionViewCell: UICollectionViewCell {
@@ -42,11 +42,7 @@ class FYPCollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        loadedIndex = 5
-        allShoes?.removeAll()
-        snapshot.deleteAllItems()
-        snapshot.deleteSections(sections)
-        dataSource.apply(snapshot)
+        clearSnapshot()
     }
     
     private func setup() {
@@ -97,13 +93,61 @@ class FYPCollectionViewCell: UICollectionViewCell {
     private func loadSnapshot() {
         snapshot.appendSections(sections)
         
-        if let allShoes = allShoes, allShoes.count >= 29 {
-            snapshot.appendItems(Array(allShoes.prefix(loadedIndex)), toSection: .allShoes)
-            snapshot.appendItems(Array(allShoes[14...17]), toSection: .running)
-            snapshot.appendItems(Array(allShoes[18...21]), toSection: .training)
-            snapshot.appendItems(Array(allShoes[22...25]), toSection: .basketball)
-            snapshot.appendItems(Array(allShoes[26...27]), toSection: .hiking)
-            snapshot.appendItems(Array(arrayLiteral: allShoes[28]), toSection: .sport)
+        if let allShoes = allShoes {
+            let dataAll = allShoes.prefix(loadedIndex).map {
+                var modifiedItem = $0
+                modifiedItem.fypSection = .allShoes
+                return modifiedItem
+            }
+            snapshot.appendItems(dataAll, toSection: .allShoes)
+            let dataRunning = allShoes.filter {
+                $0.category.name == "Running"
+            }
+            
+            let runningShoes = dataRunning.map {
+                var modifiedItem = $0
+                modifiedItem.fypSection = .running
+                return modifiedItem
+            }
+            snapshot.appendItems(runningShoes, toSection: .running)
+            
+            let dataTraining = allShoes.filter {
+                $0.category.name == "Training"
+            }
+            
+            let trainingShoes = dataTraining.map {
+                var modifiedItem = $0
+                modifiedItem.fypSection = .training
+                return modifiedItem
+            }
+            snapshot.appendItems(trainingShoes, toSection: .training)
+            
+            let dataBasket = allShoes.filter {
+                $0.category.name == "Basketball"
+            }
+            
+            let basketShoes = dataBasket.map {
+                var modifiedItem = $0
+                modifiedItem.fypSection = .basketball
+                return modifiedItem
+            }
+            snapshot.appendItems(basketShoes, toSection: .basketball)
+            
+            let dataHiking = allShoes.filter {
+                $0.category.name == "Hiking"
+            }
+            
+            let hikingShoes = dataHiking.map {
+                var modifiedItem = $0
+                modifiedItem.fypSection = .hiking
+                return modifiedItem
+            }
+            snapshot.appendItems(hikingShoes, toSection: .hiking)
+            
+            if var sportShoes = allShoes.last {
+                sportShoes.fypSection = .sport
+                snapshot.appendItems([sportShoes], toSection: .sport)
+            }
         }
         
         dataSource.apply(snapshot, animatingDifferences: true)
@@ -116,13 +160,13 @@ class FYPCollectionViewCell: UICollectionViewCell {
     
     private func loadMoreData() {
         // Fetch more items for the For You Product section
-        guard let allShoes = self.allShoes?.prefix(14), loadedIndex < allShoes.count else {
+        guard let allShoes = self.allShoes, loadedIndex < allShoes.count - 1 else {
             return // No more items to load
         }
         
         isLoadMoreData = true
         
-        let moreItems = allShoes[loadedIndex..<min(loadedIndex + 5, allShoes.count)]
+        let moreItems = allShoes[loadedIndex..<min(loadedIndex + 5, allShoes.count - 1)]
         let modifiedItems = moreItems.map {
             var modifiedItem = $0
             modifiedItem.cellTypes = .forYouProduct
@@ -139,6 +183,14 @@ class FYPCollectionViewCell: UICollectionViewCell {
         }
         loadingIndicator.startAnimating()
     }
+    
+    private func clearSnapshot() {
+        loadedIndex = 5
+        allShoes?.removeAll()
+        snapshot.deleteAllItems()
+        snapshot.deleteSections(sections)
+        dataSource.apply(snapshot)
+    }
 }
 
 extension FYPCollectionViewCell: UICollectionViewDelegate {
@@ -149,7 +201,9 @@ extension FYPCollectionViewCell: UICollectionViewDelegate {
         }
     }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        self.delegate?.didScroll(scrollView: scrollView)
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        if let indexPath = fypCollection.indexPathForItem(at: targetContentOffset.pointee) {
+            self.delegate?.willEndDragging(index: indexPath.section)
+        }
     }
 }

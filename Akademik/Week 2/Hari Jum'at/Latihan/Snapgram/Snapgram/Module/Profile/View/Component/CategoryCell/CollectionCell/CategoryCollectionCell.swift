@@ -11,19 +11,15 @@ class CategoryCollectionCell: UICollectionViewCell {
     var index: Int = Int()
     var delegate: CategoryCollectionCellDelegate?
     
-    override var isHighlighted: Bool {
+    override var isSelected: Bool {
         didSet {
-            categoryBtn.tintColor = isHighlighted ? .systemGray : .label
+            categoryBtn.tintColor = isSelected ? .label : .separator
         }
     }
     
-    override var isSelected: Bool {
-        didSet {
-            categoryBtn.tintColor = isSelected ? .label : .systemGray
-        }
-    }
     override func awakeFromNib() {
         super.awakeFromNib()
+        categoryBtn.tintColor = .separator
     }
     
     func configureCollection(_ categoryEntity: CategoryCollectionEntity) {

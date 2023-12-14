@@ -120,7 +120,7 @@ private extension FYPLayout.LayoutBuilder {
     
     private func itemOrigin(width: CGFloat) -> CGPoint {
         let y = columnHeights[columnIndex()].rounded()
-        let x = (width + interItemSpacing) * CGFloat(columnIndex()) + 16
+        let x = (width + interItemSpacing) * CGFloat(columnIndex())
         return CGPoint(x: x, y: y)
     }
     

@@ -41,15 +41,17 @@ struct ProductModel: Codable, Hashable {
     let category: CategoryModel
     let galleries: [GalleryModel]?
     var cellTypes: SectionStoreCollection?
+    var fypSection: SectionFYPCollection?
     
     static func == (lhs: ProductModel, rhs: ProductModel) -> Bool {
         return lhs.id == rhs.id &&
-        lhs.cellTypes == rhs.cellTypes
+        lhs.cellTypes == rhs.cellTypes && lhs.fypSection == rhs.fypSection
     }
     
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
         hasher.combine(cellTypes)
+        hasher.combine(fypSection)
     }
     
     enum CodingKeys: String, CodingKey {

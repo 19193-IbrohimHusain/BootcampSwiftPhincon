@@ -18,20 +18,15 @@ class StoreCategoryCell: UICollectionViewCell {
     internal var index = Int()
     internal var delegate: StoreCategoryCellDelegate?
     
-    override var isHighlighted: Bool {
-        didSet {
-            categoryBtn.tintColor = isHighlighted ? .systemGray : .label
-        }
-    }
-    
     override var isSelected: Bool {
         didSet {
-            categoryBtn.tintColor = isSelected ? .label : .systemGray
+            categoryBtn.tintColor = isSelected ? .label : .separator
         }
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        categoryBtn.tintColor = .separator
     }
 
     internal func configure(data category: CategoryModel) {

@@ -130,9 +130,7 @@ extension NSCollectionLayoutSection {
         return section
     }
     
-    static func createFYPLayout(env: NSCollectionLayoutEnvironment, items: [ProductModel], section: Int) -> NSCollectionLayoutSection {
-        
-        let sectionHorizontalSpacing: CGFloat = 20
+    static func createFYPLayout(env: NSCollectionLayoutEnvironment, items: [ProductModel], section: Int, sectionHorizontalSpacing: CGFloat = 4, leading: CGFloat = 0, trailing: CGFloat = 0, top: CGFloat = 0) -> NSCollectionLayoutSection {
         
         let layout = FYPLayout.makeLayoutSection(
             config: .init(
@@ -145,7 +143,7 @@ extension NSCollectionLayoutSection {
                 itemHeightProvider: { index, itemWidth in
                     var randomHeight = CGFloat()
                     items.forEach { _ in
-                        randomHeight = CGFloat.random(in: 280...360)
+                        randomHeight = CGFloat.random(in: 300...360)
                     }
                     return CGFloat(randomHeight)
                 }),
@@ -153,10 +151,10 @@ extension NSCollectionLayoutSection {
         )
         
         layout.contentInsets = .init(
-            top: 20,
-            leading: 0,
-            bottom: 20,
-            trailing: 0
+            top: top,
+            leading: leading,
+            bottom: 0,
+            trailing: trailing
         )
         
         return layout

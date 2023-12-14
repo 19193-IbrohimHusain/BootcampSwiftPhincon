@@ -23,12 +23,12 @@ class CustomInputField: UIView {
         self.addSubview(view)
     }
     
-    @IBAction func inputTapTextArea() {
+    @IBAction private func inputTapTextArea() {
         textField.becomeFirstResponder()
         textField.layer.borderColor = UIColor.systemBlue.cgColor
     }
     
-    @IBAction func didEndEditing() {
+    @IBAction private func didEndEditing() {
         textField.resignFirstResponder()
         textField.layer.borderColor = UIColor.systemGray4.cgColor
     }

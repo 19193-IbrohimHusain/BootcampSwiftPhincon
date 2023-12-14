@@ -3,6 +3,7 @@ import SkeletonView
 
 protocol PostTableCellDelegate {
     func didScroll(scrollView: UIScrollView)
+    func didEndDecelerating(scrollView: UIScrollView)
     func navigateToDetail(id: String)
 }
 
@@ -44,7 +45,6 @@ class PostTableCell: UITableViewCell {
             return indexPath.section == 1
         }
         
-        print("section 1 visible? \(isIndexPathVisible)")
         if isIndexPathVisible {
             self.invalidateIntrinsicContentSize()
             postCollection.collectionViewLayout.invalidateLayout()
@@ -117,6 +117,7 @@ extension PostTableCell: UICollectionViewDelegate, UICollectionViewDataSource, U
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        self.delegate?.didEndDecelerating(scrollView: scrollView)
         self.updateLayout()
     }
 }
