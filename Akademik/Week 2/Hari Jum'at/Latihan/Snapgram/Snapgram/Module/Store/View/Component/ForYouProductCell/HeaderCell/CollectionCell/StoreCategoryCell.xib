@@ -24,6 +24,10 @@
                         <buttonConfiguration key="configuration" style="tinted" title="Button">
                             <backgroundConfiguration key="background" cornerRadius="8"/>
                         </buttonConfiguration>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="NO"/>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="isUserInteractionDisabledWhenSkeletonIsActive" value="YES"/>
+                        </userDefinedRuntimeAttributes>
                         <connections>
                             <action selector="onCategoryBtnTap" destination="gTV-IL-0wX" eventType="touchUpInside" id="XYx-vH-fk6"/>
                         </connections>

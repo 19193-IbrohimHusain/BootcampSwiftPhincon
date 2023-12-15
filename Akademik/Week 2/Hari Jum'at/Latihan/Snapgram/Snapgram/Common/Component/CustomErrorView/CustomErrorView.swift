@@ -9,7 +9,6 @@ import UIKit
 import Lottie
 
 class CustomErrorView: UIView {
-
     private let animationView: LottieAnimationView = {
         let animationView = LottieAnimationView()
         animationView.translatesAutoresizingMaskIntoConstraints = false
@@ -30,7 +29,7 @@ class CustomErrorView: UIView {
     private let descriptionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Please refresh to continue"
+        label.text = "Please pull to refresh"
         label.font = UIFont(name: "Helvetica", size: 12)
         return label
     }()
@@ -53,16 +52,18 @@ class CustomErrorView: UIView {
 
     private func configureView() {
         backgroundColor = .systemBackground
-
+        translatesAutoresizingMaskIntoConstraints = false
         addSubview(animationView)
         addSubview(titleLabel)
         addSubview(descriptionLabel)
 
         NSLayoutConstraint.activate([
-            animationView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            widthAnchor.constraint(equalToConstant: frame.width),
+            heightAnchor.constraint(equalToConstant: frame.height),
+            animationView.topAnchor.constraint(equalTo: topAnchor, constant: 150),
             animationView.leadingAnchor.constraint(equalTo: leadingAnchor),
             animationView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            animationView.heightAnchor.constraint(equalToConstant: 200),
+            animationView.heightAnchor.constraint(equalToConstant: 400),
 
             titleLabel.topAnchor.constraint(equalTo: animationView.bottomAnchor, constant: 8),
             titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor),

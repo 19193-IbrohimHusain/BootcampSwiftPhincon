@@ -110,14 +110,4 @@ class CustomPageControl: UIPageControl {
         view.addSubview(imageV)
         return imageV
     }
-    
-    public func setOffset(_ offset: CGFloat, width: CGFloat) {
-        selectedIndex = Int(offset / width)
-        remainingDecimal = offset / width - CGFloat(selectedIndex)
-        setNeedsDisplay()
-    }
-    
-    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        self.setOffset(scrollView.contentOffset.x, width: scrollView.bounds.width)
-    }
 }

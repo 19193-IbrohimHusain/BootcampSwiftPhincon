@@ -18,12 +18,17 @@ class StoryViewController: BaseBottomSheetController {
         
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        listStory.removeAll()
-        vm.fetchStory(param: StoryTableParam())
+        refreshData()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.errorView.removeFromSuperview()
     }
     
     private func setup() {
         setupNavigationBar(title: "Snapgram", image1: "bubble.right", image2: "heart", action1: #selector(navigateToDM), action2: nil)
+        setupErrorView()
         setupTable()
         bindData()
         setupCommentPanel()
@@ -87,6 +92,7 @@ class StoryViewController: BaseBottomSheetController {
         vm.fetchStory(param: StoryTableParam())
         self.refreshControl.endRefreshing()
         self.storyTable.hideLoadingFooter()
+        self.errorView.removeFromSuperview()
     }
     
     @objc private func navigateToDM() {

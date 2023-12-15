@@ -13,10 +13,13 @@ protocol PopularHeaderDelegate {
 
 class PopularHeader: UICollectionReusableView {
 
+    @IBOutlet weak var navigateBtn: UIButton!
+    
     internal var delegate: PopularHeaderDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        navigateBtn.setAnimateBounce()
     }
     
     @IBAction private func navigate() {

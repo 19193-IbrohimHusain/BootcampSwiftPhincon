@@ -14,7 +14,7 @@ class PopularProductViewController: BaseViewController {
     private var vm = PopularProductViewModel()
     private var product: [ProductModel]?
     private var snapshot = NSDiffableDataSourceSnapshot<SectionPopularProduct, ProductModel>()
-    private var dataSource: UICollectionViewDiffableDataSource<SectionPopularProduct, ProductModel>!
+    private var dataSource: PopularProductDataSource!
     private var layout: UICollectionViewCompositionalLayout!
 
     override func viewDidLoad() {
@@ -24,14 +24,21 @@ class PopularProductViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        vm.getProduct(param: ProductParam())
+        refreshData()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        clearSnapshot()
     }
     
     private func setup() {
         setupNavigationBar()
+        setupErrorView()
         popularCollection.delegate = self
         popularCollection.registerCellWithNib(FYPCollectionCell.self)
         setupDataSource()
+        setupCompositionalLayout()
         bindData()
     }
     
@@ -48,7 +55,7 @@ class PopularProductViewController: BaseViewController {
     
     private func setupDataSource() {
         dataSource = .init(collectionView: popularCollection) { (collectionView, indexPath, product) in
-            let cell:FYPCollectionCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+            let cell: FYPCollectionCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
             cell.configure(with: product)
             return cell
         }
@@ -56,8 +63,8 @@ class PopularProductViewController: BaseViewController {
     
     private func setupCompositionalLayout() {
         layout = .init(sectionProvider: { [weak self] (sectionIndex, env) in
-            guard let self = self, let product = self.product else { fatalError("Invalid section index") }
-            return NSCollectionLayoutSection.createFYPLayout(env: env, items: product, section: 0, sectionHorizontalSpacing: 20, leading: 20, trailing: 20, top: 20)
+            guard let self = self else { fatalError("Invalid section index") }
+            return NSCollectionLayoutSection.createFYPLayout(env: env, items: self.product ?? popularEntity, section: 0, sectionHorizontalSpacing: 20, leading: 20, trailing: 20, top: 20)
         })
         
         popularCollection.collectionViewLayout = layout
@@ -74,8 +81,6 @@ class PopularProductViewController: BaseViewController {
         vm.productData.asObservable().subscribe(onNext: { [weak self] product in
             guard let self = self, let data = product else { return }
             self.product = data
-            self.setupCompositionalLayout()
-            self.loadSnaphot()
         }).disposed(by: bag)
         
         vm.loadingState.asObservable().subscribe(onNext: { [weak self] state in
@@ -87,12 +92,26 @@ class PopularProductViewController: BaseViewController {
             case .loading:
                 self.popularCollection.showAnimatedGradientSkeleton()
             case .finished:
-                self.popularCollection.hideSkeleton()
+                self.popularCollection.hideSkeleton(reloadDataAfter: false)
+                self.loadSnaphot()
             case .failed:
                 self.popularCollection.addSubview(self.errorView)
             }
             
         }).disposed(by: bag)
+    }
+    
+    private func clearSnapshot() {
+        product?.removeAll()
+        snapshot.deleteAllItems()
+        snapshot.deleteSections([.main])
+        dataSource.apply(snapshot)
+        self.errorView.removeFromSuperview()
+    }
+    
+    @objc private func refreshData() {
+        clearSnapshot()
+        vm.getProduct(param: ProductParam())
     }
 }
 

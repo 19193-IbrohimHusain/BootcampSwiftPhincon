@@ -12,7 +12,7 @@ class BaseViewController: UIViewController, CLLocationManagerDelegate {
     internal let geocoder = GMSGeocoder()
     internal let bag = DisposeBag()
     internal let refreshControl = UIRefreshControl()
-    internal let errorView = CustomErrorView()
+    internal var errorView: CustomErrorView!
     internal let marker = GMSMarker()
     internal let map = GMSMapView()
     internal var bounds = GMSCoordinateBounds()
@@ -40,6 +40,10 @@ class BaseViewController: UIViewController, CLLocationManagerDelegate {
         let stack = UIStackView(arrangedSubviews: [titleLabel, spacer])
         stack.axis = .horizontal
         return stack
+    }
+    
+    internal func setupErrorView() {
+        self.errorView = CustomErrorView(frame: view.frame)
     }
     
     internal func validateInputField(_ inputField: CustomInputField, title: String, message: String, completion: @escaping () -> Void) -> Bool {

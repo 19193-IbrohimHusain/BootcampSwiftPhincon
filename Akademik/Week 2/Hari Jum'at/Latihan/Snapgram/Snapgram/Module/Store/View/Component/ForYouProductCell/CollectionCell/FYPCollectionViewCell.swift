@@ -8,7 +8,6 @@
 import UIKit
 
 protocol FYPCollectionViewCellDelegate {
-    func sendHeight(height: CGFloat)
     func willEndDragging(index: Int)
 }
 
@@ -20,7 +19,6 @@ class FYPCollectionViewCell: UICollectionViewCell {
     private let refreshControl = UIRefreshControl()
     private let sections = SectionFYPCollection.allCases
     private var loadedIndex: Int = 5
-    private var isLoadMoreData = false
     private var allShoes: [ProductModel]?
     private var snapshot = NSDiffableDataSourceSnapshot<SectionFYPCollection, ProductModel>()
     private var dataSource: UICollectionViewDiffableDataSource<SectionFYPCollection, ProductModel>!
@@ -46,6 +44,18 @@ class FYPCollectionViewCell: UICollectionViewCell {
     }
     
     private func setup() {
+        setupLoadingIndicator()
+        setupCollectionView()
+        setupDataSource()
+        setupCompositionalLayout()
+    }
+    
+    private func setupCollectionView() {
+        fypCollection.delegate = self
+        fypCollection.registerCellWithNib(FYPCollectionCell.self)
+    }
+    
+    private func setupLoadingIndicator() {
         let layoutGuide = self.fypCollection.safeAreaLayoutGuide
         self.addSubview(loadingIndicator)
         
@@ -54,10 +64,6 @@ class FYPCollectionViewCell: UICollectionViewCell {
             layoutGuide.bottomAnchor.constraint(equalTo: loadingIndicator.bottomAnchor, constant: 8)
         ])
         loadingIndicator.hidesWhenStopped = true
-        fypCollection.delegate = self
-        fypCollection.registerCellWithNib(FYPCollectionCell.self)
-        setupDataSource()
-        setupCompositionalLayout()
     }
     
     private func setupDataSource() {
@@ -163,9 +169,7 @@ class FYPCollectionViewCell: UICollectionViewCell {
         guard let allShoes = self.allShoes, loadedIndex < allShoes.count - 1 else {
             return // No more items to load
         }
-        
-        isLoadMoreData = true
-        
+                
         let moreItems = allShoes[loadedIndex..<min(loadedIndex + 5, allShoes.count - 1)]
         let modifiedItems = moreItems.map {
             var modifiedItem = $0
@@ -178,7 +182,6 @@ class FYPCollectionViewCell: UICollectionViewCell {
             // Update the snapshot with the newly loaded items
             self.snapshot.appendItems(modifiedItems, toSection: .allShoes)
             self.dataSource.apply(self.snapshot, animatingDifferences: true)
-            self.isLoadMoreData = false
             self.loadingIndicator.stopAnimating()
         }
         loadingIndicator.startAnimating()

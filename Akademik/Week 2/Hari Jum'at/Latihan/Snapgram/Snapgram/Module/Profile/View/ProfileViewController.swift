@@ -28,8 +28,14 @@ class ProfileViewController: BaseBottomSheetController {
         refreshData()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.errorView.removeFromSuperview()
+    }
+    
     private func setup() {
         setupNavigationBar(title: "Profile", image1: "line.horizontal.3", image2: "plus.app", action1: #selector(showSettings), action2: #selector(addStory))
+        setupErrorView()
         setupTable()
         bindData()
         setupBottomSheet(contentVC: SettingsViewController(), floatingPanelDelegate: self)
@@ -110,9 +116,10 @@ class ProfileViewController: BaseBottomSheetController {
     @objc private func refreshData() {
         userPost?.removeAll()
         taggedPost?.removeAll()
-        vm.fetchStory(param: StoryTableParam(size: 500))
+        vm.fetchStory(param: StoryTableParam(size: 1000))
         refreshControl.endRefreshing()
         profileTable.hideLoadingFooter()
+        self.errorView.removeFromSuperview()
     }
 }
 

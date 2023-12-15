@@ -10,12 +10,10 @@ import RxSwift
 import RxRelay
 
 enum SectionStoreCollection: Int, CaseIterable {
-    case search, carousel, popular, forYouProduct
+    case carousel, popular, forYouProduct
     
     var cellTypes: UICollectionViewCell.Type {
         switch self {
-        case .search:
-            return SearchCollectionCell.self
         case .carousel:
             return CarouselCollectionCell.self
         case .popular:
@@ -33,8 +31,6 @@ enum SectionStoreCollection: Int, CaseIterable {
     // Use this property to get the header and footer types
     var headerFooterType: HeaderFooterType {
         switch self {
-        case .search:
-            return .other(nil)
         case .carousel:
             return .other(CarouselFooter.self)
         case .popular:
@@ -69,10 +65,9 @@ enum SectionStoreCollection: Int, CaseIterable {
     
     static var sectionIdentifiers: [SectionStoreCollection: String] {
         return [
-            .search: String(describing: SearchCollectionCell.self),
             .carousel: String(describing: CarouselCollectionCell.self),
             .popular: String(describing: PopularCollectionCell.self),
-            .forYouProduct: String(describing: FYPCollectionCell.self)
+            .forYouProduct: String(describing: FYPCollectionViewCell.self)
         ]
     }
 }

@@ -14,7 +14,7 @@ class SearchProductViewController: BaseViewController {
     private var vm = SearchProductViewModel()
     private var product: [ProductModel]?
     private var snapshot = NSDiffableDataSourceSnapshot<SectionSearchProduct, ProductModel>()
-    private var dataSource: UICollectionViewDiffableDataSource<SectionSearchProduct, ProductModel>!
+    private var dataSource: SearchCollectionDataSource!
     private var layout: UICollectionViewCompositionalLayout!
     private var searchBar = CustomSearchNavBar()
 
@@ -25,17 +25,27 @@ class SearchProductViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        vm.getProduct(param: ProductParam())
-        self.navigationController?.navigationBar.sizeThatFits(CGSize(width: 430, height: 60))
+        refreshData()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        clearSnapshot()
     }
     
     private func setup() {
         setupNavigationBar()
+        setupErrorView()
         searchCollection.delegate = self
         searchCollection.registerCellWithNib(FYPCollectionCell.self)
         setupDataSource()
+        setupCompositionalLayout()
         bindData()
     }
+    
+//    private func handleSearch() {
+//        searchBar.
+//    }
     
     private func setNavBarHeight(height: Double) {
         self.navigationController?.navigationBar.invalidateIntrinsicContentSize()
@@ -58,8 +68,8 @@ class SearchProductViewController: BaseViewController {
     
     private func setupCompositionalLayout() {
         layout = .init(sectionProvider: { [weak self] (sectionIndex, env) in
-            guard let self = self, let product = self.product else { fatalError("Invalid section index") }
-            return NSCollectionLayoutSection.createFYPLayout(env: env, items: product, section: 0, sectionHorizontalSpacing: 20, leading: 20, trailing: 20, top: 20)
+            guard let self = self else { fatalError("Invalid section index") }
+            return NSCollectionLayoutSection.createFYPLayout(env: env, items: self.product ?? searchEntity, section: 0, sectionHorizontalSpacing: 20, leading: 20, trailing: 20, top: 20)
         })
         
         searchCollection.collectionViewLayout = layout
@@ -76,8 +86,6 @@ class SearchProductViewController: BaseViewController {
         vm.productData.asObservable().subscribe(onNext: { [weak self] product in
             guard let self = self, let data = product else { return }
             self.product = data
-            self.setupCompositionalLayout()
-            self.loadSnaphot()
         }).disposed(by: bag)
         
         vm.loadingState.asObservable().subscribe(onNext: { [weak self] state in
@@ -90,11 +98,25 @@ class SearchProductViewController: BaseViewController {
                 self.searchCollection.showAnimatedGradientSkeleton()
             case .finished:
                 self.searchCollection.hideSkeleton()
+                self.loadSnaphot()
             case .failed:
                 self.searchCollection.addSubview(self.errorView)
             }
             
         }).disposed(by: bag)
+    }
+    
+    private func clearSnapshot() {
+        product?.removeAll()
+        snapshot.deleteAllItems()
+        snapshot.deleteSections([.main])
+        dataSource.apply(snapshot)
+        self.errorView.removeFromSuperview()
+    }
+    
+    @objc private func refreshData() {
+        clearSnapshot()
+        vm.getProduct(param: ProductParam())
     }
 }
 

@@ -51,7 +51,6 @@ class CustomSearchNavBar: UIView {
             searchField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
             searchField.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
             self.widthAnchor.constraint(greaterThanOrEqualToConstant: .greatestFiniteMagnitude),
-//            self.heightAnchor.constraint(greaterThanOrEqualToConstant: 50),
 
             imageView.leadingAnchor.constraint(equalTo: leftView.leadingAnchor, constant: 8),
             imageView.centerYAnchor.constraint(equalTo: leftView.centerYAnchor),

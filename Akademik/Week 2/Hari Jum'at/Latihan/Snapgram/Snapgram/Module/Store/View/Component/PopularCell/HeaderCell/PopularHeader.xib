@@ -19,6 +19,9 @@
                     <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="16"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="NO"/>
+                    </userDefinedRuntimeAttributes>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F67-Es-kjA">
                     <rect key="frame" x="235.33333333333334" y="7.3333333333333321" width="84.666666666666657" height="34.333333333333343"/>
@@ -34,6 +37,10 @@
                             </fragment>
                         </attributedString>
                     </buttonConfiguration>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="NO"/>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="isUserInteractionDisabledWhenSkeletonIsActive" value="YES"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <action selector="navigate" destination="U6b-Vx-4bR" eventType="touchUpInside" id="b3w-Id-kGS"/>
                     </connections>
@@ -46,6 +53,12 @@
                 <constraint firstItem="F67-Es-kjA" firstAttribute="centerY" secondItem="sPQ-x8-DoP" secondAttribute="centerY" id="Oks-eI-cSq"/>
                 <constraint firstItem="sPQ-x8-DoP" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" id="aYx-pd-hbX"/>
             </constraints>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="NO"/>
+            </userDefinedRuntimeAttributes>
+            <connections>
+                <outlet property="navigateBtn" destination="F67-Es-kjA" id="0yo-me-vLW"/>
+            </connections>
             <point key="canvasLocation" x="-92" y="20"/>
         </collectionReusableView>
     </objects>

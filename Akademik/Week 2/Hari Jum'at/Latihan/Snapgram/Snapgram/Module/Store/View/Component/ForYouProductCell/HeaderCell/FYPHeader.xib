@@ -30,7 +30,8 @@
                                 <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                             </collectionViewFlowLayout>
                             <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="NO"/>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isUserInteractionDisabledWhenSkeletonIsActive" value="YES"/>
                             </userDefinedRuntimeAttributes>
                         </collectionView>
                     </subviews>
@@ -41,6 +42,9 @@
                         <constraint firstAttribute="bottom" secondItem="uDQ-5P-YWX" secondAttribute="bottom" constant="10" id="J1B-qS-FLc"/>
                         <constraint firstItem="uDQ-5P-YWX" firstAttribute="top" secondItem="RUV-Sf-TTj" secondAttribute="top" constant="10" id="R6t-lM-TOF"/>
                     </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="NO"/>
+                    </userDefinedRuntimeAttributes>
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="VXr-Tz-HHm"/>
@@ -51,7 +55,8 @@
                 <constraint firstAttribute="trailing" secondItem="RUV-Sf-TTj" secondAttribute="trailing" id="dTs-xu-cKf"/>
             </constraints>
             <userDefinedRuntimeAttributes>
-                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="NO"/>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="isUserInteractionDisabledWhenSkeletonIsActive" value="YES"/>
             </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="headerCollection" destination="uDQ-5P-YWX" id="Ap8-6Y-EIf"/>

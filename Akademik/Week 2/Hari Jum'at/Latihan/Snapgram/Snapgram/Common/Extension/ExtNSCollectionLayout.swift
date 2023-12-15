@@ -118,7 +118,7 @@ extension NSCollectionLayoutSection {
         )
         
         let item = NSCollectionLayoutItem.withEntireSize()
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(env.container.contentSize.height * 3))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(env.container.contentSize.height * 3 + 150))
         
         let layoutGroup = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         
@@ -143,7 +143,7 @@ extension NSCollectionLayoutSection {
                 itemHeightProvider: { index, itemWidth in
                     var randomHeight = CGFloat()
                     items.forEach { _ in
-                        randomHeight = CGFloat.random(in: 300...360)
+                        randomHeight = CGFloat.random(in: 300...350)
                     }
                     return CGFloat(randomHeight)
                 }),

@@ -18,6 +18,10 @@
                     <rect key="frame" x="84.333333333333329" y="12" width="151.66666666666669" height="26"/>
                     <color key="pageIndicatorTintColor" systemColor="separatorColor"/>
                     <color key="currentPageIndicatorTintColor" systemColor="labelColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="isHiddenWhenSkeletonIsActive" value="YES"/>
+                    </userDefinedRuntimeAttributes>
                 </pageControl>
             </subviews>
             <viewLayoutGuide key="safeArea" id="VXr-Tz-HHm"/>
@@ -27,6 +31,7 @@
             </constraints>
             <userDefinedRuntimeAttributes>
                 <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="isHiddenWhenSkeletonIsActive" value="YES"/>
             </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="pageControl" destination="mtP-2o-R2c" id="whX-cc-EOM"/>
