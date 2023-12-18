@@ -32,11 +32,7 @@ extension StoreViewController {
             .asObservable()
             .subscribe(onNext: { [weak self] product in
                 guard let self = self, let dataProduct = product else { return }
-                dataProduct.forEach {
-                    var modifiedItem = $0
-                    modifiedItem.id += 29
-                    self.fyp.append(modifiedItem)
-                }
+                self.fyp.append(contentsOf: dataProduct)
                 self.loadSnapshot()
                 self.startTimer()
             })

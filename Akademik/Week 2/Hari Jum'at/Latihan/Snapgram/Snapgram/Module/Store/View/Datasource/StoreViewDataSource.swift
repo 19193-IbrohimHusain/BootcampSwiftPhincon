@@ -40,28 +40,12 @@ class StoreViewDataSource: UICollectionViewDiffableDataSource<SectionStoreCollec
 }
 
 class FYPCollectionViewDataSource: UICollectionViewDiffableDataSource<SectionFYPCollection, ProductModel>, SkeletonCollectionViewDataSource {
+    func numSections(in collectionSkeletonView: UICollectionView) -> Int {
+        return SectionFYPCollection.allCases.count
+    }
+    
     func collectionSkeletonView(_ skeletonView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 2
-    }
-    
-    func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> SkeletonView.ReusableCellIdentifier {
-        return String(describing: FYPCollectionCell.self)
-    }
-}
-
-class SearchCollectionDataSource: UICollectionViewDiffableDataSource<SectionSearchProduct, ProductModel>, SkeletonCollectionViewDataSource {
-    func collectionSkeletonView(_ skeletonView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
-    }
-    
-    func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> SkeletonView.ReusableCellIdentifier {
-        return String(describing: FYPCollectionCell.self)
-    }
-}
-
-class PopularProductDataSource: UICollectionViewDiffableDataSource<SectionPopularProduct, ProductModel>, SkeletonCollectionViewDataSource {
-    func collectionSkeletonView(_ skeletonView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
     }
     
     func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> SkeletonView.ReusableCellIdentifier {

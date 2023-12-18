@@ -9,6 +9,7 @@ import UIKit
 
 protocol FYPCollectionViewCellDelegate {
     func willEndDragging(index: Int)
+    func handleNavigate(index: Int)
 }
 
 class FYPCollectionViewCell: UICollectionViewCell {
@@ -197,6 +198,11 @@ class FYPCollectionViewCell: UICollectionViewCell {
 }
 
 extension FYPCollectionViewCell: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let index = indexPath.item
+        self.delegate?.handleNavigate(index: index)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if indexPath.section == sections[0].rawValue &&
             indexPath.item == dataSource.snapshot().itemIdentifiers(inSection: .allShoes).count - 1 {

@@ -12,11 +12,15 @@ class SearchProductViewController: BaseViewController {
     @IBOutlet weak var searchCollection: UICollectionView!
     
     private var vm = SearchProductViewModel()
-    private var product: [ProductModel]?
     private var snapshot = NSDiffableDataSourceSnapshot<SectionSearchProduct, ProductModel>()
     private var dataSource: SearchCollectionDataSource!
     private var layout: UICollectionViewCompositionalLayout!
     private var searchBar = CustomSearchNavBar()
+    private var product: [ProductModel]? {
+        didSet {
+            self.loadSnapshot()
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +29,8 @@ class SearchProductViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        refreshData()
+        clearSnapshot()
+        vm.setupSearch()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -36,20 +41,11 @@ class SearchProductViewController: BaseViewController {
     private func setup() {
         setupNavigationBar()
         setupErrorView()
-        searchCollection.delegate = self
-        searchCollection.registerCellWithNib(FYPCollectionCell.self)
+        setupCollection()
         setupDataSource()
         setupCompositionalLayout()
         bindData()
-    }
-    
-//    private func handleSearch() {
-//        searchBar.
-//    }
-    
-    private func setNavBarHeight(height: Double) {
-        self.navigationController?.navigationBar.invalidateIntrinsicContentSize()
-        self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 60, width: 430, height: height)
+        searchBar.observeTextChanges(querySubject: vm.searchQuery, bag: bag)
     }
     
     private func setupNavigationBar() {
@@ -58,6 +54,12 @@ class SearchProductViewController: BaseViewController {
         self.navigationItem.titleView = searchBar
     }
     
+    private func setupCollection() {
+        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        searchCollection.refreshControl = refreshControl
+        searchCollection.delegate = self
+        searchCollection.registerCellWithNib(FYPCollectionCell.self)
+    }
     private func setupDataSource() {
         dataSource = .init(collectionView: searchCollection) { (collectionView, indexPath, product) in
             let cell:FYPCollectionCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
@@ -75,53 +77,81 @@ class SearchProductViewController: BaseViewController {
         searchCollection.collectionViewLayout = layout
     }
     
-    private func loadSnaphot(animatingDifferences: Bool = true) {
-        guard let product = product else { return }
+    private func loadSnapshot() {
+        guard let product = self.product else { return }
+        
+        if product.isEmpty {
+            showErrorView()
+        }
+        
+        snapshot.deleteAllItems()
+        snapshot.deleteSections([.main])
+        
         snapshot.appendSections([.main])
         snapshot.appendItems(product)
-        dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
+        
+        searchCollection.hideSkeleton(reloadDataAfter: false)
+        dataSource.apply(snapshot, animatingDifferences: true)
+        self.product = nil
     }
     
     private func bindData() {
-        vm.productData.asObservable().subscribe(onNext: { [weak self] product in
-            guard let self = self, let data = product else { return }
-            self.product = data
+        vm.productData.asObservable().subscribe(onNext: { [weak self] products in
+            guard let self = self else { return }
+                self.product = products
         }).disposed(by: bag)
         
         vm.loadingState.asObservable().subscribe(onNext: { [weak self] state in
             guard let self = self else { return }
-            
+
             switch state {
             case .notLoad:
                 self.errorView.removeFromSuperview()
             case .loading:
+                self.errorView.removeFromSuperview()
                 self.searchCollection.showAnimatedGradientSkeleton()
             case .finished:
-                self.searchCollection.hideSkeleton()
-                self.loadSnaphot()
+                self.refreshControl.endRefreshing()
+                self.searchCollection.hideSkeleton(reloadDataAfter: false)
             case .failed:
-                self.searchCollection.addSubview(self.errorView)
+                self.searchCollection.hideSkeleton(reloadDataAfter: false)
+                self.showErrorView(desc: "Please pull to refresh")
             }
-            
         }).disposed(by: bag)
     }
     
+    private func showErrorView(desc: String = "Apologies! There's no item with that name") {
+        errorView.descriptionLabel.text = desc
+        searchCollection.addSubview(errorView)
+    }
+    
     private func clearSnapshot() {
-        product?.removeAll()
+        product = nil
         snapshot.deleteAllItems()
         snapshot.deleteSections([.main])
+        searchCollection.hideSkeleton(reloadDataAfter: false)
         dataSource.apply(snapshot)
         self.errorView.removeFromSuperview()
     }
     
     @objc private func refreshData() {
         clearSnapshot()
-        vm.getProduct(param: ProductParam())
+        vm.setupSearch()
     }
 }
 
 extension SearchProductViewController: UICollectionViewDelegate {
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        <#code#>
-//    }
+    private func navigateToDetail(index: Int) {
+        if let productID = product?[index].id {
+            let vc = DetailProductViewController()
+            vc.id = productID
+            vc.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let index = indexPath.item
+        navigateToDetail(index: index)
+    }
 }

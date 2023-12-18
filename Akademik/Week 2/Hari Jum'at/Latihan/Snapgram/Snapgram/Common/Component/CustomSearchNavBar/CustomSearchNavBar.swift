@@ -3,11 +3,14 @@ import RxSwift
 
 class CustomSearchNavBar: UIView {
     
-    private let searchField: UITextField = {
+    internal let searchField: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.borderStyle = .roundedRect
         textField.placeholder = "Search"
+        textField.autocapitalizationType = .none
+        textField.isSkeletonable = true
+        textField.isUserInteractionDisabledWhenSkeletonIsActive = true
         return textField
     }()
     
@@ -77,10 +80,9 @@ class CustomSearchNavBar: UIView {
         searchField.text = placeholder
     }
     
-    internal func observeTextChanges(querySubject: BehaviorSubject<String>, bag: DisposeBag) {
+    internal func observeTextChanges(querySubject: BehaviorSubject<String?>, bag: DisposeBag) {
         searchField.rx.text
             .orEmpty
-            .debounce(.milliseconds(300), scheduler: MainScheduler.instance)
             .distinctUntilChanged()
             .bind(to: querySubject)
             .disposed(by: bag)

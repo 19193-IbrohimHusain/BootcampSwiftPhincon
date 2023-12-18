@@ -26,7 +26,7 @@ class CustomErrorView: UIView {
         return label
     }()
 
-    private let descriptionLabel: UILabel = {
+    internal var descriptionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Please pull to refresh"

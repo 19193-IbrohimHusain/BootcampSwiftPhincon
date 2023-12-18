@@ -38,12 +38,11 @@ class StoreViewController: BaseViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        clearSnapshot()
         timer?.invalidate()
     }
     
     private func setup() {
-        setupNavigationBar(title: "SnapStore", image1: "magnifyingglass", image2: "cart", action1: #selector(navigateToSearch), action2: nil)
+        setupNavigationBar(title: "SnapStore", image1: "magnifyingglass", image2: "cart", action1: #selector(navigateToSearch), action2: #selector(navigateToCart))
         setupErrorView()
         setupCollectionView()
         setupDataSource()
@@ -55,7 +54,6 @@ class StoreViewController: BaseViewController {
         refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
         storeCollection.refreshControl = refreshControl
         storeCollection.delegate = self
-        storeCollection.dataSource = dataSource
         collections.forEach {
             storeCollection.registerCellWithNib($0.cellTypes)
             $0.registerHeaderFooterTypes(collectionView: storeCollection)
@@ -108,6 +106,12 @@ class StoreViewController: BaseViewController {
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
+    @objc private func navigateToCart() {
+        let vc = CartViewController()
+        vc.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     @objc internal func refreshData() {
         clearSnapshot()
         vm.fetchProduct()
@@ -116,7 +120,7 @@ class StoreViewController: BaseViewController {
 }
 
 extension StoreViewController: UICollectionViewDelegate {
-    private func navigateToDetail(index: Int) {
+    internal func navigateToDetail(index: Int) {
         if let productID = product?[index].id {
             let vc = DetailProductViewController()
             vc.id = productID

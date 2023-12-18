@@ -113,11 +113,9 @@ class StoreViewModel: BaseViewModel {
             guard let self = self else {return}
             switch result {
             case .success(let data):
-                self.loadingState.accept(.finished)
                 self.categoryData.accept(data.data.data)
-            case .failure(let error):
+            case .failure(_):
                 self.loadingState.accept(.failed)
-                print(String(describing: error))
             }
             
         }

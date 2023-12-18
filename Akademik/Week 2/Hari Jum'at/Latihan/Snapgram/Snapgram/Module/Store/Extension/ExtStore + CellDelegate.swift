@@ -8,6 +8,10 @@
 import Foundation
 
 extension StoreViewController: FYPCollectionViewCellDelegate {
+    func handleNavigate(index: Int) {
+        self.navigateToDetail(index: index)
+    }
+    
     func willEndDragging(index: Int) {
         let indexPath = IndexPath(item: index, section: 0)
         if let headerFYP = self.headerFYP {

@@ -116,5 +116,17 @@ class PopularProductViewController: BaseViewController {
 }
 
 extension PopularProductViewController: UICollectionViewDelegate {
+    private func navigateToDetail(index: Int) {
+        if let productID = product?[index].id {
+            let vc = DetailProductViewController()
+            vc.id = productID
+            vc.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let index = indexPath.item
+        navigateToDetail(index: index)
+    }
 }

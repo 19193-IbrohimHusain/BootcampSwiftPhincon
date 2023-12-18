@@ -128,9 +128,8 @@ extension StoreViewController {
             )
             header.delegate = self
             headerFYP = header.headerCollection
-            if let category = category {
-                header.configure(data: category)
-            }
+            header.configure(data: self.category ?? categoryDummy)
+            
             return header
         }
 }

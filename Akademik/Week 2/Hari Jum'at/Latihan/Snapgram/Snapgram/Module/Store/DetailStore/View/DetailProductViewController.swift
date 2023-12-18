@@ -10,13 +10,18 @@ import SkeletonView
 
 class DetailProductViewController: BaseViewController {
     
-    @IBOutlet weak var detailTable: UITableView!
+    @IBOutlet weak var detailCollection: UICollectionView!
     
-    private let tables = SectionDetailProductTable.allCases
-    private let vm = DetailProductViewModel()
+    internal let collections = SectionDetailProduct.allCases
+    internal let vm = DetailProductViewModel()
     internal var id: Int?
-    private var product: [ProductModel]?
-
+    internal var currentIndex = 0
+    internal var timer: Timer?
+    internal var product: ProductModel?
+    internal var image: [GalleryModel]?
+    internal var recommendation: [ProductModel]?
+    internal var layout: UICollectionViewCompositionalLayout!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
@@ -25,94 +30,114 @@ class DetailProductViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if let id = id {
-            vm.fetchDetailProduct(param: ProductParam(id: id))
+            vm.fetchDetailProduct(param: ProductParam(id: id, limit: nil))
+            vm.fetchProduct()
         }
     }
     
     private func setup() {
-        detailTable.contentInsetAdjustmentBehavior = .never
-        detailTable.delegate = self
-        detailTable.dataSource = self
-        tables.forEach { cell in
-            detailTable.registerCellWithNib(cell.cellTypes)
+        setupNavigationBar()
+        setupCollection()
+        setupErrorView()
+        setupCompositionalLayout()
+        bindData()
+    }
+    
+    private func setupNavigationBar() {
+        self.navigationItem.backButtonTitle = nil
+        self.navigationController?.navigationBar.tintColor = .black
+    }
+    
+    private func setupCollection() {
+        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        detailCollection.refreshControl = refreshControl
+        detailCollection.contentInsetAdjustmentBehavior = .never
+        detailCollection.delegate = self
+        detailCollection.dataSource = self
+        detailCollection.registerHeaderFooterNib(kind: UICollectionView.elementKindSectionFooter, ImageFooter.self)
+        collections.forEach { cell in
+            detailCollection.registerCellWithNib(cell.cellTypes)
+            
         }
     }
     
-    private func bindData() {
-        vm.dataProduct.asObservable().subscribe(onNext: { [weak self] product in
-            guard let self = self, let dataProduct = product?.data.data else { return }
-            self.product = dataProduct
-        }).disposed(by: bag)
-        
-        vm.loadingState.asObservable().subscribe(onNext: { [weak self] state in
-            guard let self = self else { return }
-            switch state {
-            case .notLoad, .loading:
-                self.detailTable.showAnimatedGradientSkeleton()
-            case .failed, .finished:
-                DispatchQueue.main.async {
-                    self.detailTable.hideSkeleton()
-                }
-            }
-        }).disposed(by: bag)
+    @objc private func refreshData() {
+        self.product = nil
+        self.recommendation?.removeAll()
+        vm.fetchProduct(param: ProductParam())
+        vm.fetchDetailProduct(param: ProductParam(id: id, limit: nil))
+        self.errorView.removeFromSuperview()
     }
 }
 
-extension DetailProductViewController: UITableViewDelegate, UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return tables.count
+extension DetailProductViewController: UICollectionViewDataSource {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return collections.count
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let tableSection = SectionDetailProductTable(rawValue: section)
-        switch tableSection {
-        case .image, .name, .desc:
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        let section = SectionDetailProduct(rawValue: section)
+        switch section {
+        case .image:
+            return  image?.count ?? 3
+        case .name, .desc:
             return 1
-        default: return 0
+        case .recommendation:
+            return  recommendation?.count ?? 3
+        default: return 1
         }
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let tableSection = SectionDetailProductTable(rawValue: indexPath.section)
-        switch tableSection {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let section = SectionDetailProduct(rawValue: indexPath.section)
+        switch section {
         case .image:
-            let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as DetailImageTableCell
-            
+            let cell: ImageCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+            if let image = image?[indexPath.item] {
+                cell.configure(with: image)
+                cell.hideSkeleton()
+            }
             return cell
         case .name:
-            let cell1 = tableView.dequeueReusableCell(forIndexPath: indexPath) as DetailNameTableCell
-            
+            let cell1: NameCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+            if let product = product {
+                cell1.configure(with: product)
+            }
             return cell1
-        default:
-            return UITableViewCell()
-        }
-    }
-}
-
-extension DetailProductViewController: SkeletonTableViewDataSource {
-    func numSections(in collectionSkeletonView: UITableView) -> Int {
-        tables.count
-    }
-    
-    func collectionSkeletonView(_ skeletonView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let tableSection = SectionDetailProductTable(rawValue: section)
-        switch tableSection {
-        case .image, .name, .desc:
-            return 1
-        default: return 0
+        case .desc:
+            let cell2: DescriptionCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+            if let product = product {
+                cell2.configure(with: product)
+            }
+            return cell2
+        case .recommendation:
+            let cell3: FYPCollectionCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+            if let product = recommendation?[indexPath.item] {
+                cell3.configure(with: product)
+                cell3.hideSkeleton()
+            }
+            return cell3
+        default: return UICollectionViewCell()
         }
     }
     
-    func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
-        let tableSection = SectionDetailProductTable(rawValue: indexPath.section)
-        guard let section = tableSection else { return "" }
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let footer: ImageFooter = collectionView.dequeueHeaderFooterCell(
+            kind: UICollectionView.elementKindSectionFooter,
+            forIndexPath: indexPath
+        )
+        footer.subscribeTo(subject: vm.imagePaging, for: collections[0].rawValue)
+        return footer
         
-        if let identifier = SectionDetailProductTable.sectionIdentifiers[section] {
-            return identifier
-        } else {
-            return ""
-        }
     }
 }
 
-
+extension DetailProductViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard indexPath.section == 3 else { return }
+        let index = indexPath.item
+        let vc = DetailProductViewController()
+        vc.id = index
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+}

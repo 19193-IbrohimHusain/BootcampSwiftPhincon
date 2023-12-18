@@ -40,7 +40,7 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VZz-KP-mUN">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Blank Image" translatesAutoresizingMaskIntoConstraints="NO" id="VZz-KP-mUN">
                                 <rect key="frame" x="0.0" y="0.0" width="196" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="wZ0-Gs-12D"/>
@@ -102,6 +102,7 @@
         </collectionViewCell>
     </objects>
     <resources>
+        <image name="Blank Image" width="1848" height="1652"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
