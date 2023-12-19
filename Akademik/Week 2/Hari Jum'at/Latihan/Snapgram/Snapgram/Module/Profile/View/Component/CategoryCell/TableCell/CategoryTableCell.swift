@@ -22,7 +22,17 @@ class CategoryTableCell: UITableViewCell {
         categoryCollection.registerCellWithNib(CategoryCollectionCell.self)
         setupHorizontalBar()
         let selectedIndexPath = IndexPath(item: 0, section: 0)
-        categoryCollection.selectItem(at: selectedIndexPath, animated: false, scrollPosition: .bottom)
+        categoryCollection.selectItem(at: selectedIndexPath, animated: false, scrollPosition: .centeredHorizontally)
+        categoryCollection.collectionViewLayout = UICollectionViewCompositionalLayout(section: categoryLayout())
+    }
+    
+    private func categoryLayout() -> NSCollectionLayoutSection {
+        let item = NSCollectionLayoutItem.entireHeight(withWidth: .fractionalWidth(1/2))
+        let size = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(50))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: size, subitems: [item])
+        let section = NSCollectionLayoutSection(group: group)
+        
+        return section
     }
     
     func setupHorizontalBar() {
@@ -40,23 +50,9 @@ class CategoryTableCell: UITableViewCell {
     }
 }
 
-extension CategoryTableCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension CategoryTableCell: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return categoryItem.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let collectionViewWidth = collectionView.bounds.width
-        let itemWidth = collectionViewWidth / 2
-        return CGSize(width: itemWidth, height: 50)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

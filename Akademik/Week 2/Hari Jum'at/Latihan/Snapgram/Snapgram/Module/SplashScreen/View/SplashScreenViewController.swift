@@ -10,6 +10,12 @@ class SplashScreenViewController: BaseViewController {
         setup()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        splashScreen.stop()
+        splashScreen = nil
+    }
+    
     func setup() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             if self.getTokenFromKeychain() != nil {
@@ -19,11 +25,7 @@ class SplashScreenViewController: BaseViewController {
             }
         }
         splashScreen.contentMode = .scaleAspectFill
-        splashScreen.loopMode = .loop
+        splashScreen.loopMode = .playOnce
         splashScreen.play()
-    }
-    
-    deinit {
-        self.splashScreen = nil
     }
 }

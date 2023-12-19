@@ -3,7 +3,7 @@ import Foundation
 enum EndpointStory {
     case login(param: LoginParam)
     case register(param: RegisterParam)
-    case fetchStory(param: StoryTableParam)
+    case fetchStory(param: StoryParam)
     case getDetailStory(String)
     case addNewStory(param: AddStoryParam)
     

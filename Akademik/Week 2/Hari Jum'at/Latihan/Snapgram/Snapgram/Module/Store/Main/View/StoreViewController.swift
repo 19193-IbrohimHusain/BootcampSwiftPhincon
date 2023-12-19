@@ -56,7 +56,7 @@ class StoreViewController: BaseViewController {
         storeCollection.delegate = self
         collections.forEach {
             storeCollection.registerCellWithNib($0.cellTypes)
-            $0.registerHeaderFooterTypes(collectionView: storeCollection)
+            $0.registerHeaderFooterTypes(in: storeCollection)
         }
     }
     
@@ -89,6 +89,7 @@ class StoreViewController: BaseViewController {
     }
     
     private func clearSnapshot() {
+        currentIndex = 0
         product?.removeAll()
         fyp.removeAll()
         snapshot.deleteAllItems()

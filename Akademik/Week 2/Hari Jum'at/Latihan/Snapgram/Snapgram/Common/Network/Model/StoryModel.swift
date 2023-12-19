@@ -14,7 +14,7 @@ struct StoryResponse: Codable {
 }
 
 // MARK: - ListStory
-struct ListStory: Codable {
+struct ListStory: Codable, Hashable {
     let id, name, description: String
     let photoURL: String
     let createdAt: String
@@ -22,6 +22,16 @@ struct ListStory: Codable {
     var likesCount: Int = 45310
     var commentsCount: Int = 27280
     var isLiked: Bool = false
+    var detailUserSection: SectionDetailUser?
+    
+    static func == (lhs: ListStory, rhs: ListStory) -> Bool {
+        return lhs.id == rhs.id && lhs.detailUserSection == rhs.detailUserSection
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+        hasher.combine(detailUserSection)
+    }
 
     enum CodingKeys: String, CodingKey {
         case id, name, description

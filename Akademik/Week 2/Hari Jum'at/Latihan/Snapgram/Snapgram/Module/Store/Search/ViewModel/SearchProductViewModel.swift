@@ -51,7 +51,8 @@ class SearchProductViewModel: BaseViewModel {
                 }
             }
             .subscribe(onNext: { [weak self] products in
-                self?.productData.accept(products)
+                guard let self = self else { return }
+                self.productData.accept(products)
             })
             .disposed(by: bag)
     }

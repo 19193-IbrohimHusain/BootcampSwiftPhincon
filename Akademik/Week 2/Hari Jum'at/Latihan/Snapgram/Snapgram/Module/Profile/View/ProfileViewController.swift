@@ -116,7 +116,7 @@ class ProfileViewController: BaseBottomSheetController {
     @objc private func refreshData() {
         userPost?.removeAll()
         taggedPost?.removeAll()
-        vm.fetchStory(param: StoryTableParam(size: 1000))
+        vm.fetchStory(param: StoryParam(size: 1000))
         refreshControl.endRefreshing()
         profileTable.hideLoadingFooter()
         self.errorView.removeFromSuperview()

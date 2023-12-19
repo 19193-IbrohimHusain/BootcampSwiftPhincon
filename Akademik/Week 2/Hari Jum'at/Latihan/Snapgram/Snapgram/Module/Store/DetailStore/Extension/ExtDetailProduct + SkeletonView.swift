@@ -16,10 +16,12 @@ extension DetailProductViewController: SkeletonCollectionViewDataSource {
     func collectionSkeletonView(_ skeletonView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let collection = SectionDetailProduct(rawValue: section)
         switch collection {
-        case .image, .name,.desc:
+        case .image:
+            return image?.count ?? 1
+        case .name,.desc:
             return 1
         case .recommendation:
-            return 2
+            return recommendation?.count ?? 2
         default: return 0
         }
     }

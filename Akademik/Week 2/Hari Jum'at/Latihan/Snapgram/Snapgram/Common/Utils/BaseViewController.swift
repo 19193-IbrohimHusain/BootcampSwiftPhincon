@@ -101,7 +101,7 @@ class BaseViewController: UIViewController, CLLocationManagerDelegate {
                 completion(nil)
                 return
             }
-
+            
             guard let city = result.administrativeArea, let country = result.country else { return }
             let address = "\(city), \(country)"
             completion(address)
@@ -193,36 +193,34 @@ class BaseViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
-  internal func locationManager(
-    _ manager: CLLocationManager,
-    didChangeAuthorization status: CLAuthorizationStatus
-  ) {
-    checkLocationAuthorization(map)
-  }
-
-  // 6
-  internal func locationManager(
-    _ manager: CLLocationManager,
-    didUpdateLocations locations: [CLLocation]) {
-    guard let location = locations.first else {
-      return
+    internal func locationManager(
+        _ manager: CLLocationManager,
+        didChangeAuthorization status: CLAuthorizationStatus
+    ) {
+        checkLocationAuthorization(map)
     }
-    latitude = location.coordinate.latitude
-    longitude = location.coordinate.longitude
-    map.camera = GMSCameraPosition(
-      target: location.coordinate,
-      zoom: 15,
-      bearing: 0,
-      viewingAngle: 0)
-  }
-
-  // 8
-  internal func locationManager(
-    _ manager: CLLocationManager,
-    didFailWithError error: Error
-  ) {
-    print(error)
-  }
+    
+    internal func locationManager(
+        _ manager: CLLocationManager,
+        didUpdateLocations locations: [CLLocation]) {
+            guard let location = locations.first else {
+                return
+            }
+            latitude = location.coordinate.latitude
+            longitude = location.coordinate.longitude
+            map.camera = GMSCameraPosition(
+                target: location.coordinate,
+                zoom: 15,
+                bearing: 0,
+                viewingAngle: 0)
+        }
+    
+    internal func locationManager(
+        _ manager: CLLocationManager,
+        didFailWithError error: Error
+    ) {
+        print(error)
+    }
 }
 
 extension BaseViewController: FloatingPanelControllerDelegate {
@@ -230,12 +228,12 @@ extension BaseViewController: FloatingPanelControllerDelegate {
     func floatingPanel(_ vc: FloatingPanelController, layoutFor newCollection: UITraitCollection) -> FloatingPanelLayout {
         return CustomFloatingPanelLayout()
     }
-
+    
     func floatingPanel(_ fpc: FloatingPanelController, animatorForPresentingTo state: FloatingPanelState) -> UIViewPropertyAnimator {
         return UIViewPropertyAnimator(duration: TimeInterval(0.16), curve: .easeOut)
     }
-
+    
     func floatingPanel(_ fpc: FloatingPanelController, animatorForDismissingWith velocity: CGVector) -> UIViewPropertyAnimator {
-      return UIViewPropertyAnimator(duration: TimeInterval(0.16), curve: .easeOut)
+        return UIViewPropertyAnimator(duration: TimeInterval(0.16), curve: .easeOut)
     }
 }

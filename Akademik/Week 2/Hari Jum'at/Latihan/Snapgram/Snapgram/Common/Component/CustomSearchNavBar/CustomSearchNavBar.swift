@@ -80,7 +80,7 @@ class CustomSearchNavBar: UIView {
         searchField.text = placeholder
     }
     
-    internal func observeTextChanges(querySubject: BehaviorSubject<String?>, bag: DisposeBag) {
+    internal func observeTextChanges(querySubject: inout BehaviorSubject<String?>, bag: DisposeBag) {
         searchField.rx.text
             .orEmpty
             .distinctUntilChanged()

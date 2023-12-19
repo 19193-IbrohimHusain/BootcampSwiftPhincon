@@ -14,11 +14,11 @@ class CartViewController: UIViewController {
     var snapshot = NSDiffableDataSourceSnapshot<SectionCartTable, CartModel>()
     var dataSource: UITableViewDiffableDataSource<SectionCartTable, CartModel>!
     var cartItem: [CartModel] = [
-        CartModel(productID: 1, name: "Adidas", price: 200, quantity: 1, image: "Blank"),
-        CartModel(productID: 2, name: "Nike", price: 200, quantity: 1, image: "Blank"),
-        CartModel(productID: 3, name: "Puma", price: 200, quantity: 1, image: "Blank"),
-        CartModel(productID: 4, name: "Balenciaga", price: 200, quantity: 1, image: "Blank"),
-        CartModel(productID: 5, name: "NewBalance", price: 200, quantity: 1, image: "Blank")
+        CartModel(productID: 1, name: "Adidas", price: 200, quantity: 1, image: "Blank Image"),
+        CartModel(productID: 2, name: "Nike", price: 200, quantity: 1, image: "Blank Image"),
+        CartModel(productID: 3, name: "Puma", price: 200, quantity: 1, image: "Blank Image"),
+        CartModel(productID: 4, name: "Balenciaga", price: 200, quantity: 1, image: "Blank Image"),
+        CartModel(productID: 5, name: "NewBalance", price: 200, quantity: 1, image: "Blank Image")
     ]
     
     override func viewDidLoad() {

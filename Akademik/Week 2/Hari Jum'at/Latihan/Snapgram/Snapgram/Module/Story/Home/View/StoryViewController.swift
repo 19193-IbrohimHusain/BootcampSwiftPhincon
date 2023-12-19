@@ -27,7 +27,7 @@ class StoryViewController: BaseBottomSheetController {
     }
     
     private func setup() {
-        setupNavigationBar(title: "Snapgram", image1: "bubble.right", image2: "heart", action1: #selector(navigateToDM), action2: nil)
+        setupNavigationBar(title: "Snapgram", image1: "magnifyingglass", image2: "heart", action1: #selector(navigateToSearch), action2: nil)
         setupErrorView()
         setupTable()
         bindData()
@@ -60,6 +60,7 @@ class StoryViewController: BaseBottomSheetController {
                 }
             case .failed:
                 DispatchQueue.main.async {
+                    self.storyTable.hideLoadingFooter()
                     self.storyTable.hideSkeleton()
                     self.storyTable.backgroundView = self.errorView
                 }
@@ -82,21 +83,23 @@ class StoryViewController: BaseBottomSheetController {
     internal func loadMoreData() {
         page += 1
         isLoadMoreData = true
-        vm.fetchStory(param: StoryTableParam(page: page, location: 0))
+        vm.fetchStory(param: StoryParam(page: page, location: 0))
         storyTable.hideSkeleton()
         isLoadMoreData = false
     }
     
     @objc private func refreshData() {
         self.listStory.removeAll()
-        vm.fetchStory(param: StoryTableParam())
+        vm.fetchStory(param: StoryParam())
         self.refreshControl.endRefreshing()
         self.storyTable.hideLoadingFooter()
         self.errorView.removeFromSuperview()
     }
     
-    @objc private func navigateToDM() {
-        
+    @objc private func navigateToSearch() {
+        let vc = SearchUserViewController()
+        vc.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 

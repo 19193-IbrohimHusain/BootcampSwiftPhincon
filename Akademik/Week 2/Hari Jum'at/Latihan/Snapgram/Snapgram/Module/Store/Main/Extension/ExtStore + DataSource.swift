@@ -91,6 +91,7 @@ extension StoreViewController {
                 forIndexPath: indexPath
             )
             footer.subscribeTo(subject: vm.pagingCarousel, for: collections[1].rawValue)
+            currentIndex = footer.pageControl.currentPage
             return footer
         }
 

@@ -34,7 +34,7 @@ extension DetailProductViewController {
     private func imageLayout(pagingInfo: BehaviorSubject<PagingInfo?>) -> NSCollectionLayoutSection {
         // Supplementary item for page control
         let pageFooter = NSCollectionLayoutBoundarySupplementaryItem(
-            layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.9), heightDimension: .estimated(44)),
+            layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(44)),
             elementKind: UICollectionView.elementKindSectionFooter,
             alignment: .bottom,
             absoluteOffset: CGPoint(x: 0, y: -40)
@@ -75,12 +75,18 @@ extension DetailProductViewController {
     }
     
     private func recommendationLayout() -> NSCollectionLayoutSection {
+        let header = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(44)),
+            elementKind: UICollectionView.elementKindSectionHeader,
+            alignment: .top
+        )
         let item = NSCollectionLayoutItem.withEntireSize()
         let size = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/2), heightDimension: .estimated(300))
         let group = NSCollectionLayoutGroup.vertical(layoutSize: size, subitems: [item])
         group.interItemSpacing = .fixed(10)
         let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 16, bottom: 100, trailing: 16)
+        section.boundarySupplementaryItems = [header]
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 16, bottom: 100, trailing: 16)
         section.interGroupSpacing = 10
         section.orthogonalScrollingBehavior = .continuous
         

@@ -134,6 +134,9 @@ class FeedTableCell: UITableViewCell {
     
     @IBAction private func onLikeBtnTap(_ sender: UIButton) {
         delegate?.addLike(cell: self)
+        if let post = post {
+            setupLocation(post)
+        }
     }
     
     @IBAction private func onCommentBtnTap(_ sender: UIButton) {

@@ -54,14 +54,14 @@ class DetailProductViewController: BaseViewController {
         detailCollection.contentInsetAdjustmentBehavior = .never
         detailCollection.delegate = self
         detailCollection.dataSource = self
-        detailCollection.registerHeaderFooterNib(kind: UICollectionView.elementKindSectionFooter, ImageFooter.self)
-        collections.forEach { cell in
-            detailCollection.registerCellWithNib(cell.cellTypes)
-            
+        collections.forEach {
+            detailCollection.registerCellWithNib($0.cellTypes)
+            $0.registerHeaderFooterTypes(in: detailCollection)
         }
     }
     
     @objc private func refreshData() {
+        self.currentIndex = 0
         self.product = nil
         self.recommendation?.removeAll()
         vm.fetchProduct(param: ProductParam())
@@ -122,22 +122,40 @@ extension DetailProductViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let footer: ImageFooter = collectionView.dequeueHeaderFooterCell(
-            kind: UICollectionView.elementKindSectionFooter,
-            forIndexPath: indexPath
-        )
-        footer.subscribeTo(subject: vm.imagePaging, for: collections[0].rawValue)
-        return footer
-        
+        let section = SectionDetailProduct(rawValue: indexPath.section)
+        switch section {
+            case .image:
+                let footer: ImageFooter = collectionView.dequeueHeaderFooterCell(
+                    kind: UICollectionView.elementKindSectionFooter,
+                    forIndexPath: indexPath
+                )
+                footer.subscribeTo(subject: vm.imagePaging, for: collections[0].rawValue)
+                currentIndex = footer.pageControl.currentPage
+                return footer
+            case .recommendation:
+                let header: RecommendationHeader = collectionView.dequeueHeaderFooterCell(
+                    kind: UICollectionView.elementKindSectionHeader,
+                    forIndexPath: indexPath
+                )
+                return header
+            default: return UICollectionReusableView()
+        }
     }
 }
 
 extension DetailProductViewController: UICollectionViewDelegate {
+    private func navigateToDetail(index: Int) {
+        if let productID = recommendation?[index].id {
+            let vc = DetailProductViewController()
+            vc.id = productID
+            vc.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard indexPath.section == 3 else { return }
         let index = indexPath.item
-        let vc = DetailProductViewController()
-        vc.id = index
-        self.navigationController?.pushViewController(vc, animated: true)
+        navigateToDetail(index: index)
     }
 }

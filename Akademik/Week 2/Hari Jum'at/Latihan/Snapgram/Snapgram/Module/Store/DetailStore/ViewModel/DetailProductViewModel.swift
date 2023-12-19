@@ -9,32 +9,6 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-enum SectionDetailProduct: Int, CaseIterable {
-    case image, name, desc, recommendation
-    
-    var cellTypes: UICollectionViewCell.Type {
-        switch self {
-        case .image:
-            return ImageCell.self
-        case .name:
-            return NameCell.self
-        case .desc:
-            return DescriptionCell.self
-        case .recommendation:
-            return FYPCollectionCell.self
-        }
-    }
-    
-    static var sectionIdentifiers: [SectionDetailProduct: String] {
-        return [
-            .image: String(describing: ImageCell.self),
-            .name: String(describing: NameCell.self),
-            .desc: String(describing: DescriptionCell.self),
-            .recommendation: String(describing: FYPCollectionCell.self),
-        ]
-    }
-}
-
 class DetailProductViewModel: BaseViewModel {
     var dataProduct = BehaviorRelay<ProductModel?>(value: nil)
     var recommendation = BehaviorRelay<[ProductModel]?>(value: nil)

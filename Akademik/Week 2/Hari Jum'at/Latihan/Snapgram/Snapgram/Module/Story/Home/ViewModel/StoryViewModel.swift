@@ -2,23 +2,10 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-enum SectionStoryTable: Int, CaseIterable {
-    case story, feed
-    
-    var cellTypes: UITableViewCell.Type {
-        switch self {
-        case .story:
-            return StoryTableCell.self
-        case .feed:
-            return FeedTableCell.self
-        }
-    }
-}
-
 class StoryViewModel : BaseViewModel {
     var storyData = BehaviorRelay<StoryResponse?>(value: nil)
     
-    func fetchStory(param: StoryTableParam) {
+    func fetchStory(param: StoryParam) {
         loadingState.accept(.loading)
         APIManager.shared.fetchRequest(endpoint: .fetchStory(param: param), expecting: StoryResponse.self) { [weak self] result in
             guard let self = self else {return}

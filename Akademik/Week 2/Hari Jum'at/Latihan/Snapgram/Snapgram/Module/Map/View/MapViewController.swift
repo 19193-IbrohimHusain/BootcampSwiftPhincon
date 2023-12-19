@@ -21,7 +21,7 @@ class MapViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         checkLocationAuthorization(mapView)
-        vm.fetchLocationStory(param: StoryTableParam(size: 30, location: 1))
+        vm.fetchLocationStory(param: StoryParam(size: 30, location: 1))
     }
     
     private func setup() {

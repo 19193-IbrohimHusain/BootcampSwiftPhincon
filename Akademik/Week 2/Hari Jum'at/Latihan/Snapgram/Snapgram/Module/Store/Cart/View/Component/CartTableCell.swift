@@ -22,6 +22,7 @@ class CartTableCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         contentView.addShadow()
+        productImg.makeCornerRadius(16.0)
         [likeBtn, incrementBtn, decrementBtn].forEach {
             $0.setAnimateBounce()
         }

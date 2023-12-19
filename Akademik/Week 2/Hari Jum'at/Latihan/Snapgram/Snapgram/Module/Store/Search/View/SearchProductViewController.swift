@@ -45,7 +45,7 @@ class SearchProductViewController: BaseViewController {
         setupDataSource()
         setupCompositionalLayout()
         bindData()
-        searchBar.observeTextChanges(querySubject: vm.searchQuery, bag: bag)
+        searchBar.observeTextChanges(querySubject: &vm.searchQuery, bag: bag)
     }
     
     private func setupNavigationBar() {
