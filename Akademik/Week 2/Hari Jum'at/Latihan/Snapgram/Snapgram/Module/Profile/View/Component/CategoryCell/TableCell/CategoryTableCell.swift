@@ -10,9 +10,16 @@ class CategoryTableCell: UITableViewCell {
     
     var delegate: CategoryTableCellDelegate?
     var horizontalBarLeftAnchorConstraint: NSLayoutConstraint?
+    let horizontalBarView = UIView()
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        setupCollection()
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        horizontalBarView.removeFromSuperview()
         setupCollection()
     }
     
@@ -36,7 +43,6 @@ class CategoryTableCell: UITableViewCell {
     }
     
     func setupHorizontalBar() {
-        let horizontalBarView = UIView()
         horizontalBarView.backgroundColor = .label
         horizontalBarView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(horizontalBarView)
