@@ -142,7 +142,7 @@ class CustomViewMarker: UIView {
     func configure(name: String?, location: String?, image: String?, caption: String?, createdAt: String?) {
         if let name = name, let location = location, let image = image, let caption = caption, let createdAt = createdAt {
             imgView.image = UIImage(named: "Blank")
-            username.text = "Story By \(name)"
+            username.text = "Post By \(name)"
             locationLabel.text = location
             let url = URL(string: image)
             let processor = DownsamplingImageProcessor(size: CGSize(width: 200, height: 120))

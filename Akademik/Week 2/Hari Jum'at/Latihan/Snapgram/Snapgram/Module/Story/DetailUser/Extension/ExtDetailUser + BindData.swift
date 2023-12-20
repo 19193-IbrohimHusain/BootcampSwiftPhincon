@@ -9,20 +9,9 @@ import Foundation
 
 extension DetailUserViewController {
     internal func bindData() {
-        bindDetailUserData()
         bindUserPostData()
         bindTagPostData()
         bindLoadingStateData()
-    }
-    
-    private func bindDetailUserData() {
-        vm.detailUser
-            .asObservable()
-            .subscribe(onNext: { [weak self] user in
-                guard let self = self, let user = user else { return }
-                self.detailUser = user
-            })
-            .disposed(by: bag)
     }
     
     private func bindUserPostData() {
@@ -31,7 +20,6 @@ extension DetailUserViewController {
             .subscribe(onNext: { [weak self] post in
                 guard let self = self, let dataPost = post else { return }
                 self.userPost = dataPost
-                self.loadSnapshot()
             })
             .disposed(by: bag)
     }
@@ -57,8 +45,11 @@ extension DetailUserViewController {
                 case .loading:
                     self.detailUserCollection.showAnimatedGradientSkeleton()
                 case .finished:
-                    self.refreshControl.endRefreshing()
-                    self.detailUserCollection.hideSkeleton(reloadDataAfter: false)
+                    DispatchQueue.main.async {
+                        self.refreshControl.endRefreshing()
+                        self.detailUserCollection.hideSkeleton(reloadDataAfter: false)
+                        self.loadSnapshot()
+                    }
                 case .failed:
                     DispatchQueue.main.async {
                         self.detailUserCollection.hideSkeleton()
@@ -75,27 +66,19 @@ extension DetailUserViewController {
         if snapshot.sectionIdentifiers.isEmpty {
             snapshot.appendSections(collections)
         }
-        guard let userPost = userPost, let detailUser = detailUser, let tagPost = tagPost else { return }
+        
+        guard let userPost = userPost, let detailUser = detailUser else { return }
+        
         // append item to section profile
         var section1 = detailUser
         section1.detailUserSection = .profile
         snapshot.appendItems([section1], toSection: .profile)
         
-        // append item to section category
-        let section2 = tagPost.prefix(2).map {
-            var modifiedItem = $0
-            modifiedItem.detailUserSection = .category
-            return modifiedItem
+        // append item to section post
+        if var section3 = userPost.first {
+            section3.detailUserSection = .post
+            snapshot.appendItems([section3], toSection: .post)
         }
-        snapshot.appendItems(section2, toSection: .category)
-        
-        // append item to section category
-        let section3 = tagPost.map {
-            var modifiedItem = $0
-            modifiedItem.detailUserSection = .post
-            return modifiedItem
-        }
-        snapshot.appendItems(section3, toSection: .post)
         
         // apply snapshot to datasource
         dataSource.apply(snapshot, animatingDifferences: true)

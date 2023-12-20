@@ -93,9 +93,6 @@ class StoreViewController: BaseViewController {
         product?.removeAll()
         fyp.removeAll()
         snapshot.deleteAllItems()
-        if !snapshot.sectionIdentifiers.isEmpty {
-            snapshot.deleteSections(collections)
-        }
         storeCollection.hideSkeleton(reloadDataAfter: false)
         dataSource.apply(snapshot, animatingDifferences: true)
         self.errorView.removeFromSuperview()

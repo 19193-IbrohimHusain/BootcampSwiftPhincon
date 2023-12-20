@@ -9,6 +9,7 @@ import UIKit
 
 class DetailUserProfileCell: UICollectionViewCell {
 
+    @IBOutlet weak var profileImg: UIImageView!
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var userID: UILabel!
     @IBOutlet weak var totalPost: UILabel!
@@ -19,6 +20,7 @@ class DetailUserProfileCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         followBtn.setAnimateBounce()
+        profileImg.layer.cornerRadius = profileImg.bounds.width / 2
     }
     
     internal func configure(with post: ListStory, postCount: Int) {

@@ -22,6 +22,9 @@
                             <constraint firstAttribute="width" constant="100" id="0th-VV-5dX"/>
                             <constraint firstAttribute="height" constant="100" id="NAW-6I-wcI"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                        </userDefinedRuntimeAttributes>
                     </imageView>
                     <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="3qC-ki-D12" userLabel="Display Stack View">
                         <rect key="frame" x="156" y="35.666666666666671" width="221" height="48.666666666666671"/>
@@ -172,6 +175,7 @@
             </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="followBtn" destination="rs9-HD-XYf" id="Vyq-3z-QWY"/>
+                <outlet property="profileImg" destination="gZu-IC-3aD" id="baa-qy-QE6"/>
                 <outlet property="totalPost" destination="vtN-DS-Aaf" id="6g4-9K-cs2"/>
                 <outlet property="userID" destination="1oL-NP-eyq" id="Da1-uu-SXc"/>
                 <outlet property="userName" destination="fod-WC-lRA" id="xnB-dz-3c6"/>

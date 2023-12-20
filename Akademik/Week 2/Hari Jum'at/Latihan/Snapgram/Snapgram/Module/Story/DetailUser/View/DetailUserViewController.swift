@@ -11,11 +11,10 @@ class DetailUserViewController: BaseViewController {
 
     @IBOutlet weak var detailUserCollection: UICollectionView!
     
-    internal var userName: String?
     internal var vm = DetailUserViewModel()
     internal var collections = SectionDetailUser.allCases
     internal var snapshot = NSDiffableDataSourceSnapshot<SectionDetailUser, ListStory>()
-    internal var dataSource: UICollectionViewDiffableDataSource<SectionDetailUser, ListStory>!
+    internal var dataSource: DetailUserDataSource!
     internal var layout: UICollectionViewCompositionalLayout!
     internal var detailUser: ListStory?
     internal var tagPost: [ListStory]?
@@ -43,7 +42,7 @@ class DetailUserViewController: BaseViewController {
     private func setupNavigationBar() {
         self.navigationController?.navigationBar.tintColor = .label
         self.navigationController?.navigationItem.backButtonTitle = nil
-        if let userName = userName {
+        if let userName = detailUser?.name {
             self.navigationItem.titleView = configureNavigationTitle(title: userName)
         }
     }
@@ -51,10 +50,11 @@ class DetailUserViewController: BaseViewController {
     private func setupCollection() {
         refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
         detailUserCollection.refreshControl = refreshControl
-        detailUserCollection.delegate = self
         collections.forEach {
             detailUserCollection.registerCellWithNib($0.cellTypes)
         }
+        detailUserCollection.registerCellWithNib(UserPostCell.self)
+        detailUserCollection.registerHeaderFooterNib(kind: UICollectionView.elementKindSectionHeader, DetailUserPostHeaderCell.self)
     }
     
     private func setupDataSource() {
@@ -67,25 +67,29 @@ class DetailUserViewController: BaseViewController {
                     cell.configure(with: user, postCount: userPost.count)
                 }
                 return cell
-            case .category:
-                let cell1: DetailUserCategoryCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-                cell1.configure(with: detailUserCategoryItem[indexPath.item])
-                return cell1
             case .post:
-                let cell2: DetailUserPostCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
-                cell2.configure(with: user)
+                let cell2: DetailUserPostCollectionCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+                if let user = self.userPost, let tag = self.tagPost {
+                    cell2.delegate = self
+                    cell2.bindData(userPost: user, tagPost: tag)
+                }
                 return cell2
             default: return UICollectionViewCell()
             }
         }
+        
+        dataSource.supplementaryViewProvider = { (collectionView, kind, indexPath) in
+            let header: DetailUserPostHeaderCell = collectionView.dequeueHeaderFooterCell(kind: kind, forIndexPath: indexPath)
+            header.delegate = self
+            
+            return header
+        }
     }
     
     private func clearSnapshot() {
-        detailUser = nil
         userPost = nil
         tagPost = nil
         snapshot.deleteAllItems()
-        snapshot.deleteSections(collections)
         detailUserCollection.hideSkeleton(reloadDataAfter: false)
         dataSource.apply(snapshot)
         self.errorView.removeFromSuperview()
@@ -93,19 +97,9 @@ class DetailUserViewController: BaseViewController {
     
     @objc private func refreshData() {
         clearSnapshot()
-        if let userName = userName {
+        if let userName = detailUser?.name {
             vm.userName = userName
             vm.fetchAllPost(param: StoryParam(size: 1000))
         }
-    }
-}
-
-extension DetailUserViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard indexPath.section == 2 else { return }
-        let id = dataSource.snapshot(for: .post).items[indexPath.item].id
-        let vc = DetailStoryViewController()
-        vc.storyID = id
-        self.navigationController?.pushViewController(vc, animated: true)
     }
 }

@@ -9,16 +9,21 @@ import Foundation
 import UIKit
 
 enum SectionDetailUser: Int, CaseIterable {
-    case profile, category, post
+    case profile, post
     
     var cellTypes: UICollectionViewCell.Type {
         switch self {
         case .profile:
             return DetailUserProfileCell.self
-        case .category:
-            return DetailUserCategoryCell.self
         case .post:
-            return DetailUserPostCell.self
+            return DetailUserPostCollectionCell.self
         }
+    }
+    
+    static var sectionIdentifiers: [SectionDetailUser: String] {
+        return [
+            .profile: String(describing: DetailUserProfileCell.self),
+            .post: String(describing: UserPostCell.self)
+        ]
     }
 }

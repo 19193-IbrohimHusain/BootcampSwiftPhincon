@@ -10,8 +10,6 @@ import UIKit
 
 extension DetailUserViewController {
     internal func setupCompositionalLayout() {
-        let config = UICollectionViewCompositionalLayoutConfiguration()
-        config.scrollDirection = .vertical
         layout = .init(sectionProvider: { [weak self] (sectionIndex, env) in
             guard let self = self, let section = SectionDetailUser(rawValue: sectionIndex) else {
                 fatalError("Invalid section index")
@@ -20,12 +18,10 @@ extension DetailUserViewController {
             switch section {
             case .profile:
                 return self.profileLayout()
-            case .category:
-                return self.categoryLayout()
             case .post:
-                return self.postLayout()
+                return self.postLayout(env: env)
             }
-        }, configuration: config)
+        })
         
         detailUserCollection.collectionViewLayout = layout
     }
@@ -40,22 +36,14 @@ extension DetailUserViewController {
         return section
     }
     
-    private func categoryLayout() -> NSCollectionLayoutSection {
-        let item = NSCollectionLayoutItem.entireHeight(withWidth: .fractionalWidth(1/2))
-        let size = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(50))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: size, subitems: [item])
-        let section = NSCollectionLayoutSection(group: group)
-        
-        return section
-    }
-    
-    private func postLayout() -> NSCollectionLayoutSection {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(150))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/3), heightDimension: .fractionalHeight(1))
+    private func postLayout(env: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection {
+        let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(50)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
+        let item = NSCollectionLayoutItem.withEntireSize()
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(env.container.effectiveContentSize.height * 11))
         let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
         let section = NSCollectionLayoutSection(group: group)
-        section.orthogonalScrollingBehavior = .continuous
+        section.boundarySupplementaryItems = [header]
+        section.boundarySupplementaryItems[0].pinToVisibleBounds = true
         
         return section
     }

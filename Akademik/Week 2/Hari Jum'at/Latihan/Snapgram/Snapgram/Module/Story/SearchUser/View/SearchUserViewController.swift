@@ -144,7 +144,7 @@ extension SearchUserViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = DetailUserViewController()
-        vc.userName = listUser?[indexPath.item].name
+        vc.detailUser = listUser?[indexPath.item]
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }

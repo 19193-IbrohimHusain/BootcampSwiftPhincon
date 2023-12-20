@@ -11,7 +11,6 @@ import RxRelay
 
 class DetailUserViewModel: BaseViewModel {
     var userName: String?
-    var detailUser = BehaviorRelay<ListStory?>(value: nil)
     var userPost = BehaviorRelay<[ListStory]?>(value: nil)
     var tagPost = BehaviorRelay<[ListStory]?>(value: nil)
     
@@ -26,8 +25,8 @@ class DetailUserViewModel: BaseViewModel {
                 let result = data.listStory.filter {
                     $0.name == userName
                 }
-                self.detailUser.accept(result.first)
                 self.userPost.accept(result)
+                self.loadingState.accept(.finished)
             case.failure(_):
                 self.loadingState.accept(.failed)
             }

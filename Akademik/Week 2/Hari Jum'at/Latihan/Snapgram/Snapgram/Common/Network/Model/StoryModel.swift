@@ -23,14 +23,16 @@ struct ListStory: Codable, Hashable {
     var commentsCount: Int = 27280
     var isLiked: Bool = false
     var detailUserSection: SectionDetailUser?
+    var detailPostSection: SectionDetailUserPost?
     
     static func == (lhs: ListStory, rhs: ListStory) -> Bool {
-        return lhs.id == rhs.id && lhs.detailUserSection == rhs.detailUserSection
+        return lhs.id == rhs.id && lhs.detailUserSection == rhs.detailUserSection && lhs.detailPostSection == rhs.detailPostSection
     }
     
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
         hasher.combine(detailUserSection)
+        hasher.combine(detailPostSection)
     }
 
     enum CodingKeys: String, CodingKey {

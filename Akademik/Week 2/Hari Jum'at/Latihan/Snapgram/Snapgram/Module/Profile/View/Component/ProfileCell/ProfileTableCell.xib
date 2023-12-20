@@ -106,7 +106,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="bWv-XZ-LSz" userLabel="Posts Stack">
                                 <rect key="frame" x="0.0" y="0.0" width="45" height="48.666666666666664"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CdN-W9-ggG">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CdN-W9-ggG">
                                         <rect key="frame" x="0.0" y="0.0" width="45" height="20.333333333333332"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -220,7 +220,7 @@
                 <outlet property="editProfileBtn" destination="swU-up-Qbe" id="UmV-6i-1tx"/>
                 <outlet property="followersStack" destination="cxZ-4g-r0k" id="DE8-iS-2B2"/>
                 <outlet property="followingStack" destination="GEM-s1-KJx" id="ndb-oF-dy1"/>
-                <outlet property="postStack" destination="bWv-XZ-LSz" id="1Xk-4E-ZNT"/>
+                <outlet property="postCount" destination="CdN-W9-ggG" id="MGa-BU-Yrc"/>
                 <outlet property="profileImg" destination="o2p-HJ-yUF" id="aMZ-R4-BoV"/>
                 <outlet property="shareProfileBtn" destination="S5a-l0-DDT" id="yqR-Pm-4VD"/>
                 <outlet property="username" destination="bms-xO-gbP" id="Xxi-rz-2Jf"/>

@@ -61,7 +61,7 @@ class DetailStoryViewController: BaseBottomSheetController {
     
     private func configure() {
         guard let validDetail = detailStory else { return }
-        navigationItem.title = "\(validDetail.name)'s Story"
+        navigationItem.title = "\(validDetail.name)'s Post"
         username.text = validDetail.name
         setupUploadedImage(validDetail)
         setupLikeButton(validDetail)

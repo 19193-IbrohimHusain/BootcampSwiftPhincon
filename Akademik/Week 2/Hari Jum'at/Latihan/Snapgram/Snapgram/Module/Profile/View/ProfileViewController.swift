@@ -146,6 +146,9 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             if let user = currentUser {
                 cell.configure(with: user)
             }
+            if let postCount = self.userPost?.count {
+                cell.configureUserPost(count: postCount)
+            }
             cell.delegate = self
             
             return cell

@@ -5,7 +5,6 @@ class CustomFooterView: UITableViewHeaderFooterView {
     
     var footerTapped: (() -> Void)?
 
-    // Add any UI elements you need in the footer (e.g., UILabel)
     let label: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
@@ -16,16 +15,12 @@ class CustomFooterView: UITableViewHeaderFooterView {
     
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
-        
-        // Setup UI elements and constraints
         setupUI()
         setupGesture()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
-        // Setup UI elements and constraints
         setupUI()
     }
     

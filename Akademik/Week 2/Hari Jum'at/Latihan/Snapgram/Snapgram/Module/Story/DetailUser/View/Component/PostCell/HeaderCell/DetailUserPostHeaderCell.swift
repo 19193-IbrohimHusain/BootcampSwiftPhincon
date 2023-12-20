@@ -1,14 +1,21 @@
+//
+//  DetailUserPostHeaderCell.swift
+//  Snapgram
+//
+//  Created by Phincon on 20/12/23.
+//
+
 import UIKit
 
-protocol CategoryTableCellDelegate {
-    func setCurrentSection(index: Int)
+protocol DetailUserPostHeaderCellDelegate {
+    func onCategorySelected(index: Int)
 }
 
-class CategoryTableCell: UITableViewCell {
+class DetailUserPostHeaderCell: UICollectionReusableView {
 
-    @IBOutlet weak var categoryCollection: UICollectionView!
+    @IBOutlet weak var headerCollection: UICollectionView!
     
-    var delegate: CategoryTableCellDelegate?
+    var delegate: DetailUserPostHeaderCellDelegate?
     var horizontalBarLeftAnchorConstraint: NSLayoutConstraint?
     let horizontalBarView = UIView()
     
@@ -24,12 +31,12 @@ class CategoryTableCell: UITableViewCell {
     }
     
     func setupCollection() {
-        categoryCollection.dataSource = self
-        categoryCollection.registerCellWithNib(CategoryCollectionCell.self)
+        headerCollection.dataSource = self
+        headerCollection.registerCellWithNib(DetailUserCategoryCell.self)
         setupHorizontalBar()
         let selectedIndexPath = IndexPath(item: 0, section: 0)
-        categoryCollection.selectItem(at: selectedIndexPath, animated: false, scrollPosition: .centeredHorizontally)
-        categoryCollection.collectionViewLayout = UICollectionViewCompositionalLayout(section: categoryLayout())
+        headerCollection.selectItem(at: selectedIndexPath, animated: false, scrollPosition: .centeredHorizontally)
+        headerCollection.collectionViewLayout = UICollectionViewCompositionalLayout(section: categoryLayout())
     }
     
     private func categoryLayout() -> NSCollectionLayoutSection {
@@ -55,27 +62,27 @@ class CategoryTableCell: UITableViewCell {
     }
 }
 
-extension CategoryTableCell: UICollectionViewDataSource {
+extension DetailUserPostHeaderCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return categoryItem.count
+        return detailUserCategoryItem.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as CategoryCollectionCell
-        let categoryEntity = categoryItem[indexPath.item]
-        cell.configureCollection(categoryEntity)
+        let cell: DetailUserCategoryCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+        let item = detailUserCategoryItem[indexPath.item]
         cell.delegate = self
         cell.index = indexPath.item
-        
+        cell.configure(with: item)
         return cell
     }
 }
 
-extension CategoryTableCell: CategoryCollectionCellDelegate {
+extension DetailUserPostHeaderCell: DetailUserCategoryCellDelegate {
     func onCategorySelected(index: Int) {
-        let indexPath = IndexPath(item: index, section: 0)
-        self.categoryCollection.selectItem(at: indexPath, animated: false, scrollPosition: .centeredHorizontally)
-        self.delegate?.setCurrentSection(index: index)
+        let categoryIndex = IndexPath(item: index, section: 0)
+        self.headerCollection.selectItem(at: categoryIndex, animated: false, scrollPosition: .centeredHorizontally)
+        self.delegate?.onCategorySelected(index: index)
     }
 }
+
 

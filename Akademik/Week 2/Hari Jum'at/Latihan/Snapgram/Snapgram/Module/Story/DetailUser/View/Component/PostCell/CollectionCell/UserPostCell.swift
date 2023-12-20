@@ -8,7 +8,7 @@
 import UIKit
 import Kingfisher
 
-class DetailUserPostCell: UICollectionViewCell {
+class UserPostCell: UICollectionViewCell {
 
     @IBOutlet weak var postImg: UIImageView!
     

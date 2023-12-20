@@ -98,7 +98,9 @@ class FYPCollectionViewCell: UICollectionViewCell {
     }
     
     private func loadSnapshot() {
-        snapshot.appendSections(sections)
+        if snapshot.sectionIdentifiers.isEmpty {
+            snapshot.appendSections(sections)
+        }
         
         if let allShoes = allShoes {
             let dataAll = allShoes.prefix(loadedIndex).map {
@@ -192,7 +194,6 @@ class FYPCollectionViewCell: UICollectionViewCell {
         loadedIndex = 5
         allShoes?.removeAll()
         snapshot.deleteAllItems()
-        snapshot.deleteSections(sections)
         dataSource.apply(snapshot)
     }
 }

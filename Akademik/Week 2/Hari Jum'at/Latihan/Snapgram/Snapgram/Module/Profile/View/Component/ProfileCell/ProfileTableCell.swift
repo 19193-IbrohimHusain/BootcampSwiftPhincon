@@ -9,7 +9,7 @@ protocol ProfileTableCellDelegate {
 class ProfileTableCell: UITableViewCell {
     
     @IBOutlet weak var profileImg: UIImageView!
-    @IBOutlet weak var postStack: UIStackView!
+    @IBOutlet weak var postCount: UILabel!
     @IBOutlet weak var followersStack: UIStackView!
     @IBOutlet weak var followingStack: UIStackView!
     @IBOutlet weak var username: UILabel!
@@ -37,6 +37,10 @@ class ProfileTableCell: UITableViewCell {
         username.text = user.username
         bio.text = user.email
         address.text = user.userid
+    }
+    
+    internal func configureUserPost(count: Int) {
+        postCount.text = "\(count)"
     }
     
     private func configureBtn(_ button: UIButton) {

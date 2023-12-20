@@ -35,22 +35,21 @@ class PopularProductViewController: BaseViewController {
     private func setup() {
         setupNavigationBar()
         setupErrorView()
-        popularCollection.delegate = self
-        popularCollection.registerCellWithNib(FYPCollectionCell.self)
+        setupCollection()
         setupDataSource()
         setupCompositionalLayout()
         bindData()
-    }
-    
-    private func setNavBarHeight(height: Double) {
-        self.navigationController?.navigationBar.invalidateIntrinsicContentSize()
-        self.navigationController?.navigationBar.frame = CGRect(x: 0, y: 60, width: 430, height: height)
     }
     
     private func setupNavigationBar() {
         self.navigationController?.navigationBar.tintColor = .label
         self.navigationController?.navigationItem.backButtonTitle = nil
         self.navigationItem.titleView = configureNavigationTitle(title: "Popular Product")
+    }
+    
+    private func setupCollection() {
+        popularCollection.delegate = self
+        popularCollection.registerCellWithNib(FYPCollectionCell.self)
     }
     
     private func setupDataSource() {
