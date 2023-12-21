@@ -8,7 +8,7 @@ class AddStoryViewController: BaseViewController {
     @IBOutlet weak var openCamera: UIButton!
     @IBOutlet weak var openGallery: UIButton!
     @IBOutlet weak var captionTextField: UITextField!
-    @IBOutlet weak var clearBtn: UIButton!
+    @IBOutlet weak var enableLocation: UISwitch!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var postStoryBtn: UIButton!
     
@@ -59,15 +59,31 @@ class AddStoryViewController: BaseViewController {
                 }
             }
         }).disposed(by: bag)
+        
+        enableLocation.rx.isOn.subscribe(onNext: { [weak self] state in
+            guard let self = self else { return }
+            switch state {
+            case true:
+                self.locationHandler()
+                self.locationLabel.isHidden = false
+            case false:
+                self.locationLabel.text = .none
+                self.locationLabel.isHidden = true
+            }
+        }).disposed(by: bag)
     }
     
-    @objc func tapAction(_ tap: UITapGestureRecognizer) {
+    private func locationHandler() {
         checkLocationAuthorization(map)
         getAddressFromCurrentLocation(lat: latitude, lon: longitude) { _ in
             self.getAddressFromCurrentLocation(lat: self.latitude, lon: self.longitude) { name in
                 self.locationLabel.text = name
             }
         }
+    }
+    
+    @objc func tapAction(_ tap: UITapGestureRecognizer) {
+        locationHandler()
     }
     
     @objc func panGestureAction(_ gesture: UIPanGestureRecognizer) {

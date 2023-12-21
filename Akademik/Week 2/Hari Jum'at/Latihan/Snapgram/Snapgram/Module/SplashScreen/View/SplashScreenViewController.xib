@@ -19,10 +19,11 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="phO-gX-pJE" customClass="LottieAnimationView" customModule="Lottie">
-                    <rect key="frame" x="96" y="326" width="201" height="200"/>
+                    <rect key="frame" x="96.666666666666686" y="326" width="200" height="200"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="200" id="Ek0-hF-xzJ"/>
+                        <constraint firstAttribute="width" constant="200" id="ltJ-vY-75N"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="animationName" value="splashscreen"/>
@@ -31,9 +32,8 @@
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="phO-gX-pJE" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="96" id="HFr-az-P6F"/>
                 <constraint firstItem="phO-gX-pJE" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="YEp-op-eQx"/>
-                <constraint firstItem="phO-gX-pJE" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="326" id="pNN-sL-7Ox"/>
+                <constraint firstItem="phO-gX-pJE" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="gqP-mN-WS3"/>
             </constraints>
             <point key="canvasLocation" x="-27" y="20"/>
         </view>

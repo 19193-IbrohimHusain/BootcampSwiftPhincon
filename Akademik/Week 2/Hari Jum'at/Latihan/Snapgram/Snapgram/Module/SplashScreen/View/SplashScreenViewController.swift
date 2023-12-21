@@ -10,13 +10,7 @@ class SplashScreenViewController: BaseViewController {
         setup()
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        splashScreen.stop()
-        splashScreen = nil
-    }
-    
-    func setup() {
+    private func setup() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             if self.getTokenFromKeychain() != nil {
                 self.navigationController?.setViewControllers([TabBarViewController()], animated: true)
