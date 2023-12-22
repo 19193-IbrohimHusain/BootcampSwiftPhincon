@@ -27,11 +27,25 @@ class StoryViewController: BaseBottomSheetController {
     }
     
     private func setup() {
-        setupNavigationBar(title: "Snapgram", image1: "magnifyingglass", image2: "heart", action1: #selector(navigateToSearch), action2: nil)
+        setupNavigationBar()
         setupErrorView()
         setupTable()
         bindData()
         setupCommentPanel()
+    }
+    
+    private func setupNavigationBar() {
+        self.navigationController?.navigationBar.tintColor = .label
+        self.navigationItem.setLeftBarButton(UIBarButtonItem(customView: configureNavigationTitle(title: "Snapgram")), animated: false)
+        self.navigationItem.setRightBarButton(UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .plain, target: self, action: #selector(navigateToSearch)), animated: true)
+    }
+    
+    private func setupTable() {
+        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        storyTable.refreshControl = refreshControl
+        storyTable.delegate = self
+        storyTable.dataSource = self
+        tables.forEach { storyTable.registerCellWithNib($0.cellTypes) }
     }
     
     private func bindData() {
@@ -66,14 +80,6 @@ class StoryViewController: BaseBottomSheetController {
                 }
             }
         }).disposed(by: bag)
-    }
-    
-    private func setupTable() {
-        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
-        storyTable.refreshControl = refreshControl
-        storyTable.delegate = self
-        storyTable.dataSource = self
-        tables.forEach { storyTable.registerCellWithNib($0.cellTypes) }
     }
     
     private func setupCommentPanel() {
