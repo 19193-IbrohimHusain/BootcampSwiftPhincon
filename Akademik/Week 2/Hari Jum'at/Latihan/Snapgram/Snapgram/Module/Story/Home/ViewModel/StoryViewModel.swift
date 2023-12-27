@@ -3,7 +3,7 @@ import RxSwift
 import RxCocoa
 
 class StoryViewModel : BaseViewModel {
-    var storyData = BehaviorRelay<StoryResponse?>(value: nil)
+    var storyData = BehaviorRelay<[ListStory]?>(value: nil)
     
     func fetchStory(param: StoryParam) {
         loadingState.accept(.loading)
@@ -12,7 +12,7 @@ class StoryViewModel : BaseViewModel {
             switch result {
             case .success(let data):
                 self.loadingState.accept(.finished)
-                self.storyData.accept(data)
+                self.storyData.accept(data.listStory)
             case .failure(let error):
                 self.loadingState.accept(.failed)
                 print(String(describing: error))

@@ -11,13 +11,7 @@ class StoryTableCell: UITableViewCell {
     
     internal var delegate: StoryTableCellDelegate?
     
-    internal var data: [ListStory]? {
-        didSet {
-            DispatchQueue.main.async {
-                self.storyCollectionView.reloadData()
-            }
-        }
-    }
+    internal var data: [ListStory]?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,6 +22,11 @@ class StoryTableCell: UITableViewCell {
         storyCollectionView.delegate = self
         storyCollectionView.dataSource = self
         storyCollectionView.registerCellWithNib(StoryCollectionCell.self)
+    }
+    
+    internal func configure(with story : [ListStory]) {
+        self.data = story
+        self.storyCollectionView.reloadData()
     }
 }
 

@@ -25,7 +25,6 @@ class RegisterViewController: BaseViewController {
     
     
     private func setupRegister() {
-        navigationItem.hidesBackButton = true
         configureRegisterAnimation()
         configureImage()
         configureTextField()

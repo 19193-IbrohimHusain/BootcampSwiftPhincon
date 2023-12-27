@@ -3,7 +3,7 @@ import Kingfisher
 import GoogleMaps
 
 protocol FeedTableCellDelegate: AnyObject {
-    func getLocationName(lat: Double?, lon: Double?, completion: ((String) -> Void)?)
+    func getLocationName(lat: Double?, lon: Double?, completion: @escaping ((String) -> Void))
     func addLike(cell: FeedTableCell)
     func openComment(index: Int)
 }

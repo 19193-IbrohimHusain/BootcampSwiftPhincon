@@ -60,6 +60,7 @@ class SearchProductViewController: BaseViewController {
         searchCollection.delegate = self
         searchCollection.registerCellWithNib(FYPCollectionCell.self)
     }
+    
     private func setupDataSource() {
         dataSource = .init(collectionView: searchCollection) { (collectionView, indexPath, product) in
             let cell:FYPCollectionCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)

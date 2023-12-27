@@ -20,13 +20,12 @@ class CommentViewController: UIViewController {
     }
     
     func setup() {
-        commentTable.delegate = self
         commentTable.dataSource = self
         commentTable.registerCellWithNib(CommentTableCell.self)
     }
 }
 
-extension CommentViewController: UITableViewDelegate, UITableViewDataSource {
+extension CommentViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 40

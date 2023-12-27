@@ -94,12 +94,11 @@ class BaseViewController: UIViewController, CLLocationManagerDelegate {
         button.setTitle(title, for: .normal)
     }
     
-    internal func getLocationNameFromCoordinates(lat: Double, lon: Double, completion: @escaping (String?) -> Void) {
+    internal func getLocationNameFromCoordinates(lat: Double, lon: Double, completion: @escaping (String) -> Void) {
         let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
         geocoder.reverseGeocodeCoordinate(coordinate) { response, error in
             guard error == nil, let result = response?.firstResult() else {
                 print("Geocoding error: \(error?.localizedDescription ?? "Unknown error")")
-                completion(nil)
                 return
             }
             

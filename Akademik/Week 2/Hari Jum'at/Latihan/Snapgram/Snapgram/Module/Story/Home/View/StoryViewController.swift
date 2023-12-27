@@ -6,10 +6,10 @@ class StoryViewController: BaseBottomSheetController {
     @IBOutlet internal weak var storyTable: UITableView!
     
     internal let tables = SectionStoryTable.allCases
-    private var vm = StoryViewModel()
-    private var page = Int()
-    private var isLoadMoreData = false
+    internal var vm = StoryViewModel()
+    internal var isLoadMoreData = false
     internal var listStory = [ListStory]()
+    private var page = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,40 +48,6 @@ class StoryViewController: BaseBottomSheetController {
         tables.forEach { storyTable.registerCellWithNib($0.cellTypes) }
     }
     
-    private func bindData() {
-        vm.storyData.asObservable().subscribe(onNext: { [weak self] data in
-            guard let self = self, let validData = data?.listStory else {return}
-            self.listStory.append(contentsOf: validData)
-        }).disposed(by: bag)
-        
-        vm.loadingState.asObservable().subscribe(onNext: {[weak self] state in
-            guard let self = self else {return}
-            switch state {
-            case .notLoad:
-                self.errorView.removeFromSuperview()
-            case .loading:
-                guard self.isLoadMoreData else {
-                    self.storyTable.showAnimatedGradientSkeleton()
-                    return
-                }
-                self.storyTable.showLoadingFooter()
-            case .finished:
-                DispatchQueue.main.async {
-                    UIView.performWithoutAnimation {
-                        self.storyTable.reloadData()
-                    }
-                    self.storyTable.hideSkeleton()
-                }
-            case .failed:
-                DispatchQueue.main.async {
-                    self.storyTable.hideLoadingFooter()
-                    self.storyTable.hideSkeleton()
-                    self.storyTable.backgroundView = self.errorView
-                }
-            }
-        }).disposed(by: bag)
-    }
-    
     private func setupCommentPanel() {
         setupBottomSheet(contentVC: cvc, floatingPanelDelegate: self)
     }
@@ -95,10 +61,11 @@ class StoryViewController: BaseBottomSheetController {
     }
     
     @objc private func refreshData() {
+        self.page = 1
+        self.isLoadMoreData = false
         self.listStory.removeAll()
-        vm.fetchStory(param: StoryParam())
+        vm.fetchStory(param: StoryParam(page: 1))
         self.refreshControl.endRefreshing()
-        self.storyTable.hideLoadingFooter()
         self.errorView.removeFromSuperview()
     }
     
@@ -109,47 +76,9 @@ class StoryViewController: BaseBottomSheetController {
     }
 }
 
-extension StoryViewController: UITableViewDelegate, UITableViewDataSource {
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return tables.count
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let tableSection = SectionStoryTable(rawValue: section)
-        switch tableSection {
-        case .story:
-            return 1
-        case .feed :
-            return listStory.count
-        default: return 0
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let tableSection = SectionStoryTable(rawValue: indexPath.section)
-        switch tableSection {
-        case .story:
-            let cell = tableView.dequeueReusableCell(forIndexPath: indexPath) as StoryTableCell
-            cell.data = listStory
-            cell.delegate = self
-            
-            return cell
-        case .feed:
-            let cell1 = tableView.dequeueReusableCell(forIndexPath: indexPath) as FeedTableCell
-            if !listStory.isEmpty {
-                let feedEntity = listStory[indexPath.row]
-                cell1.post = feedEntity
-            }
-            cell1.indexSelected = indexPath.row
-            cell1.delegate = self
-            
-            return cell1
-        default: return UITableViewCell()
-        }
-    }
-    
+extension StoryViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard isLoadMoreData == false else { return }
         switch SectionStoryTable(rawValue: indexPath.section) {
         case .feed:
             let total = listStory.count

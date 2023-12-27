@@ -1,39 +1,11 @@
-import FloatingPanel
-import SkeletonView
-
-extension StoryViewController: SkeletonTableViewDataSource {
-    func numSections(in collectionSkeletonView: UITableView) -> Int {
-        return tables.count
-    }
-    
-    func collectionSkeletonView(_ skeletonView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let tableSection = SectionStoryTable(rawValue: section)
-        switch tableSection {
-        case .story:
-            return 1
-        case .feed:
-            return 2
-        default: return 0
-        }
-    }
-    
-    func collectionSkeletonView(_ tableView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
-        let tableSection = SectionStoryTable(rawValue: indexPath.section)
-        switch tableSection {
-        case .story:
-            return String(describing: StoryTableCell.self)
-        case .feed:
-            return String(describing: FeedTableCell.self)
-        default: return ""
-        }
-    }
-}
+import Foundation
+import UIKit
 
 extension StoryViewController: FeedTableCellDelegate {
-    func getLocationName(lat: Double?, lon: Double?, completion: ((String) -> Void)?) {
+    func getLocationName(lat: Double?, lon: Double?, completion: @escaping ((String) -> Void)) {
         if let lat = lat, let lon = lon {
             getLocationNameFromCoordinates(lat: lat, lon: lon) { name in
-                completion!(name ?? "")
+                completion(name)
             }
         }
     }

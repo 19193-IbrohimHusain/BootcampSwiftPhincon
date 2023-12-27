@@ -21,12 +21,17 @@ class LoginViewController: BaseViewController {
     }
     
     private func setupLogin() {
+        setNavigationBar()
         configureLoginAnimation()
         configureShowImage()
         configureTextField()
         configureButton()
         handleBtn()
         bindData()
+    }
+    
+    private func setNavigationBar() {
+        self.navigationController?.isNavigationBarHidden = true
     }
     
     private func configureLoginAnimation() {

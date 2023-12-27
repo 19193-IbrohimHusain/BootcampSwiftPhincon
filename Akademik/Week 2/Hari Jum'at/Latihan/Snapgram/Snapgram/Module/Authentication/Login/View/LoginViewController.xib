@@ -36,7 +36,7 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Snapgram" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KMr-at-wmF">
-                    <rect key="frame" x="20" y="274" width="353" height="27.666666666666686"/>
+                    <rect key="frame" x="137.66666666666666" y="274" width="117.66666666666666" height="27.666666666666686"/>
                     <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="24"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -71,6 +71,13 @@
                         <constraint firstAttribute="height" constant="40" id="VRd-Gh-qgJ"/>
                     </constraints>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nOV-C0-d9d" customClass="CustomButton" customModule="Snapgram" customModuleProvider="target">
+                    <rect key="frame" x="50" y="580.66666666666663" width="293" height="40"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="BmC-aU-6j8"/>
+                    </constraints>
+                </view>
                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6aP-Rf-mqW">
                     <rect key="frame" x="82.333333333333329" y="630.66666666666663" width="228.66666666666669" height="14"/>
                     <subviews>
@@ -93,39 +100,30 @@
                         </button>
                     </subviews>
                 </stackView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nOV-C0-d9d" customClass="CustomButton" customModule="Snapgram" customModuleProvider="target">
-                    <rect key="frame" x="50" y="580.66666666666663" width="293" height="40"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="40" id="BmC-aU-6j8"/>
-                    </constraints>
-                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="7ih-Z0-HEj" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="3Ts-si-Dme"/>
                 <constraint firstItem="6aP-Rf-mqW" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="4GC-Hk-oZu"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="KMr-at-wmF" secondAttribute="trailing" constant="20" id="5RN-dR-HXT"/>
-                <constraint firstItem="nOV-C0-d9d" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="50" id="7TP-eo-tSp"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="nOV-C0-d9d" secondAttribute="trailing" constant="50" id="AFt-I0-rfz"/>
+                <constraint firstItem="70v-ta-hMU" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="Bl8-O8-qaP"/>
                 <constraint firstItem="xZO-vm-YyD" firstAttribute="top" secondItem="dxs-7j-WcM" secondAttribute="bottom" constant="4" id="FI0-fL-a8p"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="70v-ta-hMU" secondAttribute="trailing" constant="50" id="HEv-OP-yDa"/>
+                <constraint firstItem="xZO-vm-YyD" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="GJg-Jv-VYi"/>
                 <constraint firstItem="9H8-6Q-9oK" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="NLZ-9H-iOH"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="xZO-vm-YyD" secondAttribute="trailing" constant="20" id="R1e-7P-drD"/>
-                <constraint firstItem="70v-ta-hMU" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="50" id="W8r-kV-Qos"/>
+                <constraint firstItem="nOV-C0-d9d" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="TVH-R3-zfV"/>
+                <constraint firstItem="xZO-vm-YyD" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="Udw-fK-pCc"/>
+                <constraint firstItem="dxs-7j-WcM" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="WIk-Tg-nYm"/>
                 <constraint firstItem="9H8-6Q-9oK" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="Xuv-nt-2Gb"/>
                 <constraint firstItem="6aP-Rf-mqW" firstAttribute="top" secondItem="nOV-C0-d9d" secondAttribute="bottom" constant="10" id="Zks-fI-YzZ"/>
                 <constraint firstItem="nOV-C0-d9d" firstAttribute="top" secondItem="70v-ta-hMU" secondAttribute="bottom" constant="20" id="bIz-MA-1er"/>
-                <constraint firstItem="xZO-vm-YyD" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="bZH-sw-fc4"/>
                 <constraint firstItem="70v-ta-hMU" firstAttribute="top" secondItem="xZO-vm-YyD" secondAttribute="bottom" constant="10" id="dBN-7X-tRM"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="dxs-7j-WcM" secondAttribute="trailing" constant="20" id="eow-dJ-Jce"/>
                 <constraint firstItem="KMr-at-wmF" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="fqk-WD-OYN"/>
                 <constraint firstItem="KMr-at-wmF" firstAttribute="top" secondItem="9H8-6Q-9oK" secondAttribute="bottom" id="hi8-Sn-UTE"/>
                 <constraint firstItem="7ih-Z0-HEj" firstAttribute="top" secondItem="KMr-at-wmF" secondAttribute="bottom" constant="15" id="hj9-CH-KGf"/>
-                <constraint firstItem="KMr-at-wmF" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="iDJ-Bz-GX5"/>
+                <constraint firstItem="nOV-C0-d9d" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="50" id="jc5-lV-3HC"/>
+                <constraint firstItem="70v-ta-hMU" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="50" id="o8r-HH-H7E"/>
+                <constraint firstItem="dxs-7j-WcM" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="oPX-iV-ce3"/>
                 <constraint firstItem="dxs-7j-WcM" firstAttribute="top" secondItem="7ih-Z0-HEj" secondAttribute="bottom" constant="10" id="vCU-d9-Xte"/>
-                <constraint firstItem="dxs-7j-WcM" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="ztt-Cx-01A"/>
             </constraints>
             <point key="canvasLocation" x="-25.190839694656489" y="19.718309859154932"/>
         </view>

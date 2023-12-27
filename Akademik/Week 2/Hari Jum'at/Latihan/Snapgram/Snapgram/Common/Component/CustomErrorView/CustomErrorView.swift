@@ -60,7 +60,7 @@ class CustomErrorView: UIView {
         NSLayoutConstraint.activate([
             widthAnchor.constraint(equalToConstant: frame.width),
             heightAnchor.constraint(equalToConstant: frame.height),
-            animationView.topAnchor.constraint(equalTo: topAnchor, constant: 150),
+            animationView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -100),
             animationView.leadingAnchor.constraint(equalTo: leadingAnchor),
             animationView.trailingAnchor.constraint(equalTo: trailingAnchor),
             animationView.heightAnchor.constraint(equalToConstant: 400),

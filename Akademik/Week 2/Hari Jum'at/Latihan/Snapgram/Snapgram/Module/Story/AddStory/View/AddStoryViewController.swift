@@ -4,6 +4,7 @@ import RxRelay
 
 class AddStoryViewController: BaseViewController {
 
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var uploadedImage: UIImageView!
     @IBOutlet weak var openCamera: UIButton!
     @IBOutlet weak var openGallery: UIButton!
@@ -11,6 +12,7 @@ class AddStoryViewController: BaseViewController {
     @IBOutlet weak var enableLocation: UISwitch!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var postStoryBtn: UIButton!
+    @IBOutlet weak var scrollableHeight: NSLayoutConstraint!
     
     let vm = AddStoryViewModel()
     var uploadResponse: AddStoryResponse?
@@ -19,11 +21,11 @@ class AddStoryViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         postStoryBtn.layer.cornerRadius = 8.0
-        let gesture = UIPanGestureRecognizer(target: self, action: #selector(panGestureAction))
-        view.addGestureRecognizer(gesture)
+        scrollView.delegate = self
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapAction(_:)))
         locationLabel.isUserInteractionEnabled = true
         locationLabel.addGestureRecognizer(tapGesture)
+        scrollableHeight.constant = view.bounds.height + 50
         bindData()
     }
     
@@ -35,7 +37,7 @@ class AddStoryViewController: BaseViewController {
             }
         }).disposed(by: bag)
         
-        vm.loadingState.asObservable().subscribe(onNext: {[weak self] state in
+        vm.loadingState.asObservable().subscribe(onNext: { [weak self] state in
             guard let self = self else {return}
             
             DispatchQueue.main.async {
@@ -86,27 +88,6 @@ class AddStoryViewController: BaseViewController {
         locationHandler()
     }
     
-    @objc func panGestureAction(_ gesture: UIPanGestureRecognizer) {
-            let touchPoint = gesture.translation(in: view.window)
-            if gesture.state == .began {
-                initialTouchPoint = touchPoint
-            } else if gesture.state == .changed {
-                let newTouchPoint = touchPoint
-                if newTouchPoint.y - initialTouchPoint.y > 0 {
-                    view.frame = CGRect(x: 0, y: newTouchPoint.y - initialTouchPoint.y, width: view.frame.size.width, height: view.frame.size.height)
-                }
-            } else if gesture.state == .ended {
-                let velocity = gesture.velocity(in: view)
-                if velocity.y >= 1000 || touchPoint.y - initialTouchPoint.y > 200 {
-                    dismiss(animated: true, completion: nil)
-                } else {
-                    UIView.animate(withDuration: 0.3) {
-                        self.view.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
-                    }
-                }
-            }
-        }
-    
     @IBAction func openCamera(_ sender: UIButton) {
         self.pickerImage.allowsEditing = true
         self.pickerImage.delegate = self
@@ -156,5 +137,16 @@ extension AddStoryViewController: UIImagePickerControllerDelegate, UINavigationC
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true)
+    }
+}
+
+extension AddStoryViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let yOffset = scrollView.contentOffset.y
+        let triggerOffset: CGFloat = -80
+
+        if yOffset < triggerOffset {
+            self.dismiss(animated: true, completion: nil)
+        }
     }
 }

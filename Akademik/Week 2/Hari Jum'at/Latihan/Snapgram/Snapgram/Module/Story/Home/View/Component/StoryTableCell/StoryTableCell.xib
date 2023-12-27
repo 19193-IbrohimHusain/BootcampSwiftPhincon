@@ -17,8 +17,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="200" height="80"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="nqN-01-VtF">
-                        <rect key="frame" x="16" y="0.0" width="168" height="100"/>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="nqN-01-VtF">
+                        <rect key="frame" x="0.0" y="0.0" width="200" height="100"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="100" id="YEU-Jx-9ZR"/>
@@ -27,7 +27,7 @@
                             <size key="itemSize" width="70" height="70"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <inset key="sectionInset" minX="16" minY="0.0" maxX="16" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
@@ -35,8 +35,8 @@
                     </collectionView>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="nqN-01-VtF" secondAttribute="trailing" constant="16" id="4p6-x3-afe"/>
-                    <constraint firstItem="nqN-01-VtF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="B9c-fl-9dC"/>
+                    <constraint firstAttribute="trailing" secondItem="nqN-01-VtF" secondAttribute="trailing" id="4p6-x3-afe"/>
+                    <constraint firstItem="nqN-01-VtF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="B9c-fl-9dC"/>
                     <constraint firstItem="nqN-01-VtF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="MnS-Mu-7zA"/>
                     <constraint firstAttribute="bottom" secondItem="nqN-01-VtF" secondAttribute="bottom" id="wrq-za-ttH"/>
                 </constraints>

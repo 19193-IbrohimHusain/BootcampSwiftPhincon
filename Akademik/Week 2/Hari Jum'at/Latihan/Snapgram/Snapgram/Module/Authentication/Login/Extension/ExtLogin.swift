@@ -9,12 +9,14 @@ extension LoginViewController {
             guard let self = self else { return }
             if let validData = data?.loginResult {
                 self.storeToken(with: validData.token)
-                let user = User(email: self.emailInputField.textField.text!, username: validData.name, userid: validData.userId)
-                do {
-                    let userData = try JSONEncoder().encode(user)
-                    BaseConstant.userDef.set(userData, forKey: "userData")
-                } catch {
-                    print("Error encoding user data: \(error)")
+                DispatchQueue.main.async {
+                    let user = User(email: self.emailInputField.textField.text!, username: validData.name, userid: validData.userId)
+                    do {
+                        let userData = try JSONEncoder().encode(user)
+                        BaseConstant.userDef.set(userData, forKey: "userData")
+                    } catch {
+                        print("Error encoding user data: \(error)")
+                    }
                 }
             }
         }).disposed(by: bag)
@@ -42,7 +44,7 @@ extension LoginViewController {
     
     internal func validate() {
         addLoading(self.signInBtn.customButton)
-
+        
         guard validateInputField(emailInputField, title: "Sign In Failed", message: "Please Enter Your Email", completion: {
             self.afterDissmissed(self.signInBtn.customButton, title: "Sign In")
         }) else { return }

@@ -21,13 +21,14 @@ class DetailStoryViewController: BaseBottomSheetController {
     private let dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
     private let vm = DetailStoryViewModel()
     internal var storyID: String?
-    private var downloadTask: URLSessionDownloadTask!
+    
     private var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
         formatter.dateFormat = dateFormat
         formatter.timeZone = TimeZone(abbreviation: "UTC")
         return formatter
     }
+    
     private var detailStory: Story? {
         didSet {
             DispatchQueue.main.async {
@@ -99,10 +100,10 @@ class DetailStoryViewController: BaseBottomSheetController {
     private func setupLocation(_ data: Story) {
         guard let lat = data.lat, let lon = data.lon else { return }
         getLocationNameFromCoordinates(lat: lat, lon: lon) { [weak self] name in
-            guard let self = self, let locationName = name else { return }
-            let attributedString = NSAttributedString(string: "\(data.name)\n\(locationName)")
+            guard let self = self else { return }
+            let attributedString = NSAttributedString(string: "\(data.name)\n\(name)")
             let attributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14, weight: .regular)]
-            let range = NSRange(location: data.name.count + 1, length: locationName.count)
+            let range = NSRange(location: data.name.count + 1, length: name.count)
             let attributedText = attributedString.applyingAttributes(attributes, toRange: range)
             self.username.attributedText = attributedText
         }
@@ -181,40 +182,5 @@ class DetailStoryViewController: BaseBottomSheetController {
     
     @objc private func onCommentLabelTap(_ sender: UITapGestureRecognizer) {
         present(floatingPanel, animated: true)
-    }
-    
-    @IBAction private func downloadImage() {
-        guard let urlDownload = detailStory?.photoURL, let url = URL(string: urlDownload) else { return }
-        
-        let configuration = URLSessionConfiguration.default
-        let session = URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
-        
-        downloadTask = session.downloadTask(with: url)
-        downloadTask.resume()
-    }
-}
-
-extension DetailStoryViewController: URLSessionDownloadDelegate {
-    
-    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
-        print("Download finished: \(location)")
-        
-        let documentsURL = try! FileManager.default.url(for: .downloadsDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-        let destinationURL = documentsURL.appendingPathComponent("downloadedFile.zip")
-        
-        try? FileManager.default.moveItem(at: location, to: destinationURL)
-    }
-    
-    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
-        let progress = Float(totalBytesWritten) / Float(totalBytesExpectedToWrite)
-        print("Download progress: \(progress * 100)%")
-    }
-    
-    func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
-        if let error = error {
-            print("Download failed with error: \(error.localizedDescription)")
-        } else {
-            print("Download completed successfully.")
-        }
     }
 }
