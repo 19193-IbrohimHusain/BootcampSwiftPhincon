@@ -7,6 +7,7 @@
 
 import Foundation
 
+// MARK: - CategoryResponse
 struct CategoryResponse: Codable {
     let meta: Meta
     let data: CategoryData
@@ -17,7 +18,7 @@ struct CategoryResponse: Codable {
     }
 }
 
-// MARK: - DataClass
+// MARK: - CategoryData
 struct CategoryData: Codable {
     let data: [CategoryModel]
     
@@ -26,6 +27,7 @@ struct CategoryData: Codable {
     }
 }
 
+// MARK: - CategoryModel
 struct CategoryModel: Codable, Hashable {
     let id: Int
     let name: String

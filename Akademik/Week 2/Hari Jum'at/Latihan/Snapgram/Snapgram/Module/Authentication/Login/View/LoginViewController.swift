@@ -2,7 +2,7 @@ import UIKit
 import Lottie
 
 class LoginViewController: BaseViewController {
-    
+    // MARK: - Variables
     @IBOutlet weak var loginAnimation: LottieAnimationView!
     @IBOutlet weak var emailInputField: CustomInputField!
     @IBOutlet weak var passwordInputField: CustomInputField!
@@ -15,11 +15,13 @@ class LoginViewController: BaseViewController {
     private let rightView = UIView()
     private let imageView = UIImageView(image: UIImage(systemName: "eye.fill"))
 
+    // MARK: - Lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLogin()
     }
     
+    // MARK: - Functions
     private func setupLogin() {
         setNavigationBar()
         configureLoginAnimation()

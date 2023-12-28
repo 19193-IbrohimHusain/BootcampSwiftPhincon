@@ -8,13 +8,13 @@ protocol CustomViewMarkerDelegate {
 }
 
 class CustomViewMarker: UIView {
-    let dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
-    let dateFormatter = DateFormatter()
-    var delegate: CustomViewMarkerDelegate?
+    private let dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+    private let dateFormatter = DateFormatter()
+    internal var delegate: CustomViewMarkerDelegate?
     private let bag = DisposeBag()
-    var storyID = String()
+    private var storyID: String?
     
-    // UI Elements
+    // MARK: - UI Elements
     let imgView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -80,17 +80,18 @@ class CustomViewMarker: UIView {
         navigateToDetail()
     }
     
-    
-    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setupView()
     }
     
-    func navigateToDetail() {
+    // MARK: - Functions
+    private func navigateToDetail() {
         navigationButton.rx.tap.subscribe(onNext: { [weak self] _ in
             guard let self = self else { return }
-            self.delegate?.navigateTo(id: self.storyID)
+            if let storyID = self.storyID {
+                self.delegate?.navigateTo(id: storyID)
+            }
         }).disposed(by:bag)
     }
     
@@ -139,26 +140,26 @@ class CustomViewMarker: UIView {
         ])
     }
     
-    func configure(name: String?, location: String?, image: String?, caption: String?, createdAt: String?) {
-        if let name = name, let location = location, let image = image, let caption = caption, let createdAt = createdAt {
-            imgView.image = UIImage(named: "Blank")
-            username.text = "Post By \(name)"
-            locationLabel.text = location
-            let url = URL(string: image)
-            let processor = DownsamplingImageProcessor(size: CGSize(width: 200, height: 120))
-            uploadedImage.kf.setImage(with: url, options: [
-                .processor(processor),
-                .loadDiskFileSynchronously,
-                .cacheOriginalImage,
-                .transition(.fade(0.25)),
-            ])
-            captionLabel.text = caption
-            dateFormatter.dateFormat = dateFormat
-            dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
-            if let date = dateFormatter.date(from: createdAt) {
-                let timeAgo = date.convertDateToTimeAgo()
-                timeCreated.text = timeAgo
-            }
+    internal func configure(id: String, name: String, location: String, image: String, caption: String, createdAt: String) {
+        storyID = id
+        imgView.image = UIImage(named: "Blank")
+        username.text = "Post By \(name)"
+        locationLabel.text = location
+        let url = URL(string: image)
+        let size = uploadedImage.intrinsicContentSize
+        let processor = DownsamplingImageProcessor(size: size)
+        uploadedImage.kf.setImage(with: url, options: [
+            .processor(processor),
+            .loadDiskFileSynchronously,
+            .cacheOriginalImage,
+            .transition(.fade(0.25)),
+        ])
+        captionLabel.text = caption
+        dateFormatter.dateFormat = dateFormat
+        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+        if let date = dateFormatter.date(from: createdAt) {
+            let timeAgo = date.convertDateToTimeAgo()
+            timeCreated.text = timeAgo
         }
     }
 }

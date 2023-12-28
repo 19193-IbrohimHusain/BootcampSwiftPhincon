@@ -9,6 +9,7 @@ import UIKit
 import Lottie
 
 class CustomErrorView: UIView {
+    // MARK: - UI Elements
     private let animationView: LottieAnimationView = {
         let animationView = LottieAnimationView()
         animationView.translatesAutoresizingMaskIntoConstraints = false
@@ -35,7 +36,6 @@ class CustomErrorView: UIView {
     }()
 
     // MARK: - Initializer
-
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureView()
@@ -49,7 +49,6 @@ class CustomErrorView: UIView {
     }
 
     // MARK: - Functions
-
     private func configureView() {
         backgroundColor = .systemBackground
         translatesAutoresizingMaskIntoConstraints = false

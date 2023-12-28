@@ -9,6 +9,7 @@ import Foundation
 import Alamofire
 
 extension APIManager {
+    // MARK: - Func to create API Request for Store Feature
     public func fetchProductRequest<T: Codable>(endpoint: EndpointProduct, expecting type: T.Type, completion: @escaping (Result<T, Error>) -> Void) {
         AF.request(endpoint.urlString,
                    method: endpoint.method,

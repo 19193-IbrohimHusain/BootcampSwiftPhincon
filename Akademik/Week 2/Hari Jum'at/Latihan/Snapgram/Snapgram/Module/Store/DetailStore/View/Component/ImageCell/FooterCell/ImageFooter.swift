@@ -9,7 +9,6 @@ import UIKit
 import RxSwift
 
 class ImageFooter: UICollectionReusableView {
-
     @IBOutlet weak var pageControl: CustomPageControl!
     
     private var bag = DisposeBag()

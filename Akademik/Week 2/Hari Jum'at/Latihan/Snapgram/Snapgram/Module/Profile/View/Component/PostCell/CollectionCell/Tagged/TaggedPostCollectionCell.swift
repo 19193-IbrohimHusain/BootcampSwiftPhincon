@@ -13,19 +13,21 @@ protocol TaggedPostCollectionCellDelegate {
 }
 
 class TaggedPostCollectionCell: UICollectionViewCell {
-    
+    // MARK: - Variable
     @IBOutlet weak var tagCollection: UICollectionView!
     
     @IBOutlet weak var heightCollection: NSLayoutConstraint!
     
-    var delegate: TaggedPostCollectionCellDelegate?
-    var tagged: [ListStory]?
+    internal var delegate: TaggedPostCollectionCellDelegate?
+    private var tagged: [ListStory]?
     
+    // MARK: - Lifecycle
     override func awakeFromNib() {
         super.awakeFromNib()
         setupCollection()
     }
     
+    // MARK: - Functions
     private func setupCollection() {
         tagCollection.delegate = self
         tagCollection.dataSource = self
@@ -38,6 +40,7 @@ class TaggedPostCollectionCell: UICollectionViewCell {
     }
 }
 
+// MARK: - Extension for UICollectionView
 extension TaggedPostCollectionCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return tagged?.count ?? 0

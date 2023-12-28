@@ -1,7 +1,14 @@
 import Foundation
 import UIKit
 
+// MARK: - Extension for FeedTableCellDelegate
 extension StoryViewController: FeedTableCellDelegate {
+    func navigateToDetailUser(user: ListStory) {
+        let vc = DetailUserViewController()
+        vc.detailUser = user
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     func getLocationName(lat: Double?, lon: Double?, completion: @escaping ((String) -> Void)) {
         if let lat = lat, let lon = lon {
             getLocationNameFromCoordinates(lat: lat, lon: lon) { name in
@@ -35,6 +42,7 @@ extension StoryViewController: FeedTableCellDelegate {
     }
 }
 
+// MARK: - Extension for StoryTableCellDelegate
 extension StoryViewController: StoryTableCellDelegate {
     func navigateToDetail(id: String) {
         let vc = DetailStoryViewController()

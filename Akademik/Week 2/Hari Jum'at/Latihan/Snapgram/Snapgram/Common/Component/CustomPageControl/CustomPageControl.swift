@@ -100,6 +100,7 @@ class CustomPageControl: UIPageControl {
             startX += size.width + spacing
         }
     }
+    
     func imageView(for view: UIView, index page: Int) -> UIImageView?   {
         let tag = magicTag + page
         if let imageV = view.viewWithTag(tag) as? UIImageView {

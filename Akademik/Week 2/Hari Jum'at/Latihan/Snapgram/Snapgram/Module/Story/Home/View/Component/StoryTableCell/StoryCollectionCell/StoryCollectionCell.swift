@@ -2,18 +2,25 @@ import UIKit
 import Kingfisher
 
 class StoryCollectionCell: UICollectionViewCell {
-
+    // MARK: - Variables
     @IBOutlet private weak var storyImage: UIImageView!
     @IBOutlet private weak var username: UILabel!
     
+    // MARK: - Lifecycles
     override func awakeFromNib() {
         super.awakeFromNib()
-        storyImage.layer.cornerRadius = 25
+        setup()
     }
     
-   internal func configureCollection(with storyEntity: ListStory) {
+    // MARK: - Functions
+    private func setup() {
+        storyImage.layer.cornerRadius = storyImage.bounds.width / 2
+    }
+    
+    internal func configureCollection(with storyEntity: ListStory) {
         let url = URL(string: storyEntity.photoURL)
-        let processor = DownsamplingImageProcessor(size: CGSize(width: 320, height: 320))
+        let size = storyImage.intrinsicContentSize
+        let processor = DownsamplingImageProcessor(size: size)
         storyImage.kf.setImage(with: url, options: [
             .processor(processor),
             .loadDiskFileSynchronously,

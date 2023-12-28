@@ -13,7 +13,7 @@ protocol DetailUserPostCollectionCellDelegate {
     func didEndDecelerating(scrollView: UIScrollView)
 }
 class DetailUserPostCollectionCell: UICollectionViewCell {
-    
+    // MARK: - Variables
     @IBOutlet weak var detailPostCollection: UICollectionView!
     
     internal var delegate: DetailUserPostCollectionCellDelegate?
@@ -22,6 +22,7 @@ class DetailUserPostCollectionCell: UICollectionViewCell {
     private var dataSource: DetailUserPostDataSource!
     private var layout: UICollectionViewCompositionalLayout!
     
+    // MARK: - Lifecycles
     override func awakeFromNib() {
         super.awakeFromNib()
         setup()
@@ -32,10 +33,10 @@ class DetailUserPostCollectionCell: UICollectionViewCell {
         clearSnapshot()
     }
     
+    // MARK: - Functions
     private func setup() {
         setupCollection()
         setupDataSource()
-        setupCompositionalLayout()
     }
     
     private func setupCollection() {
@@ -76,7 +77,7 @@ class DetailUserPostCollectionCell: UICollectionViewCell {
         let layout = GridLayout.makeLayoutSection(
             config: .init(
                 columnCount: 3,
-                interItemSpacing: 1,
+                interItemSpacing: 1.0,
                 sectionHorizontalSpacing: 0.0,
                 itemCountProvider:  {
                     return items.count
@@ -103,10 +104,13 @@ class DetailUserPostCollectionCell: UICollectionViewCell {
     
     internal func bindData(userPost: [ListStory], tagPost: [ListStory]) {
         loadSnapshot(userPost: userPost, tagPost: tagPost)
+        setupCompositionalLayout()
     }
     
     private func loadSnapshot(userPost: [ListStory], tagPost: [ListStory]) {
-        snapshot.appendSections([.post, .tag])
+        if snapshot.itemIdentifiers.isEmpty {
+            snapshot.appendSections([.post, .tag])
+        }
         
         let section1 = userPost.map {
             var modifiedItem = $0
@@ -121,17 +125,17 @@ class DetailUserPostCollectionCell: UICollectionViewCell {
             return modifiedItem
         }
         snapshot.appendItems(section2, toSection: .tag)
-        
+        detailPostCollection.hideSkeleton(reloadDataAfter: false)
         dataSource.apply(snapshot, animatingDifferences: false)
     }
     
     private func clearSnapshot() {
-        snapshot.deleteSections([.post, .tag])
         snapshot.deleteAllItems()
         dataSource.apply(snapshot)
     }
 }
 
+// MARK: - Extension for UICollectionViewDelegate
 extension DetailUserPostCollectionCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let section = SectionDetailUserPost(rawValue: indexPath.section) else { return }

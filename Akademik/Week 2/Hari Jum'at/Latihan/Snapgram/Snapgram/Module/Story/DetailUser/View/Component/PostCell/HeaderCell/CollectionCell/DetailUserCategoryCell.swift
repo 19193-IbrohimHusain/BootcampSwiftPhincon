@@ -7,16 +7,9 @@
 
 import UIKit
 
-protocol DetailUserCategoryCellDelegate {
-    func onCategorySelected(index: Int)
-}
-
 class DetailUserCategoryCell: UICollectionViewCell {
-
+    // MARK: - Variables
     @IBOutlet weak var categoryBtn: UIButton!
-    
-    var index: Int = Int()
-    var delegate: DetailUserCategoryCellDelegate?
     
     override var isSelected: Bool {
         didSet {
@@ -24,16 +17,18 @@ class DetailUserCategoryCell: UICollectionViewCell {
         }
     }
     
+    // MARK: - Lifecycles
     override func awakeFromNib() {
         super.awakeFromNib()
+        setup()
+    }
+    
+    // MARK: - Functions
+    private func setup() {
         categoryBtn.tintColor = .separator
     }
     
     internal func configure(with image: DetailUserCategoryEntity) {
         categoryBtn.setImage(UIImage(systemName: image.image), for: .normal)
-    }
-
-    @IBAction func onCategoryBtnTap(_ sender: UIButton) {
-        self.delegate?.onCategorySelected(index: index)
     }
 }

@@ -13,11 +13,10 @@ protocol FYPCollectionViewCellDelegate {
 }
 
 class FYPCollectionViewCell: UICollectionViewCell {
-    
+    // MARK: - Variables
     @IBOutlet weak var fypCollection: UICollectionView!
     
     internal var delegate: FYPCollectionViewCellDelegate?
-    private let refreshControl = UIRefreshControl()
     private let sections = SectionFYPCollection.allCases
     private var loadedIndex: Int = 5
     private var allShoes: [ProductModel]?
@@ -28,12 +27,11 @@ class FYPCollectionViewCell: UICollectionViewCell {
     private lazy var loadingIndicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView(style: .medium)
         indicator.translatesAutoresizingMaskIntoConstraints = false
-        
         indicator.hidesWhenStopped = true
-        
         return indicator
     }()
     
+    // MARK: - Lifecycles
     override func awakeFromNib() {
         super.awakeFromNib()
         setup()
@@ -44,6 +42,7 @@ class FYPCollectionViewCell: UICollectionViewCell {
         clearSnapshot()
     }
     
+    // MARK: - SetupUI
     private func setup() {
         setupLoadingIndicator()
         setupCollectionView()
@@ -64,7 +63,6 @@ class FYPCollectionViewCell: UICollectionViewCell {
             layoutGuide.centerXAnchor.constraint(equalTo: loadingIndicator.centerXAnchor),
             layoutGuide.bottomAnchor.constraint(equalTo: loadingIndicator.bottomAnchor, constant: 8)
         ])
-        loadingIndicator.hidesWhenStopped = true
     }
     
     private func setupDataSource() {
@@ -79,10 +77,7 @@ class FYPCollectionViewCell: UICollectionViewCell {
         let config = UICollectionViewCompositionalLayoutConfiguration()
         config.scrollDirection = .horizontal
         layout = .init(sectionProvider: { [weak self] (sectionIndex, env) in
-            guard let self = self, let section = SectionFYPCollection(rawValue: sectionIndex) else {
-                fatalError("Invalid section index")
-            }
-            
+            guard let self = self, let section = SectionFYPCollection(rawValue: sectionIndex) else { fatalError("Invalid section index") }
             switch section {
             case .allShoes, .running, .training, .basketball, .hiking, .sport:
                 return self.createFYPLayout(for: section, env: env)
@@ -96,94 +91,62 @@ class FYPCollectionViewCell: UICollectionViewCell {
         let items = self.snapshot.itemIdentifiers(inSection: section)
         return NSCollectionLayoutSection.createFYPLayout(env: env, items: items, section: section.rawValue)
     }
+}
+
+// MARK: - Extension for Data Handling
+extension FYPCollectionViewCell {
+    internal func bindData(data: [ProductModel]) {
+        allShoes = data
+        loadSnapshot()
+    }
     
     private func loadSnapshot() {
+        guard let allShoes = allShoes else { return }
         if snapshot.sectionIdentifiers.isEmpty {
             snapshot.appendSections(sections)
         }
-        
-        if let allShoes = allShoes {
-            let dataAll = allShoes.prefix(loadedIndex).map {
-                var modifiedItem = $0
-                modifiedItem.fypSection = .allShoes
-                return modifiedItem
-            }
-            snapshot.appendItems(dataAll, toSection: .allShoes)
-            let dataRunning = allShoes.filter {
-                $0.category.name == "Running"
-            }
-            
-            let runningShoes = dataRunning.map {
-                var modifiedItem = $0
-                modifiedItem.fypSection = .running
-                return modifiedItem
-            }
-            snapshot.appendItems(runningShoes, toSection: .running)
-            
-            let dataTraining = allShoes.filter {
-                $0.category.name == "Training"
-            }
-            
-            let trainingShoes = dataTraining.map {
-                var modifiedItem = $0
-                modifiedItem.fypSection = .training
-                return modifiedItem
-            }
-            snapshot.appendItems(trainingShoes, toSection: .training)
-            
-            let dataBasket = allShoes.filter {
-                $0.category.name == "Basketball"
-            }
-            
-            let basketShoes = dataBasket.map {
-                var modifiedItem = $0
-                modifiedItem.fypSection = .basketball
-                return modifiedItem
-            }
-            snapshot.appendItems(basketShoes, toSection: .basketball)
-            
-            let dataHiking = allShoes.filter {
-                $0.category.name == "Hiking"
-            }
-            
-            let hikingShoes = dataHiking.map {
-                var modifiedItem = $0
-                modifiedItem.fypSection = .hiking
-                return modifiedItem
-            }
-            snapshot.appendItems(hikingShoes, toSection: .hiking)
-            
-            if var sportShoes = allShoes.last {
-                sportShoes.fypSection = .sport
-                snapshot.appendItems([sportShoes], toSection: .sport)
-            }
-        }
-        
+        appendDataToSnapshot(allShoes: allShoes)
         dataSource.apply(snapshot, animatingDifferences: true)
     }
     
-    internal func bindData(data: [ProductModel]) {
-        self.allShoes = data
-        self.loadSnapshot()
+    private func appendDataToSnapshot(allShoes: [ProductModel]) {
+        let dataAll = allShoes.prefix(loadedIndex).map { var modifiedItem = $0; modifiedItem.fypSection = .allShoes; return modifiedItem }
+        snapshot.appendItems(dataAll, toSection: .allShoes)
+
+        let categories: [(String, SectionFYPCollection)] = [
+            ("Running", .running),
+            ("Training", .training),
+            ("Basketball", .basketball),
+            ("Hiking", .hiking)
+        ]
+        
+        for (categoryName, section) in categories {
+            let filteredShoes = mapShoes(allShoes, category: categoryName, section: section)
+            snapshot.appendItems(filteredShoes, toSection: section)
+        }
+
+        if var sportShoes = allShoes.last {
+            sportShoes.fypSection = .sport
+            snapshot.appendItems([sportShoes], toSection: .sport)
+        }
+    }
+    
+    private func mapShoes(_ shoes: [ProductModel], category: String, section: SectionFYPCollection) -> [ProductModel] {
+        return shoes.filter { $0.category.name == category }.map {
+            var modifiedItem = $0
+            modifiedItem.fypSection = section
+            return modifiedItem
+        }
     }
     
     private func loadMoreData() {
-        // Fetch more items for the For You Product section
-        guard let allShoes = self.allShoes, loadedIndex < allShoes.count - 1 else {
-            return // No more items to load
-        }
-                
-        let moreItems = allShoes[loadedIndex..<min(loadedIndex + 5, allShoes.count - 1)]
-        let modifiedItems = moreItems.map {
-            var modifiedItem = $0
-            modifiedItem.cellTypes = .forYouProduct
-            return modifiedItem
-        }
+        guard let allShoes = allShoes, loadedIndex < allShoes.count - 1 else { return }
         
-        loadedIndex += 5 // Update the loaded index
+        let moreItems = allShoes[loadedIndex..<min(loadedIndex + 5, allShoes.count - 1)]
+        let modifiedItem = moreItems.map { var item = $0; item.fypSection = .allShoes; return item }
+        loadedIndex += 5
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            // Update the snapshot with the newly loaded items
-            self.snapshot.appendItems(modifiedItems, toSection: .allShoes)
+            self.snapshot.appendItems(modifiedItem, toSection: .allShoes)
             self.dataSource.apply(self.snapshot, animatingDifferences: true)
             self.loadingIndicator.stopAnimating()
         }
@@ -198,6 +161,7 @@ class FYPCollectionViewCell: UICollectionViewCell {
     }
 }
 
+// MARK: - Extension for UICollectionViewDelegate
 extension FYPCollectionViewCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let index = indexPath.item

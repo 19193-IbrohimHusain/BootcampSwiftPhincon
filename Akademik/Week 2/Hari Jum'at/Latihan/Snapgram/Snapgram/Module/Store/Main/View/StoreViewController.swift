@@ -9,7 +9,7 @@ import UIKit
 import SkeletonView
 
 class StoreViewController: BaseViewController {
-    
+    // MARK: - Variables
     @IBOutlet weak var storeCollection: UICollectionView!
     
     internal let collections = SectionStoreCollection.allCases
@@ -22,10 +22,10 @@ class StoreViewController: BaseViewController {
     internal var isCarouselSectionVisible: Bool?
     internal var headerFYP: UICollectionView!
     internal var snapshot = NSDiffableDataSourceSnapshot<SectionStoreCollection, ProductModel>()
-    private var layout: UICollectionViewCompositionalLayout!
-    
     internal var dataSource: StoreViewDataSource!
-    
+    private var layout: UICollectionViewCompositionalLayout!
+
+    // MARK: - Lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
@@ -41,6 +41,7 @@ class StoreViewController: BaseViewController {
         timer?.invalidate()
     }
     
+    // MARK: - Functions
     private func setup() {
         setupNavigationBar(title: "SnapStore", image1: "magnifyingglass", image2: "cart", action1: #selector(navigateToSearch), action2: #selector(navigateToCart))
         setupErrorView()
@@ -51,7 +52,7 @@ class StoreViewController: BaseViewController {
     }
     
     private func setupCollectionView() {
-        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        refreshControl.rx.controlEvent(.valueChanged).subscribe(onNext: { self.refreshData() }).disposed(by: bag)
         storeCollection.refreshControl = refreshControl
         storeCollection.delegate = self
         collections.forEach {
@@ -98,6 +99,13 @@ class StoreViewController: BaseViewController {
         self.errorView.removeFromSuperview()
     }
     
+    internal func refreshData() {
+        clearSnapshot()
+        vm.fetchProduct()
+        vm.fetchCategories()
+    }
+    
+    // MARK: - Objc functions
     @objc private func navigateToSearch() {
         let vc = SearchProductViewController()
         vc.hidesBottomBarWhenPushed = true
@@ -109,14 +117,9 @@ class StoreViewController: BaseViewController {
         vc.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
     }
-    
-    @objc internal func refreshData() {
-        clearSnapshot()
-        vm.fetchProduct()
-        vm.fetchCategories()
-    }
 }
 
+// MARK: - Extension for UICollectionViewDelegate
 extension StoreViewController: UICollectionViewDelegate {
     internal func navigateToDetail(index: Int) {
         if let productID = product?[index].id {

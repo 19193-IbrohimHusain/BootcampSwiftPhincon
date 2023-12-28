@@ -5,7 +5,7 @@ protocol CommentTableCellDelegate {
     func reply()
 }
 class CommentTableCell: UITableViewCell {
-    
+    // MARK: - Variables
     @IBOutlet weak var profileImg: UIImageView!
     @IBOutlet weak var username: UILabel!
     @IBOutlet weak var comment: UILabel!
@@ -14,15 +14,16 @@ class CommentTableCell: UITableViewCell {
     @IBOutlet weak var likeBtn: UIButton!
     @IBOutlet weak var likeCount: UILabel!
     @IBOutlet weak var likeStackView: UIStackView!
-    
     @IBOutlet weak var replyTableView: UITableView!
     @IBOutlet weak var heightTableView: NSLayoutConstraint!
     
+    // MARK: - Lifecycles
     override func awakeFromNib() {
         super.awakeFromNib()
         setup()
     }
     
+    // MARK: - Functions
     func setup() {
         profileImg.layer.cornerRadius = 12
         replyTableView.delegate = self
@@ -38,6 +39,7 @@ class CommentTableCell: UITableViewCell {
     }
 }
 
+// MARK: - Extension for UITableView
 extension CommentTableCell: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         4

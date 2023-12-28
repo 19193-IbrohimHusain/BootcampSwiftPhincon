@@ -8,7 +8,7 @@ protocol PostTableCellDelegate {
 }
 
 class PostTableCell: UITableViewCell {
-
+    // MARK: - Variables
     @IBOutlet weak var postCollection: UICollectionView!
     
     @IBOutlet weak var heightCollection: NSLayoutConstraint!
@@ -19,13 +19,15 @@ class PostTableCell: UITableViewCell {
     private var collections = SectionPostCollection.allCases
     private var tagged: [ListStory]?
     private var post: [ListStory]?
-        
+    
+    // MARK: - Lifecycles
     override func awakeFromNib() {
         super.awakeFromNib()
         setupCollection()
     }
     
-    func setupCollection() {
+    // MARK: - Functions
+    private func setupCollection() {
         postCollection.delegate = self
         postCollection.dataSource = self
         heightCollection.constant = 450
@@ -34,13 +36,13 @@ class PostTableCell: UITableViewCell {
         }
     }
     
-    func configure(post: [ListStory], tag: [ListStory]) {
+    internal func configure(post: [ListStory], tag: [ListStory]) {
         self.post = post
         self.tagged = tag
         postCollection.reloadData()
     }
     
-    internal func updateLayout() {
+    private func updateLayout() {
         let isIndexPathVisible = postCollection.indexPathsForVisibleItems.contains { indexPath in
             return indexPath.section == 1
         }
@@ -57,6 +59,7 @@ class PostTableCell: UITableViewCell {
     }
 }
 
+// MARK: - Extension for UICollectionView
 extension PostTableCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -122,6 +125,7 @@ extension PostTableCell: UICollectionViewDelegate, UICollectionViewDataSource, U
     }
 }
 
+// MARK: - Extension for SkeletonCollectionViewDataSource
 extension PostTableCell: SkeletonCollectionViewDataSource {
     func collectionSkeletonView(_ skeletonView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 1
@@ -132,6 +136,7 @@ extension PostTableCell: SkeletonCollectionViewDataSource {
     }
 }
 
+// MARK: - Extension for PostCollectionCellDelegate and TaggedPostCollectionCellDelegate
 extension PostTableCell: PostCollectionCellDelegate, TaggedPostCollectionCellDelegate {
     func navigateToDetail(id: String) {
         self.delegate?.navigateToDetail(id: id)

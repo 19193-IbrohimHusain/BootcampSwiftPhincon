@@ -1,6 +1,7 @@
 import Foundation
 import Alamofire
 
+// MARK: API Endpoint for Store Feature
 enum EndpointProduct {
     case categories
     case products(param: ProductParam)

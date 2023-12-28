@@ -7,6 +7,7 @@
 
 import Foundation
 
+// MARK: - DetailProductResponse
 struct DetailProductResponse: Codable {
     let meta: Meta
     let data: ProductModel

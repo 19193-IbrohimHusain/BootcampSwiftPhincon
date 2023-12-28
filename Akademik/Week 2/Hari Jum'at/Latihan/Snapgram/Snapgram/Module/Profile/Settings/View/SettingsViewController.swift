@@ -8,14 +8,16 @@
 import UIKit
 
 class SettingsViewController: UIViewController {
-
+    // MARK: - Variables
     @IBOutlet weak var settingTable: UITableView!
     
+    // MARK: - Lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
     }
     
+    // MARK: - Functions
     private func setup() {
         settingTable.delegate = self
         settingTable.dataSource = self
@@ -23,6 +25,7 @@ class SettingsViewController: UIViewController {
     }
 }
 
+// MARK: - Extension for UITableView
 extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return listSetting.count

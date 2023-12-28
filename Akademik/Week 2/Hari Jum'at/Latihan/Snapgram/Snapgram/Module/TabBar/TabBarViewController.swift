@@ -1,16 +1,17 @@
 import UIKit
 
 class TabBarViewController:  UITabBarController, UITabBarControllerDelegate {
+    // MARK: - Variables
+    private let home = UINavigationController(rootViewController: StoryViewController())
+    private let map = UINavigationController(rootViewController: MapViewController())
+    private var addStory: AddStoryViewController!
+    private let store =  UINavigationController(rootViewController: StoreViewController())
+    private let profile =  UINavigationController(rootViewController: ProfileViewController())
     
-    let home = UINavigationController(rootViewController: StoryViewController())
-    let map = UINavigationController(rootViewController: MapViewController())
-    var addStory: AddStoryViewController!
-    let store =  UINavigationController(rootViewController: StoreViewController())
-    let profile =  UINavigationController(rootViewController: ProfileViewController())
-    
+    // MARK: - Lifecycles
     override func viewDidLoad(){
         super.viewDidLoad()
-        self.delegate = self
+        
         configureTabBar()
         configureTabBarItem()
     }
@@ -20,17 +21,19 @@ class TabBarViewController:  UITabBarController, UITabBarControllerDelegate {
         hideNavigationBar()
     }
     
-    func hideNavigationBar() {
+    // MARK: - Functions
+    private func hideNavigationBar() {
         self.navigationController?.isToolbarHidden = true
         self.navigationController?.isNavigationBarHidden = true
     }
 
-    func configureTabBar() {
+    private func configureTabBar() {
+        self.delegate = self
         addStory = AddStoryViewController()
         viewControllers = [home, map, addStory, store, profile]
     }
     
-    func configureTabBarItem() {
+    private func configureTabBarItem() {
         home.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "house"), selectedImage: UIImage(systemName: "house.fill"))
         home.tabBarItem.imageInsets = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
         map.tabBarItem = UITabBarItem(title: nil, image: UIImage(systemName: "location"), selectedImage: UIImage(systemName: "location.fill"))
@@ -42,7 +45,8 @@ class TabBarViewController:  UITabBarController, UITabBarControllerDelegate {
         self.tabBar.tintColor = UIColor.label
         self.tabBar.backgroundColor = UIColor.systemBackground
     }
-    //MARK: UITabbar Delegate
+    
+    //MARK: - UITabBarControllerDelegate
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         if viewController.isKind(of: AddStoryViewController.self) {
             let vc =  AddStoryViewController()

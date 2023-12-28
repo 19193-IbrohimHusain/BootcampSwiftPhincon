@@ -7,6 +7,7 @@
 
 import Foundation
 
+// MARK: - Extension to Bind Data from ViewModel
 extension DetailUserViewController {
     internal func bindData() {
         bindUserPostData()

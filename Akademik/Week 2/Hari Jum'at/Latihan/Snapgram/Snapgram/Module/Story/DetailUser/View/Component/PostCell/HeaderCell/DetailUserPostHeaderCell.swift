@@ -12,13 +12,14 @@ protocol DetailUserPostHeaderCellDelegate {
 }
 
 class DetailUserPostHeaderCell: UICollectionReusableView {
-
+    // MARK: - Variables
     @IBOutlet weak var headerCollection: UICollectionView!
     
     var delegate: DetailUserPostHeaderCellDelegate?
     var horizontalBarLeftAnchorConstraint: NSLayoutConstraint?
     let horizontalBarView = UIView()
     
+    // MARK: - Lifecycles
     override func awakeFromNib() {
         super.awakeFromNib()
         setupCollection()
@@ -30,7 +31,9 @@ class DetailUserPostHeaderCell: UICollectionReusableView {
         setupCollection()
     }
     
+    // MARK: - Functions
     func setupCollection() {
+        headerCollection.delegate = self
         headerCollection.dataSource = self
         headerCollection.registerCellWithNib(DetailUserCategoryCell.self)
         setupHorizontalBar()
@@ -62,7 +65,8 @@ class DetailUserPostHeaderCell: UICollectionReusableView {
     }
 }
 
-extension DetailUserPostHeaderCell: UICollectionViewDataSource {
+// MARK: - Extension for UICollectionView
+extension DetailUserPostHeaderCell: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return detailUserCategoryItem.count
     }
@@ -70,19 +74,13 @@ extension DetailUserPostHeaderCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: DetailUserCategoryCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
         let item = detailUserCategoryItem[indexPath.item]
-        cell.delegate = self
-        cell.index = indexPath.item
         cell.configure(with: item)
         return cell
     }
-}
-
-extension DetailUserPostHeaderCell: DetailUserCategoryCellDelegate {
-    func onCategorySelected(index: Int) {
-        let categoryIndex = IndexPath(item: index, section: 0)
-        self.headerCollection.selectItem(at: categoryIndex, animated: false, scrollPosition: .centeredHorizontally)
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let index = indexPath.item
+        self.headerCollection.selectItem(at: indexPath, animated: false, scrollPosition: .centeredHorizontally)
         self.delegate?.onCategorySelected(index: index)
     }
 }
-
-

@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+// MARK: - Extension to Bind Data from ViewModel
 extension StoryViewController {
     internal func bindData() {
         vm.storyData.asObservable().subscribe(onNext: { [weak self] data in

@@ -41,9 +41,6 @@
                         <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="NO"/>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="isUserInteractionDisabledWhenSkeletonIsActive" value="YES"/>
                     </userDefinedRuntimeAttributes>
-                    <connections>
-                        <action selector="navigate" destination="U6b-Vx-4bR" eventType="touchUpInside" id="b3w-Id-kGS"/>
-                    </connections>
                 </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="VXr-Tz-HHm"/>

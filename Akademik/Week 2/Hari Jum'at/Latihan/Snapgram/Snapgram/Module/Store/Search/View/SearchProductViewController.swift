@@ -8,7 +8,7 @@
 import UIKit
 
 class SearchProductViewController: BaseViewController {
-    
+    // MARK: - Variables
     @IBOutlet weak var searchCollection: UICollectionView!
     
     private var vm = SearchProductViewModel()
@@ -22,6 +22,7 @@ class SearchProductViewController: BaseViewController {
         }
     }
 
+    // MARK: - Lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
@@ -38,6 +39,7 @@ class SearchProductViewController: BaseViewController {
         clearSnapshot()
     }
     
+    // MARK: - Functions
     private func setup() {
         setupNavigationBar()
         setupErrorView()
@@ -55,7 +57,7 @@ class SearchProductViewController: BaseViewController {
     }
     
     private func setupCollection() {
-        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        refreshControl.rx.controlEvent(.valueChanged).subscribe(onNext: { self.refreshData() }).disposed(by: bag)
         searchCollection.refreshControl = refreshControl
         searchCollection.delegate = self
         searchCollection.registerCellWithNib(FYPCollectionCell.self)
@@ -135,12 +137,13 @@ class SearchProductViewController: BaseViewController {
         self.errorView.removeFromSuperview()
     }
     
-    @objc private func refreshData() {
+    private func refreshData() {
         clearSnapshot()
         vm.setupSearch()
     }
 }
 
+// MARK: - Extension for UICollectionViewDelegate
 extension SearchProductViewController: UICollectionViewDelegate {
     private func navigateToDetail(index: Int) {
         if let productID = product?[index].id {

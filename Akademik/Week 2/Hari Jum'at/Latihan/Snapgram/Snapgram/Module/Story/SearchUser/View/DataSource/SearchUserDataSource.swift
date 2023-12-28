@@ -8,6 +8,7 @@
 import Foundation
 import SkeletonView
 
+// MARK: - UICollectionViewDiffableDataSource class for implementing SkeletonView in SearchUserViewController
 class SearchUserDataSource: UITableViewDiffableDataSource<SectionSearchUser, ListStory>, SkeletonTableViewDataSource {
     
     func collectionSkeletonView(_ skeletonView: UITableView, numberOfRowsInSection section: Int) -> Int {

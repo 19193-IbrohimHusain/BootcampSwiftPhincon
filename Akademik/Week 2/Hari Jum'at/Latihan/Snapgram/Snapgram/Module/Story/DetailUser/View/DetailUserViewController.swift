@@ -8,7 +8,7 @@
 import UIKit
 
 class DetailUserViewController: BaseViewController {
-
+    // MARK: - Variables
     @IBOutlet weak var detailUserCollection: UICollectionView!
     
     internal var vm = DetailUserViewModel()
@@ -20,6 +20,7 @@ class DetailUserViewController: BaseViewController {
     internal var tagPost: [ListStory]?
     internal var userPost: [ListStory]?
     
+    // MARK: - Lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
@@ -30,6 +31,7 @@ class DetailUserViewController: BaseViewController {
         refreshData()
     }
     
+    // MARK: - Functions
     private func setup() {
         setupNavigationBar()
         setupErrorView()
@@ -48,7 +50,7 @@ class DetailUserViewController: BaseViewController {
     }
     
     private func setupCollection() {
-        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        refreshControl.rx.controlEvent(.valueChanged).subscribe(onNext: { self.refreshData() }).disposed(by: bag)
         detailUserCollection.refreshControl = refreshControl
         collections.forEach {
             detailUserCollection.registerCellWithNib($0.cellTypes)
@@ -95,7 +97,7 @@ class DetailUserViewController: BaseViewController {
         self.errorView.removeFromSuperview()
     }
     
-    @objc private func refreshData() {
+    private func refreshData() {
         clearSnapshot()
         if let userName = detailUser?.name {
             vm.userName = userName

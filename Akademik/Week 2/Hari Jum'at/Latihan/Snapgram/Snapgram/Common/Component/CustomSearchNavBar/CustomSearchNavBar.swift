@@ -2,7 +2,9 @@ import UIKit
 import RxSwift
 
 class CustomSearchNavBar: UIView {
+    private let bag = DisposeBag()
     
+    // MARK: - UI Elements
     internal let searchField: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
@@ -25,8 +27,6 @@ class CustomSearchNavBar: UIView {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
-    
-    private let bag = DisposeBag()
     
     // MARK: - Initializer
     override init(frame: CGRect) {
@@ -68,14 +68,6 @@ class CustomSearchNavBar: UIView {
         searchField.addTarget(self, action: #selector(didEndEditing), for: .editingDidEndOnExit)
     }
     
-    @objc private func inputTapTextArea() {
-        searchField.layer.borderColor = UIColor.systemBlue.cgColor
-    }
-    
-    @objc private func didEndEditing() {
-        searchField.layer.borderColor = UIColor.systemGray4.cgColor
-    }
-    
     internal func configure(placeholder: String) {
         searchField.text = placeholder
     }
@@ -86,5 +78,14 @@ class CustomSearchNavBar: UIView {
             .distinctUntilChanged()
             .bind(to: querySubject)
             .disposed(by: bag)
+    }
+    
+    // MARK: - Objc func
+    @objc private func inputTapTextArea() {
+        searchField.layer.borderColor = UIColor.systemBlue.cgColor
+    }
+    
+    @objc private func didEndEditing() {
+        searchField.layer.borderColor = UIColor.systemGray4.cgColor
     }
 }

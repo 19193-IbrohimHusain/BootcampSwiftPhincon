@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+// MARK: Extension for UICollectionViewDiffableDataSource
 extension StoreViewController {
     internal func dequeueCell(
             _ collectionView: UICollectionView,

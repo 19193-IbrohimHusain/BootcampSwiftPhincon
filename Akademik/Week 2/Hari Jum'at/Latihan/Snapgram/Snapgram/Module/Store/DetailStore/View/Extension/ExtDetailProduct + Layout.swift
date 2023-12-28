@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import RxSwift
 
+// MARK: Extension for UICollectionViewCompositionalLayout
 extension DetailProductViewController {
     internal func setupCompositionalLayout() {
         layout = .init(sectionProvider: { [weak self] (sectionIndex, env) in

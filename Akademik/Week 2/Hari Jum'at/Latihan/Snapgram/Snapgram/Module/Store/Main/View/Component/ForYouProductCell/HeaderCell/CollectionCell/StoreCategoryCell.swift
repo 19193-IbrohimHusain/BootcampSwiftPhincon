@@ -7,16 +7,9 @@
 
 import UIKit
 
-protocol StoreCategoryCellDelegate {
-    func onSelected(index: Int)
-}
-
 class StoreCategoryCell: UICollectionViewCell {
-
+    // MARK: - Variables
     @IBOutlet private weak var categoryBtn: UIButton!
-    
-    internal var index = Int()
-    internal var delegate: StoreCategoryCellDelegate?
     
     override var isSelected: Bool {
         didSet {
@@ -24,16 +17,14 @@ class StoreCategoryCell: UICollectionViewCell {
         }
     }
     
+    // MARK: - Lifecycles
     override func awakeFromNib() {
         super.awakeFromNib()
         categoryBtn.tintColor = .separator
     }
 
+    // MARK: - Functions
     internal func configure(data category: CategoryModel) {
         categoryBtn.setTitle(category.name, for: .normal)
-    }
-    
-    @IBAction func onCategoryBtnTap() {
-        self.delegate?.onSelected(index: index)
     }
 }

@@ -2,14 +2,15 @@ import UIKit
 import Lottie
 
 class SplashScreenViewController: BaseViewController {
-    
+    // MARK: - Variables
     @IBOutlet weak var splashScreen: LottieAnimationView!
     
+    // MARK: - Lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
     }
-    
+    // MARK: - Functions
     private func setup() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             if self.getTokenFromKeychain() != nil {

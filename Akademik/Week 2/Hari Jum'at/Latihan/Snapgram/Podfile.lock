@@ -12,6 +12,9 @@ PODS:
   - RxCocoa (6.6.0):
     - RxRelay (= 6.6.0)
     - RxSwift (= 6.6.0)
+  - RxGesture (4.0.4):
+    - RxCocoa (~> 6.0)
+    - RxSwift (~> 6.0)
   - RxRelay (6.6.0):
     - RxSwift (= 6.6.0)
   - RxSwift (6.6.0)
@@ -26,6 +29,7 @@ DEPENDENCIES:
   - lottie-ios
   - netfox
   - RxCocoa
+  - RxGesture
   - RxRelay
   - RxSwift
   - SkeletonView
@@ -40,6 +44,7 @@ SPEC REPOS:
     - lottie-ios
     - netfox
     - RxCocoa
+    - RxGesture
     - RxRelay
     - RxSwift
     - SkeletonView
@@ -53,11 +58,12 @@ SPEC CHECKSUMS:
   lottie-ios: 25e7b2675dad5c3ddad369ac9baab03560c5bfdd
   netfox: 9d5cc727fe7576c4c7688a2504618a156b7d44b7
   RxCocoa: 44a80de90e25b739b5aeaae3c8c371a32e3343cc
+  RxGesture: f3efb47ed2d26a8082f7b660d4a59970e275a7f8
   RxRelay: 45eaa5db8ee4fb50e5ebd57deec0159e97fa51e6
   RxSwift: a4b44f7d24599f674deebd1818eab82e58410632
   SkeletonView: 5a050f6411e697abd4cda0a8d767013399dccd69
   ViewAnimator: a9ceed80266e00fd435ec4fb99b2df64d580d0e4
 
-PODFILE CHECKSUM: 2c37ea3453e409d5f202e7be4c37ef03ed4e431b
+PODFILE CHECKSUM: eee701d0ca0e9c5cd03f1e8b013b03c41a7858a3
 
 COCOAPODS: 1.14.2

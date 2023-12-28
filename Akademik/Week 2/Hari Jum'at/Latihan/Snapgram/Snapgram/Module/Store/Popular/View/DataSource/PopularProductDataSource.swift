@@ -8,6 +8,7 @@
 import Foundation
 import SkeletonView
 
+// MARK: UICollectionViewDiffableDataSource class for implementing SkeletonView in PopularViewController
 class PopularProductDataSource: UICollectionViewDiffableDataSource<SectionPopularProduct, ProductModel>, SkeletonCollectionViewDataSource {
     func collectionSkeletonView(_ skeletonView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return popularEntity.count

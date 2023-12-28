@@ -30,7 +30,7 @@ class SearchProductViewModel: BaseViewModel {
             }
         }
     }
-
+    
     func setupSearch() {
         searchQuery
             .throttle(.milliseconds(500), scheduler: MainScheduler.asyncInstance)

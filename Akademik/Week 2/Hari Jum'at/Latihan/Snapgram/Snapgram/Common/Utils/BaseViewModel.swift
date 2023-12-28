@@ -12,11 +12,13 @@ enum StateLoading: Int {
 }
 
 class BaseViewModel {
+    // MARK: - Variables
     internal let bag: DisposeBag = DisposeBag()
     internal let geocoder = GMSGeocoder()
     internal var loadingState = BehaviorRelay<StateLoading>(value: .notLoad)
     internal var location = BehaviorRelay<String?>(value: nil)
     
+    // MARK: - Functions
     internal func getLocationNameFromCoordinates(lat: Double, lon: Double) {
         let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
         var address = ""

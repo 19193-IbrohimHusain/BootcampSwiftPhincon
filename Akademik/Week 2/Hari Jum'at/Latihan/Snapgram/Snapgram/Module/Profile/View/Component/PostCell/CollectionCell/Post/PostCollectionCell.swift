@@ -13,7 +13,7 @@ class PostCollectionCell: UICollectionViewCell {
     @IBOutlet weak var heightConstant: NSLayoutConstraint!
     
     internal var delegate: PostCollectionCellDelegate?
-    internal var post: [ListStory]?
+    private var post: [ListStory]?
     
     override func awakeFromNib() {
         super.awakeFromNib()

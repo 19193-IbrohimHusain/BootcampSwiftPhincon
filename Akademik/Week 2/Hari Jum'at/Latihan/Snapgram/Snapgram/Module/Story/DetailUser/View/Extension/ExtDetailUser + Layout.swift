@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+// MARK: Extension for UICollectionViewCompositionalLayout
 extension DetailUserViewController {
     internal func setupCompositionalLayout() {
         layout = .init(sectionProvider: { [weak self] (sectionIndex, env) in
@@ -39,7 +40,7 @@ extension DetailUserViewController {
     private func postLayout(env: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection {
         let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(50)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
         let item = NSCollectionLayoutItem.withEntireSize()
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(env.container.effectiveContentSize.height * 11))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(env.container.effectiveContentSize.height * 11))
         let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
         let section = NSCollectionLayoutSection(group: group)
         section.boundarySupplementaryItems = [header]

@@ -8,7 +8,7 @@
 import UIKit
 
 class SearchUserViewController: BaseViewController {
-
+    // MARK: - Variables
     @IBOutlet weak var searchTable: UITableView!
     
     private var searchBar = CustomSearchNavBar()
@@ -20,7 +20,8 @@ class SearchUserViewController: BaseViewController {
             self.loadSnapshot()
         }
     }
-
+    
+    // MARK: - Lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
@@ -31,6 +32,7 @@ class SearchUserViewController: BaseViewController {
         refreshData()
     }
     
+    // MARK: - Functions
     private func setup() {
         setupNavigationBar()
         setupErrorView()
@@ -48,7 +50,7 @@ class SearchUserViewController: BaseViewController {
     }
     
     private func setupTable() {
-        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        refreshControl.rx.controlEvent(.valueChanged).subscribe(onNext: { self.refreshData() }).disposed(by: bag)
         searchTable.refreshControl = refreshControl
         searchTable.delegate = self
         searchTable.registerCellWithNib(UserTableCell.self)
@@ -131,12 +133,13 @@ class SearchUserViewController: BaseViewController {
         
     }
     
-    @objc private func refreshData() {
+    private func refreshData() {
         clearSnapshot()
         vm.fetchAllData(param: StoryParam(size: 1000))
     }
 }
 
+// MARK: - Extension for UITableViewDelegate
 extension SearchUserViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension

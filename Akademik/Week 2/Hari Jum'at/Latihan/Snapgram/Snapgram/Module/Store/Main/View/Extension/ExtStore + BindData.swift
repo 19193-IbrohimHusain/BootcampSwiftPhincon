@@ -7,6 +7,7 @@
 
 import Foundation
 
+// MARK: Extension to Bind Data from ViewModel
 extension StoreViewController {
     internal func bindData() {
         bindProductData()

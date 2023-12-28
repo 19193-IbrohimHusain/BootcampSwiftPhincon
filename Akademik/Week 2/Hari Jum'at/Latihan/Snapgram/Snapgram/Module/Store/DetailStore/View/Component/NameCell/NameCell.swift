@@ -6,9 +6,10 @@
 //
 
 import UIKit
+import RxSwift
 
 class NameCell: UICollectionViewCell {
-
+    // MARK: - Variables
     @IBOutlet weak var productName: UILabel!
     @IBOutlet weak var productPrice: UILabel!
     @IBOutlet weak var soldAmount: UILabel!
@@ -18,10 +19,13 @@ class NameCell: UICollectionViewCell {
     @IBOutlet weak var discussionBtn: UIButton!
     
     private var isLiked = false
+    private var bag = DisposeBag()
     
+    // MARK: - Lifecycles
     override func awakeFromNib() {
         super.awakeFromNib()
         setup()
+        btnEvent()
     }
     
     override func prepareForReuse() {
@@ -29,10 +33,19 @@ class NameCell: UICollectionViewCell {
         setup()
     }
 
+    // MARK: - Functions
     private func setup() {
         reviewBtn.imageView?.tintColor = .systemYellow
         [reviewerPhotoBtn, discussionBtn].forEach {$0?.imageView?.tintColor = .systemGray}
         likeBtn.setAnimateBounce()
+    }
+    
+    private func btnEvent() {
+        likeBtn.rx.tap.subscribe(onNext: { [weak self] _ in
+            guard let self = self else { return }
+            self.isLiked.toggle()
+            self.setLikeBtn()
+        }).disposed(by: bag)
     }
     
     internal func configure(with product: ProductModel) {
@@ -44,10 +57,4 @@ class NameCell: UICollectionViewCell {
         likeBtn.setImage(isLiked ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart"), for: .normal)
         likeBtn.tintColor = isLiked ? .systemRed : .label
     }
-    
-    @IBAction func onLikeBtnTap(_ sender: UIButton) {
-        isLiked.toggle()
-        setLikeBtn()
-    }
-    
 }

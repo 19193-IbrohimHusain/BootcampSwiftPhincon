@@ -2,9 +2,10 @@
 import UIKit
 
 class CustomFooterView: UITableViewHeaderFooterView {
-    
+    // MARK: - Variables
     var footerTapped: (() -> Void)?
 
+    // MARK: - UI Elements
     let label: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
@@ -13,6 +14,7 @@ class CustomFooterView: UITableViewHeaderFooterView {
         return label
     }()
     
+    // MARK: - Initializers
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         setupUI()
@@ -24,6 +26,7 @@ class CustomFooterView: UITableViewHeaderFooterView {
         setupUI()
     }
     
+    // MARK: - Functions
     private func setupUI() {
         // Customize appearance and add UI elements to the view
         contentView.backgroundColor = .white
