@@ -52,12 +52,23 @@ class DetailStoryViewController: BaseBottomSheetController {
     
     private func setupUI() {
         profileImage.layer.cornerRadius = 18
-        let doubleTapGesture = UITapGestureRecognizer(target: self, action: #selector(onImageDoubleTap(_:)))
-        doubleTapGesture.numberOfTapsRequired = 2
-        uploadedImage.addGestureRecognizer(doubleTapGesture)
-        commentsCount.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onCommentLabelTap(_:))))
+        addGesture()
         [likeBtn, commentBtn, shareBtn].forEach{ $0?.setAnimateBounce()}
         bindData()
+    }
+    
+    private func addGesture() {
+        let doubleTapGesture = UITapGestureRecognizer(target: self, action: #selector(onImageDoubleTap(_:)))
+        doubleTapGesture.numberOfTapsRequired = 2
+        [profileImage, username, uploadedImage, commentsCount].forEach {
+            $0?.isUserInteractionEnabled = true
+            switch $0 {
+            case profileImage, username: $0?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(navigateToDetailUser(_:))))
+            case uploadedImage: $0?.addGestureRecognizer(doubleTapGesture)
+            case commentsCount: $0?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onCommentBtnTap(_:))))
+            default: break
+            }
+        }
     }
     
     private func configure() {
@@ -172,15 +183,26 @@ class DetailStoryViewController: BaseBottomSheetController {
         addLike()
     }
     
-    @IBAction private func onCommentBtnTap() {
+    @IBAction private func onCommentBtnTap(_ sender: Any) {
         present(floatingPanel, animated: true)
     }
     
     @IBAction private func onShareBtnTap() {
         // Handle share button tap
     }
-    
-    @objc private func onCommentLabelTap(_ sender: UITapGestureRecognizer) {
-        present(floatingPanel, animated: true)
+    @objc func navigateToDetailUser(_ sender: UITapGestureRecognizer) {
+        guard let user = try? BaseConstant.getUserFromUserDefaults(), let story = detailStory else { return }
+        
+        if story.name == user.username {
+            let vc = TabBarViewController()
+            vc.selectedIndex = 4
+            vc.hidesBottomBarWhenPushed = true
+            self.navigationController?.setViewControllers([vc], animated: true)
+        } else {
+            let vc = DetailUserViewController()
+            vc.hidesBottomBarWhenPushed = true
+            vc.detailUser = ListStory(id: story.id, name: story.name, description: story.description, photoURL: story.photoURL, createdAt: story.createdAt, lat: story.lat, lon: story.lon)
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
 }

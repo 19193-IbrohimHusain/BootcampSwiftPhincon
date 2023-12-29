@@ -7,31 +7,36 @@
 
 import UIKit
 
-class CartViewController: UIViewController {
+class CartViewController: BaseViewController {
     
     @IBOutlet weak var cartTable: UITableView!
-    
-    var snapshot = NSDiffableDataSourceSnapshot<SectionCartTable, CartModel>()
-    var dataSource: UITableViewDiffableDataSource<SectionCartTable, CartModel>!
-    var cartItem: [CartModel] = [
-        CartModel(productID: 1, name: "Adidas", price: 200, quantity: 1, image: "Blank Image"),
-        CartModel(productID: 2, name: "Nike", price: 200, quantity: 1, image: "Blank Image"),
-        CartModel(productID: 3, name: "Puma", price: 200, quantity: 1, image: "Blank Image"),
-        CartModel(productID: 4, name: "Balenciaga", price: 200, quantity: 1, image: "Blank Image"),
-        CartModel(productID: 5, name: "NewBalance", price: 200, quantity: 1, image: "Blank Image")
-    ]
+    var vm = CartViewModel()
+    var snapshot = NSDiffableDataSourceSnapshot<SectionCartTable, Cart>()
+    var dataSource: UITableViewDiffableDataSource<SectionCartTable, Cart>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        vm.fetchCartItems()
+    }
+    
     
     private func setup() {
+        setupNavigationBar()
         cartTable.delegate = self
         cartTable.registerCellWithNib(CartTableCell.self)
         setupDataSource()
-        loadSnapshot()
+        bindData()
+    }
+    
+    private func setupNavigationBar() {
+        self.navigationController?.navigationBar.tintColor = .label
+        self.navigationItem.titleView = configureNavigationTitle(title: "Cart")
+        self.navigationItem.setRightBarButton(UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: nil), animated: true)
     }
     
     private func setupDataSource() {
@@ -45,9 +50,16 @@ class CartViewController: UIViewController {
         }
     }
     
-    private func loadSnapshot() {
+    private func bindData() {
+        vm.cartItems.asObservable().subscribe(onNext: { [weak self] items in
+            guard let self = self, let items = items else { return }
+            self.loadSnapshot(item: items)
+        }).disposed(by: bag)
+    }
+    
+    private func loadSnapshot(item: [Cart]) {
         snapshot.appendSections([.main])
-        snapshot.appendItems(cartItem)
+        snapshot.appendItems(item)
         dataSource.apply(snapshot, animatingDifferences: true)
     }
     

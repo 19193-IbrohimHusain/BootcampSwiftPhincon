@@ -41,6 +41,7 @@ extension DetailProductViewController: UICollectionViewDataSource {
             let cell1: NameCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
             if let product = product {
                 cell1.configure(with: product)
+                cell1.delegate = self
             }
             return cell1
         case .desc:

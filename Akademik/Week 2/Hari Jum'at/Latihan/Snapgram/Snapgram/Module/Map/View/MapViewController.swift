@@ -86,8 +86,8 @@ extension MapViewController: GMSMapViewDelegate {
     
     private func showInfoView(marker: GMSMarker, at point: CGPoint) {
         let width = 200.0
-        let height = 320.0
-        let offset: CGFloat = 40
+        let height = 300.0
+        let offset: CGFloat = 35
         
         let offsetX = point.x - (width * 0.5)
         let offsetY = point.y - height - offset
@@ -100,8 +100,7 @@ extension MapViewController: GMSMapViewDelegate {
            let lat = infoData.lat,
            let lon = infoData.lon {
             getLocationNameFromCoordinates(lat: lat, lon: lon) { name in
-                self.infoView.configure(name: infoData.name, location: name, image: infoData.photoURL, caption: infoData.description, createdAt: infoData.createdAt)
-                self.infoView.storyID = infoData.id
+                self.infoView.configure(id: infoData.id, name: infoData.name, location: name, image: infoData.photoURL, caption: infoData.description, createdAt: infoData.createdAt)
                 self.infoView.locationLabel.isHidden = false
             }
         }

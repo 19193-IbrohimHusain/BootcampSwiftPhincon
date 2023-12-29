@@ -8,6 +8,7 @@
 import Foundation
 
 struct FavoriteProductModel {
+    let userID: String
     let productID: Int
     let name: String
     let price: Double

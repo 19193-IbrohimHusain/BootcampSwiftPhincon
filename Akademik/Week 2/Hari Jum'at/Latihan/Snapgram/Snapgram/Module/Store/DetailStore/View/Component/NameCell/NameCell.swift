@@ -7,6 +7,11 @@
 
 import UIKit
 
+protocol NameCellDelegate {
+    func addFavorite()
+    func checkIsFavorite() -> Bool
+}
+
 class NameCell: UICollectionViewCell {
 
     @IBOutlet weak var productName: UILabel!
@@ -17,11 +22,12 @@ class NameCell: UICollectionViewCell {
     @IBOutlet weak var reviewerPhotoBtn: UIButton!
     @IBOutlet weak var discussionBtn: UIButton!
     
-    private var isLiked = false
+    internal var delegate: NameCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         setup()
+        setLikeBtn()
     }
     
     override func prepareForReuse() {
@@ -41,13 +47,15 @@ class NameCell: UICollectionViewCell {
     }
     
     private func setLikeBtn() {
-        likeBtn.setImage(isLiked ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart"), for: .normal)
-        likeBtn.tintColor = isLiked ? .systemRed : .label
+        if let isFavorited = self.delegate?.checkIsFavorite() {
+            likeBtn.setImage(isFavorited ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart"), for: .normal)
+            likeBtn.tintColor = isFavorited ? .systemRed : .label
+            likeBtn.isUserInteractionEnabled = isFavorited ? false : true
+        }
     }
     
     @IBAction func onLikeBtnTap(_ sender: UIButton) {
-        isLiked.toggle()
-        setLikeBtn()
+        self.delegate?.addFavorite()
     }
     
 }

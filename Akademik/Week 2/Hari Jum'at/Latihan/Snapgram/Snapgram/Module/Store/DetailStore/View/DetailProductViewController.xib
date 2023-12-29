@@ -10,6 +10,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailProductViewController" customModule="Snapgram" customModuleProvider="target">
             <connections>
+                <outlet property="addToCartBtn" destination="i5y-kK-23i" id="sfu-am-GJa"/>
+                <outlet property="chatBtn" destination="eEF-n5-p39" id="3T4-6X-iVr"/>
                 <outlet property="detailCollection" destination="xsL-ms-8Gm" id="aRR-me-yG6"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -33,13 +35,16 @@
                     </userDefinedRuntimeAttributes>
                 </collectionView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nmo-HG-1bX">
-                    <rect key="frame" x="0.0" y="752" width="393" height="100"/>
+                    <rect key="frame" x="0.0" y="762" width="393" height="90"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eEF-n5-p39">
                             <rect key="frame" x="16" y="15.999999999999996" width="66.666666666666671" height="43.666666666666657"/>
                             <state key="normal" title="Button"/>
                             <buttonConfiguration key="configuration" style="plain">
                                 <imageReference key="image" image="ellipsis.bubble" catalog="system" symbolScale="large"/>
+                                <backgroundConfiguration key="background">
+                                    <color key="strokeColor" systemColor="systemBlueColor"/>
+                                </backgroundConfiguration>
                                 <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="25"/>
                             </buttonConfiguration>
                             <userDefinedRuntimeAttributes>
@@ -65,7 +70,7 @@
                         <constraint firstItem="i5y-kK-23i" firstAttribute="centerY" secondItem="eEF-n5-p39" secondAttribute="centerY" id="Yrq-LI-e7p"/>
                         <constraint firstItem="eEF-n5-p39" firstAttribute="leading" secondItem="nmo-HG-1bX" secondAttribute="leading" constant="16" id="zAq-Vm-BEW"/>
                         <constraint firstAttribute="trailing" secondItem="i5y-kK-23i" secondAttribute="trailing" constant="16" id="zEK-eK-SMg"/>
-                        <constraint firstAttribute="height" constant="100" id="zM0-3v-Xqc"/>
+                        <constraint firstAttribute="height" constant="90" id="zM0-3v-Xqc"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="isHiddenWhenSkeletonIsActive" value="YES"/>
@@ -90,6 +95,9 @@
         <image name="ellipsis.bubble" catalog="system" width="128" height="110"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

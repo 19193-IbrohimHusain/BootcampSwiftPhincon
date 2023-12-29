@@ -11,6 +11,8 @@ import SkeletonView
 class DetailProductViewController: BaseViewController {
     
     @IBOutlet weak var detailCollection: UICollectionView!
+    @IBOutlet weak var chatBtn: UIButton!
+    @IBOutlet weak var addToCartBtn: UIButton!
     
     internal let collections = SectionDetailProduct.allCases
     internal let vm = DetailProductViewModel()
@@ -41,6 +43,7 @@ class DetailProductViewController: BaseViewController {
         setupErrorView()
         setupCompositionalLayout()
         bindData()
+        btnEvent()
     }
     
     private func setupNavigationBar() {
@@ -49,7 +52,7 @@ class DetailProductViewController: BaseViewController {
     }
     
     private func setupCollection() {
-        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        refreshControl.rx.controlEvent(.valueChanged).subscribe(onNext: { self.refreshData() }).disposed(by: bag)
         detailCollection.refreshControl = refreshControl
         detailCollection.contentInsetAdjustmentBehavior = .never
         detailCollection.delegate = self
@@ -60,7 +63,46 @@ class DetailProductViewController: BaseViewController {
         }
     }
     
-    @objc private func refreshData() {
+    private func btnEvent() {
+        chatBtn.rx.tap.subscribe(onNext: { [weak self] _ in
+            guard let self = self else { return }
+        }).disposed(by: bag)
+        addToCartBtn.rx.tap.subscribe(onNext: { [weak self] _ in
+            guard let self = self, let product = self.product else { return }
+            self.addLoading(self.addToCartBtn)
+            let state = CoreDataHelper.shared.saveItemToCart(data: product)
+            state ? self.displayAlert(title: "Success", message: "Item Added To Cart") : self.displayAlert(title: "Failed", message: "Failed To Add Item")
+            self.afterDissmissed(self.addToCartBtn, title: "Add to cart")
+            
+        }).disposed(by: bag)
+    }
+    
+    private func addItemToCoreData(for action: ProductCoreData) -> Bool {
+        guard let user = try? BaseConstant.getUserFromUserDefaults(), let product = self.product, let image = self.image?.first else { return false }
+        switch action {
+        case .cart(let entity):
+            let properties: [String: Any] = [
+                "userID": user.userid,
+                "productID": Int16(product.id),
+                "name": product.name,
+                "image": image.url,
+                "price": product.price,
+                "quantity": 1,
+            ]
+            return CoreDataHelper.shared.addOrUpdateEntity(Cart.self, for: .cart(entity: entity), userId: user.userid, properties: properties)
+        case .favorite(let entity):
+            let properties: [String: Any] = [
+                "userID": user.userid,
+                "productID": Int16(product.id),
+                "name": product.name,
+                "image": image.url,
+                "price": product.price,
+            ]
+            return CoreDataHelper.shared.addOrUpdateEntity(FavoriteProducts.self, for: .favorite(entity: entity), userId: user.userid, properties: properties)
+        }
+    }
+    
+    private func refreshData() {
         self.currentIndex = 0
         self.product = nil
         self.recommendation?.removeAll()
@@ -85,4 +127,20 @@ extension DetailProductViewController: UICollectionViewDelegate {
         let index = indexPath.item
         navigateToDetail(index: index)
     }
+}
+
+extension DetailProductViewController: NameCellDelegate {
+    func addFavorite() {
+        if let product = self.product {
+            let state = CoreDataHelper.shared.addFavoriteProduct(data: product)
+            state ? self.displayAlert(title: "Success", message: "Item Added To Favorite") : self.displayAlert(title: "Failed", message: "Failed To Add Item")
+        }
+    }
+    
+    func checkIsFavorite() -> Bool {
+        guard let product = self.product else { return false }
+        return CoreDataHelper.shared.isFavProductExist(id: Int16(product.id))
+    }
+    
+    
 }

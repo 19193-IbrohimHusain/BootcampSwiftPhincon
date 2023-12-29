@@ -45,10 +45,14 @@ extension FYPHeader: UICollectionViewDelegate, UICollectionViewDataSource, UICol
         let cell: StoreCategoryCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
         if let category = category?[indexPath.item] {
             cell.configure(data: category)
-            cell.index = indexPath.item
-            cell.delegate = self
         }
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let index = indexPath.item
+        self.headerCollection.selectItem(at: indexPath, animated: true, scrollPosition: .left)
+        self.delegate?.setCurrentSection(index: index)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -59,12 +63,4 @@ extension FYPHeader: UICollectionViewDelegate, UICollectionViewDataSource, UICol
         return 16.0
     }
     
-}
-
-extension FYPHeader: StoreCategoryCellDelegate {
-    func onSelected(index: Int) {
-        let indexPath = IndexPath(item: index, section: 0)
-        self.headerCollection.selectItem(at: indexPath, animated: true, scrollPosition: .left)
-        self.delegate?.setCurrentSection(index: index)
-    }
 }

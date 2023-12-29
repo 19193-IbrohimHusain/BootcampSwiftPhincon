@@ -10,8 +10,14 @@ import CoreData
 import Foundation
 import UIKit
 
-import Foundation
-import CoreData
+enum ProductCoreData {
+    case cart(entity: ProductModel)
+    case favorite(entity: ProductModel)
+}
+
+enum FetchProductCoreData {
+    case cart, favorite
+}
 
 class CoreDataHelper {
     static let shared = CoreDataHelper()
@@ -39,6 +45,7 @@ class CoreDataHelper {
         do {
             try context.execute(batchDeleteRequest)
             try context.save()
+            print("Success deleting")
         } catch {
             print("Error clearing Core Data: \(error)")
         }
@@ -56,42 +63,159 @@ class CoreDataHelper {
         }
     }
     
-//    func addOrUpdateFavoriteEntity<T: NSManagedObject>(_ entity: T.Type, for favorite: ProductEnum, userId: String, properties: [String: Any]) {
-//        do {
-//            let fetchRequest: NSFetchRequest<T> = T.fetchRequest() as! NSFetchRequest<T>
-//            let predicateFormat = properties.keys.map { "\($0) == %@" }.joined(separator: " AND ")
-//            let predicateValues = properties.values
-//            
-//            fetchRequest.predicate = NSPredicate(format: "\(predicateFormat) AND userId == %@", argumentArray: predicateValues + [userId])
-//            let existingEntries = try context.fetch(fetchRequest)
-//            
-//            if existingEntries.isEmpty {
-//                let newEntity = T(context: context)
-//                properties.forEach { key, value in
-//                    newEntity.setValue(value, forKey: key)
-//                }
-//                newEntity.setValue(userId, forKey: "userId")
-//                try context.save()
-//            } else {
-//                switch favorite {
-//                case .anime(let anime):
-//                    deleteFavoriteEntity(T.self, predicateFormat: "title == %@ AND userId == %@", args: anime.title ?? "", userId)
-//                    break
-//                case .animeCharacter(let animeCharacter):
-//                    deleteFavoriteEntity(T.self, predicateFormat: "name == %@ AND userId == %@", args: animeCharacter.character?.name ?? "", userId)
-//                    break
-//                case .animeCast(let animeCharacter):
-//                    deleteFavoriteEntity(T.self, predicateFormat: "name == %@ AND userId == %@", args: animeCharacter.voiceActors?.first?.person?.name ?? "", userId)
-//                    break
-//                case .manga(let manga):
-//                    deleteFavoriteEntity(T.self, predicateFormat: "title == %@ AND userId == %@", args: manga.title ?? "", userId)
-//                    break
-//                }
-//            }
-//        } catch {
-//            print("Error fetching or adding entity data: \(error)")
-//        }
-//    }
+    func addOrUpdateEntity<T: NSManagedObject>(_ entity: T.Type, for favorite: ProductCoreData, userId: String, properties: [String: Any]) -> Bool {
+        do {
+            let fetchRequest: NSFetchRequest<T> = T.fetchRequest() as! NSFetchRequest<T>
+            let predicateFormat = properties.keys.map { "\($0) == %@" }.joined(separator: " AND ")
+            let predicateValues = properties.values
+            
+            fetchRequest.predicate = NSPredicate(format: "\(predicateFormat)", argumentArray: [predicateValues])
+            let existingEntries = try context.fetch(fetchRequest)
+            
+            if existingEntries.isEmpty {
+                let newEntity = T(context: context)
+                properties.forEach { key, value in
+                    newEntity.setValue(value, forKey: key)
+                }
+                try context.save()
+                return true
+            } else {
+                switch favorite {
+                case .cart(let item):
+                    deleteFavoriteEntity(T.self, predicateFormat: "productID == %@ AND userID == %@", args: item.id, userId)
+                    return true
+                case .favorite(let product):
+                    deleteFavoriteEntity(T.self, predicateFormat: "productID == %@ AND userID == %@", args: product.id, userId)
+                    return true
+                }
+            }
+        } catch {
+            print("Error fetching or adding entity data: \(error)")
+            return false
+        }
+    }
+    
+    func saveItemToCart(data: ProductModel) -> Bool {        
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Cart")
+        fetchRequest.predicate = NSPredicate(format: "productID == %d", data.id)
+        
+        do {
+            let results = try context.fetch(fetchRequest)
+            
+            if let _ = results.first as? NSManagedObject {
+                print("Product with ID \(data.id) already exists in cart.")
+                return true
+            } else {
+                if let cartEntity = NSEntityDescription.entity(forEntityName: "Cart", in: context) {
+                    let productItem = NSManagedObject(entity: cartEntity, insertInto: context)
+                    
+                    productItem.setValue(data.id, forKey: "productID")
+                    productItem.setValue(data.name, forKey: "name")
+                    productItem.setValue(data.price, forKey: "price")
+                    productItem.setValue(data.galleries?.last?.url, forKey: "image")
+                    productItem.setValue(1, forKey: "quantity")
+                    
+                    do {
+                        try context.save()
+                        print("Saved to history")
+                        return true
+                    } catch {
+                        print("Failed to save item to cart: \(error)")
+                        return false
+                    }
+                }
+            }
+        } catch {
+            print("Error fetching existing movie: \(error)")
+            return false
+        }
+        
+        // This return statement ensures there's always a return value
+        return false
+    }
+    
+    func addFavoriteProduct(data: ProductModel) -> Bool {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "FavoriteProducts")
+        fetchRequest.predicate = NSPredicate(format: "productID == %d", data.id)
+        
+        do {
+            let results = try context.fetch(fetchRequest)
+            
+            if let _ = results.first as? NSManagedObject {
+                print("Product with ID \(data.id) already exists in wishlist.")
+                return true
+            } else {
+                if let cartEntity = NSEntityDescription.entity(forEntityName: "FavoriteProducts", in: context) {
+                    let productItem = NSManagedObject(entity: cartEntity, insertInto: context)
+                    
+                    productItem.setValue(data.id, forKey: "productID")
+                    productItem.setValue(data.name, forKey: "name")
+                    productItem.setValue(data.price, forKey: "price")
+                    productItem.setValue(data.galleries?.last?.url, forKey: "imageLink")
+                    productItem.setValue(data.category.name, forKey: "category")
+                    
+                    do {
+                        try context.save()
+                        print("Saved to Wishlist")
+                        return true
+                    } catch {
+                        print("Failed to save item to wishlist: \(error)")
+                        return false
+                    }
+                }
+            }
+        } catch {
+            print("Error fetching existing item: \(error)")
+            return false
+        }
+        
+        // This return statement ensures there's always a return value
+        return false
+    }
+    
+    func deleteFavProduct(id: Int16) {
+        let fetchRequest: NSFetchRequest<FavoriteProducts> = FavoriteProducts.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "productID == %d", id)
+        do {
+            let items = try context.fetch(fetchRequest)
+            for item in items {
+                context.delete(item)
+            }
+            try context.save()
+            print("Success")
+        } catch {
+            print("Error: \(error)")
+        }
+    }
+    
+    func isFavProductExist(id: Int16) -> Bool {
+        let fetchRequest: NSFetchRequest<FavoriteProducts> = FavoriteProducts.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "productID == %d", id)
+        do {
+            let items = try context.fetch(fetchRequest)
+            return true
+        } catch {
+            print("Error: \(error)")
+            return false
+        }
+    }
+
+    func clearCoreDataCache() {
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Cart")
+            do {
+                let entities = try context.fetch(fetchRequest)
+                for entity in entities {
+                    context.delete(entity as! NSManagedObject)
+                }
+                try context.save()
+                
+                // Call the completion handler with success
+                print("Success delete")
+            } catch {
+                // Call the completion handler with failure and pass the error
+                print("Failed delete")
+            }
+        }
     
     func deleteFavoriteEntity<T: NSManagedObject>(_ entity: T.Type, predicateFormat: String, args: CVarArg...) {
         do {
@@ -111,7 +235,33 @@ class CoreDataHelper {
     
     func fetchFavoriteList<T: NSManagedObject>(_ entity: T.Type, userId: String) throws -> [T] {
         let fetchRequest = NSFetchRequest<T>(entityName: String(describing: entity))
-        fetchRequest.predicate = NSPredicate(format: "userId == %@", userId)
+        fetchRequest.predicate = NSPredicate(format: "userID == %@", userId)
         return try context.fetch(fetchRequest)
+    }
+    
+    func fetchCartItems() -> [Cart]? {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Cart")
+        
+        do {
+            let fetchedResults = try context.fetch(fetchRequest)
+            
+            return fetchedResults as? [Cart]
+        } catch {
+            print("Failed to fetch data: \(error)")
+            return nil
+        }
+    }
+    
+    func fetchFavProducts() -> [FavoriteProducts]? {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "FavoriteProducts")
+        
+        do {
+            let fetchedResults = try context.fetch(fetchRequest)
+            
+            return fetchedResults as? [FavoriteProducts]
+        } catch {
+            print("Failed to fetch data: \(error)")
+            return nil
+        }
     }
 }

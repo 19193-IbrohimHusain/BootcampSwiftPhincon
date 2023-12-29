@@ -42,12 +42,22 @@ class StoreViewController: BaseViewController {
     }
     
     private func setup() {
-        setupNavigationBar(title: "SnapStore", image1: "magnifyingglass", image2: "cart", action1: #selector(navigateToSearch), action2: #selector(navigateToCart))
+        setupNavigationBar()
         setupErrorView()
         setupCollectionView()
         setupDataSource()
         setupCompositionalLayout()
         bindData()
+    }
+    
+    private func setupNavigationBar() {
+        self.navigationController?.navigationBar.tintColor = .label
+        self.navigationItem.setLeftBarButton(UIBarButtonItem(customView: configureNavigationTitle(title: "SnapStore")), animated: false)
+        self.navigationItem.rightBarButtonItems = [
+            UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .plain, target: self, action: #selector(navigateToSearch)),
+            UIBarButtonItem(image: UIImage(systemName: "cart"), style: .plain, target: self, action: #selector(navigateToCart)),
+            UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: #selector(navigateToWishlist))
+        ]
     }
     
     private func setupCollectionView() {
@@ -106,6 +116,12 @@ class StoreViewController: BaseViewController {
     
     @objc private func navigateToCart() {
         let vc = CartViewController()
+        vc.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @objc private func navigateToWishlist() {
+        let vc = WishlistViewController()
         vc.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
     }

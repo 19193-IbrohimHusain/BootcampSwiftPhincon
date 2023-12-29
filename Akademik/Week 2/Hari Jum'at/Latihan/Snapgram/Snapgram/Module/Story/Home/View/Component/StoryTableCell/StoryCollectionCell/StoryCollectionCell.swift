@@ -13,7 +13,8 @@ class StoryCollectionCell: UICollectionViewCell {
     
    internal func configureCollection(with storyEntity: ListStory) {
         let url = URL(string: storyEntity.photoURL)
-        let processor = DownsamplingImageProcessor(size: CGSize(width: 320, height: 320))
+       let size = storyImage.bounds.size
+       let processor = DownsamplingImageProcessor(size: size)
         storyImage.kf.setImage(with: url, options: [
             .processor(processor),
             .loadDiskFileSynchronously,

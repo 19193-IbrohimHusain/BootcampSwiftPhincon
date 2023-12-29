@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class CartTableCell: UITableViewCell {
 
@@ -33,8 +34,17 @@ class CartTableCell: UITableViewCell {
         likeBtn.setImage(UIImage(systemName: isLiked ? "heart.fill" : "heart"), for: .normal)
     }
     
-    internal func configure(with data: CartModel) {
-        productImg.image = UIImage(named: data.image)
+    internal func configure(with data: Cart) {
+        guard let imageUrl = data.image else { return }
+        let url = URL(string: imageUrl)
+        let size = productImg.bounds.size
+        let processor = DownsamplingImageProcessor(size: size)
+        productImg.kf.setImage(with: url, options: [
+            .processor(processor),
+            .loadDiskFileSynchronously,
+            .cacheOriginalImage,
+            .transition(.fade(0.25))
+        ])
         productName.text = data.name
         productPrice.text = "$ \(data.price)"
         productQuantity.text = "\(data.quantity)"

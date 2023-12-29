@@ -18,7 +18,8 @@ class UserPostCell: UICollectionViewCell {
     
     internal func configure(with post: ListStory) {
         let url = URL(string: post.photoURL)
-        let processor = DownsamplingImageProcessor(size: CGSize(width: postImg.bounds.width, height: postImg.bounds.height))
+        let size = postImg.bounds.size
+        let processor = DownsamplingImageProcessor(size: size)
         postImg.kf.setImage(with: url, options: [
             .processor(processor),
             .loadDiskFileSynchronously,

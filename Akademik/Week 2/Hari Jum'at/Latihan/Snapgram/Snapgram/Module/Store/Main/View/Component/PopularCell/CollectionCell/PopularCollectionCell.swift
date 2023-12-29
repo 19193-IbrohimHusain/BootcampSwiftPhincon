@@ -39,7 +39,7 @@ class PopularCollectionCell: UICollectionViewCell {
     private func configureImage(_ product: ProductModel) {
         if let gallery = product.galleries?.dropFirst(3).first {
             let url = URL(string: gallery.url)
-            let size = productImg.intrinsicContentSize
+            let size = productImg.bounds.size
             let processor = DownsamplingImageProcessor(size: size)
             productImg.kf.setImage(with: url, options: [
                 .processor(processor),

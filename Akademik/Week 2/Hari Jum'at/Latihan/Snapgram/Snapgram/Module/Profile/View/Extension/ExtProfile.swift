@@ -45,7 +45,7 @@ extension ProfileViewController: ProfileTableCellDelegate {
     
     func shareProfile() {
         deleteToken()
-        BaseConstant.userDef.removeObject(forKey: "userData")
+        BaseConstant.deleteUserFromUserDefaults()
         let vc = LoginViewController()
         vc.hidesBottomBarWhenPushed = true
         self.navigationController?.setViewControllers([vc], animated: true)

@@ -64,6 +64,11 @@
 		3626C90D2B2C7442008DC355 /* SearchDummyEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3626C90C2B2C7442008DC355 /* SearchDummyEntity.swift */; };
 		36338C132B3BC05100724642 /* ExtStory + DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36338C122B3BC05100724642 /* ExtStory + DataSource.swift */; };
 		36338C152B3BC11100724642 /* ExtStory + BindData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36338C142B3BC11100724642 /* ExtStory + BindData.swift */; };
+		3634291E2B3ED04F002F1065 /* WishlistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3634291C2B3ED04F002F1065 /* WishlistViewController.swift */; };
+		3634291F2B3ED04F002F1065 /* WishlistViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3634291D2B3ED04F002F1065 /* WishlistViewController.xib */; };
+		363429242B3ED105002F1065 /* WishlistTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363429222B3ED105002F1065 /* WishlistTableCell.swift */; };
+		363429252B3ED105002F1065 /* WishlistTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 363429232B3ED105002F1065 /* WishlistTableCell.xib */; };
+		363429272B3ED65F002F1065 /* WishlistViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363429262B3ED65F002F1065 /* WishlistViewModel.swift */; };
 		36399C292B0215EF00D8A193 /* AddStoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36399C282B0215EF00D8A193 /* AddStoryViewModel.swift */; };
 		36399C2F2B02191900D8A193 /* AddStoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36399C2D2B02191900D8A193 /* AddStoryViewController.swift */; };
 		36399C302B02191900D8A193 /* AddStoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36399C2E2B02191900D8A193 /* AddStoryViewController.xib */; };
@@ -309,6 +314,11 @@
 		3626C90C2B2C7442008DC355 /* SearchDummyEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDummyEntity.swift; sourceTree = "<group>"; };
 		36338C122B3BC05100724642 /* ExtStory + DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExtStory + DataSource.swift"; sourceTree = "<group>"; };
 		36338C142B3BC11100724642 /* ExtStory + BindData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExtStory + BindData.swift"; sourceTree = "<group>"; };
+		3634291C2B3ED04F002F1065 /* WishlistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishlistViewController.swift; sourceTree = "<group>"; };
+		3634291D2B3ED04F002F1065 /* WishlistViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WishlistViewController.xib; sourceTree = "<group>"; };
+		363429222B3ED105002F1065 /* WishlistTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishlistTableCell.swift; sourceTree = "<group>"; };
+		363429232B3ED105002F1065 /* WishlistTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WishlistTableCell.xib; sourceTree = "<group>"; };
+		363429262B3ED65F002F1065 /* WishlistViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishlistViewModel.swift; sourceTree = "<group>"; };
 		36399C282B0215EF00D8A193 /* AddStoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStoryViewModel.swift; sourceTree = "<group>"; };
 		36399C2D2B02191900D8A193 /* AddStoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStoryViewController.swift; sourceTree = "<group>"; };
 		36399C2E2B02191900D8A193 /* AddStoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddStoryViewController.xib; sourceTree = "<group>"; };
@@ -687,6 +697,7 @@
 		3619055A2AF4F10E00DA3DF0 /* Store */ = {
 			isa = PBXGroup;
 			children = (
+				363429192B3ED021002F1065 /* Favorite */,
 				369AEBED2B30516400888758 /* Cart */,
 				36B414F92B2B2FE00021FFD0 /* Popular */,
 				36B414EF2B2AEADA0021FFD0 /* Search */,
@@ -894,6 +905,42 @@
 				36B1DAAF2B05EE7F009C04EE /* DetailStoryViewController.xib */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		363429192B3ED021002F1065 /* Favorite */ = {
+			isa = PBXGroup;
+			children = (
+				3634291B2B3ED035002F1065 /* ViewModel */,
+				3634291A2B3ED030002F1065 /* View */,
+			);
+			path = Favorite;
+			sourceTree = "<group>";
+		};
+		3634291A2B3ED030002F1065 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				363429202B3ED0DF002F1065 /* Component */,
+				3634291C2B3ED04F002F1065 /* WishlistViewController.swift */,
+				3634291D2B3ED04F002F1065 /* WishlistViewController.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3634291B2B3ED035002F1065 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				363429262B3ED65F002F1065 /* WishlistViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		363429202B3ED0DF002F1065 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				363429222B3ED105002F1065 /* WishlistTableCell.swift */,
+				363429232B3ED105002F1065 /* WishlistTableCell.xib */,
+			);
+			path = Component;
 			sourceTree = "<group>";
 		};
 		36399C272B0215D500D8A193 /* ViewModel */ = {
@@ -2062,6 +2109,7 @@
 				36B1DAB02B05EE7F009C04EE /* DetailStoryViewController.xib in Resources */,
 				3619059E2AF4F10F00DA3DF0 /* RegisterViewController.xib in Resources */,
 				36F1898C2B27F343008006C4 /* FYPHeader.xib in Resources */,
+				363429252B3ED105002F1065 /* WishlistTableCell.xib in Resources */,
 				369AEC082B306E9A00888758 /* ImageFooter.xib in Resources */,
 				3619058E2AF4F10F00DA3DF0 /* StoreViewController.xib in Resources */,
 				36139ECE2B143793009611A0 /* ReplyCommentTableCell.xib in Resources */,
@@ -2077,6 +2125,7 @@
 				36F189912B27F413008006C4 /* StoreCategoryCell.xib in Resources */,
 				36EF4D1F2B0740AA00EBB278 /* PostCollectionCell.xib in Resources */,
 				361905AC2AF4F10F00DA3DF0 /* StoryViewController.xib in Resources */,
+				3634291F2B3ED04F002F1065 /* WishlistViewController.xib in Resources */,
 				36EF4D232B0740CD00EBB278 /* PostTableCell.xib in Resources */,
 				36F189872B27F1F7008006C4 /* PopularHeader.xib in Resources */,
 				36A20F532B15D77700F54132 /* PopularCollectionCell.xib in Resources */,
@@ -2352,6 +2401,7 @@
 				36B414EA2B2AE64D0021FFD0 /* CustomSearchNavBar.swift in Sources */,
 				36D90FCC2B3168820053ED54 /* SearchUserDataSource.swift in Sources */,
 				3694B52E2AFB2AC8003C11D8 /* DetailStoryViewController.swift in Sources */,
+				363429242B3ED105002F1065 /* WishlistTableCell.swift in Sources */,
 				36B1DABA2B060B12009C04EE /* LoginViewModel.swift in Sources */,
 				36F1899B2B2878BF008006C4 /* CarouselFooter.swift in Sources */,
 				36CCE8552AF89FE500E4AF69 /* APIManager.swift in Sources */,
@@ -2366,6 +2416,7 @@
 				361905272AF4EF2400DA3DF0 /* ExtTableView.swift in Sources */,
 				36FBA18D2B1DE8C50090D898 /* SettingEntity.swift in Sources */,
 				36F189962B287746008006C4 /* PopularFooter.swift in Sources */,
+				363429272B3ED65F002F1065 /* WishlistViewModel.swift in Sources */,
 				36D1EA222B1845BD00645020 /* ProductModel.swift in Sources */,
 				36D90FC92B31577F0053ED54 /* SearchUserViewModel.swift in Sources */,
 				36338C152B3BC11100724642 /* ExtStory + BindData.swift in Sources */,
@@ -2393,6 +2444,7 @@
 				36EF4D0C2B070EBF00EBB278 /* ExtUIImage.swift in Sources */,
 				367ED9722B3279CE006CAD7B /* DetailUserPostCollectionCell.swift in Sources */,
 				36D90FA32B313ECA0053ED54 /* RecommendationHeader.swift in Sources */,
+				3634291E2B3ED04F002F1065 /* WishlistViewController.swift in Sources */,
 				36399C2F2B02191900D8A193 /* AddStoryViewController.swift in Sources */,
 				36A856A22B04E1CA00CE3A60 /* ExtStory + Delegates.swift in Sources */,
 				3619052F2AF4EF2400DA3DF0 /* CustomInputField.swift in Sources */,

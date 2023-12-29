@@ -6,6 +6,7 @@ protocol FeedTableCellDelegate: AnyObject {
     func getLocationName(lat: Double?, lon: Double?, completion: @escaping ((String) -> Void))
     func addLike(cell: FeedTableCell)
     func openComment(index: Int)
+    func navigateToDetailUser(post: ListStory)
 }
 
 class FeedTableCell: UITableViewCell {
@@ -46,14 +47,22 @@ class FeedTableCell: UITableViewCell {
     private func setup() {
         selectionStyle = .none
         profileImage.layer.cornerRadius = 15
+        [likeButton, commentBtn, shareBtn].forEach { $0?.setAnimateBounce() }
+        addGesture()
+    }
+    
+    private func addGesture() {
         let doubleTapGesture = UITapGestureRecognizer(target: self, action: #selector(onImageDoubleTap(_:)))
         doubleTapGesture.numberOfTapsRequired = 2
-        uploadedImage.isUserInteractionEnabled = true
-        uploadedImage.addGestureRecognizer(doubleTapGesture)
-        commentCount.isUserInteractionEnabled = true
-        commentCount.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onCommentLabelTap(_:))))
-        likeButton.isSelected = false
-        [likeButton, commentBtn, shareBtn].forEach { $0?.setAnimateBounce() }
+        [profileImage, username, uploadedImage, commentCount].forEach {
+            $0?.isUserInteractionEnabled = true
+            switch $0 {
+            case profileImage, username: $0?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(navigateToDetail(_:))))
+            case uploadedImage: $0?.addGestureRecognizer(doubleTapGesture)
+            case commentCount: $0?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onCommentBtnTap(_:))))
+            default: break
+            }
+        }
     }
     
     private func configure() {
@@ -70,7 +79,8 @@ class FeedTableCell: UITableViewCell {
     
     private func setupUploadedImage(_ post: ListStory) {
         let url = URL(string: post.photoURL)
-        let processor = DownsamplingImageProcessor(size: CGSize(width: 320, height: 320))
+        let size = uploadedImage.bounds.size
+        let processor = DownsamplingImageProcessor(size: size)
         uploadedImage.kf.setImage(with: url, options: [
             .processor(processor),
             .loadDiskFileSynchronously,
@@ -139,11 +149,17 @@ class FeedTableCell: UITableViewCell {
         }
     }
     
-    @IBAction private func onCommentBtnTap(_ sender: UIButton) {
+    @IBAction private func onCommentBtnTap(_ sender: Any) {
         delegate?.openComment(index: indexSelected)
     }
     
-    @objc private func onCommentLabelTap(_ sender: UITapGestureRecognizer) {
-        delegate?.openComment(index: indexSelected)
+    @objc private func navigateToDetail(_ sender: UITapGestureRecognizer) {
+        if let post = post {
+            delegate?.navigateToDetailUser(post: post)
+        }
     }
+    
+//    @objc private func onCommentLabelTap(_ sender: UITapGestureRecognizer) {
+//        delegate?.openComment(index: indexSelected)
+//    }
 }

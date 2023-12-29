@@ -2,6 +2,21 @@ import Foundation
 import UIKit
 
 extension StoryViewController: FeedTableCellDelegate {
+    func navigateToDetailUser(post: ListStory) {
+        guard let user = try? BaseConstant.getUserFromUserDefaults() else { return }
+        if post.name == user.username {
+            let vc = TabBarViewController()
+            vc.selectedIndex = 4
+            vc.hidesBottomBarWhenPushed = true
+            self.navigationController?.setViewControllers([vc], animated: true)
+        } else {
+            let vc = DetailUserViewController()
+            vc.hidesBottomBarWhenPushed = true
+            vc.detailUser = post
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
     func getLocationName(lat: Double?, lon: Double?, completion: @escaping ((String) -> Void)) {
         if let lat = lat, let lon = lon {
             getLocationNameFromCoordinates(lat: lat, lon: lon) { name in

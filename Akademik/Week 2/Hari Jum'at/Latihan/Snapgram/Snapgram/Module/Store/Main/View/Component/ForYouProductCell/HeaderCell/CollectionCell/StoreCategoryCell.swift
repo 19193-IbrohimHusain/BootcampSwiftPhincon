@@ -7,16 +7,9 @@
 
 import UIKit
 
-protocol StoreCategoryCellDelegate {
-    func onSelected(index: Int)
-}
-
 class StoreCategoryCell: UICollectionViewCell {
 
     @IBOutlet private weak var categoryBtn: UIButton!
-    
-    internal var index = Int()
-    internal var delegate: StoreCategoryCellDelegate?
     
     override var isSelected: Bool {
         didSet {
@@ -31,9 +24,5 @@ class StoreCategoryCell: UICollectionViewCell {
 
     internal func configure(data category: CategoryModel) {
         categoryBtn.setTitle(category.name, for: .normal)
-    }
-    
-    @IBAction func onCategoryBtnTap() {
-        self.delegate?.onSelected(index: index)
     }
 }

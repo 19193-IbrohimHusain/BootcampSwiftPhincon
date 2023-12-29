@@ -11,12 +11,7 @@ extension LoginViewController {
                 self.storeToken(with: validData.token)
                 DispatchQueue.main.async {
                     let user = User(email: self.emailInputField.textField.text!, username: validData.name, userid: validData.userId)
-                    do {
-                        let userData = try JSONEncoder().encode(user)
-                        BaseConstant.userDef.set(userData, forKey: "userData")
-                    } catch {
-                        print("Error encoding user data: \(error)")
-                    }
+                    BaseConstant.saveUserToUserDefaults(user: user)
                 }
             }
         }).disposed(by: bag)
