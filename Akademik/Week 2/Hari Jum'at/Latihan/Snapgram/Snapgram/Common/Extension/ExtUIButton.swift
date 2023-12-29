@@ -1,6 +1,7 @@
 import UIKit
 
 extension UIButton {
+    
     func setAnimateBounce() {
         self.addAction(UIAction { _ in
             self.onTapDownAnimateBounce()

@@ -1,8 +1,6 @@
 import UIKit
 
-// MARK: Class for creating Waterfall Layout using NSCollectionLayoutGroup.custom
 public final class FYPLayout {
-    // MARK: - Function to create Waterfall Layout
     public static func makeLayoutSection(
         config: Configuration,
         enviroment: NSCollectionLayoutEnvironment,
@@ -40,7 +38,6 @@ public final class FYPLayout {
     }
 }
 
-// MARK: - Extension for the Configuration of NSCollectionLayoutGroup.custom
 public extension FYPLayout {
     typealias ItemHeightProvider = (_ index: Int, _ itemWidth: CGFloat) -> CGFloat
     typealias ItemCountProvider = () -> Int
@@ -71,7 +68,7 @@ public extension FYPLayout {
     }
 }
 
-// MARK: - Extension to Create Layout of NSCollectionLayoutGroup.custom
+
 extension FYPLayout {
     final class LayoutBuilder {
         private var columnHeights: [CGFloat]
@@ -107,7 +104,6 @@ extension FYPLayout {
     }
 }
 
-// MARK: - Extension to Create Frame for each NSCollectionLayoutGroupCustomItem
 private extension FYPLayout.LayoutBuilder {
     private var columnWidth: CGFloat {
         let spacing = (columnCount - 1) * interItemSpacing

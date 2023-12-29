@@ -12,19 +12,17 @@ protocol FYPHeaderDelegate {
 }
 
 class FYPHeader: UICollectionReusableView {
-    // MARK: - Variables
+
     @IBOutlet weak var headerCollection: UICollectionView!
     
     private var category: [CategoryModel]?
     internal var delegate: FYPHeaderDelegate?
     
-    // MARK: - Lifecycles
     override func awakeFromNib() {
         super.awakeFromNib()
         setup()
     }
     
-    // MARK: - Functions
     private func setup() {
         headerCollection.delegate = self
         headerCollection.dataSource = self
@@ -38,9 +36,7 @@ class FYPHeader: UICollectionReusableView {
     }
 }
 
-// MARK: - Extension for UICollectionView
 extension FYPHeader: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    // MARK: UICollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return category?.count ?? 0
     }
@@ -49,23 +45,26 @@ extension FYPHeader: UICollectionViewDelegate, UICollectionViewDataSource, UICol
         let cell: StoreCategoryCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
         if let category = category?[indexPath.item] {
             cell.configure(data: category)
+            cell.index = indexPath.item
+            cell.delegate = self
         }
         return cell
     }
     
-    // MARK: UICollectionViewDelegate
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let index = indexPath.item
-        self.headerCollection.selectItem(at: indexPath, animated: true, scrollPosition: .left)
-        self.delegate?.setCurrentSection(index: index)
-    }
-    
-    // MARK: UICollectionViewDelegateFlowLayout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 150, height: 50)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 16.0
+    }
+    
+}
+
+extension FYPHeader: StoreCategoryCellDelegate {
+    func onSelected(index: Int) {
+        let indexPath = IndexPath(item: index, section: 0)
+        self.headerCollection.selectItem(at: indexPath, animated: true, scrollPosition: .left)
+        self.delegate?.setCurrentSection(index: index)
     }
 }

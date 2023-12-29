@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 import SkeletonView
 
-// MARK: - UICollectionViewDiffableDataSource class for implementing SkeletonView in DetailUserPostCollection
 class DetailUserPostDataSource: UICollectionViewDiffableDataSource<SectionDetailUserPost, ListStory>, SkeletonCollectionViewDataSource {
     func collectionSkeletonView(_ skeletonView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 9

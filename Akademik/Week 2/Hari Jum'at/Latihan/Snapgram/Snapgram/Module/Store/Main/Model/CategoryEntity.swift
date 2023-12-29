@@ -1,6 +1,5 @@
 import Foundation
 
-// MARK: Dummy data for category
 var categoryDummy: [CategoryModel] = [
     CategoryModel(id: 6, name: "All Shoes"),
     CategoryModel(id: 5, name: "Running"),

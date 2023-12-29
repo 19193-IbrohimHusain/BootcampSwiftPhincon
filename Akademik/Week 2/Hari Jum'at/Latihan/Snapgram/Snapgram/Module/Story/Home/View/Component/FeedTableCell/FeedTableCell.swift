@@ -1,18 +1,15 @@
 import UIKit
 import Kingfisher
-import RxSwift
-import RxGesture
 import GoogleMaps
 
 protocol FeedTableCellDelegate: AnyObject {
     func getLocationName(lat: Double?, lon: Double?, completion: @escaping ((String) -> Void))
     func addLike(cell: FeedTableCell)
     func openComment(index: Int)
-    func navigateToDetailUser(user: ListStory)
 }
 
 class FeedTableCell: UITableViewCell {
-    // MARK: - Variables
+    
     @IBOutlet private weak var profileImage: UIImageView!
     @IBOutlet private weak var username: UILabel!
     @IBOutlet private weak var uploadedImage: UIImageView!
@@ -26,68 +23,37 @@ class FeedTableCell: UITableViewCell {
     @IBOutlet private weak var createdAt: UILabel!
     
     internal weak var delegate: FeedTableCellDelegate?
-    internal var indexSelected = 0
-    private var bag = DisposeBag()
+    private let dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
     private var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        formatter.dateFormat = dateFormat
         formatter.timeZone = TimeZone(abbreviation: "UTC")
         return formatter
     }
+    internal var indexSelected = 0
+    
     internal var post: ListStory? {
         didSet {
             configure()
         }
     }
     
-    // MARK: - Lifecycles
     override func awakeFromNib() {
         super.awakeFromNib()
         setup()
     }
     
-    // MARK: - Functions
     private func setup() {
         selectionStyle = .none
         profileImage.layer.cornerRadius = 15
+        let doubleTapGesture = UITapGestureRecognizer(target: self, action: #selector(onImageDoubleTap(_:)))
+        doubleTapGesture.numberOfTapsRequired = 2
+        uploadedImage.isUserInteractionEnabled = true
+        uploadedImage.addGestureRecognizer(doubleTapGesture)
+        commentCount.isUserInteractionEnabled = true
+        commentCount.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onCommentLabelTap(_:))))
         likeButton.isSelected = false
         [likeButton, commentBtn, shareBtn].forEach { $0?.setAnimateBounce() }
-        btnEvent()
-    }
-    
-    private func btnEvent() {
-        likeButton.rx.tap.subscribe(onNext: { [weak self] _ in
-            guard let self = self else { return }
-            self.delegate?.addLike(cell: self)
-        }).disposed(by: bag)
-        
-        commentBtn.rx.tap.subscribe(onNext: { [weak self] _ in
-            guard let self = self else { return }
-            self.delegate?.openComment(index: self.indexSelected)
-        }).disposed(by: bag)
-        
-        uploadedImage.rx.tapGesture(configuration: { (gesture, _) in
-            gesture.numberOfTapsRequired = 2
-        }).when(.recognized).subscribe(onNext: { [weak self] _ in
-            guard let self = self, self.likePopUp.isHidden == true else { return }
-            self.likePopUp.addShadow()
-            self.displayPopUp()
-        }).disposed(by: bag)
-        
-        profileImage.rx.tapGesture().when(.recognized).subscribe(onNext: { [weak self] _ in
-            guard let self = self, let post = self.post else { return }
-            self.delegate?.navigateToDetailUser(user: post)
-        }).disposed(by: bag)
-        
-        username.rx.tapGesture().when(.recognized).subscribe(onNext: { [weak self] _ in
-            guard let self = self, let post = self.post else { return }
-            self.delegate?.navigateToDetailUser(user: post)
-        }).disposed(by: bag)
-        
-        commentCount.rx.tapGesture().when(.recognized).subscribe(onNext: { [weak self] _ in
-            guard let self = self else { return }
-            self.delegate?.openComment(index: self.indexSelected)
-        }).disposed(by: bag)
     }
     
     private func configure() {
@@ -104,13 +70,12 @@ class FeedTableCell: UITableViewCell {
     
     private func setupUploadedImage(_ post: ListStory) {
         let url = URL(string: post.photoURL)
-        let size = uploadedImage.intrinsicContentSize
-        let processor = DownsamplingImageProcessor(size: size)
+        let processor = DownsamplingImageProcessor(size: CGSize(width: 320, height: 320))
         uploadedImage.kf.setImage(with: url, options: [
             .processor(processor),
             .loadDiskFileSynchronously,
             .cacheOriginalImage,
-            .transition(.none),
+            .transition(.fade(0.25)),
         ])
     }
     
@@ -145,6 +110,12 @@ class FeedTableCell: UITableViewCell {
         }
     }
     
+    @objc private func onImageDoubleTap(_ sender: UITapGestureRecognizer) {
+        guard likePopUp.isHidden == true else { return }
+        likePopUp.addShadow()
+        displayPopUp()
+    }
+    
     private func displayPopUp() {
         likePopUp.isHidden = false
         UIView.animate(withDuration: 0.8, delay: 0.0 , usingSpringWithDamping: 0.4, initialSpringVelocity: 0.4, options: [.curveEaseInOut], animations: {
@@ -159,5 +130,20 @@ class FeedTableCell: UITableViewCell {
                 self.likePopUp.isHidden = true
             })
         })
+    }
+    
+    @IBAction private func onLikeBtnTap(_ sender: UIButton) {
+        delegate?.addLike(cell: self)
+        if let post = post {
+            setupLocation(post)
+        }
+    }
+    
+    @IBAction private func onCommentBtnTap(_ sender: UIButton) {
+        delegate?.openComment(index: indexSelected)
+    }
+    
+    @objc private func onCommentLabelTap(_ sender: UITapGestureRecognizer) {
+        delegate?.openComment(index: indexSelected)
     }
 }

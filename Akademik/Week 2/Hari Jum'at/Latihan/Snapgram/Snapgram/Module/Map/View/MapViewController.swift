@@ -4,7 +4,7 @@ import RxSwift
 import RxCocoa
 
 class MapViewController: BaseViewController {
-    // MARK: - Variables
+    
     @IBOutlet private weak var mapView: GMSMapView!
     
     private let vm = MapViewModel()
@@ -12,7 +12,6 @@ class MapViewController: BaseViewController {
     private var listMarker: [GMSMarker] = []
     private let infoView = CustomViewMarker()
     
-    // MARK: - Lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
@@ -25,7 +24,6 @@ class MapViewController: BaseViewController {
         vm.fetchLocationStory(param: StoryParam(size: 30, location: 1))
     }
     
-    // MARK: - Functions
     private func setup() {
         self.navigationController?.navigationBar.tintColor = .label
         mapView.delegate = self
@@ -60,7 +58,6 @@ class MapViewController: BaseViewController {
     }
 }
 
-// MARK: - Extension for GMSMapViewDelegate
 extension MapViewController: GMSMapViewDelegate {
     func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
         return infoView
@@ -103,7 +100,8 @@ extension MapViewController: GMSMapViewDelegate {
            let lat = infoData.lat,
            let lon = infoData.lon {
             getLocationNameFromCoordinates(lat: lat, lon: lon) { name in
-                self.infoView.configure(id: infoData.id, name: infoData.name, location: name, image: infoData.photoURL, caption: infoData.description, createdAt: infoData.createdAt)
+                self.infoView.configure(name: infoData.name, location: name, image: infoData.photoURL, caption: infoData.description, createdAt: infoData.createdAt)
+                self.infoView.storyID = infoData.id
                 self.infoView.locationLabel.isHidden = false
             }
         }
@@ -111,7 +109,6 @@ extension MapViewController: GMSMapViewDelegate {
     }
 }
 
-// MARK: - Extension for CustomViewMarkerDelegate
 extension MapViewController: CustomViewMarkerDelegate {
     func navigateTo(id: String) {
         let vc = DetailStoryViewController()

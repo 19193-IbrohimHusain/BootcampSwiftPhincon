@@ -8,7 +8,6 @@
 import Foundation
 import SkeletonView
 
-// MARK: - Extension for SkeletonTableViewDataSource
 extension ProfileViewController: SkeletonTableViewDataSource {
     func numSections(in collectionSkeletonView: UITableView) -> Int {
         return tables.count
@@ -37,7 +36,6 @@ extension ProfileViewController: SkeletonTableViewDataSource {
     }
 }
 
-// MARK: - Extension for ProfileTableCellDelegate
 extension ProfileViewController: ProfileTableCellDelegate {
     func editProfile() {
         let epvc = EditProfileViewController()
@@ -60,14 +58,12 @@ extension ProfileViewController: ProfileTableCellDelegate {
     }
 }
 
-// MARK: - Extension for CategoryTableCellDelegate
 extension ProfileViewController: CategoryTableCellDelegate {
     func setCurrentSection(index: Int) {
         self.scrollToMenuIndex(sectionIndex: index)
     }
 }
 
-// MARK: - Extension for PostTableCellDelegate
 extension ProfileViewController: PostTableCellDelegate {
     func didEndDecelerating(scrollView: UIScrollView) {
         let index = IndexPath(row: 0, section: 1)

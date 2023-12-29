@@ -10,7 +10,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailStoryViewController" customModule="Snapgram" customModuleProvider="target">
             <connections>
-                <outlet property="bgView" destination="zzT-st-htO" id="7Tn-bp-H4p"/>
                 <outlet property="caption" destination="ys6-KJ-mHa" id="eva-rq-ijB"/>
                 <outlet property="commentBtn" destination="MiS-mH-Nbr" id="FP5-Oa-PfJ"/>
                 <outlet property="commentsCount" destination="CEF-Lf-BQP" id="bC6-Gg-mKp"/>
@@ -86,6 +85,9 @@
                                             <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system">
                                                 <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="large"/>
                                             </buttonConfiguration>
+                                            <connections>
+                                                <action selector="onLikeBtnTap" destination="-1" eventType="touchUpInside" id="1i0-e6-IJo"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MiS-mH-Nbr">
                                             <rect key="frame" x="40" y="0.0" width="24" height="24"/>
@@ -98,6 +100,9 @@
                                             <buttonConfiguration key="configuration" style="plain" image="bubble.right" catalog="system">
                                                 <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="large"/>
                                             </buttonConfiguration>
+                                            <connections>
+                                                <action selector="onCommentBtnTap" destination="-1" eventType="touchUpInside" id="AkK-S9-2KI"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a21-fH-Pl2">
                                             <rect key="frame" x="80" y="0.0" width="24" height="24"/>
@@ -110,6 +115,9 @@
                                             <buttonConfiguration key="configuration" style="plain" image="paperplane" catalog="system">
                                                 <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="large"/>
                                             </buttonConfiguration>
+                                            <connections>
+                                                <action selector="onShareBtnTap" destination="-1" eventType="touchUpInside" id="H12-Rc-fCr"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                 </stackView>
@@ -176,9 +184,6 @@
                                 <constraint firstItem="sZm-mT-thT" firstAttribute="top" secondItem="CEF-Lf-BQP" secondAttribute="bottom" constant="5" id="suF-Gg-rNq"/>
                                 <constraint firstAttribute="trailing" secondItem="Wgs-h5-esp" secondAttribute="trailing" constant="16" id="wkW-di-539"/>
                             </constraints>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
-                            </userDefinedRuntimeAttributes>
                         </view>
                     </subviews>
                     <constraints>

@@ -2,7 +2,7 @@ import UIKit
 import SkeletonView
 
 class StoryViewController: BaseBottomSheetController {
-    // MARK: - Variables
+    
     @IBOutlet internal weak var storyTable: UITableView!
     
     internal let tables = SectionStoryTable.allCases
@@ -11,7 +11,6 @@ class StoryViewController: BaseBottomSheetController {
     internal var listStory = [ListStory]()
     private var page = 1
     
-    // MARK: - Lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
@@ -27,7 +26,6 @@ class StoryViewController: BaseBottomSheetController {
         self.errorView.removeFromSuperview()
     }
     
-    // MARK: - Functions
     private func setup() {
         setupNavigationBar()
         setupErrorView()
@@ -43,7 +41,7 @@ class StoryViewController: BaseBottomSheetController {
     }
     
     private func setupTable() {
-        refreshControl.rx.controlEvent(.valueChanged).subscribe(onNext: { self.refreshData() }).disposed(by: bag)
+        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
         storyTable.refreshControl = refreshControl
         storyTable.delegate = self
         storyTable.dataSource = self
@@ -62,7 +60,7 @@ class StoryViewController: BaseBottomSheetController {
         isLoadMoreData = false
     }
     
-    private func refreshData() {
+    @objc private func refreshData() {
         self.page = 1
         self.isLoadMoreData = false
         self.listStory.removeAll()
@@ -78,7 +76,6 @@ class StoryViewController: BaseBottomSheetController {
     }
 }
 
-// MARK: - Extension for UITableViewDelegate
 extension StoryViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         guard isLoadMoreData == false else { return }

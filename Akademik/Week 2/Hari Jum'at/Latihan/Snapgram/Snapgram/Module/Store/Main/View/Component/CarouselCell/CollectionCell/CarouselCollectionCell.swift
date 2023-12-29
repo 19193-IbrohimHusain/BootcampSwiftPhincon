@@ -9,18 +9,12 @@ import UIKit
 import Kingfisher
 
 class CarouselCollectionCell: UICollectionViewCell {
-    // MARK: - Variables
+    
     @IBOutlet weak var bgView: UIView!
     @IBOutlet weak var carouselImg: UIImageView!
     
-    // MARK: - Lifecycles
     override func awakeFromNib() {
         super.awakeFromNib()
-        setup()
-    }
-    
-    // MARK: - Functions
-    private func setup() {
         bgView.makeCornerRadius(16.0)
     }
     

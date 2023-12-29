@@ -57,9 +57,6 @@
 		361DCB522B19817F00BFE0B7 /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361DCB512B19817F00BFE0B7 /* CategoryModel.swift */; };
 		361DCB552B1989BC00BFE0B7 /* CustomErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361DCB542B1989BC00BFE0B7 /* CustomErrorView.swift */; };
 		361DCB5A2B19B32B00BFE0B7 /* DetailProductViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361DCB592B19B32B00BFE0B7 /* DetailProductViewModel.swift */; };
-		361E86182B3D14210099A1EC /* ExtDetailStory + ConfigureUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361E86172B3D14210099A1EC /* ExtDetailStory + ConfigureUI.swift */; };
-		361E861E2B3D428F0099A1EC /* SectionProfileTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361E861D2B3D428F0099A1EC /* SectionProfileTable.swift */; };
-		361E86202B3D42AD0099A1EC /* SectionPostCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361E861F2B3D42AD0099A1EC /* SectionPostCollection.swift */; };
 		3626C9012B2C3E6B008DC355 /* ExtStore + BindData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3626C9002B2C3E6B008DC355 /* ExtStore + BindData.swift */; };
 		3626C9032B2C402C008DC355 /* ExtStore + CellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3626C9022B2C402C008DC355 /* ExtStore + CellDelegate.swift */; };
 		3626C9062B2C46E3008DC355 /* StoreViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3626C9052B2C46E3008DC355 /* StoreViewDataSource.swift */; };
@@ -305,9 +302,6 @@
 		361DCB512B19817F00BFE0B7 /* CategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
 		361DCB542B1989BC00BFE0B7 /* CustomErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomErrorView.swift; sourceTree = "<group>"; };
 		361DCB592B19B32B00BFE0B7 /* DetailProductViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailProductViewModel.swift; sourceTree = "<group>"; };
-		361E86172B3D14210099A1EC /* ExtDetailStory + ConfigureUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExtDetailStory + ConfigureUI.swift"; sourceTree = "<group>"; };
-		361E861D2B3D428F0099A1EC /* SectionProfileTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionProfileTable.swift; sourceTree = "<group>"; };
-		361E861F2B3D42AD0099A1EC /* SectionPostCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionPostCollection.swift; sourceTree = "<group>"; };
 		3626C9002B2C3E6B008DC355 /* ExtStore + BindData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExtStore + BindData.swift"; sourceTree = "<group>"; };
 		3626C9022B2C402C008DC355 /* ExtStore + CellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExtStore + CellDelegate.swift"; sourceTree = "<group>"; };
 		3626C9052B2C46E3008DC355 /* StoreViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreViewDataSource.swift; sourceTree = "<group>"; };
@@ -605,9 +599,11 @@
 		3619051B2AF4EF2400DA3DF0 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				361E861A2B3D254C0099A1EC /* API */,
+				36D1EA1A2B18425900645020 /* Alamofire API */,
 				36D90FB32B314D1F0053ED54 /* Param */,
 				36CCE8582AF8B73500E4AF69 /* Model */,
+				36CCE8542AF89FE500E4AF69 /* APIManager.swift */,
+				36CCE8562AF89FFC00E4AF69 /* EndpointStory.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -720,7 +716,6 @@
 		361905622AF4F10E00DA3DF0 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				361E861C2B3D427D0099A1EC /* Enum */,
 				36FBA1802B1DE6FA0090D898 /* Settings */,
 				36EF4D292B074A5800EBB278 /* EditProfile */,
 				36B1DAB22B06090E009C04EE /* ViewModel */,
@@ -741,6 +736,7 @@
 		361905712AF4F10E00DA3DF0 /* AddStory */ = {
 			isa = PBXGroup;
 			children = (
+				36B1DAC82B063550009C04EE /* Extension */,
 				36B1DAC22B063425009C04EE /* View */,
 				36399C2A2B0218CE00D8A193 /* StraightToCamera */,
 				36399C272B0215D500D8A193 /* ViewModel */,
@@ -843,41 +839,6 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		361E86192B3D156C0099A1EC /* Extension */ = {
-			isa = PBXGroup;
-			children = (
-				361E86172B3D14210099A1EC /* ExtDetailStory + ConfigureUI.swift */,
-			);
-			path = Extension;
-			sourceTree = "<group>";
-		};
-		361E861A2B3D254C0099A1EC /* API */ = {
-			isa = PBXGroup;
-			children = (
-				36D1EA1A2B18425900645020 /* Alamofire API */,
-				361E861B2B3D25540099A1EC /* URLSession API */,
-			);
-			path = API;
-			sourceTree = "<group>";
-		};
-		361E861B2B3D25540099A1EC /* URLSession API */ = {
-			isa = PBXGroup;
-			children = (
-				36CCE8542AF89FE500E4AF69 /* APIManager.swift */,
-				36CCE8562AF89FFC00E4AF69 /* EndpointStory.swift */,
-			);
-			path = "URLSession API";
-			sourceTree = "<group>";
-		};
-		361E861C2B3D427D0099A1EC /* Enum */ = {
-			isa = PBXGroup;
-			children = (
-				361E861D2B3D428F0099A1EC /* SectionProfileTable.swift */,
-				361E861F2B3D42AD0099A1EC /* SectionPostCollection.swift */,
-			);
-			path = Enum;
-			sourceTree = "<group>";
-		};
 		3626C9042B2C46D0008DC355 /* Datasource */ = {
 			isa = PBXGroup;
 			children = (
@@ -929,7 +890,6 @@
 		363164632B05EC8400028F1B /* View */ = {
 			isa = PBXGroup;
 			children = (
-				361E86192B3D156C0099A1EC /* Extension */,
 				3694B52C2AFB2AC8003C11D8 /* DetailStoryViewController.swift */,
 				36B1DAAF2B05EE7F009C04EE /* DetailStoryViewController.xib */,
 			);
@@ -947,7 +907,6 @@
 		36399C2A2B0218CE00D8A193 /* StraightToCamera */ = {
 			isa = PBXGroup;
 			children = (
-				36B1DAC82B063550009C04EE /* Extension */,
 				361905722AF4F10E00DA3DF0 /* CameraStoryViewController.xib */,
 				361905732AF4F10E00DA3DF0 /* CameraAddStoryViewController.swift */,
 			);
@@ -2349,7 +2308,6 @@
 				36D90FB52B314D4F0053ED54 /* StoryParam.swift in Sources */,
 				3626C90D2B2C7442008DC355 /* SearchDummyEntity.swift in Sources */,
 				369AEBEA2B302D4C00888758 /* ExtDetailProduct + Layout.swift in Sources */,
-				361E86182B3D14210099A1EC /* ExtDetailStory + ConfigureUI.swift in Sources */,
 				36FBA1882B1DE85E0090D898 /* SettingsTableCell.swift in Sources */,
 				3619052B2AF4EF2400DA3DF0 /* ExtCollectionView.swift in Sources */,
 				36EF4D112B071F0000EBB278 /* CategoryTableCell.swift in Sources */,
@@ -2373,7 +2331,6 @@
 				36D90FBF2B31536F0053ED54 /* SearchUserViewController.swift in Sources */,
 				36C40B312B1F1783000FE2EE /* PostPhotoCell.swift in Sources */,
 				36EF4D2E2B074B2E00EBB278 /* EditProfileViewController.swift in Sources */,
-				361E861E2B3D428F0099A1EC /* SectionProfileTable.swift in Sources */,
 				3619052A2AF4EF2400DA3DF0 /* ExtLogin.swift in Sources */,
 				36B415012B2B30750021FFD0 /* PopularViewModel.swift in Sources */,
 				36148A6A2B23152C00FE3E52 /* FYPLayout.swift in Sources */,
@@ -2383,7 +2340,6 @@
 				36CCE85C2AF8B7A800E4AF69 /* LoginModel.swift in Sources */,
 				369AEBCD2B300EB300888758 /* SearchCollectionDataSource.swift in Sources */,
 				36EF4D1E2B0740AA00EBB278 /* PostCollectionCell.swift in Sources */,
-				361E86202B3D42AD0099A1EC /* SectionPostCollection.swift in Sources */,
 				367ED9762B327A8C006CAD7B /* SectionDetailUserPost.swift in Sources */,
 				36CCE8602AF8B86C00E4AF69 /* DetailStoryModel.swift in Sources */,
 				36D90FA82B3140500053ED54 /* SectionStoreEnum.swift in Sources */,

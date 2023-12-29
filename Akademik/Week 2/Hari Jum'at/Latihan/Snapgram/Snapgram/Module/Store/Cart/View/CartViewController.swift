@@ -8,7 +8,7 @@
 import UIKit
 
 class CartViewController: UIViewController {
-    // MARK: - Variables
+    
     @IBOutlet weak var cartTable: UITableView!
     
     var snapshot = NSDiffableDataSourceSnapshot<SectionCartTable, CartModel>()
@@ -21,13 +21,12 @@ class CartViewController: UIViewController {
         CartModel(productID: 5, name: "NewBalance", price: 200, quantity: 1, image: "Blank Image")
     ]
     
-    // MARK: - Lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
     }
     
-    // MARK: - Functions
+    
     private func setup() {
         cartTable.delegate = self
         cartTable.registerCellWithNib(CartTableCell.self)
@@ -54,7 +53,6 @@ class CartViewController: UIViewController {
     
 }
 
-// MARK: - Extension for UITableView
 extension CartViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension

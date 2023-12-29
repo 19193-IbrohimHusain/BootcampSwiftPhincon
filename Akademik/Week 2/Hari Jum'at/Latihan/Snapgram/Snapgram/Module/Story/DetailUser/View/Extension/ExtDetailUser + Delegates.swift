@@ -8,7 +8,6 @@
 import Foundation
 import UIKit
 
-// MARK: - Extension for DetailUserPostHeaderCellDelegate
 extension DetailUserViewController: DetailUserPostHeaderCellDelegate {
     func onCategorySelected(index: Int) {
         let section = IndexPath(item: 0, section: 1)
@@ -19,7 +18,6 @@ extension DetailUserViewController: DetailUserPostHeaderCellDelegate {
     }
 }
 
-// MARK: - Extension for DetailUserPostCollectionCellDelegate
 extension DetailUserViewController: DetailUserPostCollectionCellDelegate {
     func navigateToDetail(id: String) {
         let vc = DetailStoryViewController()

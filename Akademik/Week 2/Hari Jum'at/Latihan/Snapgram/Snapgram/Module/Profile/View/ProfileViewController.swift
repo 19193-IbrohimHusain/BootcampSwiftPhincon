@@ -3,7 +3,7 @@ import RxSwift
 import SkeletonView
 
 class ProfileViewController: BaseBottomSheetController {
-    // MARK: - Variables
+    
     @IBOutlet internal weak var profileTable: UITableView!
     
     internal let tables = SectionProfileTable.allCases
@@ -18,7 +18,6 @@ class ProfileViewController: BaseBottomSheetController {
         }
     }
     
-    // MARK: - Lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
@@ -34,7 +33,6 @@ class ProfileViewController: BaseBottomSheetController {
         self.errorView.removeFromSuperview()
     }
     
-    // MARK: - Functions
     private func setup() {
         setupNavigationBar(title: "Profile", image1: "line.horizontal.3", image2: "plus.app", action1: #selector(showSettings), action2: #selector(addStory))
         setupErrorView()
@@ -44,7 +42,7 @@ class ProfileViewController: BaseBottomSheetController {
     }
     
     private func setupTable() {
-        refreshControl.rx.controlEvent(.valueChanged).subscribe(onNext: { self.refreshData() }).disposed(by: bag)
+        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
         profileTable.refreshControl = refreshControl
         profileTable.delegate =  self
         profileTable.dataSource =  self
@@ -105,16 +103,6 @@ class ProfileViewController: BaseBottomSheetController {
         }
     }
     
-    private func refreshData() {
-        userPost?.removeAll()
-        taggedPost?.removeAll()
-        vm.fetchStory(param: StoryParam(size: 1000))
-        refreshControl.endRefreshing()
-        profileTable.hideLoadingFooter()
-        self.errorView.removeFromSuperview()
-    }
-    
-    // MARK: - Objc functions
     @objc private func addStory() {
         let vc = AddStoryViewController()
         vc.modalPresentationStyle = .overFullScreen
@@ -124,9 +112,17 @@ class ProfileViewController: BaseBottomSheetController {
     @objc private func showSettings() {
         self.present(floatingPanel, animated: true)
     }
+    
+    @objc private func refreshData() {
+        userPost?.removeAll()
+        taggedPost?.removeAll()
+        vm.fetchStory(param: StoryParam(size: 1000))
+        refreshControl.endRefreshing()
+        profileTable.hideLoadingFooter()
+        self.errorView.removeFromSuperview()
+    }
 }
 
-// MARK: - Extension for UITableView
 extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return tables.count

@@ -8,7 +8,7 @@
 import UIKit
 
 class PopularProductViewController: BaseViewController {
-    // MARK: - Variables
+
     @IBOutlet weak var popularCollection: UICollectionView!
     
     private var vm = PopularProductViewModel()
@@ -17,7 +17,6 @@ class PopularProductViewController: BaseViewController {
     private var dataSource: PopularProductDataSource!
     private var layout: UICollectionViewCompositionalLayout!
 
-    // MARK: - Lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
@@ -33,7 +32,6 @@ class PopularProductViewController: BaseViewController {
         clearSnapshot()
     }
     
-    // MARK: - Functions
     private func setup() {
         setupNavigationBar()
         setupErrorView()
@@ -50,8 +48,6 @@ class PopularProductViewController: BaseViewController {
     }
     
     private func setupCollection() {
-        refreshControl.rx.controlEvent(.valueChanged).subscribe(onNext: { self.refreshData() }).disposed(by: bag)
-        popularCollection.refreshControl = refreshControl
         popularCollection.delegate = self
         popularCollection.registerCellWithNib(FYPCollectionCell.self)
     }
@@ -95,13 +91,12 @@ class PopularProductViewController: BaseViewController {
             case .loading:
                 self.popularCollection.showAnimatedGradientSkeleton()
             case .finished:
-                self.refreshControl.endRefreshing()
                 self.popularCollection.hideSkeleton(reloadDataAfter: false)
                 self.loadSnaphot()
             case .failed:
-                self.refreshControl.endRefreshing()
                 self.popularCollection.addSubview(self.errorView)
             }
+            
         }).disposed(by: bag)
     }
     
@@ -113,13 +108,12 @@ class PopularProductViewController: BaseViewController {
         self.errorView.removeFromSuperview()
     }
     
-    private func refreshData() {
+    @objc private func refreshData() {
         clearSnapshot()
         vm.getProduct(param: ProductParam())
     }
 }
 
-// MARK: - Extension for UICollectionViewDelegate
 extension PopularProductViewController: UICollectionViewDelegate {
     private func navigateToDetail(index: Int) {
         if let productID = product?[index].id {

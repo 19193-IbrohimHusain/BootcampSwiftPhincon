@@ -17,7 +17,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="196" height="50"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cj3-I9-AgO">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cj3-I9-AgO">
                         <rect key="frame" x="0.0" y="0.0" width="196" height="50"/>
                         <color key="tintColor" systemColor="labelColor"/>
                         <state key="normal" title="Button"/>
@@ -25,6 +25,9 @@
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                         </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="onCategoryBtnTap:" destination="gTV-IL-0wX" eventType="touchUpInside" id="nw6-N8-Osn"/>
+                        </connections>
                     </button>
                 </subviews>
             </view>

@@ -9,20 +9,18 @@ import UIKit
 import Kingfisher
 
 class FYPCollectionCell: UICollectionViewCell {
-    // MARK: - Variables
+
     @IBOutlet private weak var bgView: UIView!
     @IBOutlet weak var productImg: UIImageView!
     @IBOutlet weak var productCategory: UILabel!
     @IBOutlet weak var productName: UILabel!
     @IBOutlet weak var productPrice: UILabel!
     
-    // MARK: - Lifecycles
     override func awakeFromNib() {
         super.awakeFromNib()
         setupCollection()
     }
     
-    // MARK: - Functions
     private func setupCollection() {
         bgView.addShadow()
         bgView.makeCornerRadius(16)

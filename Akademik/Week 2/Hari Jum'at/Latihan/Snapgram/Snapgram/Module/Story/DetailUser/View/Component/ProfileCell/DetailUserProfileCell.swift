@@ -8,7 +8,7 @@
 import UIKit
 
 class DetailUserProfileCell: UICollectionViewCell {
-    // MARK: - Variables
+
     @IBOutlet weak var profileImg: UIImageView!
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var userID: UILabel!
@@ -17,14 +17,8 @@ class DetailUserProfileCell: UICollectionViewCell {
     
     private var isFollowed: Bool = false
         
-    // MARK: - Lifecycles
     override func awakeFromNib() {
         super.awakeFromNib()
-        setup()
-    }
-    
-    // MARK: - Functions
-    private func setup() {
         followBtn.setAnimateBounce()
         profileImg.layer.cornerRadius = profileImg.bounds.width / 2
     }

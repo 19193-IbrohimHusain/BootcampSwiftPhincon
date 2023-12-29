@@ -5,7 +5,6 @@ enum BottomSheetViewTypes {
 }
 
 class BaseBottomSheetController: BaseViewController {
-    // MARK: - Variables
     internal var floatingPanel = FloatingPanelController()
     
     private weak var contentVC: UIViewController? {
@@ -21,7 +20,6 @@ class BaseBottomSheetController: BaseViewController {
         }
     }
     
-    // MARK: - Functions
     internal func setupBottomSheet(contentVC: UIViewController?, floatingPanelDelegate: FloatingPanelControllerDelegate) {
         self.floatingPanelDelegate = floatingPanelDelegate
         prepareBottomSheet(contentVC: contentVC)

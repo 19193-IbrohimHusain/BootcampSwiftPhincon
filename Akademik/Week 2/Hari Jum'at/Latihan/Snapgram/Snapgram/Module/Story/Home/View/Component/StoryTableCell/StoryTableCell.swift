@@ -6,22 +6,19 @@ protocol StoryTableCellDelegate {
 }
 
 class StoryTableCell: UITableViewCell {
-    // MARK: - Variables
+
     @IBOutlet private weak var storyCollectionView: UICollectionView!
     
     internal var delegate: StoryTableCellDelegate?
     
     internal var data: [ListStory]?
     
-    // MARK: - Lifecycles
     override func awakeFromNib() {
         super.awakeFromNib()
-        setup()
+        setupCollection()
     }
     
-    // MARK: - Functions
-    private func setup() {
-        selectionStyle = .none
+    private func setupCollection() {
         storyCollectionView.delegate = self
         storyCollectionView.dataSource = self
         storyCollectionView.registerCellWithNib(StoryCollectionCell.self)
@@ -33,7 +30,6 @@ class StoryTableCell: UITableViewCell {
     }
 }
 
-// MARK: - Extension for UICollectionView
 extension StoryTableCell: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return data?.count ?? 0
@@ -58,7 +54,6 @@ extension StoryTableCell: UICollectionViewDelegate, UICollectionViewDataSource {
     }
 }
 
-// MARK: - Extension for SkeletonCollectionViewDataSource
 extension StoryTableCell: SkeletonCollectionViewDataSource {
     func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> ReusableCellIdentifier {
         return String(describing: StoryCollectionCell.self)

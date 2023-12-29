@@ -8,7 +8,6 @@
 import Foundation
 import SkeletonView
 
-// MARK: UICollectionViewDiffableDataSource class for implementing SkeletonView in SearchProductViewController
 class SearchCollectionDataSource: UICollectionViewDiffableDataSource<SectionSearchProduct, ProductModel>, SkeletonCollectionViewDataSource {
     func collectionSkeletonView(_ skeletonView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return searchEntity.count

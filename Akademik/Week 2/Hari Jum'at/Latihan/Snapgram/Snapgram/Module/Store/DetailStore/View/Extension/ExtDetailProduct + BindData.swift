@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: Extension to BindData from ViewModel
 extension DetailProductViewController {
     internal func bindData() {
         vm.dataProduct.asObservable().subscribe(onNext: { [weak self] product in

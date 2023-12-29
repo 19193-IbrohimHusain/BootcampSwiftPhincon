@@ -11,7 +11,6 @@ struct LoginParam {
     let email, password: String
 }
 
-// MARK: - Struct for UserDefault
 struct User: Codable {
     let email: String
     let username: String

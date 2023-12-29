@@ -5,14 +5,13 @@ protocol CategoryTableCellDelegate {
 }
 
 class CategoryTableCell: UITableViewCell {
-    // MARK: - Variables
+
     @IBOutlet weak var categoryCollection: UICollectionView!
     
-    internal var delegate: CategoryTableCellDelegate?
-    internal var horizontalBarLeftAnchorConstraint: NSLayoutConstraint?
-    private let horizontalBarView = UIView()
+    var delegate: CategoryTableCellDelegate?
+    var horizontalBarLeftAnchorConstraint: NSLayoutConstraint?
+    let horizontalBarView = UIView()
     
-    // MARK: - Lifecycles
     override func awakeFromNib() {
         super.awakeFromNib()
         setupCollection()
@@ -24,9 +23,7 @@ class CategoryTableCell: UITableViewCell {
         setupCollection()
     }
     
-    // MARK: - Functions
-    private func setupCollection() {
-        categoryCollection.delegate = self
+    func setupCollection() {
         categoryCollection.dataSource = self
         categoryCollection.registerCellWithNib(CategoryCollectionCell.self)
         setupHorizontalBar()
@@ -44,7 +41,7 @@ class CategoryTableCell: UITableViewCell {
         return section
     }
     
-    private func setupHorizontalBar() {
+    func setupHorizontalBar() {
         horizontalBarView.backgroundColor = .label
         horizontalBarView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(horizontalBarView)
@@ -58,8 +55,7 @@ class CategoryTableCell: UITableViewCell {
     }
 }
 
-// MARK: - Extension for UICollectionView
-extension CategoryTableCell: UICollectionViewDelegate, UICollectionViewDataSource {
+extension CategoryTableCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return categoryItem.count
     }
@@ -68,13 +64,18 @@ extension CategoryTableCell: UICollectionViewDelegate, UICollectionViewDataSourc
         let cell = collectionView.dequeueReusableCell(forIndexPath: indexPath) as CategoryCollectionCell
         let categoryEntity = categoryItem[indexPath.item]
         cell.configureCollection(categoryEntity)
+        cell.delegate = self
+        cell.index = indexPath.item
         
         return cell
     }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let index = indexPath.item
+}
+
+extension CategoryTableCell: CategoryCollectionCellDelegate {
+    func onCategorySelected(index: Int) {
+        let indexPath = IndexPath(item: index, section: 0)
         self.categoryCollection.selectItem(at: indexPath, animated: false, scrollPosition: .centeredHorizontally)
         self.delegate?.setCurrentSection(index: index)
     }
 }
+

@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Extension for FYPCollectionViewCellDelegate
 extension StoreViewController: FYPCollectionViewCellDelegate {
     func handleNavigate(index: Int) {
         self.navigateToDetail(index: index)
@@ -23,7 +22,6 @@ extension StoreViewController: FYPCollectionViewCellDelegate {
     }
 }
 
-// MARK: - Extension for FYPHeaderDelegate
 extension StoreViewController: FYPHeaderDelegate {
     private func scrollToMenuIndex(index: Int) {
         let sectionIndex = IndexPath(item: 0, section: 2)
@@ -38,7 +36,6 @@ extension StoreViewController: FYPHeaderDelegate {
     }
 }
 
-// MARK: - Extension for PopularHeaderDelegate
 extension StoreViewController: PopularHeaderDelegate {
     func navigateToPopular() {
         let vc = PopularProductViewController()

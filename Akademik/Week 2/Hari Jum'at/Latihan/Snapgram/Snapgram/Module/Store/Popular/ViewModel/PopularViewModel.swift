@@ -24,8 +24,9 @@ class PopularProductViewModel: BaseViewModel {
             case .success(let data):
                 self.productData.accept(data.data.data)
                 self.loadingState.accept(.finished)
-            case .failure(_):
+            case .failure(let error):
                 self.loadingState.accept(.failed)
+                print(error)
             }
         }
     }

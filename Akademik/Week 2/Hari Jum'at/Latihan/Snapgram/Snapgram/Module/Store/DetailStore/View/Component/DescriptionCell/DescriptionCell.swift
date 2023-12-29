@@ -8,6 +8,7 @@
 import UIKit
 
 class DescriptionCell: UICollectionViewCell {
+
     @IBOutlet weak var productDesc: UILabel!
     
     override func awakeFromNib() {

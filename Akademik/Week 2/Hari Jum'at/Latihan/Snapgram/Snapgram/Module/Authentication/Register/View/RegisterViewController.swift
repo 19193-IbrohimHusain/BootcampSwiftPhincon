@@ -2,7 +2,7 @@ import UIKit
 import Lottie
 
 class RegisterViewController: BaseViewController {
-    // MARK: - Variables
+
     @IBOutlet weak var registerAnimation: LottieAnimationView!
     @IBOutlet weak var nameInputField: CustomInputField!
     @IBOutlet weak var emailInputField: CustomInputField!
@@ -18,13 +18,12 @@ class RegisterViewController: BaseViewController {
     private let rightPasswordView = UIView()
     private let rightCPasswordView = UIView()
         
-    // MARK: - Lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
         setupRegister()
     }
     
-    // MARK: - Functions
+    
     private func setupRegister() {
         configureRegisterAnimation()
         configureImage()

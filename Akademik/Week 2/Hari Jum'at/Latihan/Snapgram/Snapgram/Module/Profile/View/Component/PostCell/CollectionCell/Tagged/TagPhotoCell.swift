@@ -16,10 +16,9 @@ class TagPhotoCell: UICollectionViewCell {
         super.awakeFromNib()
     }
     
-    internal func configureCollection(_ post: ListStory) {
+    func configureCollection(_ post: ListStory) {
         let url = URL(string: post.photoURL)
-        let size = taggedImg.intrinsicContentSize
-        let processor = DownsamplingImageProcessor(size: size)
+        let processor = DownsamplingImageProcessor(size: CGSize(width: 150, height: 150))
         taggedImg.kf.setImage(with: url, options: [
             .processor(processor),
             .loadDiskFileSynchronously,

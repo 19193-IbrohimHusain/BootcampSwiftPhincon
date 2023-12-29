@@ -6,14 +6,12 @@ final class APIManager {
     static let shared = APIManager()
     private init() {}
     
-    // MARK: - ErrorType
     enum APIError: Error {
         case failedToCreateRequest
         case failedToGetData
         case requestTimedOut
     }
     
-    // MARK: - Func to create API Request for Story Feature
     public func fetchRequest<T: Codable>(endpoint: EndpointStory, expecting type: T.Type, completion: @escaping (Result<T, Error>) -> Void) {
         guard let urlRequest = self.request(endpoint: endpoint) else {
             completion(.failure(APIError.failedToCreateRequest))
@@ -39,7 +37,6 @@ final class APIManager {
         }.resume()
     }
     
-    // MARK: - Func to set whether API Request required QueryParam or BodyParam
     public func request(endpoint: EndpointStory) -> URLRequest? {
         guard let url = URL(string: endpoint.urlString) else { return nil }
         
@@ -56,16 +53,6 @@ final class APIManager {
         return request
     }
     
-    // MARK: - Func to set Header for API Request
-    private func setHeaders(for request: inout URLRequest, with endpoint: EndpointStory) {
-        endpoint.headers?.forEach { key, value in
-            request.setValue(value as? String, forHTTPHeaderField: key)
-        }
-        
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-    }
-    
-    // MARK: - Func to set QueryParam for API Request
     private func finalURL(with endpoint: EndpointStory, base: URL) -> URL {
         guard let queryItems = endpoint.queryParam?.map({ URLQueryItem(name: $0, value: "\($1)") }) else {
             return base
@@ -74,7 +61,14 @@ final class APIManager {
         return base.appendingQueryItems(queryItems)
     }
     
-    // MARK: - Func to set BodyParam for API Request
+    private func setHeaders(for request: inout URLRequest, with endpoint: EndpointStory) {
+        endpoint.headers?.forEach { key, value in
+            request.setValue(value as? String, forHTTPHeaderField: key)
+        }
+        
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+    }
+    
     private func setBody(for request: inout URLRequest, with endpoint: EndpointStory) {
         switch endpoint {
         case .addNewStory(let param):
@@ -86,7 +80,6 @@ final class APIManager {
         }
     }
     
-    // MARK: - Func to create MultipartFormData for UploadStory
     private func setMultipartFormData(for request: inout URLRequest, with param: AddStoryParam) {
         let boundary = UUID().uuidString
         var body = Data()
@@ -122,6 +115,11 @@ final class APIManager {
         request.httpBody = body
     }
     
+    private func setJSONBody(for request: inout URLRequest, with bodyParam: [String: Any]?) {
+        guard let jsonData = try? JSONSerialization.data(withJSONObject: bodyParam as Any) else { return }
+        request.httpBody = jsonData
+    }
+    
     private func convertFormField(named name: String, value: String, using boundary: String) -> Data {
         var fieldString = "--\(boundary)\r\n"
         fieldString += "Content-Disposition: form-data; name=\"\(name)\"\r\n\r\n"
@@ -143,12 +141,6 @@ final class APIManager {
         fieldString += "Content-Disposition: form-data; name=\"\(name)\"\r\n\r\n"
         fieldString += "\(value)"
         return fieldString.data(using: .utf8)!
-    }
-    
-    // MARK: - Func to create BodyParam for Login and Register
-    private func setJSONBody(for request: inout URLRequest, with bodyParam: [String: Any]?) {
-        guard let jsonData = try? JSONSerialization.data(withJSONObject: bodyParam as Any) else { return }
-        request.httpBody = jsonData
     }
 }
 

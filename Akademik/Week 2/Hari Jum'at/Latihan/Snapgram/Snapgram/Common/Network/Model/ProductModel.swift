@@ -1,6 +1,5 @@
 import Foundation
 
-// MARK: - ProductResponse
 struct ProductResponse: Codable {
     let meta: Meta
     let data: ProductData
@@ -11,7 +10,6 @@ struct ProductResponse: Codable {
     }
 }
 
-// MARK: - Meta
 struct Meta: Codable {
     let code: Int
     let status, message: String
@@ -22,7 +20,7 @@ struct Meta: Codable {
     }
 }
 
-// MARK: - ProductData
+// MARK: - DataClass
 struct ProductData: Codable {
     let currentPage: Int
     let data: [ProductModel]
@@ -33,7 +31,6 @@ struct ProductData: Codable {
     }
 }
 
-// MARK: - ProductModel
 struct ProductModel: Codable, Hashable {
     var id: Int
     let name: String
@@ -63,7 +60,6 @@ struct ProductModel: Codable, Hashable {
     }
 }
 
-// MARK: - GalleryModel
 struct GalleryModel: Codable, Hashable {
     let id: Int
     let productsId: Int

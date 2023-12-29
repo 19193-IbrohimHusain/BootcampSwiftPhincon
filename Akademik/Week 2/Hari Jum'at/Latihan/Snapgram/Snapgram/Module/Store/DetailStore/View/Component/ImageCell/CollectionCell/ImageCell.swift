@@ -24,4 +24,5 @@ class ImageCell: UICollectionViewCell {
             .transition(.fade(0.25)),
         ])
     }
+
 }

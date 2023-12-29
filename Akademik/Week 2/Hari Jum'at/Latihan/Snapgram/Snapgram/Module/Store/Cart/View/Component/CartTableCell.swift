@@ -6,10 +6,9 @@
 //
 
 import UIKit
-import RxSwift
 
 class CartTableCell: UITableViewCell {
-    // MARK: - Variables
+
     @IBOutlet weak var productImg: UIImageView!
     @IBOutlet weak var productName: UILabel!
     @IBOutlet weak var productPrice: UILabel!
@@ -19,20 +18,14 @@ class CartTableCell: UITableViewCell {
     @IBOutlet weak var decrementBtn: UIButton!
     
     private var isLiked: Bool = false
-    private var bag = DisposeBag()
     
-    // MARK: - Lifecycles
     override func awakeFromNib() {
         super.awakeFromNib()
-        setup()
-    }
-    
-    // MARK: - Functions
-    private func setup() {
         contentView.addShadow()
         productImg.makeCornerRadius(16.0)
-        [likeBtn, incrementBtn, decrementBtn].forEach { $0.setAnimateBounce() }
-        btnEvent()
+        [likeBtn, incrementBtn, decrementBtn].forEach {
+            $0.setAnimateBounce()
+        }
     }
     
     private func configureLike() {
@@ -47,19 +40,17 @@ class CartTableCell: UITableViewCell {
         productQuantity.text = "\(data.quantity)"
     }
     
-    private func btnEvent() {
-        likeBtn.rx.tap.subscribe(onNext: { [weak self] _ in
-            guard let self = self else { return }
-            self.isLiked.toggle()
-            self.configureLike()
-        }).disposed(by: bag)
+    @IBAction func incrementQty(_ sender: UIButton) {
         
-        incrementBtn.rx.tap.subscribe(onNext: { _ in
-            
-        }).disposed(by: bag)
-        
-        decrementBtn.rx.tap.subscribe(onNext: { _ in
-            
-        }).disposed(by: bag)
     }
+    
+    @IBAction func decrementQty(_ sender: UIButton) {
+        
+    }
+    
+    @IBAction func likeBtnTap(_ sender: UIButton) {
+        isLiked.toggle()
+        configureLike()
+    }
+    
 }

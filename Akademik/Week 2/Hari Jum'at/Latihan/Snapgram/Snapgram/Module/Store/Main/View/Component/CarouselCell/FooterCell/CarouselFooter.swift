@@ -9,17 +9,15 @@ import UIKit
 import RxSwift
 
 class CarouselFooter: UICollectionReusableView {
-    // MARK: - Variables
+
     @IBOutlet weak var pageControl: CustomPageControl!
     
     private var bag = DisposeBag()
     
-    // MARK: - Lifecycles
     override func awakeFromNib() {
         super.awakeFromNib()
     }
     
-    // MARK: - Functions
     internal func subscribeTo(subject: BehaviorSubject<PagingInfo?>, for section: Int) {
         subject.filter { $0?.sectionIndex == section }
             .observe(on: MainScheduler.instance)

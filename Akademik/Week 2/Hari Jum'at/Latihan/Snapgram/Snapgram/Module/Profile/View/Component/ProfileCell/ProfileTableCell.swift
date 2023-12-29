@@ -7,7 +7,7 @@ protocol ProfileTableCellDelegate {
 }
 
 class ProfileTableCell: UITableViewCell {
-    // MARK: - Variables
+    
     @IBOutlet weak var profileImg: UIImageView!
     @IBOutlet weak var postCount: UILabel!
     @IBOutlet weak var followersStack: UIStackView!
@@ -21,13 +21,11 @@ class ProfileTableCell: UITableViewCell {
     
     internal var delegate: ProfileTableCellDelegate?
     
-    // MARK: - Lifecycles
     override func awakeFromNib() {
         super.awakeFromNib()
         setup()
     }
     
-    // MARK: - Functions
     private func setup() {
         profileImg.layer.cornerRadius = 50.0
         configureBtn(editProfileBtn)

@@ -1,6 +1,5 @@
 import Foundation
 
-// MARK: API Endpoint for Story Feature
 enum EndpointStory {
     case login(param: LoginParam)
     case register(param: RegisterParam)
@@ -73,11 +72,6 @@ enum EndpointStory {
         }
     }
     
-    var urlString: String {
-        return BaseConstant.urlStory + path
-    }
-    
-    // MARK: - Func to retrieve token from Keychain
     private func retrieveToken() -> String {
         let query: [CFString: Any] = [
             kSecClass: kSecClassGenericPassword,
@@ -94,5 +88,9 @@ enum EndpointStory {
             print("Token not found in Keychain")
             return ""
         }
+    }
+    
+    var urlString: String {
+        return BaseConstant.urlStory + path
     }
 }

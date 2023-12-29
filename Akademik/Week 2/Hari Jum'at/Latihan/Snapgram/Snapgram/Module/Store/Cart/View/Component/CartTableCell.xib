@@ -58,6 +58,9 @@
                             <imageReference key="image" image="heart" catalog="system" symbolScale="large"/>
                             <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="24"/>
                         </buttonConfiguration>
+                        <connections>
+                            <action selector="likeBtnTap:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="81J-GO-XH7"/>
+                        </connections>
                     </button>
                     <stackView opaque="NO" contentMode="scaleToFill" spacing="23" translatesAutoresizingMaskIntoConstraints="NO" id="LOh-HR-5GO">
                         <rect key="frame" x="202" y="61" width="102" height="24"/>
@@ -71,6 +74,9 @@
                                 <color key="tintColor" systemColor="labelColor"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="minus" catalog="system"/>
+                                <connections>
+                                    <action selector="decrementQty:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="tSh-AT-uSR"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="moo-ak-1wv">
                                 <rect key="frame" x="47" y="0.0" width="8" height="24"/>
@@ -90,6 +96,9 @@
                                 <color key="tintColor" systemColor="labelColor"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="plus" catalog="system"/>
+                                <connections>
+                                    <action selector="incrementQty:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="IKl-lW-Eaa"/>
+                                </connections>
                             </button>
                         </subviews>
                     </stackView>

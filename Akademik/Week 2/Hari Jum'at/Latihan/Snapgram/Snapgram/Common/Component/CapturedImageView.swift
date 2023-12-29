@@ -1,7 +1,7 @@
 import UIKit
 
 class CapturedImageView : UIView {
-    // MARK: - Variables
+    //MARK:- Vars
     var image : UIImage? {
         didSet {
             guard let image = image else {return}
@@ -9,7 +9,7 @@ class CapturedImageView : UIView {
         }
     }
     
-    // MARK: - UI Elements
+    //MARK:- View Components
     let imageView : UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -19,7 +19,7 @@ class CapturedImageView : UIView {
         return imageView
     }()
     
-    // MARK: - Initializer
+    //MARK:- Init
     override init(frame: CGRect) {
         super.init(frame: .zero)
         setupView()
@@ -29,7 +29,7 @@ class CapturedImageView : UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Functions
+    //MARK:- Setup
     func setupView(){
         translatesAutoresizingMaskIntoConstraints = false
         backgroundColor = .white

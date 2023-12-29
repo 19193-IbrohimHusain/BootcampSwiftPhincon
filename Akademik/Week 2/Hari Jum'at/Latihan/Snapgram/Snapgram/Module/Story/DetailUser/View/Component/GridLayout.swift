@@ -8,9 +8,7 @@
 import Foundation
 import UIKit
 
-// MARK: Class for creating 3-Column Grid Layout using NSCollectionLayoutGroup.custom
 public final class GridLayout {
-    // MARK: - Function to create 3-Column Grid Layout
     public static func makeLayoutSection(
         config: Configuration,
         enviroment: NSCollectionLayoutEnvironment,
@@ -48,7 +46,6 @@ public final class GridLayout {
     }
 }
 
-// MARK: - Extension for the Configuration of NSCollectionLayoutGroup.custom
 public extension GridLayout {
     typealias ItemHeightProvider = (_ index: Int, _ itemWidth: CGFloat) -> CGFloat
     typealias ItemCountProvider = () -> Int
@@ -79,7 +76,7 @@ public extension GridLayout {
     }
 }
 
-// MARK: - Extension to Create Layout of NSCollectionLayoutGroup.custom
+
 extension GridLayout {
     final class LayoutBuilder {
         private var columnHeights: [CGFloat]
@@ -115,11 +112,9 @@ extension GridLayout {
     }
 }
 
-// MARK: - Extension to Create Frame for each NSCollectionLayoutGroupCustomItem
 private extension GridLayout.LayoutBuilder {
     private var columnWidth: CGFloat {
-        let spacing = (columnCount - 1) * interItemSpacing
-        return (collectionWidth - spacing - sectionHorizontalSpacing) / columnCount
+        return collectionWidth / columnCount
     }
     
     func frame(for row: Int) -> CGRect {

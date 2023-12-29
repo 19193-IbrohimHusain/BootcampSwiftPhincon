@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 import SkeletonView
 
-// MARK: - Extension for UITableViewDataSource
 extension StoryViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -51,7 +50,6 @@ extension StoryViewController: UITableViewDataSource {
     }
 }
 
-// MARK: - Extension for SkeletonTableViewDataSource
 extension StoryViewController: SkeletonTableViewDataSource {
     func numSections(in collectionSkeletonView: UITableView) -> Int {
         return tables.count

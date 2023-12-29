@@ -50,6 +50,9 @@
                                 <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system">
                                     <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="large"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="onLikeBtnTap:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="UZH-qd-ahd"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VZn-lZ-gZL">
                                 <rect key="frame" x="40" y="0.0" width="24" height="24"/>
@@ -62,6 +65,9 @@
                                 <buttonConfiguration key="configuration" style="plain" image="bubble.right" catalog="system">
                                     <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="large"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="onCommentBtnTap:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="sR0-d3-rBc"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lwa-Eq-8Gi">
                                 <rect key="frame" x="80" y="0.0" width="24" height="24"/>

@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 import SkeletonView
 
-// MARK: - Extension for UICollectionViewDataSource
 extension DetailProductViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return collections.count
@@ -83,7 +82,6 @@ extension DetailProductViewController: UICollectionViewDataSource {
     }
 }
 
-// MARK: - Extension for SkeletonCollectionViewDataSource
 extension DetailProductViewController: SkeletonCollectionViewDataSource {
     func numSections(in collectionSkeletonView: UICollectionView) -> Int {
         return collections.count

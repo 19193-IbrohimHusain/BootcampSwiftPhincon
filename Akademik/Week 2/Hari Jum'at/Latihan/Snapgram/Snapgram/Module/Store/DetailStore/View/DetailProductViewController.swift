@@ -9,7 +9,7 @@ import UIKit
 import SkeletonView
 
 class DetailProductViewController: BaseViewController {
-    // MARK: - Variables
+    
     @IBOutlet weak var detailCollection: UICollectionView!
     
     internal let collections = SectionDetailProduct.allCases
@@ -22,7 +22,6 @@ class DetailProductViewController: BaseViewController {
     internal var recommendation: [ProductModel]?
     internal var layout: UICollectionViewCompositionalLayout!
     
-    // MARK: - Lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
@@ -36,7 +35,6 @@ class DetailProductViewController: BaseViewController {
         }
     }
     
-    // MARK: - Functions
     private func setup() {
         setupNavigationBar()
         setupCollection()
@@ -51,7 +49,7 @@ class DetailProductViewController: BaseViewController {
     }
     
     private func setupCollection() {
-        refreshControl.rx.controlEvent(.valueChanged).subscribe(onNext: { self.refreshData() }).disposed(by: bag)
+        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
         detailCollection.refreshControl = refreshControl
         detailCollection.contentInsetAdjustmentBehavior = .never
         detailCollection.delegate = self
@@ -62,7 +60,7 @@ class DetailProductViewController: BaseViewController {
         }
     }
     
-    private func refreshData() {
+    @objc private func refreshData() {
         self.currentIndex = 0
         self.product = nil
         self.recommendation?.removeAll()
@@ -72,7 +70,6 @@ class DetailProductViewController: BaseViewController {
     }
 }
 
-// MARK: - Extension for UICollectionViewDelegate
 extension DetailProductViewController: UICollectionViewDelegate {
     private func navigateToDetail(index: Int) {
         if let productID = recommendation?[index].id {

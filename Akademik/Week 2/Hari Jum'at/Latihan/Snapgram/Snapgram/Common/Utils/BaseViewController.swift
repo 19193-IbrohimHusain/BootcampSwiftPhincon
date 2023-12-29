@@ -5,7 +5,6 @@ import Security
 import RxSwift
 
 class BaseViewController: UIViewController, CLLocationManagerDelegate {
-    // MARK: - Variables
     internal let cvc = CommentViewController()
     internal let pickerImage = UIImagePickerController()
     internal let activityIndicator = UIActivityIndicatorView(style: .medium)
@@ -20,7 +19,6 @@ class BaseViewController: UIViewController, CLLocationManagerDelegate {
     internal var latitude = Double()
     internal var longitude = Double()
     
-    // MARK: - Functions
     internal func setupNavigationBar(title: String, image1: String, image2: String, action1: Selector?, action2: Selector?) {
         self.navigationController?.navigationBar.tintColor = .label
         self.navigationItem.setLeftBarButton(UIBarButtonItem(customView: configureNavigationTitle(title: title)), animated: false)
@@ -197,7 +195,8 @@ class BaseViewController: UIViewController, CLLocationManagerDelegate {
     
     internal func locationManager(
         _ manager: CLLocationManager,
-        didChangeAuthorization status: CLAuthorizationStatus) {
+        didChangeAuthorization status: CLAuthorizationStatus
+    ) {
         checkLocationAuthorization(map)
     }
     
@@ -218,7 +217,8 @@ class BaseViewController: UIViewController, CLLocationManagerDelegate {
     
     internal func locationManager(
         _ manager: CLLocationManager,
-        didFailWithError error: Error) {
+        didFailWithError error: Error
+    ) {
         print(error)
     }
 }

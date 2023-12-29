@@ -1,47 +1,46 @@
 import UIKit
 import Kingfisher
 import RxSwift
-import RxCocoa
-import RxGesture
 
 
 class DetailStoryViewController: BaseBottomSheetController {
-    // MARK: - Variables
-    @IBOutlet private weak var bgView: UIView!
+    
     @IBOutlet private weak var profileImage: UIImageView!
-    @IBOutlet internal weak var username: UILabel!
-    @IBOutlet internal weak var uploadedImage: UIImageView!
+    @IBOutlet private weak var username: UILabel!
+    @IBOutlet private weak var uploadedImage: UIImageView!
     @IBOutlet private weak var likePopUp: UIImageView!
-    @IBOutlet internal weak var likeBtn: UIButton!
+    @IBOutlet private weak var likeBtn: UIButton!
     @IBOutlet private weak var commentBtn: UIButton!
     @IBOutlet private weak var shareBtn: UIButton!
-    @IBOutlet internal weak var caption: UILabel!
-    @IBOutlet internal weak var likesCount: UILabel!
-    @IBOutlet internal weak var commentsCount: UILabel!
-    @IBOutlet internal weak var createdAt: UILabel!
+    @IBOutlet private weak var caption: UILabel!
+    @IBOutlet private weak var likesCount: UILabel!
+    @IBOutlet private weak var commentsCount: UILabel!
+    @IBOutlet private weak var createdAt: UILabel!
+    @IBOutlet private weak var downloadBtn: UIButton!
     
+    private let dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
     private let vm = DetailStoryViewModel()
     internal var storyID: String?
     
-    internal var dateFormatter: DateFormatter {
+    private var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        formatter.dateFormat = dateFormat
         formatter.timeZone = TimeZone(abbreviation: "UTC")
         return formatter
     }
     
-    internal var detailStory: Story? {
+    private var detailStory: Story? {
         didSet {
             DispatchQueue.main.async {
-                self.configureUI()
+                self.configure()
             }
         }
     }
     
-    // MARK: - Lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        setupCommentPanel()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -51,38 +50,63 @@ class DetailStoryViewController: BaseBottomSheetController {
         }
     }
     
-    // MARK: - Functions
     private func setupUI() {
         profileImage.layer.cornerRadius = 18
-        [likeBtn, commentBtn, shareBtn].forEach { $0?.setAnimateBounce() }
-        setupBottomSheet(contentVC: cvc, floatingPanelDelegate: self)
-        btnEvent()
+        let doubleTapGesture = UITapGestureRecognizer(target: self, action: #selector(onImageDoubleTap(_:)))
+        doubleTapGesture.numberOfTapsRequired = 2
+        uploadedImage.addGestureRecognizer(doubleTapGesture)
+        commentsCount.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onCommentLabelTap(_:))))
+        [likeBtn, commentBtn, shareBtn].forEach{ $0?.setAnimateBounce()}
         bindData()
     }
     
-    private func btnEvent() {
-        likeBtn.rx.tap.subscribe(onNext: { [weak self] _ in
+    private func configure() {
+        guard let validDetail = detailStory else { return }
+        navigationItem.title = "\(validDetail.name)'s Post"
+        username.text = validDetail.name
+        setupUploadedImage(validDetail)
+        setupLikeButton(validDetail)
+        setupCaption(validDetail)
+        commentsCount.text = "\(validDetail.commentsCount) comments"
+        setupCreatedAt(validDetail)
+        guard validDetail.lat != nil, validDetail.lon != nil else { return }
+        setupLocation(validDetail)
+    }
+    
+    private func setupUploadedImage(_ data: Story) {
+        uploadedImage.kf.setImage(with: URL(string: data.photoURL), options: [.loadDiskFileSynchronously, .cacheOriginalImage, .transition(.fade(0.25))])
+    }
+    
+    private func setupLikeButton(_ data: Story) {
+        likeBtn.setImage(data.isLiked ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart"), for: .normal)
+        likeBtn.tintColor = data.isLiked ? .systemRed : .label
+        likesCount.text = "\(data.likesCount) Likes"
+    }
+    
+    private func setupCaption(_ data: Story) {
+        let attributedString = NSAttributedString(string: "\(data.name)  \(data.description)")
+        let attributes = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 14)]
+        let range = NSRange(location: 0, length: data.name.count)
+        caption.attributedText = attributedString.applyingAttributes(attributes, toRange: range)
+    }
+    
+    private func setupCreatedAt(_ data: Story) {
+        if let date = dateFormatter.date(from: data.createdAt) {
+            let timeAgo = date.convertDateToTimeAgo()
+            createdAt.text = timeAgo
+        }
+    }
+    
+    private func setupLocation(_ data: Story) {
+        guard let lat = data.lat, let lon = data.lon else { return }
+        getLocationNameFromCoordinates(lat: lat, lon: lon) { [weak self] name in
             guard let self = self else { return }
-            self.addLike()
-        }).disposed(by: bag)
-        
-        commentBtn.rx.tap.subscribe(onNext: { [weak self] _ in
-            guard let self = self else { return }
-            self.present(self.floatingPanel, animated: true)
-        }).disposed(by: bag)
-        
-        uploadedImage.rx.tapGesture(configuration: { (gesture, _) in
-            gesture.numberOfTapsRequired = 2
-        }).when(.recognized).subscribe(onNext: { [weak self] _ in
-            guard let self = self, self.likePopUp.isHidden == true else { return }
-            self.likePopUp.addShadow()
-            self.displayPopUp()
-        }).disposed(by: bag)
-        
-        commentsCount.rx.tapGesture().when(.recognized).subscribe(onNext: { [weak self] _ in
-            guard let self = self else { return }
-            self.present(self.floatingPanel, animated: true)
-        }).disposed(by: bag)
+            let attributedString = NSAttributedString(string: "\(data.name)\n\(name)")
+            let attributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14, weight: .regular)]
+            let range = NSRange(location: data.name.count + 1, length: name.count)
+            let attributedText = attributedString.applyingAttributes(attributes, toRange: range)
+            self.username.attributedText = attributedText
+        }
     }
     
     private func bindData() {
@@ -95,13 +119,19 @@ class DetailStoryViewController: BaseBottomSheetController {
             guard let self = self else { return }
             switch state {
             case .notLoad, .loading:
-                self.bgView.showAnimatedGradientSkeleton()
+                self.view.showAnimatedGradientSkeleton()
             case .failed, .finished:
                 DispatchQueue.main.async {
-                    self.bgView.hideSkeleton()
+                    self.view.hideSkeleton()
                 }
             }
         }).disposed(by: bag)
+    }
+    
+    @objc private func onImageDoubleTap(_ sender: UITapGestureRecognizer) {
+        guard self.likePopUp.isHidden == true else { return }
+        self.likePopUp.addShadow()
+        self.displayPopUp()
     }
     
     private func displayPopUp() {
@@ -109,6 +139,7 @@ class DetailStoryViewController: BaseBottomSheetController {
         if detailStory?.isLiked == false {
             self.addLike()
         }
+        
         UIView.animate(withDuration: 0.8, delay: 0.0 , usingSpringWithDamping: 0.4, initialSpringVelocity: 0.4, options: [.curveEaseInOut], animations: {
             self.likePopUp.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
         }, completion: { _ in
@@ -118,6 +149,10 @@ class DetailStoryViewController: BaseBottomSheetController {
                 self.likePopUp.isHidden = true
             })
         })
+    }
+    
+    private func setupCommentPanel() {
+        setupBottomSheet(contentVC: cvc, floatingPanelDelegate: self)
     }
     
     private func addLike() {
@@ -131,5 +166,21 @@ class DetailStoryViewController: BaseBottomSheetController {
             post?.likesCount += 1
             self.detailStory? = post!
         }
+    }
+    
+    @IBAction private func onLikeBtnTap() {
+        addLike()
+    }
+    
+    @IBAction private func onCommentBtnTap() {
+        present(floatingPanel, animated: true)
+    }
+    
+    @IBAction private func onShareBtnTap() {
+        // Handle share button tap
+    }
+    
+    @objc private func onCommentLabelTap(_ sender: UITapGestureRecognizer) {
+        present(floatingPanel, animated: true)
     }
 }

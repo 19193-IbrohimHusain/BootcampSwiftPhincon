@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import SkeletonView
 
-// MARK: - UICollectionViewDiffableDataSource class for implementing SkeletonView in StoreViewController
+
 class StoreViewDataSource: UICollectionViewDiffableDataSource<SectionStoreCollection, ProductModel>, SkeletonCollectionViewDataSource {
     func numSections(in collectionSkeletonView: UICollectionView) -> Int {
         return SectionStoreCollection.allCases.count
@@ -39,7 +39,6 @@ class StoreViewDataSource: UICollectionViewDiffableDataSource<SectionStoreCollec
     }
 }
 
-// MARK: - UICollectionViewDiffableDataSource class for implementing SkeletonView in FYPCollectionView
 class FYPCollectionViewDataSource: UICollectionViewDiffableDataSource<SectionFYPCollection, ProductModel>, SkeletonCollectionViewDataSource {
     func numSections(in collectionSkeletonView: UICollectionView) -> Int {
         return SectionFYPCollection.allCases.count
