@@ -10,16 +10,10 @@ class LoginViewModel : BaseViewModel {
         APIManager.shared.fetchRequest(endpoint: .login(param: param), expecting: LoginResponse.self) { result in
             switch result {
             case .success(let response):
-                if response.error == true {
-                    self.loadingState.accept(.failed)
-                    self.loginResponse.accept(response)
-                } else {
-                    self.loadingState.accept(.finished)
-                    self.loginResponse.accept(response)
-                }
-            case .failure(let error):
+                self.loginResponse.accept(response)
+                self.loadingState.accept(response.error ? .failed : .finished)
+            case .failure(_):
                 self.loadingState.accept(.failed)
-                print(String(describing: error))
             }
         }
     }

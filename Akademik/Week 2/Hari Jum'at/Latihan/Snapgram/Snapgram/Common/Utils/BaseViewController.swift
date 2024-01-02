@@ -48,9 +48,9 @@ class BaseViewController: UIViewController, CLLocationManagerDelegate {
     
     internal func validateInputField(_ inputField: CustomInputField, title: String, message: String, completion: @escaping () -> Void) -> Bool {
         guard let text = inputField.textField.text, !text.isEmpty else {
-            displayAlert(title: title, message: message) {
+            displayAlert(title: title, message: message, completion:  {
                 completion()
-            }
+            })
             return false
         }
         return true
@@ -67,12 +67,15 @@ class BaseViewController: UIViewController, CLLocationManagerDelegate {
         return NSPredicate(format: "SELF MATCHES %@", passwordRegex).evaluate(with: candidate)
     }
     
-    internal func displayAlert(title: String, message: String, completion: (() -> Void)? = nil) {
+    internal func displayAlert(title: String, message: String, action: (() -> UIAlertAction)? = nil, completion: (() -> Void)? = nil) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default) { _ in
             completion?()
         }
         alertController.addAction(okAction)
+        if let anotherAction = action {
+            alertController.addAction(anotherAction())
+        }
         present(alertController, animated: true, completion: nil)
     }
     

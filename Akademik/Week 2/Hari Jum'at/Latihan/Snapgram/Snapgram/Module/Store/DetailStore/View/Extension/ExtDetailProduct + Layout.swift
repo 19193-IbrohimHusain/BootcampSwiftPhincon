@@ -66,7 +66,7 @@ extension DetailProductViewController {
     
     private func descLayout() -> NSCollectionLayoutSection {
         let item = NSCollectionLayoutItem.withEntireSize()
-        let size = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(150))
+        let size = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(100))
         let group = NSCollectionLayoutGroup.vertical(layoutSize: size, subitems: [item])
         
         let section = NSCollectionLayoutSection(group: group)

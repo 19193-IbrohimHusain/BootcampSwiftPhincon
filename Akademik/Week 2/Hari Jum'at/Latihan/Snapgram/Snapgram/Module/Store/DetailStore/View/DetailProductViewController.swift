@@ -22,6 +22,7 @@ class DetailProductViewController: BaseViewController {
     internal var product: ProductModel?
     internal var image: [GalleryModel]?
     internal var recommendation: [ProductModel]?
+    internal var isCart: Bool?
     internal var layout: UICollectionViewCompositionalLayout!
     
     override func viewDidLoad() {
@@ -35,6 +36,11 @@ class DetailProductViewController: BaseViewController {
             vm.fetchDetailProduct(param: ProductParam(id: id, limit: nil))
             vm.fetchProduct()
         }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        addToCartBtn.layer.cornerRadius = 8.0
     }
     
     private func setup() {
@@ -66,40 +72,16 @@ class DetailProductViewController: BaseViewController {
     private func btnEvent() {
         chatBtn.rx.tap.subscribe(onNext: { [weak self] _ in
             guard let self = self else { return }
+            self.displayAlert(title: "Apologies!", message: "This feature is coming soon~")
         }).disposed(by: bag)
         addToCartBtn.rx.tap.subscribe(onNext: { [weak self] _ in
             guard let self = self, let product = self.product else { return }
             self.addLoading(self.addToCartBtn)
-            let state = CoreDataHelper.shared.saveItemToCart(data: product)
-            state ? self.displayAlert(title: "Success", message: "Item Added To Cart") : self.displayAlert(title: "Failed", message: "Failed To Add Item")
+            self.isCart = true
+            let state = self.addItemToCoreData(for: .cart(id: product.id))
+            self.resultHandler(for: state, destination: "Cart")
             self.afterDissmissed(self.addToCartBtn, title: "Add to cart")
-            
         }).disposed(by: bag)
-    }
-    
-    private func addItemToCoreData(for action: ProductCoreData) -> Bool {
-        guard let user = try? BaseConstant.getUserFromUserDefaults(), let product = self.product, let image = self.image?.first else { return false }
-        switch action {
-        case .cart(let entity):
-            let properties: [String: Any] = [
-                "userID": user.userid,
-                "productID": Int16(product.id),
-                "name": product.name,
-                "image": image.url,
-                "price": product.price,
-                "quantity": 1,
-            ]
-            return CoreDataHelper.shared.addOrUpdateEntity(Cart.self, for: .cart(entity: entity), userId: user.userid, properties: properties)
-        case .favorite(let entity):
-            let properties: [String: Any] = [
-                "userID": user.userid,
-                "productID": Int16(product.id),
-                "name": product.name,
-                "image": image.url,
-                "price": product.price,
-            ]
-            return CoreDataHelper.shared.addOrUpdateEntity(FavoriteProducts.self, for: .favorite(entity: entity), userId: user.userid, properties: properties)
-        }
     }
     
     private func refreshData() {
@@ -132,15 +114,16 @@ extension DetailProductViewController: UICollectionViewDelegate {
 extension DetailProductViewController: NameCellDelegate {
     func addFavorite() {
         if let product = self.product {
-            let state = CoreDataHelper.shared.addFavoriteProduct(data: product)
-            state ? self.displayAlert(title: "Success", message: "Item Added To Favorite") : self.displayAlert(title: "Failed", message: "Failed To Add Item")
+            self.isCart = false
+            let state = self.addItemToCoreData(for: .favorite(id: product.id))
+            self.resultHandler(for: state, destination: "Wishlist")
+            detailCollection.reloadData()
         }
     }
     
     func checkIsFavorite() -> Bool {
         guard let product = self.product else { return false }
-        return CoreDataHelper.shared.isFavProductExist(id: Int16(product.id))
+        let result = CoreDataHelper.shared.isEntityExist(FavoriteProducts.self, productId: product.id)
+        return result
     }
-    
-    
 }

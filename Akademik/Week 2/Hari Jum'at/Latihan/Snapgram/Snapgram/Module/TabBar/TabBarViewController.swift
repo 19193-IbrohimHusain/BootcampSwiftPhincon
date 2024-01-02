@@ -10,7 +10,6 @@ class TabBarViewController:  UITabBarController, UITabBarControllerDelegate {
     
     override func viewDidLoad(){
         super.viewDidLoad()
-        self.delegate = self
         configureTabBar()
         configureTabBarItem()
     }
@@ -26,6 +25,7 @@ class TabBarViewController:  UITabBarController, UITabBarControllerDelegate {
     }
 
     func configureTabBar() {
+        self.delegate = self
         addStory = AddStoryViewController()
         viewControllers = [home, map, addStory, store, profile]
     }
@@ -42,7 +42,8 @@ class TabBarViewController:  UITabBarController, UITabBarControllerDelegate {
         self.tabBar.tintColor = UIColor.label
         self.tabBar.backgroundColor = UIColor.systemBackground
     }
-    //MARK: UITabbar Delegate
+    
+    //MARK: - UITabbar Delegate
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         if viewController.isKind(of: AddStoryViewController.self) {
             let vc =  AddStoryViewController()

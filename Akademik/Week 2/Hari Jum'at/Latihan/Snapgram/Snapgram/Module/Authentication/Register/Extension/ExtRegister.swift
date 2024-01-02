@@ -23,9 +23,9 @@ extension RegisterViewController {
                 case .finished:
                     self.afterDissmissed(self.signUpBtn.customButton, title: "Sign Up")
                     if let message = self.registerResponse?.message {
-                        self.displayAlert(title: message, message: "Please Sign In to continue") {
+                        self.displayAlert(title: message, message: "Please Sign In to continue", completion:  {
                             self.navigateToLoginView()
-                        }
+                        })
                     }
                 }
             }
@@ -56,21 +56,21 @@ extension RegisterViewController {
         }) else { return }
         
         guard validateEmail(candidate: emailInputField.textField.text!) else {
-            displayAlert(title: "Sign Up Failed", message: "Please Enter Valid Email") { self.afterDissmissed(self.signUpBtn.customButton, title: "Sign Up") }
+            displayAlert(title: "Sign Up Failed", message: "Please Enter Valid Email", completion:  { self.afterDissmissed(self.signUpBtn.customButton, title: "Sign Up") })
             return
         }
         
         guard validatePassword(candidate: passwordInputField.textField.text!) else {
-            displayAlert(title: "Sign Up Failed", message: "Password must contain at least 8 characters, 1 Alphabet and 1 Number") {
+            displayAlert(title: "Sign Up Failed", message: "Password must contain at least 8 characters, 1 Alphabet and 1 Number", completion:  {
                 self.afterDissmissed(self.signUpBtn.customButton, title: "Sign Up")
-            }
+            })
             return
         }
         
         guard confirmPasswordInputField.textField.text == passwordInputField.textField.text else {
-            displayAlert(title: "Sign Up Failed", message: "Confirmed Password is not the same as Password you entered") {
+            displayAlert(title: "Sign Up Failed", message: "Confirmed Password is not the same as Password you entered", completion:  {
                 self.afterDissmissed(self.signUpBtn.customButton, title: "Sign Up")
-            }
+            })
             return
         }
         

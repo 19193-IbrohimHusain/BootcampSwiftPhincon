@@ -10,6 +10,7 @@ import Kingfisher
 
 class WishlistTableCell: UITableViewCell {
 
+    @IBOutlet weak var bgView: UIView!
     @IBOutlet weak var productImg: UIImageView!
     @IBOutlet weak var productCategory: UILabel!
     @IBOutlet weak var productName: UILabel!
@@ -17,8 +18,14 @@ class WishlistTableCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        productImg.makeCornerRadius(16.0)
-        productImg.addShadow()
+        setup()
+    }
+    
+    private func setup() {
+        selectionStyle = .none
+        bgView.addShadow()
+        bgView.addBorderLine(width: 1, color: .systemBackground)
+        bgView.makeCornerRadius(16.0)
     }
     
     internal func configure(with data: FavoriteProducts) {

@@ -10,13 +10,7 @@ class ProfileViewController: BaseBottomSheetController {
     private let vm = ProfileViewModel()
     private var currentUser: User?
     private var taggedPost: [ListStory]?
-    private var userPost: [ListStory]? {
-        didSet {
-            DispatchQueue.main.async {
-                self.profileTable.reloadData()
-            }
-        }
-    }
+    private var userPost: [ListStory]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +36,7 @@ class ProfileViewController: BaseBottomSheetController {
     }
     
     private func setupTable() {
-        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        refreshControl.rx.controlEvent(.valueChanged).subscribe(onNext: { self.refreshData() }).disposed(by: bag)
         profileTable.refreshControl = refreshControl
         profileTable.delegate =  self
         profileTable.dataSource =  self
@@ -53,6 +47,9 @@ class ProfileViewController: BaseBottomSheetController {
         vm.userPost.asObservable().subscribe(onNext: { [weak self] data in
             guard let self = self, let validData = data else { return }
             self.userPost = validData
+            DispatchQueue.main.async {
+                self.profileTable.reloadData()
+            }
         }).disposed(by: bag)
         
         vm.taggedPost.asObservable().subscribe(onNext: { [weak self] data in
@@ -113,7 +110,7 @@ class ProfileViewController: BaseBottomSheetController {
         self.present(floatingPanel, animated: true)
     }
     
-    @objc private func refreshData() {
+    private func refreshData() {
         userPost?.removeAll()
         taggedPost?.removeAll()
         vm.fetchStory(param: StoryParam(size: 1000))

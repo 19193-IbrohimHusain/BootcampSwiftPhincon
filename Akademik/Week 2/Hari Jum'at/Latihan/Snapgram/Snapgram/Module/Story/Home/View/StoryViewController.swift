@@ -41,7 +41,7 @@ class StoryViewController: BaseBottomSheetController {
     }
     
     private func setupTable() {
-        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        refreshControl.rx.controlEvent(.valueChanged).subscribe(onNext: { self.refreshData() }).disposed(by: bag)
         storyTable.refreshControl = refreshControl
         storyTable.delegate = self
         storyTable.dataSource = self
@@ -60,7 +60,7 @@ class StoryViewController: BaseBottomSheetController {
         isLoadMoreData = false
     }
     
-    @objc private func refreshData() {
+    private func refreshData() {
         self.page = 1
         self.isLoadMoreData = false
         self.listStory.removeAll()

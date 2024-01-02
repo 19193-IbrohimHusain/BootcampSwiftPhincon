@@ -5,12 +5,13 @@ import RxCocoa
 
 extension LoginViewController {
     internal func bindData() {
-        vm.loginResponse.asObservable().subscribe(onNext: { [weak self] data in
-            guard let self = self else { return }
-            if let validData = data?.loginResult {
-                self.storeToken(with: validData.token)
+        vm.loginResponse.asObservable().subscribe(onNext: { [weak self] result in
+            guard let self = self, let validData = result else { return }
+            self.loginResponse = validData
+            if let response = validData.loginResult {
+                self.storeToken(with: response.token)
                 DispatchQueue.main.async {
-                    let user = User(email: self.emailInputField.textField.text!, username: validData.name, userid: validData.userId)
+                    let user = User(email: self.emailInputField.textField.text!, username: response.name, userid: response.userId)
                     BaseConstant.saveUserToUserDefaults(user: user)
                 }
             }
@@ -49,12 +50,12 @@ extension LoginViewController {
         }) else { return }
         
         guard validateEmail(candidate: emailInputField.textField.text!) else {
-            displayAlert(title: "Sign In Failed", message: "Please Enter Valid Email") { self.afterDissmissed(self.signInBtn.customButton, title: "Sign In") }
+            displayAlert(title: "Sign In Failed", message: "Please Enter Valid Email", completion:  { self.afterDissmissed(self.signInBtn.customButton, title: "Sign In") })
             return
         }
         
         guard validatePassword(candidate: passwordInputField.textField.text!) else {
-            displayAlert(title: "Sign In Failed", message: "Please Enter Valid Password") { self.afterDissmissed(self.signInBtn.customButton, title: "Sign In") }
+            displayAlert(title: "Sign In Failed", message: "Please Enter Valid Password", completion:  { self.afterDissmissed(self.signInBtn.customButton, title: "Sign In") })
             return
         }
         

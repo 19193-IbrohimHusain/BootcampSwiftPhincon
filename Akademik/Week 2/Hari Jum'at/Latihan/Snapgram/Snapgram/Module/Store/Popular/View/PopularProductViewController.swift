@@ -48,6 +48,8 @@ class PopularProductViewController: BaseViewController {
     }
     
     private func setupCollection() {
+        refreshControl.rx.controlEvent(.valueChanged).subscribe(onNext: { self.refreshData() }).disposed(by: bag)
+        popularCollection.refreshControl = refreshControl
         popularCollection.delegate = self
         popularCollection.registerCellWithNib(FYPCollectionCell.self)
     }
@@ -71,8 +73,11 @@ class PopularProductViewController: BaseViewController {
     
     private func loadSnaphot(animatingDifferences: Bool = true) {
         guard let product = product else { return }
-        snapshot.appendSections([.main])
+        if snapshot.sectionIdentifiers.isEmpty {
+            snapshot.appendSections([.main])
+        }
         snapshot.appendItems(product)
+        popularCollection.hideSkeleton(reloadDataAfter: false)
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
     }
     
@@ -80,6 +85,7 @@ class PopularProductViewController: BaseViewController {
         vm.productData.asObservable().subscribe(onNext: { [weak self] product in
             guard let self = self, let data = product else { return }
             self.product = data
+            self.loadSnaphot()
         }).disposed(by: bag)
         
         vm.loadingState.asObservable().subscribe(onNext: { [weak self] state in
@@ -91,9 +97,10 @@ class PopularProductViewController: BaseViewController {
             case .loading:
                 self.popularCollection.showAnimatedGradientSkeleton()
             case .finished:
+                self.refreshControl.endRefreshing()
                 self.popularCollection.hideSkeleton(reloadDataAfter: false)
-                self.loadSnaphot()
             case .failed:
+                self.refreshControl.endRefreshing()
                 self.popularCollection.addSubview(self.errorView)
             }
             
@@ -101,14 +108,14 @@ class PopularProductViewController: BaseViewController {
     }
     
     private func clearSnapshot() {
-        product?.removeAll()
+        product = nil
         snapshot.deleteAllItems()
-        snapshot.deleteSections([.main])
+        popularCollection.hideSkeleton(reloadDataAfter: false)
         dataSource.apply(snapshot)
         self.errorView.removeFromSuperview()
     }
     
-    @objc private func refreshData() {
+    private func refreshData() {
         clearSnapshot()
         vm.getProduct(param: ProductParam())
     }

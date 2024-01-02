@@ -55,7 +55,7 @@ class SearchProductViewController: BaseViewController {
     }
     
     private func setupCollection() {
-        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        refreshControl.rx.controlEvent(.valueChanged).subscribe(onNext: { self.refreshData() }).disposed(by: bag)
         searchCollection.refreshControl = refreshControl
         searchCollection.delegate = self
         searchCollection.registerCellWithNib(FYPCollectionCell.self)
@@ -135,7 +135,7 @@ class SearchProductViewController: BaseViewController {
         self.errorView.removeFromSuperview()
     }
     
-    @objc private func refreshData() {
+    private func refreshData() {
         clearSnapshot()
         vm.setupSearch()
     }

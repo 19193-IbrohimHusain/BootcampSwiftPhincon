@@ -26,12 +26,22 @@
                         <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                     </userDefinedRuntimeAttributes>
                 </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u7e-8l-HD9">
+                    <rect key="frame" x="0.0" y="728" width="393" height="90"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="90" id="WM7-h0-ekN"/>
+                    </constraints>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="XPw-Qn-s2d" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="6Ne-FJ-eiU"/>
+                <constraint firstItem="u7e-8l-HD9" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="AOH-1d-6qJ"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="u7e-8l-HD9" secondAttribute="trailing" id="AcD-uN-fxx"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="XPw-Qn-s2d" secondAttribute="trailing" id="Mtp-m4-2OB"/>
+                <constraint firstItem="u7e-8l-HD9" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="R1v-vF-dgV"/>
                 <constraint firstItem="XPw-Qn-s2d" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="Tvz-wx-ftq"/>
                 <constraint firstAttribute="bottom" secondItem="XPw-Qn-s2d" secondAttribute="bottom" id="rLu-pR-D7q"/>
             </constraints>

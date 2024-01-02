@@ -4,7 +4,7 @@ import Foundation
 struct LoginResponse: Codable {
     let error: Bool
     let message: String
-    let loginResult: LoginResult
+    let loginResult: LoginResult?
 }
 
 // MARK: - LoginResult

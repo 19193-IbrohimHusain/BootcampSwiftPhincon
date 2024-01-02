@@ -27,11 +27,15 @@ class NameCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         setup()
-        setLikeBtn()
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        setLikeBtn()
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
         setup()
     }
 
@@ -50,7 +54,6 @@ class NameCell: UICollectionViewCell {
         if let isFavorited = self.delegate?.checkIsFavorite() {
             likeBtn.setImage(isFavorited ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart"), for: .normal)
             likeBtn.tintColor = isFavorited ? .systemRed : .label
-            likeBtn.isUserInteractionEnabled = isFavorited ? false : true
         }
     }
     

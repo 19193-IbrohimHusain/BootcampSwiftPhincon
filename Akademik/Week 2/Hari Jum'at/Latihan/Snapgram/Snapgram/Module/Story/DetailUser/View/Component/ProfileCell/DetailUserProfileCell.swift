@@ -19,6 +19,10 @@ class DetailUserProfileCell: UICollectionViewCell {
         
     override func awakeFromNib() {
         super.awakeFromNib()
+        setup()
+    }
+    
+    private func setup() {
         followBtn.setAnimateBounce()
         profileImg.layer.cornerRadius = profileImg.bounds.width / 2
     }

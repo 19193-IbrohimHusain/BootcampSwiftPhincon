@@ -17,7 +17,6 @@ class FYPCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var fypCollection: UICollectionView!
     
     internal var delegate: FYPCollectionViewCellDelegate?
-    private let refreshControl = UIRefreshControl()
     private let sections = SectionFYPCollection.allCases
     private var loadedIndex: Int = 5
     private var allShoes: [ProductModel]?
@@ -64,7 +63,6 @@ class FYPCollectionViewCell: UICollectionViewCell {
             layoutGuide.centerXAnchor.constraint(equalTo: loadingIndicator.centerXAnchor),
             layoutGuide.bottomAnchor.constraint(equalTo: loadingIndicator.bottomAnchor, constant: 8)
         ])
-        loadingIndicator.hidesWhenStopped = true
     }
     
     private func setupDataSource() {
@@ -98,68 +96,42 @@ class FYPCollectionViewCell: UICollectionViewCell {
     }
     
     private func loadSnapshot() {
+        guard let allShoes = allShoes else { return }
         if snapshot.sectionIdentifiers.isEmpty {
             snapshot.appendSections(sections)
         }
         
-        if let allShoes = allShoes {
-            let dataAll = allShoes.prefix(loadedIndex).map {
-                var modifiedItem = $0
-                modifiedItem.fypSection = .allShoes
-                return modifiedItem
-            }
-            snapshot.appendItems(dataAll, toSection: .allShoes)
-            let dataRunning = allShoes.filter {
-                $0.category.name == "Running"
-            }
-            
-            let runningShoes = dataRunning.map {
-                var modifiedItem = $0
-                modifiedItem.fypSection = .running
-                return modifiedItem
-            }
-            snapshot.appendItems(runningShoes, toSection: .running)
-            
-            let dataTraining = allShoes.filter {
-                $0.category.name == "Training"
-            }
-            
-            let trainingShoes = dataTraining.map {
-                var modifiedItem = $0
-                modifiedItem.fypSection = .training
-                return modifiedItem
-            }
-            snapshot.appendItems(trainingShoes, toSection: .training)
-            
-            let dataBasket = allShoes.filter {
-                $0.category.name == "Basketball"
-            }
-            
-            let basketShoes = dataBasket.map {
-                var modifiedItem = $0
-                modifiedItem.fypSection = .basketball
-                return modifiedItem
-            }
-            snapshot.appendItems(basketShoes, toSection: .basketball)
-            
-            let dataHiking = allShoes.filter {
-                $0.category.name == "Hiking"
-            }
-            
-            let hikingShoes = dataHiking.map {
-                var modifiedItem = $0
-                modifiedItem.fypSection = .hiking
-                return modifiedItem
-            }
-            snapshot.appendItems(hikingShoes, toSection: .hiking)
-            
-            if var sportShoes = allShoes.last {
-                sportShoes.fypSection = .sport
-                snapshot.appendItems([sportShoes], toSection: .sport)
-            }
+        appendDataToSnapshot(allShoes: allShoes)
+        dataSource.apply(snapshot, animatingDifferences: true)
+    }
+    
+    private func appendDataToSnapshot(allShoes: [ProductModel]) {
+        let dataAll = allShoes.prefix(loadedIndex).map { var modifiedItem = $0; modifiedItem.fypSection = .allShoes; return modifiedItem }
+        snapshot.appendItems(dataAll, toSection: .allShoes)
+        
+        let categories: [(String, SectionFYPCollection)] = [
+            ("Running", .running),
+            ("Training", .training),
+            ("Basketball", .basketball),
+            ("Hiking", .hiking)
+        ]
+        categories.forEach {
+            let filteredShoes = mapShoes(allShoes, category: $0, section: $1)
+            snapshot.appendItems(filteredShoes, toSection: $1)
         }
         
-        dataSource.apply(snapshot, animatingDifferences: true)
+        if var sportShoes = allShoes.last {
+            sportShoes.fypSection = .sport
+            snapshot.appendItems([sportShoes], toSection: .sport)
+        }
+    }
+    
+    private func mapShoes(_ shoes: [ProductModel], category: String, section: SectionFYPCollection) -> [ProductModel] {
+        return shoes.filter { $0.category.name == category }.map {
+            var modifiedItem = $0
+            modifiedItem.fypSection = section
+            return modifiedItem
+        }
     }
     
     internal func bindData(data: [ProductModel]) {

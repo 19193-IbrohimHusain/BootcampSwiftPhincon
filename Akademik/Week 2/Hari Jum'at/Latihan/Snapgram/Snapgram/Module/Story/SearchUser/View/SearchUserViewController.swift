@@ -48,7 +48,7 @@ class SearchUserViewController: BaseViewController {
     }
     
     private func setupTable() {
-        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        refreshControl.rx.controlEvent(.valueChanged).subscribe(onNext: { self.refreshData() }).disposed(by: bag)
         searchTable.refreshControl = refreshControl
         searchTable.delegate = self
         searchTable.registerCellWithNib(UserTableCell.self)
@@ -131,7 +131,7 @@ class SearchUserViewController: BaseViewController {
         
     }
     
-    @objc private func refreshData() {
+    private func refreshData() {
         clearSnapshot()
         vm.fetchAllData(param: StoryParam(size: 1000))
     }

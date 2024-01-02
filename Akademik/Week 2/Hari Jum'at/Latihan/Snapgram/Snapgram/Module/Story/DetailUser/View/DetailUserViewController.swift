@@ -48,7 +48,7 @@ class DetailUserViewController: BaseViewController {
     }
     
     private func setupCollection() {
-        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        refreshControl.rx.controlEvent(.valueChanged).subscribe(onNext: { self.refreshData() }).disposed(by: bag)
         detailUserCollection.refreshControl = refreshControl
         collections.forEach {
             detailUserCollection.registerCellWithNib($0.cellTypes)
@@ -95,7 +95,7 @@ class DetailUserViewController: BaseViewController {
         self.errorView.removeFromSuperview()
     }
     
-    @objc private func refreshData() {
+    private func refreshData() {
         clearSnapshot()
         if let userName = detailUser?.name {
             vm.userName = userName

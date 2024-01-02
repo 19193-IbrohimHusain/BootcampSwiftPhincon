@@ -25,7 +25,6 @@ public final class FYPLayout {
             widthDimension: .fractionalWidth(1),
             heightDimension: .estimated(itemProvider.maxColumnHeight())
         )
-        print("maxColumnHeight \(itemProvider.maxColumnHeight())")
         
         let group = NSCollectionLayoutGroup.custom(layoutSize: groupLayoutSize) { _ in
             return items
@@ -93,12 +92,10 @@ extension FYPLayout {
         func makeLayoutItem(for row: Int) -> NSCollectionLayoutGroupCustomItem {
             let frame = frame(for: row)
             columnHeights[columnIndex()] = frame.maxY + interItemSpacing
-            print("frame: \(frame)")
             return NSCollectionLayoutGroupCustomItem(frame: frame)
         }
         
         func maxColumnHeight() -> CGFloat {
-            print("columnHeights\(columnHeights)")
             return columnHeights.max() ?? 0
         }
     }

@@ -13,7 +13,6 @@ extension DetailProductViewController {
             guard let self = self, let dataProduct = product else { return }
             self.product = dataProduct
             self.image = dataProduct.galleries?.suffix(3)
-            self.detailCollection.reloadData()
             self.startTimer()
         }).disposed(by: bag)
         
@@ -30,13 +29,12 @@ extension DetailProductViewController {
                 self.detailCollection.hideSkeleton()
                 self.errorView.removeFromSuperview()
             case .loading:
-                self.refreshControl.endRefreshing()
                 self.detailCollection.showAnimatedGradientSkeleton()
             case .finished:
                 DispatchQueue.main.async {
-                    self.detailCollection.reloadData()
                     self.refreshControl.endRefreshing()
                     self.detailCollection.hideSkeleton()
+                    self.detailCollection.reloadData()
                 }
             case .failed:
                 self.refreshControl.endRefreshing()

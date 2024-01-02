@@ -3,7 +3,6 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,12 +19,22 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ilz-6M-Rsb">
                         <rect key="frame" x="0.0" y="70" width="320" height="130"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nro-rZ-uFh">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MV1-gG-MXk">
                                 <rect key="frame" x="16" y="-46" width="120" height="160"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nro-rZ-uFh">
+                                        <rect key="frame" x="0.0" y="0.0" width="120" height="160"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.92549019610000005" green="0.92941176469999998" blue="0.93725490199999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="120" id="Bie-23-NF5"/>
+                                    <constraint firstAttribute="width" constant="120" id="BM4-Ei-XHO"/>
+                                    <constraint firstItem="nro-rZ-uFh" firstAttribute="leading" secondItem="MV1-gG-MXk" secondAttribute="leading" id="Bei-YN-GnF"/>
+                                    <constraint firstAttribute="bottom" secondItem="nro-rZ-uFh" secondAttribute="bottom" id="a5a-tY-zWQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="nro-rZ-uFh" secondAttribute="trailing" id="mZf-FK-a9i"/>
+                                    <constraint firstItem="nro-rZ-uFh" firstAttribute="top" secondItem="MV1-gG-MXk" secondAttribute="top" id="tys-HP-l1b"/>
                                 </constraints>
-                            </imageView>
+                            </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="3ln-mT-lqM">
                                 <rect key="frame" x="152" y="16" width="52.333333333333343" height="65"/>
                                 <subviews>
@@ -59,27 +68,28 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Oe7-az-Kd8" firstAttribute="centerY" secondItem="3ln-mT-lqM" secondAttribute="centerY" id="4Vg-oK-a8J"/>
+                            <constraint firstItem="MV1-gG-MXk" firstAttribute="leading" secondItem="Ilz-6M-Rsb" secondAttribute="leading" constant="16" id="ECA-oU-ixl"/>
                             <constraint firstItem="3ln-mT-lqM" firstAttribute="top" secondItem="Ilz-6M-Rsb" secondAttribute="top" constant="16" id="EOl-St-Oy2"/>
                             <constraint firstAttribute="trailing" secondItem="Oe7-az-Kd8" secondAttribute="trailing" constant="16" id="H5W-XV-Cdh"/>
-                            <constraint firstItem="nro-rZ-uFh" firstAttribute="leading" secondItem="Ilz-6M-Rsb" secondAttribute="leading" constant="16" id="ThQ-fO-8Dx"/>
-                            <constraint firstAttribute="bottom" secondItem="nro-rZ-uFh" secondAttribute="bottom" constant="16" id="gG2-S0-4fn"/>
-                            <constraint firstItem="3ln-mT-lqM" firstAttribute="leading" secondItem="nro-rZ-uFh" secondAttribute="trailing" constant="16" id="kZA-7U-Guk"/>
+                            <constraint firstAttribute="height" constant="130" id="KA7-L1-zDb"/>
+                            <constraint firstAttribute="bottom" secondItem="MV1-gG-MXk" secondAttribute="bottom" constant="16" id="Vdq-gd-n0Q"/>
+                            <constraint firstItem="3ln-mT-lqM" firstAttribute="leading" secondItem="MV1-gG-MXk" secondAttribute="trailing" constant="16" id="wIa-K5-Fuz"/>
                         </constraints>
                     </view>
                 </subviews>
                 <color key="backgroundColor" red="0.92549019610000005" green="0.92941176469999998" blue="0.93725490199999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="Ilz-6M-Rsb" secondAttribute="bottom" id="HtQ-Tv-im7"/>
+                    <constraint firstItem="Ilz-6M-Rsb" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="70" id="iol-EN-hHL"/>
                     <constraint firstAttribute="trailing" secondItem="Ilz-6M-Rsb" secondAttribute="trailing" id="pTe-3R-s0K"/>
-                    <constraint firstItem="Ilz-6M-Rsb" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="70" id="tCh-54-YEa"/>
                     <constraint firstItem="Ilz-6M-Rsb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="yCo-QF-rTH"/>
                 </constraints>
             </tableViewCellContentView>
-            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <constraints>
-                <constraint firstItem="nro-rZ-uFh" firstAttribute="top" secondItem="njF-e1-oar" secondAttribute="top" constant="24" id="O1E-2T-9N2"/>
+                <constraint firstItem="MV1-gG-MXk" firstAttribute="top" secondItem="KGk-i7-Jjw" secondAttribute="top" constant="24" id="W4m-vw-MXq"/>
             </constraints>
             <connections>
+                <outlet property="bgView" destination="MV1-gG-MXk" id="GLY-MF-hrc"/>
                 <outlet property="productCategory" destination="XLI-Qm-6Uh" id="Dse-2u-nzp"/>
                 <outlet property="productImg" destination="nro-rZ-uFh" id="ch0-t2-9zD"/>
                 <outlet property="productName" destination="eOo-Gh-vJH" id="Ftd-Rj-Cre"/>

@@ -8,6 +8,13 @@
 import UIKit
 import Kingfisher
 
+protocol CartTableCellDelegate {
+    func incrementQty(index: IndexPath)
+    func decrementQty(index: IndexPath)
+    func addWishlist(index: IndexPath)
+    func isExist(index: IndexPath) -> Bool
+}
+
 class CartTableCell: UITableViewCell {
 
     @IBOutlet weak var productImg: UIImageView!
@@ -18,20 +25,30 @@ class CartTableCell: UITableViewCell {
     @IBOutlet weak var productQuantity: UILabel!
     @IBOutlet weak var decrementBtn: UIButton!
     
-    private var isLiked: Bool = false
+    internal var delegate: CartTableCellDelegate?
+    internal var indexPath: IndexPath?
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        contentView.addShadow()
+        setup()
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        configureLike()
+    }
+    
+    private func setup() {
+        selectionStyle = .none
         productImg.makeCornerRadius(16.0)
-        [likeBtn, incrementBtn, decrementBtn].forEach {
-            $0.setAnimateBounce()
-        }
+        [likeBtn, incrementBtn, decrementBtn].forEach { $0.setAnimateBounce() }
     }
     
     private func configureLike() {
-        likeBtn.tintColor = isLiked ? .systemRed : .label
-        likeBtn.setImage(UIImage(systemName: isLiked ? "heart.fill" : "heart"), for: .normal)
+        if let index = indexPath, let isFavorited = self.delegate?.isExist(index: index) {
+            likeBtn.tintColor = isFavorited ? .systemRed : .label
+            likeBtn.setImage(UIImage(systemName: isFavorited ? "heart.fill" : "heart"), for: .normal)
+        }
     }
     
     internal func configure(with data: Cart) {
@@ -51,16 +68,17 @@ class CartTableCell: UITableViewCell {
     }
     
     @IBAction func incrementQty(_ sender: UIButton) {
-        
+        guard let index = indexPath else { return }
+        self.delegate?.incrementQty(index: index)
     }
     
     @IBAction func decrementQty(_ sender: UIButton) {
-        
+        guard let index = indexPath else { return }
+        self.delegate?.decrementQty(index: index)
     }
     
     @IBAction func likeBtnTap(_ sender: UIButton) {
-        isLiked.toggle()
-        configureLike()
+        guard let index = indexPath else { return }
+        self.delegate?.addWishlist(index: index)
     }
-    
 }

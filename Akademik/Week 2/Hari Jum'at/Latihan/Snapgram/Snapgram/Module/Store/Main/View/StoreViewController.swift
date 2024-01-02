@@ -61,7 +61,7 @@ class StoreViewController: BaseViewController {
     }
     
     private func setupCollectionView() {
-        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        refreshControl.rx.controlEvent(.valueChanged).subscribe(onNext: { self.refreshData() }).disposed(by: bag)
         storeCollection.refreshControl = refreshControl
         storeCollection.delegate = self
         collections.forEach {
@@ -126,7 +126,7 @@ class StoreViewController: BaseViewController {
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
-    @objc internal func refreshData() {
+    internal func refreshData() {
         clearSnapshot()
         vm.fetchProduct()
         vm.fetchCategories()

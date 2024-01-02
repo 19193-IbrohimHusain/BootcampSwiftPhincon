@@ -15,7 +15,8 @@ class CartViewModel: BaseViewModel {
     var cartItems = BehaviorRelay<[Cart]?>(value: nil)
     
     func fetchCartItems() {
-        let items = CoreDataHelper.shared.fetchCartItems()
+        guard let user = try? BaseConstant.getUserFromUserDefaults() else { return }
+        let items = try? CoreDataHelper.shared.fetchItems(Cart.self, userId: user.userid)
         cartItems.accept(items)
     }
 }

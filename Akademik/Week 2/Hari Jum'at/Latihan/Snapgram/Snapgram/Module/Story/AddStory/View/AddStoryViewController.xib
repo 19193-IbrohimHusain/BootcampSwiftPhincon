@@ -36,7 +36,8 @@
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" highlightedImage="Blank Image" translatesAutoresizingMaskIntoConstraints="NO" id="OM1-42-5ff">
                                     <rect key="frame" x="0.0" y="0.0" width="393" height="250"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="250" id="1fy-J2-7MY"/>
+                                        <constraint firstAttribute="height" constant="250" id="8dP-y6-Wp8"/>
+                                        <constraint firstAttribute="width" constant="393" id="tLC-br-VOT"/>
                                     </constraints>
                                 </imageView>
                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="61" translatesAutoresizingMaskIntoConstraints="NO" id="5LB-QQ-pa4">
@@ -74,7 +75,7 @@
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jatisari, Senori, 424F+QQ7, Dusun Mawot, Sugiharjo, Kec. Kosambi, Kabupaten Subang, Jawa Utara 47281, Indonesia" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e6Q-3B-NcO">
+                                <label hidden="YES" opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jatisari, Senori, 424F+QQ7, Dusun Mawot, Sugiharjo, Kec. Kosambi, Kabupaten Subang, Jawa Utara 47281, Indonesia" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e6Q-3B-NcO">
                                     <rect key="frame" x="16" y="368.33333333333331" width="361" height="61"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
@@ -113,27 +114,27 @@
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
+                                <constraint firstItem="OM1-42-5ff" firstAttribute="top" secondItem="nWb-kV-GiT" secondAttribute="top" id="1tC-tY-bKy"/>
                                 <constraint firstItem="e6Q-3B-NcO" firstAttribute="top" secondItem="Jhq-L1-uOc" secondAttribute="bottom" constant="12" id="4VP-vI-dY8"/>
-                                <constraint firstItem="t9p-52-OZw" firstAttribute="centerX" secondItem="nWb-kV-GiT" secondAttribute="centerX" id="5Ym-dC-uj3"/>
-                                <constraint firstItem="5LB-QQ-pa4" firstAttribute="centerX" secondItem="nWb-kV-GiT" secondAttribute="centerX" id="C6p-tG-Pfm"/>
-                                <constraint firstItem="OM1-42-5ff" firstAttribute="leading" secondItem="nWb-kV-GiT" secondAttribute="leading" id="Cmj-qr-nNE"/>
+                                <constraint firstItem="5LB-QQ-pa4" firstAttribute="top" secondItem="OM1-42-5ff" secondAttribute="bottom" constant="20" id="5jN-wi-mcS"/>
                                 <constraint firstItem="SOF-hF-bL9" firstAttribute="top" secondItem="e6Q-3B-NcO" secondAttribute="bottom" constant="10" id="EoK-3i-PxM"/>
                                 <constraint firstItem="OkL-8K-yJK" firstAttribute="top" secondItem="SOF-hF-bL9" secondAttribute="bottom" constant="8" id="Fi9-Vd-SAR"/>
-                                <constraint firstItem="OM1-42-5ff" firstAttribute="top" secondItem="nWb-kV-GiT" secondAttribute="top" id="Kth-xD-FVt"/>
                                 <constraint firstAttribute="trailing" secondItem="qkN-t5-IOo" secondAttribute="trailing" constant="16" id="NNx-Bq-vLa"/>
                                 <constraint firstItem="OkL-8K-yJK" firstAttribute="leading" secondItem="nWb-kV-GiT" secondAttribute="leading" constant="16" id="O85-dP-9vX"/>
                                 <constraint firstItem="qkN-t5-IOo" firstAttribute="centerY" secondItem="Jhq-L1-uOc" secondAttribute="centerY" id="QFb-2j-zNx"/>
+                                <constraint firstAttribute="trailing" secondItem="t9p-52-OZw" secondAttribute="trailing" constant="70" id="SLP-Ym-wZD"/>
                                 <constraint firstItem="t9p-52-OZw" firstAttribute="leading" secondItem="nWb-kV-GiT" secondAttribute="leading" constant="70" id="SQZ-Y3-Irs"/>
                                 <constraint firstAttribute="trailing" secondItem="e6Q-3B-NcO" secondAttribute="trailing" constant="16" id="UeN-qg-d2U"/>
                                 <constraint firstItem="SOF-hF-bL9" firstAttribute="leading" secondItem="nWb-kV-GiT" secondAttribute="leading" constant="16" id="Va9-Up-Mnk"/>
                                 <constraint firstItem="t9p-52-OZw" firstAttribute="top" secondItem="OkL-8K-yJK" secondAttribute="bottom" constant="20" id="bRG-8N-fu0"/>
+                                <constraint firstItem="OM1-42-5ff" firstAttribute="leading" secondItem="nWb-kV-GiT" secondAttribute="leading" id="bj5-sB-GCt"/>
+                                <constraint firstAttribute="trailing" secondItem="OM1-42-5ff" secondAttribute="trailing" id="e9R-8u-oxs"/>
                                 <constraint firstItem="e6Q-3B-NcO" firstAttribute="leading" secondItem="nWb-kV-GiT" secondAttribute="leading" constant="16" id="eEM-YE-T7C"/>
                                 <constraint firstItem="Jhq-L1-uOc" firstAttribute="top" secondItem="5LB-QQ-pa4" secondAttribute="bottom" constant="20" id="gf4-sE-6YB"/>
+                                <constraint firstItem="5LB-QQ-pa4" firstAttribute="centerX" secondItem="nWb-kV-GiT" secondAttribute="centerX" id="hN9-Gl-pl5"/>
                                 <constraint firstItem="Jhq-L1-uOc" firstAttribute="leading" secondItem="nWb-kV-GiT" secondAttribute="leading" constant="16" id="kPe-K3-QCX"/>
                                 <constraint firstAttribute="trailing" secondItem="OkL-8K-yJK" secondAttribute="trailing" constant="16" id="nba-D0-n4Q"/>
                                 <constraint firstAttribute="height" constant="800" id="qU0-yj-2jP"/>
-                                <constraint firstItem="5LB-QQ-pa4" firstAttribute="top" secondItem="OM1-42-5ff" secondAttribute="bottom" constant="20" id="zjX-aR-yaC"/>
-                                <constraint firstAttribute="trailing" secondItem="OM1-42-5ff" secondAttribute="trailing" id="znE-kp-NNb"/>
                             </constraints>
                         </view>
                     </subviews>
@@ -142,7 +143,6 @@
                         <constraint firstAttribute="bottom" secondItem="nWb-kV-GiT" secondAttribute="bottom" id="EiI-Ge-de2"/>
                         <constraint firstItem="nWb-kV-GiT" firstAttribute="top" secondItem="Blv-Qj-his" secondAttribute="top" id="JUd-xZ-Vdu"/>
                         <constraint firstItem="nWb-kV-GiT" firstAttribute="leading" secondItem="Blv-Qj-his" secondAttribute="leading" id="St3-SW-W2w"/>
-                        <constraint firstItem="nWb-kV-GiT" firstAttribute="width" secondItem="Blv-Qj-his" secondAttribute="width" id="Tub-Yf-4Qb"/>
                     </constraints>
                 </scrollView>
             </subviews>
@@ -153,7 +153,7 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="top" secondItem="Blv-Qj-his" secondAttribute="top" id="9oe-H4-zMk"/>
                 <constraint firstAttribute="bottom" secondItem="Blv-Qj-his" secondAttribute="bottom" id="Ds6-fR-b8e"/>
                 <constraint firstItem="Blv-Qj-his" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="PQu-Al-M65"/>
-                <constraint firstItem="Blv-Qj-his" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="vJo-mH-To1"/>
+                <constraint firstItem="nWb-kV-GiT" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="p5J-qR-xGv"/>
             </constraints>
             <point key="canvasLocation" x="49.618320610687022" y="20.422535211267608"/>
         </view>

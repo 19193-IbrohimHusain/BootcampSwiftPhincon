@@ -20,10 +20,13 @@ class AddStoryViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setup()
+    }
+    
+    private func setup() {
         postStoryBtn.layer.cornerRadius = 8.0
         scrollView.delegate = self
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapAction(_:)))
-        locationLabel.isUserInteractionEnabled = true
         locationLabel.addGestureRecognizer(tapGesture)
         scrollableHeight.constant = view.bounds.height + 50
         bindData()
@@ -54,9 +57,9 @@ class AddStoryViewController: BaseViewController {
                 case .finished:
                     self.afterDissmissed(self.postStoryBtn, title: "Post Story")
                     if let message = self.uploadResponse?.message {
-                        self.displayAlert(title: message, message: "Please continue to home") {
+                        self.displayAlert(title: message, message: "Please continue to home", completion:  {
                             self.dismiss(animated: true, completion: nil)
-                        }
+                        })
                     }
                 }
             }
@@ -64,14 +67,8 @@ class AddStoryViewController: BaseViewController {
         
         enableLocation.rx.isOn.subscribe(onNext: { [weak self] state in
             guard let self = self else { return }
-            switch state {
-            case true:
-                self.locationHandler()
-                self.locationLabel.isHidden = false
-            case false:
-                self.locationLabel.text = .none
-                self.locationLabel.isHidden = true
-            }
+            state ? self.locationHandler() : (self.locationLabel.text = nil)
+            self.locationLabel.isHidden = !state
         }).disposed(by: bag)
     }
     
@@ -84,47 +81,45 @@ class AddStoryViewController: BaseViewController {
         }
     }
     
+    private func openPicker(sourceType: UIImagePickerController.SourceType) {
+        pickerImage.allowsEditing = true
+        pickerImage.delegate = self
+        pickerImage.sourceType = sourceType
+        if sourceType == .camera { pickerImage.showsCameraControls = true }
+        present(pickerImage, animated: true)
+    }
+    
     @objc func tapAction(_ tap: UITapGestureRecognizer) {
         locationHandler()
     }
     
     @IBAction func openCamera(_ sender: UIButton) {
-        self.pickerImage.allowsEditing = true
-        self.pickerImage.delegate = self
-        self.pickerImage.sourceType = .camera
-        self.pickerImage.showsCameraControls = true
-        self.present(self.pickerImage, animated: true, completion: nil)
+        openPicker(sourceType: .camera)
     }
     
     @IBAction func openGallery(_ sender: UIButton) {
-        self.pickerImage.allowsEditing = true
-        self.pickerImage.delegate = self
-        self.pickerImage.sourceType = .photoLibrary
-        self.present(self.pickerImage, animated: true, completion: nil)
+        openPicker(sourceType: .photoLibrary)
     }
     
     @IBAction func uploadStory() {
         addLoading(postStoryBtn)
         
         guard let enteredCaption = captionTextField.text, !enteredCaption.isEmpty else {
-            displayAlert(title: "Upload Story Failed", message: "Please enter your caption") {
+            displayAlert(title: "Upload Story Failed", message: "Please enter your caption", completion:  {
                 self.afterDissmissed(self.postStoryBtn, title: "Post Story")
-            }
+            })
             return
         }
         guard let uploadedImage = uploadedImage.image else {
-            displayAlert(title: "Upload Story Failed", message: "Please select your image") {
+            displayAlert(title: "Upload Story Failed", message: "Please select your image", completion:  {
                 self.afterDissmissed(self.postStoryBtn, title: "Post Story")
-            }
+            })
             return
         }
-        if latitude == 0.0 && longitude == 0.0 {
-            vm.postStory(param: AddStoryParam(description: enteredCaption, photo: uploadedImage, lat: nil, lon: nil))
-        } else {
-            let lat = Float(latitude)
-            let lon = Float(longitude)
-            vm.postStory(param: AddStoryParam(description: enteredCaption, photo: uploadedImage, lat: lat, lon: lon))
-        }
+        let lat = (latitude == 0.0) ? nil : Float(latitude)
+        let lon = (longitude == 0.0) ? nil : Float(longitude)
+        
+        vm.postStory(param: AddStoryParam(description: enteredCaption, photo: uploadedImage, lat: lat, lon: lon))
     }
 }
 

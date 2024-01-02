@@ -6,14 +6,15 @@
 //
 
 import UIKit
+import RxSwift
+import RxDataSources
 
 class WishlistViewController: BaseViewController {
 
     @IBOutlet weak var favTable: UITableView!
     
-    var vm = WishlistViewModel()
-    var snapshot = NSDiffableDataSourceSnapshot<SectionCartTable, FavoriteProducts>()
-    var dataSource: UITableViewDiffableDataSource<SectionCartTable, FavoriteProducts>!
+    private var vm = WishlistViewModel()
+    private var dataSource: RxTableViewSectionedAnimatedDataSource<WishlistSection>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,39 +44,44 @@ class WishlistViewController: BaseViewController {
     }
     
     private func setupDataSource() {
-        dataSource = .init(tableView: favTable) { (tableView, indexPath, item) in
+        dataSource = .init(configureCell: { (dataSource, tableView, indexPath, item) in
             let cell: WishlistTableCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-                cell.configure(with: item)
+            cell.configure(with: item)
             return cell
-        }
+        }, canEditRowAtIndexPath: { _,_ in
+            return true
+        })
     }
     
     private func bindData() {
-        vm.favProduct.asObservable().subscribe(onNext: { [weak self] items in
-            guard let self = self, let items = items else { return }
-            self.loadSnapshot(item: items)
-        }).disposed(by: bag)
+        vm.favProduct.asObservable().map {
+            return [WishlistSection(section: 0, items: $0)]
+        }.bind(to: favTable.rx.items(dataSource: dataSource)).disposed(by: bag)
     }
     
-    private func loadSnapshot(item: [FavoriteProducts]) {
-        snapshot.appendSections([.main])
-        snapshot.appendItems(item)
-        dataSource.apply(snapshot, animatingDifferences: true)
+    private func deleteItems(indexPath: IndexPath) {
+        let item = vm.favProduct.value[indexPath.row]
+        let _ = CoreDataHelper.shared.deleteFavoriteItem(FavoriteProducts.self, productID: item.productID) {
+            self.vm.fetchFavProduct()
+        }
     }
 }
 
 extension WishlistViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 200.0
+        return UITableView.automaticDimension
     }
+    
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let swipeAction = UISwipeActionsConfiguration(actions: [UIContextualAction(style: .destructive, title: "Delete"){ _,_,_ in
-            let item = self.snapshot.itemIdentifiers[indexPath.row]
-            self.snapshot.deleteItems([item])
-            self.dataSource.apply(self.snapshot, animatingDifferences: true)
-            CoreDataHelper.shared.deleteFavProduct(id: item.productID)
-        }])
+        let swipeAction = UISwipeActionsConfiguration(actions: [UIContextualAction(style: .destructive, title: "Delete") { _,_,_ in self.deleteItems(indexPath: indexPath) }])
         swipeAction.performsFirstActionWithFullSwipe = true
         return swipeAction
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let item = dataSource.sectionModels.first?.items[indexPath.row] else { return }
+        let vc = DetailProductViewController()
+        vc.id = Int(item.productID)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }

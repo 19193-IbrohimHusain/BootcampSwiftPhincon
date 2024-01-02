@@ -16,6 +16,6 @@ class DescriptionCell: UICollectionViewCell {
     }
     
     internal func configure (with product: ProductModel) {
-        productDesc.text = product.description
+        productDesc.text = product.description.replacingOccurrences(of: "\r\n", with: "")
     }
 }

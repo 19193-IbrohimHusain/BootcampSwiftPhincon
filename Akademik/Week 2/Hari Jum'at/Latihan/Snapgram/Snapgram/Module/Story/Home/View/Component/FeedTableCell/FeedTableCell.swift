@@ -24,10 +24,9 @@ class FeedTableCell: UITableViewCell {
     @IBOutlet private weak var createdAt: UILabel!
     
     internal weak var delegate: FeedTableCellDelegate?
-    private let dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
     private var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
-        formatter.dateFormat = dateFormat
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
         formatter.timeZone = TimeZone(abbreviation: "UTC")
         return formatter
     }
@@ -158,8 +157,4 @@ class FeedTableCell: UITableViewCell {
             delegate?.navigateToDetailUser(post: post)
         }
     }
-    
-//    @objc private func onCommentLabelTap(_ sender: UITapGestureRecognizer) {
-//        delegate?.openComment(index: indexSelected)
-//    }
 }
