@@ -13,13 +13,13 @@ class CustomViewMarker: UIView {
     private var storyID: String?
     
     // UI Elements
-    let imgView: UIImageView = {
+    private let imgView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
-    let username: UILabel = {
+    private let username: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
@@ -27,7 +27,7 @@ class CustomViewMarker: UIView {
         return label
     }()
     
-    let locationLabel: UILabel = {
+    internal let locationLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
@@ -37,7 +37,7 @@ class CustomViewMarker: UIView {
         return label
     }()
     
-    let uploadedImage: UIImageView = {
+    private let uploadedImage: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleToFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -45,7 +45,7 @@ class CustomViewMarker: UIView {
         return imageView
     }()
     
-    let captionLabel: UILabel = {
+    private let captionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 4
@@ -54,7 +54,7 @@ class CustomViewMarker: UIView {
         return label
     }()
     
-    let timeCreated: UILabel = {
+    private let timeCreated: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .right
@@ -63,7 +63,7 @@ class CustomViewMarker: UIView {
         return label
     }()
     
-    let navigationButton: UIButton = {
+    private let navigationButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .clear
@@ -85,7 +85,7 @@ class CustomViewMarker: UIView {
         setupView()
     }
     
-    func navigateToDetail() {
+    private func navigateToDetail() {
         navigationButton.rx.tap.subscribe(onNext: { [weak self] _ in
             guard let self = self, let id = self.storyID else { return }
             self.delegate?.navigateTo(id: id)

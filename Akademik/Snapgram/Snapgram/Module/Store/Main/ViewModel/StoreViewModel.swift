@@ -28,9 +28,8 @@ class StoreViewModel: BaseViewModel {
                     $0.category.name == "Sport"
                 }
                 self.sportShoes.accept(sportShoes)
-            case .failure(let error):
+            case .failure(_):
                 self.loadingState.accept(.failed)
-                print(String(describing: error))
             }
         }
     }

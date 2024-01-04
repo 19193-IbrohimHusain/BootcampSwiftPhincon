@@ -48,9 +48,8 @@ class ProfileViewModel : BaseViewModel {
                 let story = data.listStory
                 let filteredStory = story.filter { $0.name == self.currentUser.value?.username }
                 self.userPost.accept(filteredStory)
-            case .failure(let error):
+            case .failure(_):
                 self.loadingState.accept(.failed)
-                print(String(describing: error))
             }
         }
     }

@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CartViewController" customModule="Snapgram" customModuleProvider="target">
             <connections>
+                <outlet property="bgView" destination="u7e-8l-HD9" id="fc2-2V-B09"/>
                 <outlet property="buyBtn" destination="ucP-PV-19v" id="TJn-8r-YU7"/>
                 <outlet property="cartTable" destination="XPw-Qn-s2d" id="Bx4-ov-JsD"/>
                 <outlet property="selectAllBtn" destination="alD-Eg-8HT" id="I3c-IE-XZP"/>

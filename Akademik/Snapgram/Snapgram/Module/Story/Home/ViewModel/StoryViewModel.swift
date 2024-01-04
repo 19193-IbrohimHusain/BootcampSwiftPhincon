@@ -13,9 +13,8 @@ class StoryViewModel : BaseViewModel {
             case .success(let data):
                 self.loadingState.accept(.finished)
                 self.storyData.accept(data.listStory)
-            case .failure(let error):
+            case .failure(_):
                 self.loadingState.accept(.failed)
-                print(String(describing: error))
             }
         }
     }

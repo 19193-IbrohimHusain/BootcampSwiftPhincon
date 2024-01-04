@@ -41,7 +41,7 @@ class CoreDataHelper {
     
     private init() {}
     
-    func clearCoreData(entityName: String) {
+    internal func clearCoreData(entityName: String) {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
         let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
         
@@ -53,7 +53,7 @@ class CoreDataHelper {
         }
     }
     
-    func isEntityExist<T: NSManagedObject>(_ entity: T.Type, productId: Int, userId: String) -> Bool {
+    internal func isEntityExist<T: NSManagedObject>(_ entity: T.Type, productId: Int, userId: String) -> Bool {
         do {
             let fetchRequest = NSFetchRequest<T>(entityName: String(describing: entity))
             fetchRequest.predicate = NSPredicate(format: "\(predicateProductId) AND \(predicateUserId)", argumentArray: [productId, userId])
@@ -65,7 +65,14 @@ class CoreDataHelper {
         }
     }
     
-    func addOrUpdateEntity<T: NSManagedObject>(_ entity: T.Type, for favorite: ProductCoreData, productId: Int, userId: String, properties: [String: Any]) -> CoreDataResult {
+    internal func fetchItems<T: NSManagedObject>(_ entity: T.Type, userId: String) throws -> [T] {
+        let fetchRequest = NSFetchRequest<T>(entityName: String(describing: entity))
+        fetchRequest.predicate = NSPredicate(format: predicateUserId, userId)
+        let item = try context.fetch(fetchRequest)
+        return item
+    }
+    
+    internal func addOrUpdateEntity<T: NSManagedObject>(_ entity: T.Type, for favorite: ProductCoreData, productId: Int, userId: String, properties: [String: Any], isIncrement: Bool) -> CoreDataResult {
         do {
             let fetchRequest: NSFetchRequest<T> = T.fetchRequest() as! NSFetchRequest<T>
             fetchRequest.predicate = NSPredicate(format: "\(predicateProductId) AND \(predicateUserId)", argumentArray: [productId, userId])
@@ -80,10 +87,12 @@ class CoreDataHelper {
                 return .added
             } else {
                 switch favorite {
-                case .cart(let id):
-                    return updateItemQty(entity, productID: Int16(id), userId: userId)
-                case .favorite(let id):
-                    return deleteFavoriteItem(entity, productID: Int16(id), userId: userId)
+                case .cart(_):
+                    guard let item = existingEntries.first as? Cart else { return .failed }
+                    return updateItemQty(item: item, isIncrement: isIncrement)
+                case .favorite(_):
+                    guard let item = existingEntries.first as? FavoriteProducts else { return .failed }
+                    return deleteFavoriteItem(item: item)
                 }
             }
         } catch {
@@ -92,50 +101,30 @@ class CoreDataHelper {
         }
     }
     
-    func updateItemQty<T: NSManagedObject>(_ entity: T.Type, productID: Int16, userId: String, isIncrement: Bool = true) -> CoreDataResult {
-        let fetchRequest: NSFetchRequest<T> = T.fetchRequest() as! NSFetchRequest<T>
-        fetchRequest.predicate = NSPredicate(format: "\(predicateProductId) AND \(predicateUserId)", argumentArray: [productID, userId])
-        
+    private func updateItemQty(item: Cart, isIncrement: Bool) -> CoreDataResult {
         do {
-            if let cartItem = try context.fetch(fetchRequest).first as? Cart {
-                cartItem.quantity = isIncrement ? cartItem.quantity + 1 : cartItem.quantity - 1
-                if cartItem.quantity == 0 {
-                    context.delete(cartItem)
-                    return .deleted
-                }
-                print(cartItem)
-                try context.save()
-                return .updated
-            }
-        } catch {
-            print("Error Updating Product with ID: \(productID). Error: \(error)")
-        }
-        return .failed
-    }
-    
-    func deleteFavoriteItem<T: NSManagedObject>(_ entity: T.Type, productID: Int16, userId: String, completion: (() -> Void)? = nil) -> CoreDataResult {
-        let fetchRequest: NSFetchRequest<T> = T.fetchRequest() as! NSFetchRequest<T>
-        fetchRequest.predicate = NSPredicate(format: "\(predicateProductId) AND \(predicateUserId)", argumentArray: [productID, userId])
-        
-        do {
-            if let favItem = try context.fetch(fetchRequest).first as? FavoriteProducts {
-                context.delete(favItem)
-                
-                try context.save()
-                completion?()
+            item.quantity = isIncrement ? item.quantity + 1 : item.quantity - 1
+            if item.quantity == 0 {
+                context.delete(item)
                 return .deleted
             }
+            try context.save()
+            return .updated
         } catch {
-            print("Error Updating Product with ID: \(productID). Error: \(error)")
+            print("Error Updating Product with ID: \(item.productID). Error: \(error)")
         }
         return .failed
     }
     
-    func fetchItems<T: NSManagedObject>(_ entity: T.Type, userId: String) throws -> [T] {
-        let fetchRequest = NSFetchRequest<T>(entityName: String(describing: entity))
-        fetchRequest.predicate = NSPredicate(format: predicateUserId, userId)
-        let item = try context.fetch(fetchRequest)
-        print(item)
-        return item
+    private func deleteFavoriteItem(item: FavoriteProducts, completion: (() -> Void)? = nil) -> CoreDataResult {
+        do {
+            context.delete(item)
+            try context.save()
+            completion?()
+            return .deleted
+        } catch {
+            print("Error Updating Product with ID: \(item.productID). Error: \(error)")
+        }
+        return .failed
     }
 }

@@ -9,7 +9,7 @@ import UIKit
 import Lottie
 
 class CustomErrorView: UIView {
-    private let animationView: LottieAnimationView = {
+    internal var animationView: LottieAnimationView = {
         let animationView = LottieAnimationView()
         animationView.translatesAutoresizingMaskIntoConstraints = false
         animationView.backgroundColor = .systemBackground
@@ -18,7 +18,7 @@ class CustomErrorView: UIView {
         return animationView
     }()
 
-    private let titleLabel: UILabel = {
+    internal var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Uh oh! Something's wrong!"
@@ -32,6 +32,20 @@ class CustomErrorView: UIView {
         label.text = "Please pull to refresh"
         label.font = UIFont(name: "Helvetica", size: 12)
         return label
+    }()
+    
+    internal var navigateBtn: UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Explore store", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.tintColor = .systemBlue
+        button.configuration = UIButton.Configuration.filled()
+        button.setAnimateBounce()
+        button.isHidden = true
+        button.makeCornerRadius(8.0)
+        button.addShadow()
+        return button
     }()
 
     // MARK: - Initializer
@@ -47,15 +61,13 @@ class CustomErrorView: UIView {
         configureView()
         configureAnimation()
     }
-
+    
     // MARK: - Functions
 
     private func configureView() {
         backgroundColor = .systemBackground
         translatesAutoresizingMaskIntoConstraints = false
-        addSubview(animationView)
-        addSubview(titleLabel)
-        addSubview(descriptionLabel)
+        [animationView, titleLabel, descriptionLabel, navigateBtn].forEach { addSubview($0) }
 
         NSLayoutConstraint.activate([
             widthAnchor.constraint(equalToConstant: frame.width),
@@ -69,7 +81,11 @@ class CustomErrorView: UIView {
             titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
 
             descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
-            descriptionLabel.centerXAnchor.constraint(equalTo: centerXAnchor)
+            descriptionLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+            
+            navigateBtn.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 10),
+            navigateBtn.centerXAnchor.constraint(equalTo: centerXAnchor),
+            navigateBtn.widthAnchor.constraint(equalToConstant: 200)
         ])
     }
     

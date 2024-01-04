@@ -9,6 +9,7 @@ import UIKit
 
 class CartViewController: BaseViewController {
     
+    @IBOutlet weak var bgView: UIView!
     @IBOutlet weak var selectAllBtn: UIButton!
     @IBOutlet weak var buyBtn: UIButton!
     @IBOutlet weak var cartTable: UITableView!
@@ -32,9 +33,9 @@ class CartViewController: BaseViewController {
         clearSnapshot()
     }
     
-    
     private func setup() {
         setupNavigationBar()
+        setupErrorView()
         setupTable()
         setupDataSource()
         bindData()
@@ -67,14 +68,6 @@ class CartViewController: BaseViewController {
         }
     }
     
-    private func bindData() {
-        vm.cartItems.asObservable().subscribe(onNext: { [weak self] items in
-            guard let self = self, let items = items else { return }
-            self.refreshControl.endRefreshing()
-            self.loadSnapshot(item: items)
-        }).disposed(by: bag)
-    }
-    
     private func btnEvent() {
         buyBtn.rx.tap.subscribe(onNext: { [weak self] _ in
             guard let self = self else { return }
@@ -87,64 +80,17 @@ class CartViewController: BaseViewController {
         }).disposed(by: bag)
     }
     
-    private func loadSnapshot(item: [Cart]) {
-        if snapshot.sectionIdentifiers.isEmpty {
-            snapshot.appendSections([.main])
-        }
-        snapshot.appendItems(item)
-        dataSource.apply(snapshot, animatingDifferences: false)
-    }
-    
-    internal func addItemToCoreData(for action: ProductCoreData, indexPath: IndexPath) -> CoreDataResult {
-        guard let user = try? BaseConstant.getUserFromUserDefaults(), let item = self.dataSource.itemIdentifier(for: indexPath), let imageUrl = item.image, let name = item.name else { return .failed }
-        switch action {
-        case .favorite(let entity):
-            let properties: [String: Any] = [
-                "userID": user.userid,
-                "productID": item.productID,
-                "name": name,
-                "imageLink": imageUrl,
-                "price": item.price,
-            ]
-            return CoreDataHelper.shared.addOrUpdateEntity(FavoriteProducts.self, for: .favorite(id: entity), productId: Int(item.productID), userId: user.userid, properties: properties)
-        default: break
-        }
-        return .failed
-    }
-    
-    internal func resultHandler(for state: CoreDataResult, destination: String, item: Cart) {
-        switch state {
-        case .added:
-            self.displayAlert(title: "Success", message: "Item Added To \(destination)", action: self.addAlertAction) {
-                self.clearSnapshot() { self.vm.fetchCartItems() }
-            }
-        case .failed:
-            self.displayAlert(title: "Failed", message: "Failed To Add Item")
-        case .deleted:
-            self.displayAlert(title: "Success", message: "Item Deleted From \(destination)", action: destination == "Wishlist" ? self.addAlertAction : nil) {
-                self.clearSnapshot() { self.vm.fetchCartItems() }
-            }
-        case .updated:
-            self.displayAlert(title: "Success", message: "Item Added To \(destination)", action: self.addAlertAction) {
-                self.clearSnapshot() { self.vm.fetchCartItems() }
-            }
-        }
-    }
-    
-    private func addAlertAction() -> UIAlertAction {
+    internal func addAlertAction() -> UIAlertAction {
         let navigateToCartAction = UIAlertAction(title: "See Wishlist", style: .default) { _ in
             let vc = WishlistViewController()
             self.navigationController?.pushViewController(vc, animated: true)
         }
-        
         return navigateToCartAction
-    }
-    private func clearSnapshot(completion: (() -> Void)? = nil) {
-        snapshot.deleteAllItems()
-        dataSource.apply(snapshot, animatingDifferences: false) { completion?() }
     }
     
     private func refreshData() {
+        self.errorView.removeFromSuperview()
+        self.bgView.isHidden = false
         clearSnapshot()
         vm.fetchCartItems()
     }
@@ -166,41 +112,5 @@ extension CartViewController: UITableViewDelegate {
             vc.id = Int(item.productID)
             self.navigationController?.pushViewController(vc, animated: true)
         }
-    }
-}
-
-extension CartViewController: CartTableCellDelegate {
-    func incrementQty(index: IndexPath) {
-        guard let user = try? BaseConstant.getUserFromUserDefaults() else { return }
-        if let item = dataSource.itemIdentifier(for: index) {
-            weak let _ = CoreDataHelper.shared.updateItemQty(Cart.self, productID: item.productID, userId: user.userid)
-            clearSnapshot() { self.vm.fetchCartItems() }
-        }
-    }
-    
-    func decrementQty(index: IndexPath) {
-        guard let user = try? BaseConstant.getUserFromUserDefaults() else { return }
-        if let item = dataSource.itemIdentifier(for: index) {
-            let state = CoreDataHelper.shared.updateItemQty(Cart.self, productID: item.productID, userId: user.userid, isIncrement: false)
-            if state == .deleted {
-                self.resultHandler(for: state, destination: "Cart", item: item)
-            } else {
-                clearSnapshot() { self.vm.fetchCartItems() }
-            }
-        }
-    }
-    
-    func addWishlist(index: IndexPath) {
-        if let item = self.dataSource.itemIdentifier(for: index) {
-            let state = self.addItemToCoreData(for: .favorite(id: Int(item.productID)), indexPath: index)
-            self.resultHandler(for: state, destination: "Wishlist", item: item)
-        }
-    }
-    
-    func isExist(index: IndexPath) -> Bool {
-        guard !snapshot.itemIdentifiers.isEmpty, let user = try? BaseConstant.getUserFromUserDefaults() else { return false }
-        let item = snapshot.itemIdentifiers[index.item]
-        let result = CoreDataHelper.shared.isEntityExist(FavoriteProducts.self, productId: Int(item.productID), userId: user.userid)
-        return result
     }
 }

@@ -17,9 +17,8 @@ class RegisterViewModel : BaseViewModel {
                     self.loadingState.accept(.finished)
                     self.registerResponse.accept(response)
                 }
-            case .failure(let error):
+            case .failure(_):
                 self.loadingState.accept(.failed)
-                print(String(describing: error))
             }
         }
     }

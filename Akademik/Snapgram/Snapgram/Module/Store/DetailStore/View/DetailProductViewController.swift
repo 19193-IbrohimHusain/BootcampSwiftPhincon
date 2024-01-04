@@ -34,7 +34,7 @@ class DetailProductViewController: BaseViewController {
         super.viewWillAppear(animated)
         if let id = id {
             vm.fetchDetailProduct(param: ProductParam(id: id, limit: nil))
-            vm.fetchProduct()
+            vm.fetchRecommendationProduct()
         }
     }
     
@@ -78,7 +78,7 @@ class DetailProductViewController: BaseViewController {
             guard let self = self, let product = self.product else { return }
             self.addLoading(self.addToCartBtn)
             self.isCart = true
-            let state = self.addItemToCoreData(for: .cart(id: product.id))
+            let state = self.vm.addItemToCoreData(for: .cart(id: product.id), product: product, image: self.image)
             self.resultHandler(for: state, destination: "Cart")
             self.afterDissmissed(self.addToCartBtn, title: "Add to cart")
         }).disposed(by: bag)
@@ -88,7 +88,7 @@ class DetailProductViewController: BaseViewController {
         self.currentIndex = 0
         self.product = nil
         self.recommendation?.removeAll()
-        vm.fetchProduct(param: ProductParam())
+        vm.fetchRecommendationProduct()
         vm.fetchDetailProduct(param: ProductParam(id: id, limit: nil))
         self.errorView.removeFromSuperview()
     }
@@ -115,15 +115,13 @@ extension DetailProductViewController: NameCellDelegate {
     func addFavorite() {
         if let product = self.product {
             self.isCart = false
-            let state = self.addItemToCoreData(for: .favorite(id: product.id))
+            let state = vm.addItemToCoreData(for: .favorite(id: product.id), product: product, image: self.image)
             self.resultHandler(for: state, destination: "Wishlist")
             detailCollection.reloadData()
         }
     }
     
     func checkIsFavorite() -> Bool {
-        guard let product = self.product, let user = try? BaseConstant.getUserFromUserDefaults() else { return false }
-        let result = CoreDataHelper.shared.isEntityExist(FavoriteProducts.self, productId: product.id, userId: user.userid)
-        return result
+        return vm.isItemExist(product: self.product)
     }
 }

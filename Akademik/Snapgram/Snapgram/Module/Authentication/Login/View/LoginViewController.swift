@@ -59,7 +59,7 @@ class LoginViewController: BaseViewController {
     
     private func configureButton() {
         signInBtn.setup(title: "Sign In", image: "")
-        signInWithAppleBtn.setup(title: "Sign In With Apple ID", image: "apple.logo")
+        signInWithAppleBtn.setup(title: "Sign In With Apple", image: "apple.logo")
         signInWithAppleBtn.customButton.backgroundColor = .white
         signInWithAppleBtn.customButton.setTitleColor(.systemBlue, for: .normal)
         signInWithAppleBtn.customButton.layer.borderWidth = 1.0

@@ -104,7 +104,7 @@ class StoreViewController: BaseViewController {
         fyp.removeAll()
         snapshot.deleteAllItems()
         storeCollection.hideSkeleton(reloadDataAfter: false)
-        dataSource.apply(snapshot, animatingDifferences: true)
+        dataSource.apply(snapshot, animatingDifferences: false)
         self.errorView.removeFromSuperview()
     }
     

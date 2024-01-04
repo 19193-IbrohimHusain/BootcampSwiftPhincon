@@ -12,9 +12,8 @@ class DetailStoryViewModel : BaseViewModel {
             case .success(let data):
                 self.loadingState.accept(.finished)
                 self.detailStoryData.accept(data)
-            case .failure(let error):
+            case .failure(_):
                 self.loadingState.accept(.failed)
-                print(String(describing: error))
             }
         }
     }

@@ -9,32 +9,6 @@ import Foundation
 import UIKit
 
 extension DetailProductViewController {
-    internal func addItemToCoreData(for action: ProductCoreData) -> CoreDataResult {
-        guard let user = try? BaseConstant.getUserFromUserDefaults(), let product = self.product, let image = self.image?.first else { return .failed }
-        print(user)
-        switch action {
-        case .cart(let id):
-            let properties: [String: Any] = [
-                "userID": user.userid,
-                "productID": Int16(product.id),
-                "name": product.name,
-                "image": image.url,
-                "price": product.price,
-                "quantity": 1,
-            ]
-            return CoreDataHelper.shared.addOrUpdateEntity(Cart.self, for: .cart(id: id), productId: product.id, userId: user.userid, properties: properties)
-        case .favorite(let id):
-            let properties: [String: Any] = [
-                "userID": user.userid,
-                "productID": Int16(product.id),
-                "name": product.name,
-                "imageLink": image.url,
-                "price": product.price,
-            ]
-            return CoreDataHelper.shared.addOrUpdateEntity(FavoriteProducts.self, for: .favorite(id: id), productId: product.id, userId: user.userid, properties: properties)
-        }
-    }
-    
     internal func resultHandler(for state: CoreDataResult, destination: String) {
         switch state {
         case .added:

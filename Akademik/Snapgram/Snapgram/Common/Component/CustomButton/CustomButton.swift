@@ -44,6 +44,7 @@ class CustomButton: UIView {
         customButton.layer.borderColor = UIColor.systemBlue.cgColor
         customButton.layer.backgroundColor = UIColor.systemBlue.cgColor
         customButton.setTitleColor(UIColor.white, for: .normal)
-        customButton.configuration?.imagePadding = 8.0
+        customButton.configuration?.imagePadding = 4.0
+        customButton.setPreferredSymbolConfiguration(UIImage.SymbolConfiguration(scale: .small), forImageIn: .normal)
     }
 }

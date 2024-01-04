@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import RxDataSources
+import Lottie
 
 class WishlistViewController: BaseViewController {
 
@@ -28,6 +29,7 @@ class WishlistViewController: BaseViewController {
     
     private func setup(){
         setupNavigationBar()
+        setupErrorView()
         setupTable()
         setupDataSource()
         bindData()
@@ -55,16 +57,25 @@ class WishlistViewController: BaseViewController {
     
     private func bindData() {
         vm.favProduct.asObservable().map {
+            $0.isEmpty ? self.showErrorView() : self.errorView.removeFromSuperview()
             return [WishlistSection(section: 0, items: $0)]
         }.bind(to: favTable.rx.items(dataSource: dataSource)).disposed(by: bag)
     }
     
-    private func deleteItems(indexPath: IndexPath) {
-        guard let user = try? BaseConstant.getUserFromUserDefaults() else { return }
-        let item = vm.favProduct.value[indexPath.row]
-        let _ = CoreDataHelper.shared.deleteFavoriteItem(FavoriteProducts.self, productID: item.productID, userId: user.userid) {
-            self.vm.fetchFavProduct()
-        }
+    private func showErrorView() {
+        errorView.animationView.animation = LottieAnimation.named("wishlist_empty")
+        errorView.animationView.play()
+        errorView.titleLabel.text = "Got any wishlist?"
+        errorView.descriptionLabel.text = "Let's find your favorite products!"
+        errorView.navigateBtn.rx.tap.throttle(.seconds(3), scheduler: MainScheduler.instance).subscribe(onNext: { [weak self] _ in
+            guard let self = self else { return }
+            let vc = TabBarViewController()
+            vc.selectedIndex = 3
+            vc.hidesBottomBarWhenPushed = true
+            self.navigationController?.setViewControllers([vc], animated: true)
+        }).disposed(by: bag)
+        errorView.navigateBtn.isHidden = false
+        favTable.addSubview(errorView)
     }
 }
 
@@ -74,7 +85,7 @@ extension WishlistViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let swipeAction = UISwipeActionsConfiguration(actions: [UIContextualAction(style: .destructive, title: "Delete") { _,_,_ in self.deleteItems(indexPath: indexPath) }])
+        let swipeAction = UISwipeActionsConfiguration(actions: [UIContextualAction(style: .destructive, title: "Delete") { _,_,_ in self.vm.deleteItems(indexPath: indexPath) }])
         swipeAction.performsFirstActionWithFullSwipe = true
         return swipeAction
     }

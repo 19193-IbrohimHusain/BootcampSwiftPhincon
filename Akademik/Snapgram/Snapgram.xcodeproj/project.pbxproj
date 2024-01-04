@@ -195,6 +195,8 @@
 		36E50ADC2B21DF4300BB4D65 /* ExtStore + DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E50ADB2B21DF4300BB4D65 /* ExtStore + DataSource.swift */; };
 		36E50ADE2B21DFA600BB4D65 /* ExtNSCollectionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E50ADD2B21DFA600BB4D65 /* ExtNSCollectionLayout.swift */; };
 		36E50AE02B21E17700BB4D65 /* ExtNSDirectionalEdgeInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E50ADF2B21E17700BB4D65 /* ExtNSDirectionalEdgeInsets.swift */; };
+		36EA91A62B4697FD0014EF28 /* ExtCart + Delegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EA91A52B4697FD0014EF28 /* ExtCart + Delegates.swift */; };
+		36EA91A82B4698C10014EF28 /* ExtCart + BindData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EA91A72B4698C10014EF28 /* ExtCart + BindData.swift */; };
 		36EF4D0A2B0708E400EBB278 /* ExtUIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EF4D092B0708E400EBB278 /* ExtUIButton.swift */; };
 		36EF4D0C2B070EBF00EBB278 /* ExtUIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EF4D0B2B070EBF00EBB278 /* ExtUIImage.swift */; };
 		36EF4D112B071F0000EBB278 /* CategoryTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EF4D0F2B071F0000EBB278 /* CategoryTableCell.swift */; };
@@ -445,6 +447,8 @@
 		36E50ADB2B21DF4300BB4D65 /* ExtStore + DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExtStore + DataSource.swift"; sourceTree = "<group>"; };
 		36E50ADD2B21DFA600BB4D65 /* ExtNSCollectionLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtNSCollectionLayout.swift; sourceTree = "<group>"; };
 		36E50ADF2B21E17700BB4D65 /* ExtNSDirectionalEdgeInsets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtNSDirectionalEdgeInsets.swift; sourceTree = "<group>"; };
+		36EA91A52B4697FD0014EF28 /* ExtCart + Delegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExtCart + Delegates.swift"; sourceTree = "<group>"; };
+		36EA91A72B4698C10014EF28 /* ExtCart + BindData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExtCart + BindData.swift"; sourceTree = "<group>"; };
 		36EF4D092B0708E400EBB278 /* ExtUIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtUIButton.swift; sourceTree = "<group>"; };
 		36EF4D0B2B070EBF00EBB278 /* ExtUIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtUIImage.swift; sourceTree = "<group>"; };
 		36EF4D0F2B071F0000EBB278 /* CategoryTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableCell.swift; sourceTree = "<group>"; };
@@ -1138,6 +1142,7 @@
 		369AEBEE2B30516800888758 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				36EA91A42B4697D70014EF28 /* Extension */,
 				369AEBFA2B3053D300888758 /* Component */,
 				369AEBF02B30519100888758 /* CartViewController.swift */,
 				369AEBF12B30519100888758 /* CartViewController.xib */,
@@ -1767,6 +1772,15 @@
 				36E50ADB2B21DF4300BB4D65 /* ExtStore + DataSource.swift */,
 				3626C9002B2C3E6B008DC355 /* ExtStore + BindData.swift */,
 				3626C9022B2C402C008DC355 /* ExtStore + CellDelegate.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		36EA91A42B4697D70014EF28 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				36EA91A52B4697FD0014EF28 /* ExtCart + Delegates.swift */,
+				36EA91A72B4698C10014EF28 /* ExtCart + BindData.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -2430,6 +2444,7 @@
 				36D90FC92B31577F0053ED54 /* SearchUserViewModel.swift in Sources */,
 				36338C152B3BC11100724642 /* ExtStory + BindData.swift in Sources */,
 				36E50ADE2B21DFA600BB4D65 /* ExtNSCollectionLayout.swift in Sources */,
+				36EA91A82B4698C10014EF28 /* ExtCart + BindData.swift in Sources */,
 				36D90FAC2B3140890053ED54 /* PagingInfo.swift in Sources */,
 				361905A22AF4F10F00DA3DF0 /* LoginViewController.swift in Sources */,
 				369AEBF52B30521800888758 /* CartViewModel.swift in Sources */,
@@ -2472,6 +2487,7 @@
 				36B1DAC02B061EB3009C04EE /* RegisterViewModel.swift in Sources */,
 				36E50ADC2B21DF4300BB4D65 /* ExtStore + DataSource.swift in Sources */,
 				36E50AE02B21E17700BB4D65 /* ExtNSDirectionalEdgeInsets.swift in Sources */,
+				36EA91A62B4697FD0014EF28 /* ExtCart + Delegates.swift in Sources */,
 				36EF4D312B07526E00EBB278 /* CategoryCollectionEntity.swift in Sources */,
 				3626C90A2B2C7342008DC355 /* PopularDummyEntity.swift in Sources */,
 				3626C9062B2C46E3008DC355 /* StoreViewDataSource.swift in Sources */,
