@@ -40,6 +40,8 @@ This will install the required dependencies specified in the `Podfile`.
 
 This project's folder structure is designed for modularity and separation of concerns, enhancing maintainability and organization.
 
+### App
+
 - **AppDelegate**: Manages the application's lifecycle events.
   
 - **SceneDelegate**: Handles the setup of the app's user interface upon launching.
