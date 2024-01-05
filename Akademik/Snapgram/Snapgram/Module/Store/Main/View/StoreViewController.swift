@@ -23,7 +23,6 @@ class StoreViewController: BaseViewController {
     internal var headerFYP: UICollectionView!
     internal var snapshot = NSDiffableDataSourceSnapshot<SectionStoreCollection, ProductModel>()
     private var layout: UICollectionViewCompositionalLayout!
-    
     internal var dataSource: StoreViewDataSource!
     
     override func viewDidLoad() {

@@ -23,17 +23,17 @@ PODS:
   - SkeletonView (1.30.4)
 
 DEPENDENCIES:
-  - Alamofire
-  - FloatingPanel
-  - GoogleMaps
-  - Kingfisher
-  - lottie-ios
-  - netfox
-  - RxCocoa
-  - RxDataSources
-  - RxRelay
-  - RxSwift
-  - SkeletonView
+  - Alamofire (= 5.8.1)
+  - FloatingPanel (= 2.8.0)
+  - GoogleMaps (= 8.2.0)
+  - Kingfisher (= 7.10.0)
+  - lottie-ios (= 4.3.3)
+  - netfox (= 1.21.0)
+  - RxCocoa (= 6.6.0)
+  - RxDataSources (= 5.0.0)
+  - RxRelay (= 6.6.0)
+  - RxSwift (= 6.6.0)
+  - SkeletonView (= 1.30.4)
 
 SPEC REPOS:
   trunk:
@@ -64,6 +64,6 @@ SPEC CHECKSUMS:
   RxSwift: a4b44f7d24599f674deebd1818eab82e58410632
   SkeletonView: 5a050f6411e697abd4cda0a8d767013399dccd69
 
-PODFILE CHECKSUM: 9eb127f7b7b87116ca50a94f9f15d2756ef458f0
+PODFILE CHECKSUM: 304c40b4bd8e2912fc5ec8965babb698c543b92a
 
 COCOAPODS: 1.14.2

@@ -46,7 +46,6 @@ class AddStoryViewController: BaseViewController {
         
         vm.loadingState.asObservable().subscribe(onNext: { [weak self] state in
             guard let self = self else {return}
-            
             DispatchQueue.main.async {
                 switch state {
                 case .notLoad:

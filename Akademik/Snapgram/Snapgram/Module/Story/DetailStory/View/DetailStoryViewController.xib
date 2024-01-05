@@ -101,7 +101,7 @@
                                                 <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="large"/>
                                             </buttonConfiguration>
                                             <connections>
-                                                <action selector="onCommentBtnTap" destination="-1" eventType="touchUpInside" id="AkK-S9-2KI"/>
+                                                <action selector="onCommentBtnTap:" destination="-1" eventType="touchUpInside" id="5PE-qv-Gir"/>
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a21-fH-Pl2">
